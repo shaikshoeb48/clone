@@ -1,0 +1,37 @@
+<div class="d-flex align-items-center bg-white p-2 borderBtm m-2" *ngIf="rating">
+    <div class="d-flex" *ngIf="rating.profilePic && rating.rating && rating.name">
+
+        <!-- profile picture -->
+        <div class="profileImgSize">
+            <img class="picsiZe" [src]="rating.profilePic">
+        </div>
+
+        <div class="reqst">
+
+            <!-- rating stars -->
+            <div class="d-flex">
+                <span class="mx-2" style="color: #6FA4E9;"><b>{{rating.rating}}/5</b></span>
+                <span class="text-muted">
+                    <span class="starrating">
+                        <bar-rating [rate]="rating.rating" [readOnly]="true" [max]="5"></bar-rating>
+                    </span>
+                </span>
+            </div>
+
+            <!-- show more/show less -->
+            <ng-container *ngIf="rating.content&& rating.content.length!=0">
+                <div *ngIf="rating.content.length!=0" class="fontSmall ml-2">
+                    {{rating.content | slice:0:charLimit}}
+                    <span class="ShowML cursorpointer" *ngIf="rating.content.length>40 && showMore"
+                        (click)="showMoreOrLess('more')">{{"Show more"|featureText}}</span>
+                    <span class="ShowML cursorpointer" *ngIf="!showMore"
+                        (click)="showMoreOrLess('less')">{{"show less" |featureText}}</span>
+                </div>
+            </ng-container>
+
+            <!-- username -->
+            <span class="font-weight-bold">{{rating.name}}</span>
+        </div>
+
+    </div>
+</div>

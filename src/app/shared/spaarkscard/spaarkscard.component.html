@@ -1,0 +1,508 @@
+<div class="mt-2" *ngIf="post">
+    <div class="p-3 text-muted" *ngIf="post.condition=='Deleted' && !onshare">
+        {{"Oops, the spaark is deleted!" |featureText}}</div>
+
+    <div *ngIf="post.condition=='Deleted'&&onshare" class="boldTxtAll">{{"Oops, the spaark is deleted!" |featureText}}
+    </div>
+
+    <div *ngIf="post.condition!='Deleted'" class="spaarkscard pl-3 pr-3 pt-3 pb-0" #target>
+
+        <!-- View more spaarks from -->
+        <div *ngIf="post.aboveCard &&post.aboveCard!=''">
+            <div class="d-flex">
+
+                <p class="viewmoreTag w-100 text-muted"
+                    [ngClass]="{'cursorpointer hoverText':post.aboveCard.includes('View')}"
+                    (click)="clickedAboveText(post)">{{post.aboveCard |featureText}}</p>
+                <div style="flex:1">
+                    <div class="optionscontainer">
+                        <!-- options for others -->
+                        <img *ngIf="userId1!=postId1 && !inRequestModal" (click)="optionMenu()" mat-button
+                            [matMenuTriggerFor]="menu" [src]="imgSrc"
+                            (mouseover)="imgSrc = '../../../assets/onhoveropt.svg'"
+                            (mouseout)="imgSrc = '../../../assets/options.svg'" alt=""
+                            class=" cursorpointer optionsimg">
+
+                        <!-- options for self -->
+
+
+                        <img *ngIf="userId1==postId1" (click)="optionMenu()" mat-button [matMenuTriggerFor]="menu1"
+                            [src]="imgSrc" (mouseover)="imgSrc = '../../../assets/onhoveropt.svg'"
+                            (mouseout)="imgSrc = '../../../assets/options.svg'" alt="" class="cursorpointer optionsimg">
+
+                        <!-- 
+                <img (click)="optionMenu()" src="../../../assets/options.svg" alt=""
+                    class="iconsmall  iconsmall2 cursorpointer"> -->
+
+                        <!-- bookmark -->
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- <p *ngIf="post.reviews.length>0&&post.reviews[0].posts.length>1" class="viewmoreTag">View
+                <b>{{post.reviews[0].posts.length-1}}</b> More spaarks
+                <span *ngIf="post.subCategory"> of
+                    {{post.subCategory!=''?post.subCategory:"seller"}}</span>
+                from <span class="colorBlue cursorpointer"
+                    [routerLink]="['/profile/seller',post.userId]">{{post.uservisibility.name}}</span></p> -->
+
+
+        </div>
+
+        <div class="spaarkscardheader">
+
+
+
+            <div *ngIf="post.uservisibility"
+                class="spaarkscardheadermain d-flex justify-content-between align-items-center">
+
+                <div class="d-flex w-100 m-0">
+                    <div style="flex:0.7" class=" p-0 allCenter">
+                        <a>
+                            <img style="border:1px solid #d7d7d7" *ngIf="post.uservisibility"
+                                src={{post.uservisibility.profilePic}} alt="" class="spaarkscardprofilepic">
+                        </a>
+                    </div>
+
+                    <div style="flex:5" class=" p-0">
+                        <div class="w-100 pl-2">
+                            <!-- name -->
+                            <span *ngIf="post.featureName!='greet'" routerLink="/profile/{{post.userId}}"
+                                class="spaarkscardheadername cursorpointer text-left colorBlue w-50 m-0">
+                                {{post.uservisibility.name|sliceName:'bigName'}}
+                            </span>
+                            <span *ngIf="post.featureName=='greet'" style="text-decoration: none;"
+                                (click)="clickedAnonymous()" class="spaarkscardheadername greet   text-left  w-50 m-0">
+                                {{post.uservisibility.name|sliceName:'bigName'}}
+                            </span>
+                            <!-- date -->
+                            <p class="w-100 text-muted text-left m-0 spaarksDateText" *ngIf="!post.requestedAt">
+                                {{finalAgo |featureText}}
+
+                                <!-- date -->
+                            <p class="w-100 text-muted text-left m-0 spaarksDateText" *ngIf="post.requestedAt">
+                                {{post.requestedAt|featureText}}</p>
+
+                            <!-- rating stars -->
+                            <div class="star-icons" *ngIf="post.reviews && post.reviews[0]">
+                                <!-- <star-rating [starType]="'svg'" checkedcolor="red" uncheckedcolor="black"
+                                    [rating]="post.reviews[0].rating" staticColor="ok" size="large"
+                                    [showHalfStars]="true" [readOnly]="true">
+                                </star-rating> -->
+                                <span class="starrating">
+                                    <bar-rating [rate]="post.reviews[0].rating" [readOnly]="true" [max]="5">
+                                    </bar-rating>
+                                </span>
+                            </div>
+
+                            <!-- Reviews -->
+                            <span (click)="openReviews()"
+                                *ngIf="typeOfCat!='greet' && typeOfCat!='buyer' && post.reviews && post.reviews[0] && post.reviews[0].reviews"
+                                class="text-muted mr-4 smallTxt blueHoverText cursorhand">{{post.reviews[0].reviews.length}}
+                                {{"reviews"|featureText}}</span>
+
+                            <!-- Views -->
+                            <img src="../../../assets/view2.svg" alt="">
+                            <span *ngIf="post.viewedUsers"
+                                class="text-muted ml-2 smallTxt">{{post.viewedUsers.length | shortNumber}}
+                                {{"views" |featureText}}</span>
+                            <!-- <span *ngIf="isexplore"
+                                    class="text-muted ml-2 smallTxt">{{post.views| shortNumber}}
+                                    {{"views" |featureText}}</span> -->
+
+                            <div style="display: inline-flex; margin-left: 0.7rem;"
+                                *ngIf="typeOfCat=='announce'&& isexplore==false">
+                                <div class=" cursorhand">
+                                    <img (click)="goToMap()" *ngIf="post.uservisibility.location==true"
+                                        src="../../../assets/dist2.svg" alt="" class="viewmapicon mx-1">
+                                    <img (click)="showMsg('Location')" *ngIf="post.uservisibility.location==false"
+                                        src="../../../assets/distance2.svg" alt="" class="viewmapicon mx-1">
+                                    <span (click)="goToMap()" class="colorBlue text-center m-0" style="padding: 4px;"
+                                        *ngIf="post.distance<=999&&post.uservisibility.location==true"><small
+                                            class="distancetext hoverDiv">{{post.distance|number : '1.0-0' }}
+                                            Mts</small></span>
+                                    <span (click)="goToMap()" class="colorBlue text-center m-0" style="padding: 4px;"
+                                        *ngIf="post.distance>999&&post.uservisibility.location==true"><small
+                                            class="distancetext hoverDiv">{{(post.distance/1000) |number : '1.0-1'}}
+                                            Kms</small></span>
+                                </div>
+                            </div>
+
+
+                            <!--Options only for buyer start -->
+
+
+                        </div>
+                    </div>
+                    <div style="flex:1">
+                        <div class="optionscontainer">
+                            <!-- options for others -->
+                            <div *ngIf="!(post.aboveCard &&post.aboveCard!='')">
+                                <img *ngIf="userId1!=postId1 && !inRequestModal" (click)="optionMenu()" mat-button
+                                    [matMenuTriggerFor]="menu" [src]="imgSrc"
+                                    (mouseover)="imgSrc = '../../../assets/onhoveropt.svg'"
+                                    (mouseout)="imgSrc = '../../../assets/options.svg'" alt=""
+                                    class=" cursorpointer optionsimg">
+
+                                <!-- options for self -->
+
+
+                                <img *ngIf="userId1==postId1" (click)="optionMenu()" mat-button
+                                    [matMenuTriggerFor]="menu1" [src]="imgSrc"
+                                    (mouseover)="imgSrc = '../../../assets/onhoveropt.svg'"
+                                    (mouseout)="imgSrc = '../../../assets/options.svg'" alt=""
+                                    class="cursorpointer optionsimg">
+
+                            </div>
+
+                            <!-- 
+                    <img (click)="optionMenu()" src="../../../assets/options.svg" alt=""
+                        class="iconsmall  iconsmall2 cursorpointer"> -->
+
+                            <!-- bookmark -->
+                            <div class="bookmarkDiv allCenter">
+                                <img [src]="isbookmarked?'assets/bookmark_golden.svg':'assets/bookmark_outline.svg'"
+                                    alt="" (click)="toggleBookmark(post._id)" class="bookmarkicon cursorpointer">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--Options only for seller start -->
+            <div *ngIf="typeOfCat=='seller' || typeOfCat=='buyer'"
+                [ngStyle]="typeOfCat=='buyer' ? {'grid-template-columns':'auto auto'}:{'grid-template-columns':'auto auto auto'}"
+                class=" spaarksPill m-1">
+
+                <div *ngIf="typeOfCat=='buyer' && !inRequestModal" class="allView  abc w-100 d-flex align-items-center">
+                    <div *ngFor="let tag of post.tags" [ngClass]="tag.name=='Seller'?'':'cursorpointer'"
+                        class="mr-2   hoverDiv" (click)="clickedPill(post)">
+
+                        <div class="allCenter cardPill">
+                            <span>{{tag.name |featureText}}</span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- subcategory -->
+                <!-- [style.border-color]="tag.color" -->
+                <ng-container *ngIf="typeOfCat=='seller'">
+                    <div *ngFor="let tag of post.tags" class="allView  "
+                        [ngClass]="tag.name=='Seller'?'':'cursorpointer'" (click)="clickedPill(post)">
+
+                        <div class="allCenter cardPill px-2 px-md-0 hoverDiv">
+                            <span>{{tag.name |featureText}}</span>
+                        </div>
+                        <!-- <app-spaarkspill [inputText]="tag.name" [inputColor]="tag.color"></app-spaarkspill> -->
+                    </div>
+                </ng-container>
+
+                <!-- View on map -->
+                <div [ngStyle]="typeOfCat=='buyer'?{'border':'none'}:{}" class="allView"
+                    [ngClass]="post.distance>0?'hoverDiv':''" *ngIf="typeOfCat!='greet' && isexplore==false">
+                    <div [ngClass]="{'cursorpointer':post.distance>0}">
+                        <img (click)="goToMap()" *ngIf="post.uservisibility.location==true"
+                            src="../../../assets/dist2.svg" alt="" class="viewmapicon mx-1">
+                        <img (click)="showMsg('Location')" *ngIf="post.uservisibility.location==false"
+                            src="../../../assets/distance2.svg" alt="" class="viewmapicon mx-1">
+                        <span (click)="goToMap()" class="colorBlue text-center m-0" style="padding: 4px;"
+                            *ngIf="post.distance<=999&&post.uservisibility.location==true"><small
+                                class="distancetext ">{{post.distance|number : '1.0-0' }}
+                                Mts</small></span>
+                        <span (click)="goToMap()" class="colorBlue text-center m-0" style="padding: 4px;"
+                            *ngIf="post.distance>999&&post.uservisibility.location==true"><small
+                                class="distancetext ">{{(post.distance/1000) |number : '1.0-1'}}
+                                Kms</small></span>
+                    </div>
+                </div>
+
+                <!-- Seller profile -->
+                <ng-container *ngIf="typeOfCat=='seller'">
+                    <div class="viewsellerDiv allCenter allView hoverDiv" style="border: none;"
+                        [ngStyle]="isexplore&&{'margin-right':'0%'}">
+                        <a [routerLink]="['/profile/seller',post.userId]">
+                            <span class="SellerProfile blackText">
+                                <img class="mx-1" src="../../../assets/viewSeller.svg">
+                                {{"Market profile" |featureText}}</span>
+                        </a>
+                    </div>
+                </ng-container>
+
+
+            </div>
+            <!--Options only for seller end -->
+
+
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item (click)="reportclicked(post._id,post.featureName,post.originalName)"><img
+                        class="my" src="../../../assets/report.svg" />{{"Report" |featureText}}</button>
+                <button
+                    (click)="onBlock(post.userId,post.featureName,post._id,post.jid,post.jid_anonymous,post.uservisibility.name)"
+                    mat-menu-item><img class="my" src="../../../assets/block.svg" />{{"Block"|featureText}}</button>
+                <button mat-menu-item (click)="copyText(post)" *ngIf="typeOfCat!='greet' && isexplore==false"><img
+                        class="my" src="../../../assets/share.svg" />{{"Share"|featureText}}</button>
+            </mat-menu>
+
+            <mat-menu #menu1="matMenu" xPosition="before">
+                <button mat-menu-item (click)="deleteSpaark(post._id,post.featureName,post.originalName,post)"><img
+                        class="my" src="../../../assets/delete.svg" />{{"Delete"|featureText}}</button>
+                <button mat-menu-item (click)="copyText(post)" *ngIf="typeOfCat!='greet' && isexplore==false"><img
+                        class="my" src="../../../assets/share.svg" />{{"Share"|featureText}}</button>
+
+            </mat-menu>
+
+        </div>
+
+
+        <div class="spaarkscardbody"
+            [ngStyle]="typeOfCat=='greet'||typeOfCat=='announce'?{'border-top':'0.02px solid #DDDDDD','margin-top':'10px'}:{'border-top':'none'}"
+            style="border-bottom-width:0px;">
+            <div class="spaarkscardbodytext p-1 " style=" color: #323F4B;">
+
+                <ng-container *ngIf="post.content">
+                    <pre *ngIf="post.content.length>0 "[ngClass]="post.content.length<=200?'showmore1':'showmore'"
+                        class="contentAll text-justify padTopAll  spaarkscontent  m-0" #showmoredata
+                        [innerHTML]="post.content | urlify"></pre>
+                </ng-container>
+
+                <div class="h-100">
+                    <a style="cursor: pointer;" class="colorBlue paddingLeftDefault" (click)="showMore()"
+                        *ngIf="post.content && (shomorebollean && post.content.length >200)" >
+                        {{'Show more' |featureText}}...</a>
+                </div>
+                <!-- <a style="cursor: pointer;" class="colorBlue paddingLeftDefault" (click)="showMore()"
+                    *ngIf="shomorebollean  || (shomorebollean && post.content.length > 245)">
+                    {{'Show More...'}}</a> -->
+                <!-- <a (click)="showLess()" style="cursor: pointer;" class="colorBlue paddingLeftDefault"
+                    *ngIf="!shomorebollean">{{'show less'|featureText}}...</a> -->
+
+                <img *ngIf="post.photo.length!=0&&post.status=='true'" style="    width: 100%;
+                        height: 200px;" src={{post.photo[0]}}>
+
+            </div>
+            <div class="spaarkscardbodymedia">
+                <app-explorecarousel [photo]="post.photos" [video]="post.videos"></app-explorecarousel>
+            </div>
+            <div *ngIf="!inRequestModal" class="pl-2 pr-2 pb-1 pt-1 spaarksfootertexts">
+            </div>
+        </div>
+
+
+        <div *ngIf="!inRequestModal" class="spaarkscardfooter ">
+
+            <div class="spaarkscardfooteritem hoverDiv allCenter cursorhand" (click)="clickedLike()">
+                <div class="spaarkscardfooterblock">
+                    <div class="spaarkscardfooterblockitem">
+                        <img *ngIf="!clicklike" src="../../../assets/Card/nonewlike.svg" alt="">
+                        <img *ngIf="clicklike" src="../../../assets/Card/newliked.svg" alt="">
+                        <p *ngIf="post.likes" class="text-center m-0 blackTextcursorhand smallTxt">
+                            {{post.likes.length}}</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div *ngIf="typeOfCat!='greet'" class="spaarkscardfooteritem  allCenter hoverDiv cursorhand"
+                (click)="changeComments()">
+                <div class="spaarkscardfooterblock">
+                    <div class="spaarkscardfooterblockitem cursorhand">
+                        <img src="../../../assets/Card/newcmnt.svg" alt="">
+                        <p *ngIf="post.subposts" class="text-center m-0 blackTextursorhand smallTxt">
+                            {{post.subposts.length}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="typeOfCat!='greet' && isexplore==false"
+                class="spaarkscardfooteritem allCenter hoverDiv cursorhand" (click)="callClicked()">
+                <div class="spaarkscardfooterblock">
+                    <div class="spaarkscardfooterblockitem cursorhand">
+                        <!-- <img *ngIf="post.mobileNumber!='NA'||post.uservisibility.phoneCall" src="../../../assets/Card/call4.svg"
+                            (click)="makeCall(post)" alt="">
+                        <img (click)="showCall('Call')"
+                            *ngIf="post.uservisibility.phoneCall==false&&post.mobileNumber=='NA'"
+                            src="../../../assets/Card/nocall.svg" alt=""> -->
+
+                        <img *ngIf="post.mobileNumber!='NA'||post.uservisibility.phoneCall"
+                            src="../../../assets/Card/call4.svg" alt="">
+                        <img *ngIf="post.uservisibility.phoneCall==false&&post.mobileNumber=='NA'"
+                            src="../../../assets/Card/nocall.svg" alt="">
+
+
+                        <p class="text-center m-0  blackText">{{"Call" |featureText}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="spaarkscardfooteritem allCenter hoverDiv cursorhand" (click)="chatClicked()">
+                <div class="spaarkscardfooterblock">
+                    <div class="spaarkscardfooterblockitem cursorhand ">
+                        <!-- *ngIf="typeOfCat=='greet' && !alreadyReqsted && !post.requested&& !post.accepted " -->
+                        <!-- <img *ngIf="typeOfCat=='greet'" (click)="openGreetRequest()"
+                            src="../../../assets/Card/newmsg.svg" alt=""> -->
+                        <img *ngIf="typeOfCat=='greet'" src="../../../assets/Card/newmsg.svg" alt="">
+                        <!-- 
+                        <img *ngIf="typeOfCat=='greet' && post.accepted" (click)="openChat(post)"
+                            src="../../../assets/Card/newmsg.svg" alt=""> -->
+
+                        <!-- <img (click)="openChat(post)"
+                            *ngIf="typeOfCat!='greet' && post.uservisibility.chat==true && !alreadyReqsted"
+                            src="../../../assets/Card/newmsg.svg" alt="">
+
+                        <img (click)="showMsg('Chat')"
+                            *ngIf="typeOfCat!='greet' && post.uservisibility.chat==false  && !alreadyReqsted"
+                            src="../../../assets/Card/nochat.svg" alt=""> -->
+
+                        <img *ngIf="typeOfCat!='greet' && post.uservisibility.chat==true && !alreadyReqsted"
+                            src="../../../assets/Card/newmsg.svg" alt="">
+
+                        <img *ngIf="typeOfCat!='greet' && post.uservisibility.chat==false  && !alreadyReqsted"
+                            src="../../../assets/Card/nochat.svg" alt="">
+
+
+
+                        <p *ngIf="typeOfCat!='greet' && post.uservisibility.chat==true && !alreadyReqsted"
+                            class="text-center m-0  blackText blue">{{"Chat" |featureText}}</p>
+
+                        <p *ngIf="typeOfCat!='greet' && post.uservisibility.chat==false  && !alreadyReqsted"
+                            class="text-center m-0 blackText text-muted">{{"Chat" |featureText}}</p>
+
+                        <!-- <p *ngIf="typeOfCat=='greet' && post.accepted" (click)="openChat(post)"
+                            class="text-center m-0 text-muted">Message</p> -->
+
+                        <!-- *ngIf="typeOfCat=='greet' && !post.requested && !post.accepted" -->
+                        <p *ngIf="typeOfCat=='greet'" class=" text-center  m-0 text-muted">
+                            {{"Request to chat" |featureText}}</p>
+
+                        <!-- <img *ngIf="typeOfCat=='greet' && post.requested && !post.accepted"
+                            src="../../../assets/chat2.svg" alt=""> -->
+
+                        <!-- <p *ngIf="typeOfCat=='greet' && post.requested && !post.accepted"
+                            class="text-center m-0 text-muted">Requested to
+                            Chat</p> -->
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="spaarkscardfooteritem allCenter hoverDiv cursorhand" (click)="clickedWhatsappShare()"
+                *ngIf="typeOfCat!='greet' && isexplore==false">
+                <div class="spaarkscardfooterblock">
+                    <div class="spaarkscardfooterblockitem cursorhand" style="margin-top: 18px;">
+                        <img src="../../../assets/whatsapp.svg" alt="">
+                        <p *ngIf="post.myshares && post.myshares[0] " class="blackText mallTxt">
+                            {{post.myshares[0].shares}}
+                            <!--  -->
+                        </p>
+                        <p *ngIf="post.myshares&&post.myshares.length==0" class="blackText mallTxt">
+                            {{'0'}}
+                            <!--  -->
+                        </p>
+                        <p *ngIf="!post.myshares" class="blackText mallTxt">
+                            {{'0'}}
+                            <!--  -->
+                        </p>
+                        <!-- <p class="text-center m-0 text-muted">Share</p> -->
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="spaarkscardfooter justify-content-between" style="padding-bottom:.5rem ;"
+            *ngIf="isexplore==true && typeOfCat!='greet'">
+            <span class="d-flex align-items-center justify-content-center distance-text">
+                <img src="assets/viewonmap.svg" alt="" class="viewmapicon">
+
+                <span>
+                    <p class="text-center m-0" *ngIf="post.distance<=999"><small
+                            class="text-muted">{{post.distance|number : '1.0-0' }}
+                            Mts</small></p>
+                    <p class="text-center m-0" *ngIf="post.distance>999"><small
+                            class="text-muted">{{(post.distance/1000) |number : '1.0-1'}}
+                            Kms</small></p>
+                </span>
+            </span>
+
+            <span class="d-flex flex-align-center justify-content-center showDirection">
+                <a class="cursorpointer"
+                    (click)="showDirections(post.locationStatic.coordinates[1],post.locationStatic.coordinates[0])">
+                    <img class="mr-1 imageIcon " src="assets/directions.svg" />{{"Show directions"|featureText}}
+                </a>
+            </span>
+
+            <span *ngIf="post.myshares && post.myshares[0]" style=" font-size: 0.75rem; cursor: default;"
+                class="share-text">
+                {{post.myshares[0].shares}} {{"shares" |featureText}}
+            </span>
+
+        </div>
+
+        <div *ngIf="showComments">
+            <app-commentscontainer (updatecomments)="checkupdatecomments()" [commentsArr]="commentsArray" [post]="post">
+            </app-commentscontainer>
+        </div>
+
+        <!-- <div *ngIf="showMsgModal">
+            <div class="cookiepolicy allCenter">
+                <div class="w-100 allCenter">
+                    <div class=" cookiepolicyCore p-3">
+                        <div class="w-100 cookiepolicyText text-center">
+                            {{'Owner of this Spaark disabled '+option+' option'}}
+                            This option is available when you create a spaark
+                        </div>
+
+                        <div class="cookiepolicybutton allCenter w-100">
+                            <div class="w-50 allCenter">
+                                <div class="w-25 text-center allCenter">
+                                    <span class="bg-warning w-100 p-2 rounded text-dark cursorpointer"
+                                        (click)="clickedCookieOk()">ok</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    </div>
+
+    <div *ngIf="showMsgModal">
+        <div class="coredisabledcontainer" style="z-index:1200">
+            <div class="disabledmainchild" (click)="clickedCookieOk()">
+                <div class="disabledwhiteDiv p-2">
+
+                    <div class="flextwo">
+                        <span class="iconcontainer mr-2">
+                            <img *ngIf="option=='Call'" src="../../../assets/calls.svg" alt="" class="iconimg" />
+                            <img *ngIf="option=='Chat'" src="../../../assets/chats.svg" alt="" class="iconimg" />
+                        </span>
+                        <div class="m-0">
+                            <h4 class="bigtextfordisabled"> {{"Owner of this Spaark disabled" |featureText}}
+                                {{option|featureText}} {{"option" |featureText}}</h4>
+                            <p class="m-0 disabledtextsmall">
+                                {{"This option is available when you create a spaark" |featureText}}
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="flexone">
+                        <img src="../../../assets/cross.svg" (click)="clickedCookieOk()" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

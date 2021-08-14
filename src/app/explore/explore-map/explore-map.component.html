@@ -1,0 +1,148 @@
+<div class="mainDivAll">
+
+    <!-- only works on mobile version -->
+    <div *ngIf="isMobileVersion" class="topbarAll" apptopbardir>
+        <app-topbarmobile (selectedindexchange)="checkTabIndex($event)"></app-topbarmobile>
+    </div>
+
+    <div class="mainfeedAll" appmainfeeddir>
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace" style="flex: 0.5;"></div>
+
+        <div class="leftbar" >
+            <app-leftnav></app-leftnav>
+        </div>
+
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace" style="
+        background-color: #f2f2f2;"></div>
+
+        <div class="mainMapContainer">
+
+            <div class="mapContainercore w-100 h-100">
+
+                <div class="d-flex map-overlay">
+                    <div style=" align-self: stretch;" class="mr-1 w-100">
+                        <app-topbar *ngIf="!isMobileVersion" (selectedindexchange)="checkTabIndex($event)"></app-topbar>
+                        <!-- <div style="position:relative">
+                        </div> -->
+
+                        <!-- leaflet maps -->
+                        <div style="width: 100%;height: 100%;" id="exploreMap"
+                            [ngClass]="{'h-100' : isMobileVersion}">
+                            <div id="mapA" style="z-index: 0; height: 100%; width: 100%;"
+                                [ngStyle]="{'height':isMobileVersion?'100%':'100%'}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="topLocation">
+                    <div *ngIf="locationType=='cityselection'" class="location_container">
+                        <span (click)="resetMap()" class="p-2">
+                            <img src="../../../assets/loc.svg" alt="">
+                        </span>
+                        <span></span>
+                        <span class="change_loc" (click)="goToLocation()"> {{"Change location" |featureText}}</span>
+                    </div>
+
+                    <div *ngIf="showDirections">
+                        <div class="showDirections">
+                            <span><img src="../../../assets/gmaps.png" style="    height: 25px;
+                         width: 25px;"></span>
+                            <a [attr.href]="'https://google.com/maps/dir/?api=1&destination=' + latitude+','+longitude"
+                                href="https://google.com/maps/dir/?api=1&destination=${},${}" target="_blank"
+                                class="showdirtext">
+                                <span class="showText">{{"Show on googlemaps" |featureText}}</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- map cards for mobile screen start -->
+                <div class="bottombar">
+                    <div class="cardsContainerbody">
+                        <div class="w-100 cursorpointer allCenter"
+                            *ngFor="let post of postsarr|slice:0:20; let ind=index">
+                            <app-map-card (clickedDesktop)="clickedDesktop($event)" [scrolltoview]="scrolltoview"
+                                [triggerClickOnmapCard]="triggerClickOnmapCard" [postIndex]="ind" [post]="post">
+                            </app-map-card>
+                        </div>
+                    </div>
+                </div>
+                <!-- map cards for mobile screen end -->
+
+            </div>
+        </div>
+
+        <div *ngIf="postsarr" class="rightsidecontainer mr-1 p-0">
+            <div *ngIf="isList" class="cardscontainer w-100 h-100">
+                <!-- SearchBar starts -->
+                <div class="cardsContainerheader d-none">
+                    <div class="d-none p-2 searchExtensionparent">
+                        <!-- Looking for -->
+                        <div class="searchBar mb-2 d-flex ">
+                            <img class="m-2" src="../../../assets/search.svg" alt="search">
+                            <textarea (keypress)="pressedkey($event)" [(ngModel)]="content" class="searchBar "
+                                type="text" placeholder="{{'Looking for something' |featureText}}"></textarea>
+
+                        </div>
+                        <div *ngIf="listofsearches.length>0" class="searchExtension bg-white">
+                            <div>
+                                <div class="w-100 allCenter justify-content-between px-3 ">
+                                    <span></span>
+                                    <span (click)="listofsearches=[]" class="text-primary cursorpointer">close</span>
+                                </div>
+                                <ul class="list-group p-0">
+                                    <li *ngFor="let fun of listofsearches" class="list-group-item p-2">
+                                        <div class="w-100">
+                                            <p class="m-0"> {{fun.preview}}</p>
+                                            <small><b>{{fun.subCategory}}</b></small>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- SearchBar Ends -->
+
+                <div class="cardsContainerbody">
+                    <div class="w-100 " *ngFor="let post of postsarr | slice:0:30 ; let ind=index">
+                        <app-spaarkscard [scrolltoview]="scrolltoview" [isexplore]="true"
+                            (clickedDesktop)="clickedDesktop($event)" [postIndex]="ind" [post]="post"
+                            (mouseout)="postHoverOut()" (mouseover)="postHover(post)">
+                        </app-spaarkscard>
+                    </div>
+                    <div class="allCenter" *ngIf="showNoPosts">
+                        <span class="timeTxt" style="margin: 25%;"> {{"No Spaarks found" |featureText}}</span>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div *ngIf="!isList" class="detailContainer w-100">
+                <div class="w-100 p-3 d-flex align-items-center justify-content-between">
+                    <span (click)="changeBacktoList()" class="cursorpointer">
+                        <img src="../../../assets/back.svg" class="backArrow" alt="">
+                    </span>
+                    <span></span>
+                </div>
+                <app-spaarkscard [openComments]="true" [post]="specificPostMarker.post"></app-spaarkscard>
+            </div>
+
+        </div>
+
+        <div *ngIf="!isMobileVersion" class="rightSpace insideSpace" style="
+        background-color: #f2f2f2;"></div>
+
+        <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+    </div>
+
+    <!-- bottombar for mobileversion -->
+    <div class="bottomNavBarAll" appbottomnavdir>
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+
+</div>

@@ -1,0 +1,82 @@
+.buttonTabs {
+  //@extend margin: 1rem!important;
+  // margin-left: 1rem !important;
+  // margin-top: 1rem !important;
+  //   margin-bottom: 1rem !important;
+
+  border: #6fa4e9;
+  border: 1px solid #6fa4e9;
+  width: fit-content;
+}
+
+.rewards-header {
+  margin-top: 25px !important;
+}
+
+.desc {
+  margin-left: 1rem !important;
+}
+
+.mat-button1 {
+  color: #6fa4e9;
+}
+.mat-button2 {
+  background: #6fa4e9;
+  border-radius: 2px;
+  color: #ffffff;
+}
+
+mat-button-toggle ::ng-deep:hover {
+  background-color: #2f80ed12 !important;
+  color: #6fa4e9 !important;
+}
+
+mat-button-toggle.mat-button-toggle-checked ::ng-deep:hover {
+  background-color: #2f80ed12 !important;
+  color: #ffffff !important;
+}
+
+.download-cues{
+  margin: 1rem 0rem 1rem 1rem;
+}
+
+.cue-heading{
+  color: #6C757D;
+  font-size: 15px;
+  margin-bottom: 0.5rem;
+  font-family: "Mulish";
+  border-bottom: 0.25px solid #6C757D;
+  width: fit-content;
+}
+
+.download-button {
+  width: 135px;
+  margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 950px) {
+  .bottomNavBarAll {
+    height: 10%;
+    position: absolute;
+    top: 100%;
+  }
+}
+
+@media screen and(min-width:300px) and (max-width: 440px) {
+  //   .bookmarksFeed {
+  //     flex-direction: column;
+  //   }
+  .buttonTabs {
+    border: none !important;
+    // margin-left: 3rem !important;
+    margin-top: 15px !important;
+    margin-bottom: 0px !important;
+  }
+}
+
+
+// @media screen and(max-width:950px) {
+//   .mainfeedAll {
+//     height: 90% !important;
+//   }
+// }

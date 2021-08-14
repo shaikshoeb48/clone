@@ -1,0 +1,138 @@
+<div class="mainDivAll">
+
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile (selectedindexchange)="checkTabIndex($event)">
+        </app-topbarmobile>
+    </div>
+
+    <div appmainfeeddir class="mainfeedAll">
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace"></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+
+        <div class="forSmall h-100">
+            <div class="middlefeed h-100">
+                <div class="w-100">
+                    <div class="timeline rewards-header">
+                        <div class="bookmarksFeed">
+
+                            <div class="rewards-header" class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                                <div class="bookmarkText allCenter">
+                                    <img src="../../../assets/back1.svg" class="backimg cursorpointer"
+                                        (click)="clickedBack()">
+                                    <span class="boldTxtAll w-100  all-headings"
+                                        style="display: block;">{{"Rewards and Partnership Program"|featureText}}</span>
+                                </div>
+
+
+                                <div class="buttonTabs">
+                                    <section>
+                                        <mat-button-toggle-group selectedIndex="selectedTab=='spaarks'?1:2"
+                                            [(ngModel)]="selectedTab" aria-label="Font Style">
+                                            <mat-button-toggle value="rewards">{{"Rewards" |featureText}}
+                                            </mat-button-toggle>
+                                            <mat-button-toggle value="partner">{{"Partnership Program"|featureText}}
+                                            </mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </section>
+                                </div>
+                            </div>
+                            <!-- <div class="bookmarkText allCenter">
+                                <img src="../../../assets/back1.svg" class="backimg cursorpointer"
+                                    (click)="clickedBack()">
+                                <span class="boldTxtAll w-100  all-headings"
+                                    style="display: block;">{{"Rewards and Partnership Program"|featureText}}</span>
+                            </div>
+
+
+                            <div class="buttonTabs mt-3">
+                                <section>
+                                    <mat-button-toggle-group selectedIndex="selectedTab=='spaarks'?1:2"
+                                        [(ngModel)]="selectedTab" aria-label="Font Style">
+                                        <mat-button-toggle value="rewards">{{"Rewards" |featureText}}
+                                        </mat-button-toggle>
+                                        <mat-button-toggle value="partner">{{"Partnership Program"|featureText}}
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                </section>
+                            </div> -->
+
+
+                            <div class="download-cues">
+                                <div class="cue-heading">{{"Available on Android & iOS" |featureText}}</div>
+                                <div>
+                                    <a href="https://play.google.com/store/apps/details?id=com.osos.spaarksapp&hl=en_IN&gl=US"
+                                        target="blank">
+                                        <img src="../../../assets/playstore.png" alt="Get it on playstore"
+                                            class="download-button">
+                                    </a>
+                                    <a href="https://apple.com"
+                                        target="blank">
+                                        <img src="../../../assets/appstore.png" alt="Get it on appstore"
+                                            class="download-button" height="45px">
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="selectedTab=='rewards'">
+                        <div class="timeline desc">
+                            <p>1. {{"Ask a Seller to register in Spaarks" |featureText}} </p>
+                            <p>2.{{"Make the Seller post a Spaark about the Service/Product" |featureText}}</p>
+                            <img src="../../../assets/reward2.svg" alt="">
+                            <p>3. {{"Spaark should have correct text and image" |featureText}}</p>
+                            <img src="../../../assets/reward3.svg" alt="">
+                            <p>4. {{"Add your UPI details in Rewards section." |featureText}}</p>
+                            <img src="../../../assets/reward4.svg" alt="">
+                            <p>5. {{"Scan Seller's QR and get the Scratch Card" |featureText}}</p>
+                            <img src="../../../assets/reward5.svg" alt="">
+                            <p>6. {{"Scratch the card to get your Rewards" |featureText}}</p>
+                            <img src="../../../assets/reward6.svg" alt="">
+
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="selectedTab=='partner'">
+                        <div class="timeline desc">
+                            <p>1.{{" Register yourself as a Partner. Add UPI details." |featureText}}</p>
+                            <img src="../../../assets/partner1.svg" alt="">
+                            <p>2. {{"Ask a Seller to register in Spaarks" |featureText}}</p>
+                            <p>3. {{"Make the Seller post a Spaark about the Service/Product" |featureText}}</p>
+                            <img src="../../../assets/partner3.svg" alt="">
+
+                            <p>4. {{"Spaark should be as Guidelines" |featureText}}</p>
+                            <img src="../../../assets/partner4.svg" alt="">
+
+                            <p>5. {{"Scan Seller's QR" |featureText}}</p>
+                            <img src="../../../assets/partner5.svg" alt="">
+
+                            <p>6. {{"Complete a set to claim your Rewards" |featureText}}</p>
+                            <img src="../../../assets/partner6.svg" alt="">
+
+                            <p>7. {{"Move to next Set" |featureText}}</p>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+
+        <div appbottomnavdir class="bottomNavBarAll">
+            <app-bottom-nav-bar></app-bottom-nav-bar>
+        </div>
+    </div>

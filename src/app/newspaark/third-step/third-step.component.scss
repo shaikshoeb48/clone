@@ -1,0 +1,191 @@
+.thirdstepfont {
+  font-size: 15px;
+
+
+}
+
+.imgStyle {
+  height: 60px;
+  width: 60px;
+  // border-radius: 50%;
+  // background-color: black;
+}
+
+
+.subItem {
+  flex: 1;
+}
+
+.allBtns {
+  font-size: 0.78rem;
+}
+
+@media screen and (max-width:1290px) {
+  .allBtns {
+    font-size: 0.7rem;
+  }
+}
+
+.itemStyle {
+  display: flex;
+  height: 100px;
+  background-color: white;
+  align-items: center;
+  border: 0.8px solid #D7D7D7;
+  border-style: 8px;
+  margin-top: 0px !important;
+}
+
+
+.thirdbody {
+  div {
+    background: white;
+
+    p {
+      text-align: left;
+    }
+  }
+}
+
+.mapcontainer {
+  width: 100%;
+  height: 340px;
+}
+
+.sliderdiv {
+  border: 0.8px solid #D7D7D7;
+  border-radius: 8px;
+}
+
+
+.mediaicon {
+  width: 24px;
+  height: 21px;
+}
+
+.basefirststep {
+  background-color: #F0F2F5;
+}
+
+.mediaimagee {
+  border-right: 0.5px solid #9e9e9e;
+
+  span {
+    color: #6FA4E9;
+  }
+}
+
+
+.mediaimagee,
+.mediavideo {
+  min-width: 70%;
+}
+
+.nextspan {
+  background: #6FA4E9;
+  border-radius: 100px;
+  width: 17%;
+
+  span {
+    // width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      img {
+        width: 24px;
+        height: 14px;
+      }
+    }
+  }
+
+
+
+}
+
+@media screen and (min-width:1200px) and (max-width:1700px) {
+  .nextspan {
+    width: 27%;
+  }
+}
+
+.mediaspan {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+agm-map {
+  width: 100%;
+  height: 100%;
+}
+
+.descStyle {
+  font-family: Open Sans;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 156.3%;
+}
+
+// .thirdstep {
+//   max-height: 80vh;
+//   overflow-y: scroll;
+// }
+
+
+.description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // margin-top: 50px;
+}
+
+.txtStyle {
+  flex: 2;
+  text-align: left;
+}
+
+.boldTxtAll2 {
+  font-size: 1.16rem;
+  font-weight: 700;
+  padding-left: 15px;
+  font-family: Source Sans Pro;
+  line-height: 25.14px;
+  letter-spacing: 0.165px;
+}
+
+.boldTxtAll3 {
+  font-size: 1.09rem;
+  font-weight: 700;
+  padding-left: 15px;
+  font-family: Source Sans Pro;
+  line-height: 25.14px;
+  letter-spacing: 0.165px;
+}
+
+@media screen and (max-width:950px) {
+  .boldTxtAll2 {
+    font-size: 1rem;
+  }
+
+  .mediaicon {
+    width: 20px;
+    height: 18px;
+  }
+
+  .nextspan {
+    width: 30%;
+  }
+
+  .boldTxtAll3 {
+    font-size: 0.9rem;
+  }
+}
+
+button::ng-deep:hover {
+  background-color: none !important;
+}

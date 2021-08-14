@@ -1,0 +1,43 @@
+<!-- <app-viewroot></app-viewroot> -->
+
+<div class="mainDivAll">
+
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile (selectedindexchange)="checkTabIndex($event)"></app-topbarmobile>
+    </div>
+
+    <div appmainfeeddir class="mainfeedAll">
+    <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace" ></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace" ></div>
+
+        <div class="forSmall h-100">
+            <div class="middlefeed">
+                <div class="w-100 h-100">
+                    <div class="w-100 h-100" *ngIf="profile=='normal'">
+                        <app-userprofile [profileData]="userId" (changedprofile)="changeProfile($event)">
+                        </app-userprofile>
+                    </div>
+                    <div class="w-100" *ngIf="profile=='sellerprofile'">
+                        <app-sellerprofile (changedprofile)="changeProfile($event)"></app-sellerprofile>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isMobileVersion"  class="rightSpace insideSpace" ></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+    <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"  ></div>
+
+
+    </div>
+
+    <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+</div>

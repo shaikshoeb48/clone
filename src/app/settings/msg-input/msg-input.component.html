@@ -1,0 +1,58 @@
+<!-- Showing the added images/videos start -->
+
+<div class="main">
+    <div class="mainImg" *ngFor="let img of imageList; let idx = index">
+
+        <!-- for images -->
+        <div class="uploadImg " *ngIf="img.type == 'img'">
+            <img [src]="img.data" *ngIf="img != '' && img" class="userImg1" />
+            <a (click)="deleteImg(idx)"><img src="../../assets/remove.png" *ngIf="imagePreview != '' && img"
+                    class="uploadCross" style="cursor: pointer;" />
+            </a>
+        </div>
+
+        <!-- for videos -->
+        <div class="uploadImg" *ngIf="img.type == 'vid'">
+            <video controls class="userImg1">
+                <source #vid [src]="img.data" type="video/mp4" class="uploadCross" />
+            </video>
+            <a (click)="deleteImg(idx)"> <img src="../../assets/remove.png" class="uploadCross"
+                    style="cursor: pointer;" /></a>
+
+        </div>
+    </div>
+</div>
+<!-- Showing the added images/videos end -->
+
+<div class="d-flex align-items-center w-100" style="background: #f0f2f5;">
+
+
+
+    <!-- textarea for comments start-->
+    <div class="p-3 w-100">
+        <textarea class="searchBar w-100" [value]="description" (input)="changedInput($event)" type="text"
+            placeholder="{{'Type your message here' |featureText}}" style="overflow: hidden;"></textarea>
+    </div>
+
+    <!-- textarea for comments end -->
+
+
+
+
+    <!-- camera -->
+    <span *ngIf="fileAr.length<4" (click)="addImages()" class="align-self-center sendIcon px-2">
+        <img class="sendIcon" src="../../../assets/camera.svg" alt="">
+    </span>
+
+    <!-- image picker -->
+    <div>
+        <input type="file" id="myFile" multiple #myFile #filePicker (change)="onImagePicked($event)"
+            accept="image/*, video/*" />
+    </div>
+
+    <!-- submit comment -->
+    <span class="align-self-center px-2 sendIcon cursorpointer" (click)="sendMsg()"> <img class=""
+            src="../../../assets/send.svg" alt="">
+    </span>
+
+</div>

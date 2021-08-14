@@ -1,0 +1,61 @@
+<!-- <div *ngIf="profile && profile.subCategory" class="categoryrating"
+    [ngClass]="{'selectProfileClicked':profileIndex==clickedIndex}" (click)="onClick()">
+    <div class="ratingContainer allbg">
+        <span class="ratingtext">{{profile.rating==0?'N/A':profile.rating}}</span>
+        <span class="starcontainer"> <img src="../../../assets/star.svg" class="starimg" alt=""> </span>
+    </div>
+
+ 
+    <div class="imageContainer">
+        <img *ngIf="profile.categoryId" [src]="profile.categoryId?'../../../assets/catsubcatimages/categoryimages/'+((profile.subCategoryId!='undefined')?profile.subCategoryId:profile.categoryId)+'.png':categoryIndImg"
+            (error)="imageFailed($event)"
+            alt="" class="imageCat">
+            <img *ngIf="!profile.categoryId" style="background-color: #6FA4E9;"
+            alt="" class="imageCat">
+    </div>
+
+    <div class="w-100 bodyParent mt-3">
+        <div class="categoryratingBody  mb-1 px-1 pt-1">
+            <p class="m-0">{{profile.subCategory |featureText}}</p>
+
+        </div>
+
+        <div class="spaarkscountcontainer ml-2">
+            <div class="w-75 allbg ">
+                <p class="m-0 w-100 ">{{profile.posts.length}} {{"Spaarks" |featureText}}</p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div *ngIf="profile && profile.subCategory" class="categoryrating"
+    [ngClass]="{'selectProfileClicked':profileIndex==clickedIndex}" (click)="onClick()">
+    <div class="ratingContainer allbg">
+        <span class="ratingtext">{{profile.rating==0?'N/A':profile.rating}}</span>
+        <span class="starcontainer"> <img src="../../../assets/star.svg" class="starimg" alt=""> </span>
+    </div>
+
+ 
+    <div class="imageContainer d-flex justify-content-center">
+        <img *ngIf="profile.categoryId" [src]="profile.categoryId?'../../../assets/catsubcatimages/categoryimages/'+((profile.subCategoryId!='undefined')?profile.subCategoryId:profile.categoryId)+'.png':categoryIndImg"
+        (error)="imageFailed($event)"
+        alt="" class="imageCat">
+        <img *ngIf="!profile.categoryId" style="background-color: #6FA4E9;"
+        alt="" class="imageCat1">
+            
+    </div>
+
+    <div class="w-100 bodyParent">
+        <div class="categoryratingBody  mb-1 px-1 pt-1">
+            <p class="m-0">{{profile.subCategory |featureText}}</p>
+
+        </div>
+
+        <div class="spaarkscountcontainer ml-2">
+            <div class="w-75 allbg ">
+                <p class="m-0 w-100 ">{{profile.posts.length}} {{"Spaarks" |featureText}}</p>
+            </div>
+        </div>
+    </div>
+</div>

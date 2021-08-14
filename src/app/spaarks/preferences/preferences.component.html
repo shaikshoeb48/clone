@@ -1,0 +1,77 @@
+<div class="mainDivAll">
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile></app-topbarmobile>
+    </div>
+
+    <div appmainfeeddir class="mainfeedAll">
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace"></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+        <div class="forSmall h-100 overflow-hidden">
+            <div class="middlefeed" style="position: relative;">
+                <!-- <div class="preferencess d-flex justify-content-center" style=" background-color: #F0F2F5;"> -->
+                <div class="preferencess d-flex justify-content-center bg-white">
+                    <div class="basePreferences">
+
+                        <div class="fontStyles mt-2">
+                            <p class="text-center boldTxtAll m-0 all-headings">{{"Choose your interests"|featureText}}
+                            </p>
+                            <!-- <p class="text-center yoursample m-0">Explore in your local area</p> -->
+                            <p class="text-center mt-2 boldTxtAll  all-headings font-weight-normal">
+                                {{"Select as many"|featureText}}</p>
+                        </div>
+
+                        <div class="w-100 allCenter pb-5 ">
+                            <div class="w-100 text-center pb-5"
+                                style="display: flex;flex-wrap: wrap;justify-content: center;">
+                                <div class="styless cursorpointer mb-3" *ngFor="let fun of preferences;let ind=index">
+                                    <app-variableselectbox (clickedVarbl)="clickedd($event)"
+                                        [textt]="{dat:fun,ind:ind}">
+                                    </app-variableselectbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-5 mb-md-0 p-3 p-md-0"></div>
+
+                        <div class="d-flex btnBlock">
+
+                            <button class="btn btn-lg submitBtn nextBtn " style="background: #6FA4E9;"
+                                (click)="clickedToLocation()">{{btnName |featureText}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+
+        <!-- Modal Code Start -->
+
+
+
+        <!-- Modal Code End -->
+    </div>
+
+    <!-- only for mobile version -->
+    <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+
+</div>
+
+
+
+
+
+
+<!-- <div class="topBar">
+    <span class="topHeading">Spaarks</span>
+</div> -->

@@ -1,0 +1,322 @@
+<div *ngIf="msg&&(pullTo=='left')&&isChat" class="mainmsgItem  d-flex" style="justify-content: left;">
+    <div [class.sent]="pullTo=='right'" class="p-1" [class.received]="pullTo=='left'"
+        [class.videoo]="msg.type=='video'">
+
+
+
+        <!-- <p *ngIf="msg.type=='text'" class="m-0 p-2 textchat">{{msg.message}}</p>
+        <div *ngIf="msg.type=='image'" class="imageContainer">
+            <img [src]="msg.message" alt="">
+        </div>
+        <p class="m-0 pl-2 p-1"><span class="dateText" [class.textWhite]="pullTo=='left'"
+                [class.textDark]="pullTo=='right'">{{msg.time|date}}</span></p> -->
+
+        <!-- for received messages start -->
+        <div class="received" [class.px-4]="msg.type!='file'" [class.audioo]="msg.type=='audio'"
+            [class.w-100]="msg.type=='video'">
+            <!-- Determining and acting upon the message based on its type -->
+            <pre *ngIf="msg.type=='text'" [innerHTML]="msg.text |urlify" style="word-break: break-word;"></pre>
+
+            <div *ngIf="msg.type=='deleteforboths'" style="font-style:italic;color: white;" class="d-flex">
+                <img src="../../../../assets/block.svg" alt="" class="msgDeletedImg text-white"
+                    style="margin-right: 15px;">
+                {{"This message has been deleted"  |featureText}}
+            </div>
+            <div class="frame" *ngIf="msg.type=='image'&&msg.text">
+                <img style="cursor: pointer;" class="chatImage" [src]="msg.text" alt=""
+                    (click)="viewFullScreen(msg.text)">
+                <!--(click)="enlargeImage(m.src)" [defaultImage]="defaultImage" [lazyLoad]="m.src" -->
+            </div>
+
+            <div class="frame" *ngIf="msg.type=='image'&&msg.src">
+                <img style="cursor: pointer;" class="chatImage" [src]="msg.src" alt=""
+                    (click)="viewFullScreen(msg.src)">
+                <!--(click)="enlargeImage(m.src)" [defaultImage]="defaultImage" [lazyLoad]="m.src" -->
+            </div>
+
+            <div class="frame" *ngIf="msg.type=='video'&&msg.src&&!msg.text">
+
+                <video controls class="w-100">
+                    <source src={{msg.src}}>
+                </video>
+            </div>
+
+            <div class="frame" *ngIf="msg.type=='video'&&!msg.src&&msg.text">
+
+                <video controls class="w-100">
+                    <source src={{msg.text}}>
+                </video>
+            </div>
+
+            <!-- <div *ngIf="msg.type=='file'" style="height: 40px;">
+                <div class="d-flex">
+                    <div class="p-2">
+                        <span><img src='../../../../assets/downalodImage.svg' class="chat-doc-image" height="20px" alt=""></span>
+                    </div>
+                    <div class="p-2">
+                        <span><pre class="cropp">{{msg.name}}</pre></span>
+                    </div>
+                    <div class="p-2">
+                        <span><a href={{msg.src}}>
+                            <img class="chat-doc-image"  src="'../../../../../../assets/receiveImage.svg" height="20px" alt="">
+                        </a></span>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <div *ngIf="msg.type=='file'" class="fileheight">
+                <div class="d-flex fileereceive h-100">
+                    <div class="p-2 d-flex align-items-center justify-content-center ">
+                        <span><img src='../../../../assets/chat/receivefile.png' class="chat-doc-image" alt=""></span>
+                    </div>
+                    <div class="p-2 d-flex align-items-center ">
+                        <span>
+                            <pre class="cropp">{{msg.name}}</pre></span>
+                    </div>
+                    <div class="p-2 d-flex align-items-center justify-content-center ">
+                        <span><a href={{msg.src}}>
+                                <img src="'../../../../../../assets/chat/receivedownload.png" class="chat-doc-image"
+                                    alt="">
+                            </a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="audioo" *ngIf="msg.type=='audio'">
+                <div *ngIf="msg.src">
+
+                    <audio controls #audio (click)="pauseaudio(msg.src)">
+                        <source src={{msg.src}} type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="audioo" *ngIf="msg.type=='audio'">
+                <div *ngIf="msg.text">
+
+                    <audio controls #audio (click)="pauseaudio(msg.text)">
+                        <source src={{msg.text}} type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div>
+
+
+
+
+            </div>
+
+            <div class="w-100 d-flex justify-content-between align-items-center pl-2 ">
+                <small style="display: inline-block;"> {{msg.date| date:"hh:mm a" }} </small>
+                <span>
+                    <button mat-button *ngIf="(msg.type!='deleteforboths')&&(!multiinput)" [matMenuTriggerFor]="menu"
+                        style="border: none !important;background:none !important "><img class="smallarrow"
+                            style="transform: rotate(90deg);" src="../../../../assets/down_darkgrey.svg"
+                            alt=""></button>
+                    <mat-menu #menu="matMenu">
+                        <div class="">
+                            <button mat-menu-item *ngIf="msg.type=='text'"> <a class="text-dark  btn"
+                                    (click)="copyText(msg.text)" *ngIf="msg.type=='text'" type="button"
+                                    style="cursor: pointer;border: none;">{{'Copy' |featureText}}</a> </button>
+
+                            <!-- <button mat-menu-item><a class="text-dark btn btn-outline-light" (click)="copyText(msg.text)"
+                            *ngIf="msg.type=='text'" type="button" style="cursor: pointer;">{{'Copy'}}</a></button> -->
+                            <button mat-menu-item><a class="text-dark btn" (click)="forwardMsg(msg)" type="button"
+                                    style="cursor: pointer;border: none;">{{'Forward'|featureText}}
+                                </a></button>
+                            <button mat-menu-item><a class="text-dark  btn" *ngIf="msg.unique"
+                                    (click)="deleteForMe(msg,true)"
+                                    style="cursor: pointer;border: none;">{{'Delete for me' |featureText}} </a></button>
+                            <!-- for received messages -->
+                        </div>
+                    </mat-menu>
+                </span>
+            </div>
+        </div>
+        <!-- for received messages end -->
+
+
+    </div>
+    <!-- <div></div> -->
+</div>
+
+<div *ngIf="msg&&(pullTo=='right') && isChat" class="mainmsgItem  w-100" style="justify-content: flex-end;padding:5px">
+    <div class="p-1 w-100 d-flex " style="justify-content: flex-end;">
+
+        <!-- <p *ngIf="msg.type=='text'" class="m-0 p-2 textchat">{{msg.message}}</p>
+        <div *ngIf="msg.type=='image'" class="imageContainer">
+            <img [src]="msg.message" alt="">
+        </div>
+        <p class="m-0 pl-2 p-1"><span class="dateText" [class.textWhite]="pullTo=='left'"
+                [class.textDark]="pullTo=='right'">{{msg.time|date}}</span></p> -->
+
+        <!-- for sent messages start -->
+        <div class="sent " [class.filesent]="msg.type=='file'" [class.px-4]="msg.type!='file'"
+            [class.audioo]="msg.type=='audio'" [class.videoo]="msg.type=='video'">
+            <pre class="" *ngIf="msg.type=='text'" [innerHTML]="msg.text |urlify"
+                style="word-break: break-word;padding:9px"></pre>
+
+            <div *ngIf="msg.type=='deleteforboths'" style="color:white;font-style:italic" class="d-flex">
+                <img src="../../../../assets/block.svg" alt="" class="msgDeletedImg text-white"
+                    style="margin-right: 15px;">{{"This message has been deleted" |featureText}}
+            </div>
+            <div class="frame" *ngIf="msg.type=='image'&&msg.text">
+                <img class="chatImage" style="cursor: pointer;" [src]="msg.text" alt=""
+                    (click)="viewFullScreen(msg.text)">
+                <!--(click)="enlargeImage(m.src)" [defaultImage]="defaultImage" [lazyLoad]="m.src" -->
+            </div>
+
+            <div class="frame" *ngIf="msg.type=='image'&&msg.src">
+                <img class="chatImage" style="cursor: pointer;" [src]="msg.src" alt=""
+                    (click)="viewFullScreen(msg.src)">
+                <!--(click)="enlargeImage(m.src)" [defaultImage]="defaultImage" [lazyLoad]="m.src" -->
+            </div>
+
+            <div class="frame" *ngIf="msg.type=='video'&&msg.src&&!msg.text">
+
+                <video controls class="w-100">
+                    <source src={{msg.src}}>
+                </video>
+            </div>
+
+            <div class="frame" *ngIf="msg.type=='video'&&!msg.src&&msg.text">
+
+                <video controls class="w-100">
+                    <source src={{msg.text}}>
+                </video>
+            </div>
+
+            <div *ngIf="msg.type=='file'" class="fileheight">
+                <div class="d-flex fileee">
+                    <div class="p-2 d-flex align-items-center justify-content-center ">
+                        <span><img src='../../../../assets/chat/fileee.svg' class="chat-doc-image" alt=""></span>
+                    </div>
+                    <div class="p-2">
+                        <span>
+                            <pre class="cropp">{{msg.name}}</pre></span>
+                    </div>
+                    <div class="p-2 d-flex align-items-center justify-content-center ">
+                        <span><a href={{msg.src}}>
+                                <img src="'../../../../../../assets/download.svg" class="chat-doc-image" alt="">
+                            </a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="audioo" *ngIf="msg.type=='audio'">
+                <div *ngIf="msg.src">
+
+                    <audio controls #audio (click)="pauseaudio(msg.src)" src={{msg.src}}>
+                        <source src={{msg.src}} type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="audioo" *ngIf="msg.type=='audio'">
+                <div *ngIf="msg.text">
+
+                    <audio controls #audio (click)="pauseaudio(msg.text)" src={{msg.text}}>
+                        <!-- <source src={{m.text}} type="audio/mpeg"> -->
+                    </audio>
+                </div>
+            </div>
+            <div>
+
+                <!-- <span *ngIf="msg.type!='deleteforboths'">
+                    <div class="dropdown pl-2 pr-2" style="display: inline-block;">
+                        <a role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            style="cursor: pointer;"><img src="../../assets/sidearrow.png" alt="" height="18px"
+                                style="transform:rotate(-90deg);cursor: pointer;"></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item btn btn-outline-light" (click)="copyText(msg.text)"
+                                *ngIf="msg.type=='text'" type="button" style="cursor: pointer;">{{'Copy'}}</a>
+                            <a class="dropdown-item btn btn-outline-light" (click)="forwardMsg(msg)" type="button"
+                                style="cursor: pointer;">{{'Forward'}} </a>
+                            <a class="dropdown-item btn btn-outline-light" *ngIf="msg.unique"
+                                (click)="deleteForMe(msg,true)" style="cursor: pointer;">{{'Delete For Me'}} </a>
+                        </div>
+                    </div>
+                </span> -->
+
+            </div>
+
+            <div class="w-100 d-flex justify-content-between pl-2 align-items-center ">
+                <small style="display: inline-block;"> {{msg.date| date:"hh:mm a" }} </small>
+                <span>
+
+                    <button mat-button *ngIf="(msg.type!='deleteforboths')&&(!multiinput)" [matMenuTriggerFor]="menu"
+                        style="border: none !important;background:none !important "><img class="smallarrow"
+                            style="transform: rotate(0 deg);" src="../../../assets/chat/downArrow.svg" alt=""></button>
+                    <mat-menu #menu="matMenu">
+                        <div class="">
+                            <!-- options to be shown for each individual message -->
+                            <button mat-menu-item (click)="copyText(msg.text)" *ngIf="msg.type=='text'"> <a
+                                    class="text-dark  btn" *ngIf="msg.type=='text'" type="button"
+                                    style="cursor: pointer;border: none;">{{'Copy' |featureText}}</a> </button>
+
+                            <button mat-menu-item (click)="forwardMsg(msg)"><a class="text-dark btn" type="button"
+                                    style="cursor: pointer;">{{'Forward'|featureText}} </a></button>
+
+                            <button mat-menu-item (click)="deleteForMe(msg,true)"><a class="text-dark  btn"
+                                    *ngIf="msg.unique"
+                                    style="cursor: pointer;border: none;">{{'Delete for me' |featureText}} </a></button>
+
+                            <button mat-menu-item *ngIf="msg.unique && showDeleteforBoth"
+                                (click)="deleteForMe(msg,false)"><a class="text-dark  btn" id="DeleteAll"
+                                    *ngIf="msg.unique && showDeleteforBoth"
+                                    style="cursor: pointer;border: none;">{{'Delete for both' |featureText }}</a></button>
+                        </div>
+                    </mat-menu>
+
+                    <!-- <button mat-button  [matMenuTriggerFor]="menu" style="border: none !important;background:none !important "><img style="transform: rotate(90deg);" src="../../../assets/back.svg" alt=""></button>
+                <mat-menu #menu="matMenu">
+                <button mat-menu-item>Copy Text</button>
+                <button mat-menu-item>Forward</button>
+                <button mat-menu-item>Delete</button>
+                </mat-menu> -->
+                </span>
+            </div>
+        </div>
+        <!-- for sent messages end -->
+
+
+    </div>
+    <!-- <div></div> -->
+</div>
+
+
+<div *ngIf="isChat==false">
+    <div class="mainmsgItem p-1 d-flex" *ngIf="msg.content!=''||msg.type=='image'"
+        [style.justifyContent]="pullTo=='left'?'flex-start':'flex-end'">
+        <div [class.sent]="pullTo=='right'" class="p-1" [class.received]="pullTo=='left'">
+            <pre *ngIf="msg.content!=''" class="m-0 p-2 textchat">{{msg.content}}</pre>
+
+            <div *ngIf="msg.type=='image'" class="imageContainer">
+                <img [src]="msg.message" class="chat-image" alt="">
+
+            </div>
+            <pre *ngIf="msg.content!=''||msg.type=='image'" class="m-0 pl-2 p-1"><span class="dateText" [class.textWhite]="pullTo=='left'"
+                    [class.textDark]="pullTo=='right'">{{msg.createdAt|date:"hh:mm a"}}</span>
+                   </pre>
+
+        </div>
+        <!-- <div></div> -->
+
+    </div>
+    <div *ngFor="let imgdata of msg.photo">
+        <div class="mainmsgItem p-1 d-flex" [style.justifyContent]="pullTo=='left'?'flex-start':'flex-end'">
+            <div [class.sent]="pullTo=='right'" class="p-1" [class.received]="pullTo=='left'">
+                <span>
+                    <img style="border-radius: 35px 10px 35px 35px;
+                 height: 143px;
+                    width: 148px;" src="{{imgdata}}" alt="">
+                </span>
+                <!-- <app-explorecarousel [photo]="msg.photo" ></app-explorecarousel> -->
+                <pre class="m-0 pl-2 p-1"><span class="dateText" [class.textWhite]="pullTo=='left'"
+                    [class.textDark]="pullTo=='right'">{{msg.createdAt|date:"hh:mm a"}}</span>
+                   </pre>
+            </div>
+        </div>
+
+    </div>
+
+</div>

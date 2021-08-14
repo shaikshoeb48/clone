@@ -1,0 +1,21 @@
+<!-- <div #reff (click)="clicked(textt)" [style.background-color]="selectedClr" [style.width.px]="selectedSize.width"
+    [style.height.px]="selectedSize.height" class="displayinlineblockk ">
+    {{textt.name}}
+    <img *ngIf="textt.isTicked" src="../../../assets/tick.svg" class="tick" alt="">
+</div> -->
+
+<div #reff class="preferCard mb-2" (click)="clicked(textt.dat)">
+    <!-- [ngStyle]="{'background-image':'url('+imageUrl+')'}"> -->
+
+    <div class="card2">
+        <img [src]="imageUrl" alt="Avatar" style="width:100%">
+        <div class="container">
+          <p [ngStyle]="{ 'font-weight':'600'}">{{textt.dat.category | featureText}}</p>
+        </div>
+      </div>
+    <!-- <div class="overlay">
+        <span class="catName"> {{textt.dat.category |featureText}}</span>
+    </div> -->
+    <img *ngIf="textt.dat.isTicked" src="../../../assets/tick1.svg" class="tick" alt="">
+
+</div>

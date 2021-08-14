@@ -1,0 +1,35 @@
+<!-- <div>
+    <div class="BoxContainer mr-2">
+<img class="catImg" [src]='catImg' alt="">
+<span class="catTxt" >{{inputText}}</span>
+
+<div class="Test">
+</div>
+
+
+    </div>
+</div>
+ -->
+
+
+<!-- <h2>Round Card</h2> -->
+
+<!-- Simple Version -->
+
+<!-- <div class="card1">
+    <img [src]="catImg" alt="Avatar" style="width:100%">
+    <div class="container">
+        <h6><small>{{inputText}}</small></h6>
+      </div>   
+</div> -->
+
+
+
+
+
+<div class="card2">
+  <img [src]="catImg" alt="Avatar" style="width:100%">
+  <div class="container">
+    <p [ngStyle]="{ 'font-weight': fontweight=='bold'? 'bold':'600'}" class="inputText">{{inputText | featureText}}</p>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+.commentmatter {
+  background: #9597a121;
+
+  border-radius: 16px;
+  width: 100%;
+}
+
+.commentWhole {
+  width: 100%;
+  height: 100%;
+}
+
+.commentreplytextcontainer{
+  span:hover{
+    text-decoration: underline;
+  }
+}
+
+.greydot{
+  line-height: 12px;
+  color: grey;
+  font-size: 26px;
+  position: relative;
+  top: -7px;
+}
+
+.greydot:hover{
+  text-decoration: none !important;
+}
+
+.contentLess{
+  max-height: 80px;
+  overflow: hidden;
+}
+
+.contentMore{
+  max-height: 100% !important;
+
+}
+
+.showtext{
+  font-size: 13px;
+  color: rgb(23, 93, 223);
+  cursor: pointer;
+}
+
+.imgSize {
+  height: 200px;
+  max-width: 300px;
+  width: 100%;
+  border-radius: 9px;
+  object-fit: cover;
+}
+
+.commentpropic {
+  width: 40px;
+  height: 40px;
+  border-radius: 49%;
+  object-fit: cover;
+}
+
+.commentcontainer {
+  display: flex;
+  // min-height: 135px;
+}
+
+.widthOptions {
+  width: 23px;
+  height: 19px;
+}
+
+.persondetailsname {
+  display: flex;
+  flex-direction: column;
+}
+
+.my {
+  margin: 0 10px;
+}

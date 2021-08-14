@@ -1,0 +1,51 @@
+.locationAccess{
+    width: 100%;
+    height: 80%;
+    z-index: 189;
+    top: 0px;
+    left: 0px;
+    margin: 0 auto;
+}
+
+.allowLocationAccessBtn{
+    background: #6FA4E9;
+    width: 411px;
+    height: 88px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+.allContentLocation{
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    justify-content: space-around;
+    height: 100% !important;
+}
+
+.locationtarget{
+    width: 60px;
+    height: 60px;
+}
+
+.boldText{
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.searchBar {
+    height: 47px;
+    width: 100%;
+    border-radius: 50px;
+    background: white;
+    resize: none;
+    // padding: 15px;
+    line-height: 47px;
+    overflow: hidden;
+    border-color: transparent !important
+  }
+
+ 

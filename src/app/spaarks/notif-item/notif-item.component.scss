@@ -1,0 +1,33 @@
+.noticePosition {
+  position: relative;
+ border: 1px solid rgb(179, 178, 178);
+ border-radius: 5px;
+}
+
+.imgSize {
+  height: 55px;
+  width: 55px;
+}
+
+
+.blueTextNotif{
+  font-size: 16px;
+  color: #6FA4E9;
+  line-height: 1;
+}
+.displayCross{
+  display: none;
+  // color: #6c757d;
+}
+.noticePosition:hover{
+  // .disabledColor{
+  //   display: none;
+  // }
+  .displayCross{
+    display: block!important;
+  }
+}
+
+.displayCross:hover{
+  color: #6FA4E9;
+}

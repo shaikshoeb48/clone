@@ -1,0 +1,81 @@
+<!-- Qr section -->
+<!-- Login Heading -->
+
+
+<div id="wrapper" *ngIf="!inShare" style="width: 100% !important; overflow-x: hidden; overflow-y:hidden">
+
+  <!-- <app-login-header></app-login-header> -->
+
+  <section id="spaarks-header-body" 
+    class=" d-flex justify-content-between align-items-center">
+    <div *ngIf="undermaintenance == false" class="spaarks-header-body-left w-100 d-flex flex-column justify-content-center align-items-center flex-1"
+      style="background: white">
+
+      <div class="qrparentposition">
+       
+        <div  class="d-flex justify-content-center qr" #qrr id="qrr" [class.showItOrNot]="showQr == false"
+          style="width: 100%">
+          <canvas id="canvas" ></canvas> <img src="" alt="" id="image" />
+        </div>
+        <div *ngIf="loading==true"  class="d-flex justify-content-center qr" 
+          style="width: 100%">
+          <img style="height: 300px;
+          width: 347px !important;" src="../../../assets/loading.gif" alt="loading...">
+        </div>
+        <div class="d-flex justify-content-center qr dummy-qr" (click)="reload()" [class.showItOrNot]="showQr == true">
+          <img src="../../assets/qrreload.png" #imgg class="qrreload" />
+        </div>
+
+        <!-- <div *ngIf="loading==true" class="qr" style=" height: 35vh; position: relative; width: 20vw;">
+          <div style="position: absolute; left: 25%; top: 25%;">
+            <img src="../../../assets/loading2.gif" alt="loading...">
+          </div>
+        </div> -->
+      </div>
+      <!-- <div class="qrparentposition">
+        <p class=" user-manual-text">
+          1.{{'Open Spaarks application on your mobile phone' }}
+        </p>
+        <p class=" user-manual-text">
+          2.{{'Tap QR Code icon'  }}
+          <span><img draggable="false" src="../../../assets/qr.png" width="5%" height="5%" alt="" /></span>
+
+          {{'on the mobile app home screen.'  }}
+        </p>
+        <p class=" user-manual-text">
+          3.{{'Point your mobile phone towards the screen to scan the QR Code.'  }}
+        </p>
+      </div> -->
+    </div>
+
+    <div *ngIf="undermaintenance==true" class="spaarks-header-body-left d-flex flex-column justify-content-center align-items-center flex-1">
+      <div class="qrparentposition">
+        <p class="text-center qrcodemaintext">
+          {{'App is under maintaincence! Please try again later...'  }}
+        </p>
+        </div>
+      <img draggable="false" src="../../../assets/maintenance.gif" style="width:35vw; margin-left: 4vw;"
+        alt="spaarks image">
+       
+    </div>
+
+    <!-- <div class="spaarks-header-body-right d-flex justify-content-between align-items-center flex-1 flex-column pr-5">
+      <img draggable="false" src="https://res.cloudinary.com/spaarks/image/upload/v1611288956/webloginimage-min_y9cn3f.png" style="width:48vw"
+        alt="spaarks image">
+        <p class="getSpaarksapp mt-2 mb-0"> <span>Get </span>  <span>Spaarks </span> <span>App</span>  </p>
+      <a href="https://play.google.com/store/apps/details?id=com.osos.spaarksapp&hl=en_IN&gl=US" target="_blank"> <img
+          class="playstore mt-1" src="../../../assets/qrlogin/playstore.png" />
+
+
+      </a>
+
+    </div> -->
+  </section>
+</div>
+<!-- Qr section end -->
+<!-- shareSection Start-->
+
+
+
+
+

@@ -1,0 +1,118 @@
+<div class="mainDivAll">
+  <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+    <app-topbarmobile>
+    </app-topbarmobile>
+  </div>
+  <div appmainfeeddir class="mainfeedAll">
+    <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace"></div>
+
+    <div class="leftbar">
+      <app-leftnav></app-leftnav>
+    </div>
+    <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+
+    <div class="forSmall h-100">
+      <div *ngIf="isAuthed==true" class="middlefeed forSmallUp forSmallDown">
+        <div class="notificationData">
+
+          <div class="d-flex justify-content-between align-items-center  pl-2 pr-2 py-2 pt-3">
+
+            <span class="notificationHeading all-headings"> <span routerLink="/home/feed"> <img style="color: #6FA4E9;"
+                  class="previousArrow   m-1 p-1 mr-2 cursorpointer" src="../../../assets/backblue.svg"
+                  alt=""></span>{{"Notifications"|featureText}}</span>
+            <span *ngIf="showAllClear" (click)="DeleteAllNotification()" class="clearAllText cursorpointer">
+              {{"Clear all"|featureText}}
+            </span>
+          </div>
+          <div *ngIf="!showAllClear&&!loader">
+            <ul class="list-group" >
+              <li class="list-group-item notif">
+                <span class="notifTxt"> {{"You have no notifications yet." |featureText}}</span>
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="loader" class="text-center">
+            <img src="../../../assets/loading.gif" class="customGif" alt="">
+          </div>
+         
+          <ng-container *ngIf="notificationData">
+            <ul class="list-group-notifs p-2" >
+
+              <span *ngFor="let data of notificationData; let i = index" class=" notif my-2 ">
+                <app-notif-item class="w-100" [notifData]="data" [notifIndex]="i"
+                  (notificationDelete)="removeNotifcation($event)" (notificationOpen)="openPost(data)"></app-notif-item>
+                <!-- <span><img class="noticeCross1 ml-2" (click)="removeNotifcation(data._id)"
+                              src="../../../assets/remove.png" alt=""></span> -->
+              </span>
+            </ul>
+            
+
+          </ng-container>
+
+        </div>
+      </div>
+      <div *ngIf="isAuthed==false" class="w-100 allCenter h-100">
+        <div *ngIf="!showLogin" class="notLoggedIn p-3 allCenter w-75">
+          <div class="w-100 allCenter">
+            <img class="login-profile" src="../../../assets/profile_outline.svg" alt="">
+          </div>
+          <div class="w-100 allCenter flexcolumn">
+            <h3 class="login-text">{{"Login to access this feature!"|featureText}}</h3>
+            <button class="login-button" (click)="clickedLogin()">{{"Login"|featureText}}</button>
+          </div>
+        </div>
+
+
+        <div class="w-100 allCenter mt-3" *ngIf="showLogin">
+          <app-login></app-login>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+
+    <div class="rightfeed">
+      <app-rightfeed></app-rightfeed>
+
+      <div class="mt-4">
+        <span *ngIf="isAuthed==true && showRecentChats"
+          class=" boldTxtAll  w-100  all-headings">{{"Recent chats"|featureText}}</span>
+
+        <div class="bg-white recentchatsdiv" *ngIf="showRecentChats">
+
+          <div class="clickspaarkonanycard allCenter p-3 flexdirectioncolumn" *ngIf="listtoshowChatFinal.length==0">
+            <img src="../../../assets/msg.svg" alt="">
+            <span> {{"To start a chat go to any Spaark and click on Chat."|featureText}} </span>
+          </div>
+
+          <div *ngIf="listtoshowChatFinal.length>0">
+            <div *ngFor="let item of listtoshowChatFinal|slice:0:initValChats" routerLink="/chat">
+              <app-chat-person-item [chatlistitem]="item"></app-chat-person-item>
+            </div>
+          </div>
+          <div class="w-100 bg-white viewAllContainer">
+            <!-- <p class="p-1 text-center m-0 mt-2"><span class="font-weight-bold">View All</span></p> -->
+            <div *ngIf="isAuthed==true" class="viewAll allCenter " (click)="viewAllChats()">
+              <span class="p-1 text-center m-0 mt-2 cursorpointer"
+                *ngIf="fullViewChats==false && listtoshowChatFinal.length>10">{{"View all" |featureText}}</span>
+              <span class="p-1 text-center m-0 mt-2 cursorpointer"
+                *ngIf="fullViewChats==true">{{"View less" |featureText}}</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+
+    <div appbottomnavdir class="bottomNavBar">
+      <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+
+  </div>
+
+
+
+
+</div>

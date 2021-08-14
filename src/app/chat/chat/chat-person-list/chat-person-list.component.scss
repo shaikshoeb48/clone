@@ -1,0 +1,64 @@
+.chatPersonItem {
+    //   max-height: 83vh;
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 10rem!important;
+    background: #FFFFFF;
+  }
+  
+  
+  .chat-text-empty {
+    width: 100%;
+    margin-top: 7px;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: -0.165px;
+    color: #ACB2BE;
+  }
+  
+  .relativelist {
+    position: relative;
+  }
+  
+  .forwardButton {
+    width: 232px;
+    height: 38px;
+  
+    position: fixed;
+  
+    bottom: 29px;
+    //left: 62px;
+    cursor: pointer;
+    background: #6FA4E9;
+    border-radius: 5px;
+  
+    //styleName: Button;
+    font-family: Mulish;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px;
+    color: white;
+    text-align: left;
+    
+  
+  
+    span {
+      color: white;
+      //styleName: Button;
+      font-family: Mulish;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 15px;
+  
+      text-align: left;
+  
+    }
+  
+  }
+  

@@ -1,0 +1,83 @@
+<carousel [interval]="0" [noPause]="false" [showIndicators]="false" [(activeSlide)]="activeSlide">
+  <slide *ngFor="let image of photo; let idx = index">
+    <img [src]="image.url" alt="first slide" class="slidestyle" (click)="fullScreen(idx)">
+  </slide>
+
+
+  <slide *ngFor="let vid of video;let ind=index">
+    <div class="">
+      <video id="exploreVideo" [src]="vid.url" controls class="videoTag" inViewport
+        [inViewportOptions]="{ threshold: [0] }" (click)="fullScreen(ind)" (inViewportAction)="onIntersection($event)"
+        #vidd [autoplay]="viewStatus" [muted]='true'>
+      </video>
+    </div>
+
+  </slide>
+
+
+
+
+</carousel>
+<!-- video sensitive content-->
+<!-- <div id="black"  (click)="showInappropriate($event)" *ngIf="imgvideodata.videoOverlay"
+                    [style.backgroundImage]="'url(../../../assets/sensitivevideo.png)'">
+                  </div>
+                  <div class="blurrvid userImg"  (click)="showInappropriate($event)"  *ngIf="imgvideodata.videoOverlay"
+                    [style.backgroundImage]="'url(' + imgvideodata.video[0] + ')'">
+                  </div> -->
+<!-- video sensitive content-->
+
+
+<!-- <div *ngIf="enlargeImage &&photo" class="modalBody allCenter" (keydown.ArrowLeft)="move(-1)"
+(keydown.ArrowRight)="move(1)" (click)="onCloseImageDiv()">
+<button class="arrowBtn " (click)="move(-1)" (click)="sendEvent($event)">
+  <img class="bbb" style="transform: rotate(180deg);" src="../../assets/chat/Frame.svg" alt="" /></button>
+<div *ngFor="let image of photo; let idx =index ">
+<img class="image" src="{{ image }}" alt="" />
+
+</div>
+<button class="arrowBtn " (click)="move(1)" (click)="sendEvent($event)">
+  <img class="bbb" src="../../assets/chat/Frame.svg" alt="" />
+</button>
+</div> -->
+
+
+<!-- <div *ngIf="enlargeImage &&data" class="modalBody allCenter" (keydown.ArrowLeft)="move(-1)"
+    (keydown.ArrowRight)="move(1)" (click)="onCloseImageDiv()" >
+
+    <button class="arrowBtn " (click)="move(-1)" (click)="sendEvent($event)">
+        <img class="bbb" style="transform: rotate(180deg);" src="../../assets/chat/Frame.svg" alt="" />
+    </button>
+    <div *ngIf="onlyImage" >
+      <img class="image" src="{{ data[data.index] }}" alt="" />
+    </div>
+    <div *ngIf="!onlyImage">
+      <video id="exploreVideo" [src]="feedVideo" controls class="videoTag" inViewport 
+      [inViewportOptions]="{ threshold: [0] }"
+      (inViewportAction)="onIntersection($event)" #vidd [autoplay]="viewStatus" >
+     </video>
+    </div>
+  
+
+
+    <button class="arrowBtn " (click)="move(1)" (click)="sendEvent($event)">
+        <img class="bbb" src="../../assets/chat/Frame.svg" alt="" />
+    </button>
+
+</div> -->
+
+
+
+
+
+<div class="d-flex justify-content-center mt-3" *ngIf="photo && photo.length>0">
+
+
+  <div class="w-50 d-flex justify-content-center mb-2" *ngIf="(imageStrings.length + videoStrings.length)>1">
+
+    <span class=" paginationDots"
+      [ngStyle]="activeSlide==ind ? {'background-color' : '#6FA4E9', 'padding':'1px'} : {'background-color' : 'white',    'border': '1px solid rgb(99, 205, 255)'}"
+      (click)="switchSlide(ind)" *ngFor="let id of (photo.concat(video)); let ind=index">
+    </span>
+  </div>
+</div>

@@ -1,0 +1,97 @@
+<div class="mainDivAll">
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile></app-topbarmobile>
+    </div>
+
+    <div appmainfeeddir class="mainfeedAll">
+
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace"></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+
+        <div class="forSmall h-100">
+            <div class="middlefeed">
+                <span class="boldTxtAll w-100 m-3 pl-0 all-headings"
+                    style="display: block;">{{"Connect with us"|featureText}}</span>
+
+                <div style="margin-bottom: 50px;">
+                    <a href="https://www.youtube.com/channel/UCwyhvpr-O2X7PzOnFH9dW2w/featured" target="_blank">
+                        <div class="item hoverDiv">
+                            <img class="imgSize p-3" src="../../../assets/utube.svg" alt="">
+                            <span class="allCenter">
+                                <span class="boldTxtAll2 p-0">{{"Spaarks" |featureText}}</span>
+                                <!-- <span class="blockItem">{{"Subscribe us for many useful videos about Spaarks" |featureText}}</span> -->
+                            </span>
+                        </div>
+                    </a>
+                    <a href="https://twitter.com/Spaarks_Smiles" target="_blank">
+                        <div class="item hoverDiv">
+                            <img class="imgSize p-3" src="../../../assets/twitter1.svg" alt="">
+                            <span class="allCenter">
+                                <span class="boldTxtAll2 p-0">{{"Tweet handle @Spaarks_Smiles"|featureText}} </span>
+                                <!-- <span class="blockItem">{{"Follow us for more interesting updates"|featureText}}</span> -->
+                            </span>
+                        </div>
+                    </a>
+                    <a href="https://www.facebook.com/Spaarks.Smiles" target="_blank">
+                        <div class="item hoverDiv">
+                            <img class="imgSize p-3" src="../../../assets/facebook.svg" alt="">
+                            <span class="allCenter">
+                                <span class="boldTxtAll2 p-0">{{"Like us on Spaarks.Smiles" |featureText}}</span>
+                                <!-- <span class="blockItem">{{"Keep in touch with us for great posts"|featureText}}</span> -->
+                            </span>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/spaarks_smiles/" target="_blank">
+                        <div class="item hoverDiv">
+                            <img class="imgSize p-3" src="../../../assets/insta.svg" alt="">
+                            <span class="allCenter">
+                                <span class="boldTxtAll2 p-0">{{"Tag us @Spaarks_Smiles"|featureText}}</span>
+                                <!-- <span class="blockItem">{{"We keep pictures here for your everyday use" |featureText}}</span> -->
+                            </span>
+                        </div>
+                    </a>
+                    <a href='http://www.linkedin.com/company/spaarks-smiles' target="_blank">
+                        <div class="item hoverDiv">
+                            <img class="imgSize p-3" src="../../../assets/linkedin1.svg" alt="">
+                            <span class="allCenter">
+                                <span class="boldTxtAll2 p-0">{{"Connect with us" |featureText}} @Spaarks</span>
+                                <!-- <span class="blockItem">{{"Be professionally linked. We keep our job postings here."|featureText}}</span> -->
+                            </span>
+                        </div>
+                    </a>
+                    <a href='https://sharechat.com/' target="_blank">
+                        <div class="item hoverDiv">
+                            <img class="imgSize p-3" src="../../../assets/sharechat.svg" alt="">
+                            <span class="allCenter">
+                                <span class="boldTxtAll2 p-0">{{"Connect with us"|featureText}} @Spaarks</span>
+                                <!-- <span class="blockItem">{{"Share and Prosper. Keep in touch here."|featureText}}</span> -->
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+
+
+
+    </div>
+
+    <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+</div>

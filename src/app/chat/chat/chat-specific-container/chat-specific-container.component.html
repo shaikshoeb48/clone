@@ -1,0 +1,22 @@
+
+<div class="overallContainer h-100 d-flex">
+    <div class="leftChatSpecificContainer" *ngIf="chatpersondata">
+        <app-chat-person-specific [multiinput]="multiinputspec" (endRecoed)="endaudioRecord($event)" [stopRecordaudio]="audioRecordbol" 
+         [isBlocked]="isBlocked" [active]="activeJid" [account]="account" (isAno)="isAno($event)" [chatpersondata]="chatpersondata"
+          (multioutput)="multioutputListener($event)" [forwardfrommobile]="forwardfrommobile" ></app-chat-person-specific>
+    </div>
+
+    <div class="rightOptionsContainer" *ngIf="chatpersondata">
+        <app-chat-person-options (alloptions)="alloptionsHandle($event)" [chatpersondata]="chatpersondata"></app-chat-person-options>
+    </div>
+
+    <div class="restChat allCenter w-100 " style="flex-direction: column;background-color: #FFFFFF;" *ngIf="!chatpersondata" >
+        <div >
+            <img src="../../../../assets/msg.svg">
+        </div>
+        <div style="width: 100%; ">
+            <p class="chat-text-empty w-100" >{{"To start a chat go to any spaark and click on chat."|featureText}}
+            </p>
+        </div>
+    </div>
+</div>

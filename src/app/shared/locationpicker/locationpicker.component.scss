@@ -1,0 +1,38 @@
+.map {
+  position: relative;
+}
+
+.map-center-overlay {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+agm-map {
+  height: 100%;
+  width: 100%;
+}
+
+.buttonContainer{
+  position: absolute;
+bottom: 14%;
+}
+
+.fullwidthandheight {
+  width: 100vw;
+  height: 100vh;
+}
+
+.city {
+  display: inline-block;
+  width: 120px;
+  height: 160px;
+  margin-right: 10px;
+}
+
+.imagesContainer {
+  flex-wrap: wrap;
+}

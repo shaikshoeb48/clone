@@ -1,0 +1,47 @@
+<div class="mainContainer " *ngIf="!isPrevious" class="p-1">
+
+    <div class="subCat cursorpointer container1">
+        <span>
+            <img class="subCatImg" [src]="'assets/catsubcatimages/categoryimages/'+inputText.image" alt="">
+            <span class="subCatTxt">{{inputText.subCategory | featureText}}</span>
+        </span>
+        <span>
+            <img style="height: 1rem;" src="../../../assets/back.svg" alt="">
+        </span>
+    </div>
+
+</div>
+
+
+
+
+
+
+<div class="mainContainer mr-3" *ngIf="isPrevious">
+
+    <div class="subCat searchDiv cursorpointer mr-2">
+        <div class="max100">
+            <div class="d-flex max100 m-0">
+
+                <img class="subCatImg" [src]="imgToshowinFinal" alt="">
+                <div class=" text-left max100 subCatTxt">
+                    <p class="m-0 text-left">
+                        {{finDat.question |featureText}}
+                    </p>
+                    <p class="m-0 text-left">
+                        <span *ngIf="prevData.category&&prevData.category!=''" class="subCat text-left1">
+                            <span>{{prevData.category |featureText}}</span> <span
+                                *ngIf="prevData.subCategory&&prevData.subCategory!=''" > -
+                                {{prevData.subCategory |featureText}}</span> </span>
+                    </p>
+                    <p class="m-0 text-left">
+                        <span><small style="color: #6FA4E9;">{{"Quick Spaark" |featureText}}</small></span>
+                        <img class="ml-2" style="height: 1rem;" src="../../../assets/back.svg" alt="">
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

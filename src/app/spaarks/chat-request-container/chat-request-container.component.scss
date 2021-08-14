@@ -1,0 +1,287 @@
+.leftbar {
+  position: fixed;
+  left: 0px;
+  width: 275px;
+  height: 100vh;
+  background: white;
+  // position: relative;
+  border: 0.5px solid #D7D7D7;
+}
+
+.middlefeed {
+  width: 623px;
+  height: 100vh;
+  // background: white;
+  overflow-y: hidden;
+  background: #F0F2F5;
+  margin: 20px;
+}
+
+// ::-webkit-scrollbar{
+//   width: 0px;
+// }
+// Search bar starts
+.searchExtension{
+  position: absolute;
+  top: 58px;
+  z-index: 4;
+  max-height: 300px;
+  overflow-y: scroll;
+  left: 10px;
+  width: 98%;
+}
+
+.searchExtensionparent{
+  position: relative;
+}
+
+.searchBar {
+  height: 47px;
+  width: inherit;
+  border-radius: 50px;
+  background: white;
+  resize: none;
+  // padding: 15px;
+  line-height: 47px;
+  overflow: hidden;
+  border-color: transparent !important
+}
+
+
+// Search bar ends
+
+mat-chip{
+  cursor: pointer;
+}
+.CoverFullScreen{
+  width: 100vw !important;
+  height: 100vh !important;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.692);
+  z-index: 50;
+  left: 0px;
+  top: 0px;
+}
+
+// search Pills
+.pillsDiv{
+  display: block;
+}
+// search Pills
+
+.Content{
+  position: absolute;
+  width: 41vw;
+  height: 37vh;
+  border-radius: 10px;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #F0F2F5;
+}
+
+
+.rightfeed {
+  position: fixed;
+  right: 0px;
+  width: 275px;
+  height: 100vh;
+  //   background: white;
+}
+
+.paginationDots {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgb(99, 205, 255);
+  margin: 5px;
+}
+
+.mainfeed {
+  display: flex;
+  padding-top: 1.5rem;
+  justify-content:center;
+  background: #F0F2F5;
+}
+
+.viewAll {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+.reqReceived{
+  background: #FFFFFF;
+  border: 0.8px solid #D7D7D7;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 100%;
+}
+.reqstDiv{
+  width: 96%;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: white;
+  font-weight: normal;
+  color: rgba(0, 0, 0, .87);
+}
+
+.slidestyle {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  background-color: burlywood;
+  border-radius: 10px
+}
+
+.allSection {
+  display: none;
+}
+
+
+@media screen and (max-width:1921px) and (min-width:1500px) {
+  .leftbar {
+    width: 375px;
+    height: 100vh;
+    background: white;
+  }
+
+  .middlefeed {
+    width: 770px;
+    height: 100vh;
+    // background: white;
+    overflow-y: hidden;
+  }
+
+  .rightfeed {
+    width: 375px;
+    height: 100vh;
+    overflow-y: scroll;
+    ;
+    // background: white;
+  }
+}
+
+@media screen and (max-width:900px) {
+  .rightfeed {
+    display: none !important;
+  }
+
+  .leftbar {
+    width: 115px;
+  }
+
+  .forSmall {
+    margin: 0 auto;
+  }
+
+
+}
+
+@media screen and (max-width: 620px)and (min-width:450px) {
+  .leftbar {
+    display: none;
+  }
+
+  .optionSpan {
+    width: 30px;
+    display: block;
+  }
+
+  .allSection {
+    height: 80px;
+    width: 100vw;
+    justify-content: space-between;
+    // margin: 10px;
+    background-color: #F0F2F5;
+    text-align: center;
+    left: 0px;
+    position: fixed;
+    bottom: 0px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+  }
+
+  // .middlefeed {
+  //   width: 570px;
+  // }
+  .middlefeed {
+    width: 85vw;
+  }
+
+
+
+}
+
+@media screen and (max-width: 900px) and (min-width:621px) {
+  .middlefeed {
+    width: 515px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .leftbar {
+    display: none;
+  }
+  .pillsDiv{
+    display: none;
+  }
+  .Content{
+    width: 95vw;
+    height: 50vh;
+}
+
+.middlefeed {
+  width: 95vw;
+  margin: 20px 0px 0px 0px;
+}
+
+
+.optionSpan{
+  width: 29px;
+}
+
+.leftTxt{
+font-size: 16px;
+}
+
+.allSection {
+  height: 80px;
+  width: 100vw;
+  justify-content: space-between;
+  // margin: 10px;
+  background-color: #F0F2F5;
+  text-align: center;
+  left: 0px;
+  position: fixed;
+  bottom: 0px;
+  padding: 15px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+}
+}
+@media screen and (max-width: 1048px)and (max-width: 450px) {
+  .Content{
+      width: 80vw;
+      height: 50vh;
+  }
+}
+
+@media screen and (max-width:1079px) {
+  .rightfeed {
+    display: none;
+  }
+
+  .forSmall {
+    margin: 0 auto;
+  }
+}

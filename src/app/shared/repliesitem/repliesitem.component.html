@@ -1,0 +1,33 @@
+<div>
+    <div class="p-2 floattoright " *ngIf="reply">
+        <div class="fullreplycontainer">
+            <span><img [src]="reply.userId.profilePic" class="propic mr-1" alt=""></span>
+            <div class="w-100 bgcolorforreply p-2">
+                <div class="w-100 d-flex align-items-center">
+                    <div class="replybodycontainer" style="flex: 50%;">
+                        <span class="font-weight-bold">{{reply.userId.name}}</span>
+                        <span><small class="font-weight-bold datetext ">{{finalAgo |featureText}}</small></span>
+                    </div>
+                    <span>
+                        <img *ngIf="reply.userId.name!=userName" src="../../../assets/options.svg" mat-button
+                            [matMenuTriggerFor]="menureply" (click)="openOptions()" class="widthOptions">
+                    </span>
+
+                    <!-- dropdown options -->
+                    <mat-menu #menureply="matMenu" xPosition="before">
+                        <button mat-menu-item (click)="onReport(reply._id)"><img class="my"
+                                src="../../../assets/report.svg" />{{"Report"|featureText}}</button>
+                        <button mat-menu-item
+                            (click)="onBlock(reply.userId._id,reply.featureName,reply.userId.name,reply.userId.jid_main,reply.userId.jid_anonymous)"><img
+                                class="my" src="../../../assets/block.svg" />{{"Block" |featureText}}</button>
+                    </mat-menu>
+
+                </div>
+
+                <div class="w-100 ">
+                    <pre class="contentAll" [innerHTML]="reply.content|urlify" ></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

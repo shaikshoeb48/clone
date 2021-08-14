@@ -1,0 +1,38 @@
+<div class="mainDivAll">
+
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile (selectedindexchange)="checkTabIndex($event)"></app-topbarmobile>
+    </div>
+    <div appmainfeeddir class="mainfeedAll">
+        
+    <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace" ></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace" ></div>
+
+        <div class="forSmall h-100 w-100" style="align-items: unset !important;">
+            <div class="middlefeed">
+                <div class="w-100">
+                    <div class=" text-center">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div *ngIf="!isMobileVersion" class="pt-2" style="border: 0.5px solid #D7D7D7;"> -->
+            <div *ngIf="!isMobileVersion"  class="rightSpace insideSpace" ></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+    <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"  ></div>
+
+    </div>
+
+    <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+
+</div>

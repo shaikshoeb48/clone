@@ -1,0 +1,74 @@
+.disp {
+  display: block;
+  // font-size: 1.1rem;
+  font-weight: 590;
+  cursor: pointer;
+
+}
+
+.allBox {
+  margin-bottom: 10px;
+}
+
+.fontSmall {
+  color: rgba(91, 99, 112, 1);
+  font-size: 1rem;
+  font-weight: 550;
+}
+
+.businessChatWindow {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+
+.whiteBox {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 4px 4px rgba(211, 211, 211, 0.25);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border-radius: 19px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+
+}
+
+.btnClass {
+  background-color: #6FA4E9;
+  color: white;
+  width: 6rem;
+  text-align: center;
+  border-radius: 11px;
+  margin-right: 14px;
+}
+// @media screen and(min-width:350px) and (max-width:700px){
+//   .btnClass{
+//     width: 20vw;
+//   }
+// }
+// @media screen and(min-width:700px) and (max-width:1500px){
+//   .btnClass{
+//     width: 8vw;
+//   }
+// }
+
+.main1 {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 19px !important;
+}
+
+.boldTxtAll2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: Source Sans Pro;
+  line-height: 25.14px;
+  letter-spacing: 0.165px;
+}
+
+.titleStyle {
+  font-size: 0.7rem;
+}

@@ -1,0 +1,159 @@
+<div class="mainDivAll" >
+    
+    <div *ngIf="isMobileVersion&&showDivs!='onlychat'" apptopbardir class="topbarAll">
+        <app-topbarmobile (selectedIndexChange)="checkTabIndex($event)"></app-topbarmobile>
+    </div>
+    <div class="mainfeedAll" [ngStyle]="{'height':(isMobileVersion&&showDivs!='onlychat')?'90%':'100%','position':(showDivs=='onlychat')?'static':'absolute'}">
+       
+
+        <div *ngIf="!isMobileVersion&&isAuth" class="rightSpace rightmostSpace"  style="flex: 1.5;"></div>
+        <div *ngIf="!isAuth" class="rightSpace rightmostSpace"  style="flex: 0.5;"></div>
+
+        <div class="leftbar" *ngIf="!isAuth">
+            <app-leftnav></app-leftnav>
+        </div>
+        
+        <!-- <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div> -->
+
+
+        <div class="forSmall h-100" style="flex: 12;" 
+        [ngStyle]="isAuth ? {'flex' : '12'}:{'flex': '2'}"
+        >
+            <div class="middlefeed h-100">
+
+                <div *ngIf="isLoading==false&&isAuth==true" class="mainChatContainer d-flex">
+                    <div class="leftBarList" *ngIf="(showDivs=='both')||(showDivs=='onlyList')">
+                        <div routerLink="/home/feed" class=" logoicon " *ngIf="!notForMob">
+                            <span><img class="logo_style" src="../../../assets/default.svg" alt=""></span>
+                            <span style="color: #6886C5;">Spaarks</span>
+                          </div>
+                        <div class="w-100 header-div">
+                            <div class="iconContainer d-flex align-items-center pl-4"
+                                style="justify-content: space-between;">
+                                <div class="d-flex  align-items-center " [ngClass]="isMobileVersion?'chatDecoration':''">
+                                    <img class="cursorpointer" src="../../../assets/chat/backArrowChat.svg"
+                                        (click)="moveBack()" style="width: 20px !important;">
+                                    <div class="d-flex align-items-center chatAsPosition">
+                                        <img src="../../../assets/chat/newChatIcon.svg" alt="">
+                                        <p class="m-0 ml-1 pl-1 pt-0 boldTxtAll all-headings" *ngIf="inForward.bool==false">
+                                            {{"Chat"|featureText}}</p>
+                                        <p class="m-0 ml-1 boldTxtAll" *ngIf="inForward.bool==true">
+                                            {{"Forward To"|featureText}}<span *ngIf="jidSet.length>0"
+                                                class="text-muted">( {{jidSet.length}} )</span>
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <!-- <div class="d-flex">  
+                                    <img src="../../../assets/chat/newChatIcon.svg" alt="">
+                                    <p class="m-0 ml-2">Chat as</p>
+                                </div> -->
+
+                                <div *ngIf="inForward.bool==false&&isMobileVersion" class="d-flex viewRequest cursorpointer">
+                                    <span class="viewRequestText" (click)="goToRequests()">{{"Friend Requests" |featureText}}</span>
+                                    <img class=" arrowIcon" src="../../../assets/back_white.svg" alt="">
+                                </div>
+
+                            </div>
+
+                            <!-- <div *ngIf="inForward.bool==false" class="w-100 tabContainer pl-2 cursorpointer pr-2 ">
+                                <div (click)="clickedTab(1)" [class.underlineBlue]="account==1" class=" tabItem">
+                                    <span class="blueTxt" class="text-muted" [class.blueColor]="account==1"
+                                        *ngIf="username.length <= 15">{{username}}</span>
+                                    <span class="blueTxt" class="text-muted" [class.blueColor]="account==1"
+                                        *ngIf="username.length > 15">{{username | slice:0:15}}...</span>
+                                </div>
+                                <div class="tabItem" (click)="clickedTab(2)" [class.underlineBlue]="account==2">
+                                    <span class="text-muted" [class.blueColor]="account==2"> Anonymous</span>
+                                </div> -->
+
+
+
+                            <!-- <div class="textontop text-center ">{{ account==1?textonTop:textonTopAno}}</div> -->
+
+                            <!-- <div *ngIf="inForward.bool==true" class="w-100 tabContainer pl-2 pr-2 pt-2 pb-0 ">
+            
+                            </div> -->
+
+                        </div>
+
+                        <ng-container *ngIf="!chatpersondata">
+                            <!-- List of the people in contact list to be displayed -->
+                            <app-chat-person-list [activejid]="''" (multioutput)="handlemultioutputfromchatlist($event)"
+                                [isforward]="inForward" [account]="account" [chatnorm]="chatNormList" [chatlist]="Users"
+                                [chatanon]="chatAnonList" (listclicked)="clickedList($event)"></app-chat-person-list>
+                        </ng-container>
+
+                        <ng-container *ngIf="chatpersondata">
+
+                            <app-chat-person-list [activejid]="chatpersondata.jid"
+                                (multioutput)="handlemultioutputfromchatlist($event)" [isforward]="inForward"
+                                [account]="account" [chatnorm]="chatNormList" [chatlist]="Users"
+                                [chatanon]="chatAnonList" (listclicked)="clickedList($event)"></app-chat-person-list>
+                        </ng-container>
+
+                    </div>
+
+                    <div class="restChat" *ngIf="(showDivs=='both')||(showDivs=='onlychat')">
+                        <!-- Chat details... like chatting person's name, picture, messages -->
+                        <app-chat-specific-container [multiinput]="inForward.bool" [account]="account"
+                            [chatpersondata]="chatpersondata" (multioutput)="chatSpecificAction($event)">
+                        </app-chat-specific-container>
+                    </div>
+
+                </div>
+
+
+                <div *ngIf="isLoading==true">
+                    <div class="mainChatContainer allCenter">
+                        <img src="../../../assets/loading.gif" class="loadingGif" alt="">
+                    </div>
+                </div>
+
+
+                <div class="mainChatContainer d-flex" *ngIf="(isLoading==false)&&(isAuth==false)">
+                    <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace" ></div>
+
+        <!-- <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div> -->
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace" ></div>
+                    
+                    <div class="w-100 mt-2 allCenter" *ngIf="clickedLoginBool==false">
+                        <div class="notLoggedIn p-3 allCenter w-75">
+
+                            <div class="w-100 allCenter">
+                                <img class="login-profile" src="../../../assets/profile_outline.svg" alt="">
+                            </div>
+                            <div class="w-100 allCenter flexcolumn">
+                                <h3 class="login-text">{{"Login to access this feature!"|featureText}}</h3>
+                                <button class="login-button" (click)="clickedLogin()">{{"Login"|featureText}}</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="clickedLoginBool==true" class="w-100 h-100 allCenter">
+                        <div class="w-100 h-100 allCenter">
+                            <app-login></app-login>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div *ngIf="!isMobileVersion"  class="rightSpace insideSpace" ></div> -->
+
+        <div class="rightfeed" *ngIf="!isAuth">
+            <app-rightfeed></app-rightfeed>
+        </div>
+        
+    <div *ngIf="!isMobileVersion&&isAuth" class="rightSpace rightmostSpace" style="flex: 1.5;"  ></div>
+    <div *ngIf="!isAuth" class="rightSpace rightmostSpace" style="flex: 0.5;"  ></div>
+
+    </div>
+
+    <div appbottomnavdir class="bottomNavBarAll" *ngIf="showDivs!='onlychat'">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+</div>

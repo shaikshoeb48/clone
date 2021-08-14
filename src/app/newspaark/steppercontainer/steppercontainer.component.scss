@@ -1,0 +1,41 @@
+.breadcrumbparent {
+  color: rgba(161, 164, 178, 1);
+
+  span {
+    color: rgba(161, 164, 178, 1);
+    // font-size: 22px;
+  }
+}
+
+.successgif{
+  width: 450px;
+  height: 450px;
+}
+
+.loadingSuccess {
+  div {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    img {
+      // width: 100%;
+      // height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.titleStyle {
+  font-family: Open Sans;
+  font-weight: bold;
+  font-size: 0.8rem;
+  letter-spacing: 1.25px;
+  // text-transform: uppercase;
+}
+
+@media screen and (max-width: 950px) {
+  .titleStyle {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,723 @@
+.normalPosts {
+  margin-bottom: 5vh;
+  // max-height: 100vh;
+  // overflow-y: scroll;
+}
+
+.beyondPosts {
+  margin-bottom: 4vh;
+}
+
+.pillsDiv {
+  // background: rgb(233, 234, 241);
+  // background: linear-gradient(180deg, rgba(233, 234, 241, 1) 0%, rgba(240, 242, 245, 1) 39%, rgba(9, 9, 121, 0) 100%, rgba(0, 212, 255, 0) 100%);
+  z-index: 9;
+  align-items: center;
+  width: 75%;
+  display: flex;
+  position: relative;
+}
+
+.chipWidth {
+  min-width: fit-content;
+}
+
+// .spaarkscard1 {
+//   width: 500px;
+//   height: 500px;
+
+// }
+
+// .example-item {
+//   height: 500px;
+// }
+
+.searchExtensionparent {
+  display: none;
+}
+
+.timeTxt {
+  margin-left: 7%;
+}
+
+.arrowSearch {
+  height: 27px;
+  width: 14px;
+}
+
+.search-item {
+  height: 74px;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: white;
+
+  div {
+    p {
+      font-family: Source Sans Pro;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 25px;
+      letter-spacing: -0.16500000655651093px;
+      text-align: center;
+
+      small {
+        b {
+          font-family: Source Sans Pro;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 25px;
+          letter-spacing: -0.16500000655651093px;
+          text-align: center;
+          color: #6FA4E9;
+        }
+      }
+    }
+  }
+}
+
+// ::-webkit-scrollbar {
+//   width: 8px;
+// }
+
+.cardScroll::-webkit-scrollbar {
+  display: none;
+}
+
+// ::-webkit-scrollbar-track {
+//   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+// }
+
+// ::-webkit-scrollbar-thumb {
+// background-color: darkgrey;
+// outline: 1px solid slategrey;
+// }
+
+.cardScroll {
+  // overflow-x: scroll;
+  overflow: hidden;
+  scrollbar-width: thin;
+
+  // padding: .5rem !important;
+  display: flex;
+  scroll-behavior: smooth;
+  width: 100%;
+  margin: 10px;
+  // margin-left: 25px;
+}
+
+.notForMob,.forMob,.forMob1 {
+  // background-image: url("../../../assets/down_darkblue.svg");
+  // background-position: center;
+  // padding: 6px !important;
+  // background-repeat: no-repeat;
+  // border-radius: 50%;
+  // width: 44px;
+  // height: 44px;
+  // background-size: 20px 20px;
+  // cursor: pointer;
+  background-image: url("../../../assets/down_darkblue.svg");
+  background-position: center;
+  padding: 6px !important;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  background-size: 20px 20px;
+  cursor: pointer;
+  // position: absolute;
+  z-index: 1000;
+}
+
+
+.notForMob:hover, .forMob:hover ,.forMob1 {
+  padding: 6px !important;
+  // background-position: center;
+  background-image: url("../../../assets/back.svg");
+  
+  width: 44px;
+  height: 44px;
+  display: block;
+  background-color: #d7d7d78a;
+}
+
+.pillsDiv {
+  width: 90%;
+}
+
+// ::-webkit-scrollbar {
+//   width: 0px;
+// }
+
+// Search bar starts
+.searchExtension {
+  // position: absolute;
+  top: 58px;
+  z-index: 4;
+  max-height: 300px;
+  overflow-y: scroll;
+  left: 10px;
+  width: 98%;
+}
+
+.searchBar {
+  height: 47px;
+  width: 100%;
+  border-radius: 50px;
+  background: white;
+  resize: none;
+  // padding: 15px;
+  line-height: 47px;
+  overflow: hidden;
+  border-color: transparent !important;
+}
+
+// Search bar ends
+
+mat-chip {
+  cursor: pointer;
+}
+
+.CoverFullScreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.692);
+  z-index: 21;
+  left: 0px;
+  top: 0px;
+}
+
+// search Pills
+
+// search Pills
+
+.Content {
+  position: absolute;
+  width: 41vw;
+  height: 37vh;
+  border-radius: 10px;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f0f2f5;
+}
+
+.paginationDots {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgb(99, 205, 255);
+  margin: 5px;
+}
+
+// .mainfeed {
+//   min-height: 100vh;
+//   display: flex;
+//   padding-top: 2.2rem;
+//   justify-content: center;
+//   background: #F0F2F5;
+// }
+
+textarea:focus {
+  outline: none;
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: white;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mat-chip-list-wrapper {
+  margin: 5px !important;
+}
+
+.slidestyle {
+
+  height: 157px !important;
+    width: 94% !important;
+  // object-fit: cover;
+  // background-color: burlywood;
+  // border-radius: 10px;
+}
+
+
+@media screen and (min-width: 1600px){
+// .slidestyle{
+//   height:130px;
+  
+// }
+}
+
+// Greet Request
+.greetRequest {
+  width: 100px;
+  height: 100px;
+}
+
+@media screen and (max-width: 1921px) and (min-width: 1500px) {
+  .pillsDiv {
+    display: flex;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .searchExtensionparent {
+    display: block !important;
+    width: 80%;
+    margin: 0 auto;
+    // margin-top: 50px !important;
+  }
+  .searchIcon {
+    display: block !important;
+  }
+}
+.searchIcon {
+  display: none;
+}
+.slidestyle {
+  height: 157px !important;
+  width: 94% !important;
+  // margin-left: 50px !important;
+}
+.forMob1
+{
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .notForMob {
+    display: none;
+  }
+  .forMob1{
+    display: block;
+  } 
+
+  .slidestyle {
+    height: 157px !important;
+    width: 94% !important;
+    // margin-left: 30px !important;
+  }
+}
+
+@media screen and (max-width: 620px) and (min-width: 450px) {
+  .optionSpan {
+    width: 30px;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 649px) {
+  .Content {
+    width: 95vw;
+    height: 50vh;
+  }
+
+  .optionSpan {
+    width: 29px;
+  }
+
+  .leftTxt {
+    font-size: 16px;
+  }
+
+  .cardScroll {
+    padding: 0px !important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .Content {
+    width: 95vw;
+    height: 50vh;
+  }
+
+  .optionSpan {
+    width: 29px;
+  }
+
+  .leftTxt {
+    font-size: 16px;
+  }
+
+  .cardScroll {
+    padding: 10px 0px !important;
+  }
+}
+
+@media screen and (max-width: 1048px) and (max-width: 450px) {
+  .Content {
+    width: 80vw;
+    height: 50vh;
+  }
+}
+
+.pillsBg {
+  background: #f0f2f5;
+}
+
+.mainDiv {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  position: absolute;
+  // top: 10%;
+  width: 100%;
+}
+
+.mainfeedAll {
+  top: unset;
+}
+
+.mat-cardcourse {
+  width: 387px;
+  height: 126px;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+  border: 0.8px solid #d7d7d7;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.collect-review {
+  position: absolute;
+  left: 20.6%;
+  right: 51.1%;
+  /* top: 6.35%; */
+  /* bottom: 74.6%; */
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 151.9%;
+  color: #a1a4b2;
+}
+
+.how-work {
+  position: absolute;
+  left: 20.6%;
+  right: 8.53%;
+  top: 29.02%;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 6px;
+  color: #000000;
+}
+
+.consult {
+  position: absolute;
+  left: 20.6%;
+  right: 22.74%;
+  bottom: 44.44%;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 5px;
+  color: #363636;
+}
+
+.btn1 {
+  border: 1px solid #6FA4E9;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: white;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 1.25px;
+  text-transform: capitalize;
+  color: #6FA4E9;
+}
+
+.completebtn {
+  background: #6FA4E9;
+  border: 1px solid #6FA4E9;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: white;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #ffffff;
+}
+
+.review-name {
+  position: absolute;
+  left: 20.8%;
+
+  top: 11.14%;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+}
+
+.pill-rating {
+  position: absolute;
+  width: 67px;
+  height: 17px;
+  left: 78px;
+  top: 36px;
+  background: #f30e5c;
+  border: 0.8px solid #d7d7d7;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.pill-name {
+  position: absolute;
+  left: 15px;
+  top: 2px;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 13px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #ffffff;
+}
+
+.rate-text {
+  position: absolute;
+  left: 20.54%;
+  top: 44.27%;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #969696;
+}
+
+.star-icons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  left: 70px;
+  top: 82px;
+}
+
+.contact-div {
+  width: 387px;
+  height: 90px;
+
+  background: #ffffff;
+  border: 0.8px solid #d7d7d7;
+  box-sizing: border-box;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.call-image {
+  width: 75px;
+  height: 75px;
+
+  border: 1px solid #6FA4E9;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.call-text {
+  width: 185px;
+  /* height: 44px; */
+  /* left: 117px; */
+  /* top: 216px; */
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 156.3%;
+  color: #323f4b;
+}
+
+.call-btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.call-btn1 {
+  width: 60px;
+  height: 28px;
+  /* left: 309px; */
+  /* top: 206px; */
+  background: #6FA4E9;
+  border: 1px solid #6FA4E9;
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #ffffff;
+}
+.boldTextAll{
+  padding-left: 8px !important;
+}
+.call-btn2 {
+  width: 60px;
+  height: 28px;
+
+  border: 1px solid #6FA4E9;
+  box-sizing: border-box;
+  border-radius: 6px;
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #6FA4E9;
+  background-color: #ffffff !important;
+}
+
+.leftbar {
+  flex: 1 !important;
+}
+
+.forSmall {
+  flex: 2 !important;
+}
+
+.timeline {
+  width: 100% !important;
+}
+
+@media (orientation: portrait) and (max-width: 1030px) {
+  .leftbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .pillsDiv {
+    width: 100%;
+    margin-bottom: 0 !important;
+  }
+
+  .mainDiv {
+    height: 80% !important;
+    top: 10%;
+  }
+
+  .searchExtensionparent {
+    margin-top: 0rem !important;
+  }
+
+  .searchBar {
+    margin-bottom: 0 !important;
+  }
+
+  .forSmall{
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+  }
+}
+
+@media screen and(min-width:350px) and (max-width: 540px) {
+  .timeline {
+    width: 100% !important;
+  }
+}
+
+.goTop {
+  position: absolute;
+  bottom: 20px;
+  cursor: pointer;
+  transform: rotate(-90deg);
+  right: 32%;
+  height: 3rem;
+  width: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: #ffffff;
+  z-index: 500;
+}
+
+.searchIcon {
+  background-color: #ffffff;
+  border-radius: 23px;
+  width: 33px;
+  height: 33px;
+}
+
+.mat-chip.mat-standard-chip::after {
+  background: none !important;
+  color: none !important;
+  opacity: none !important;
+}
+
+// .mat-chip:nth-child(2){
+//   background-color: #6FA4E9! important;
+// }
+// .mat-chip:nth-child(1){
+//   background-color: none! important;
+// }
+
+// .mat-chip-list{
+//   .mat-chip:nth-child(2){
+//     background-color: none !important;
+//   }
+// }
+
+// .my-chip .mat-chip-selected {
+//   background-color: #000 !important;
+//   color: #fff;
+// }
+
+@media screen and (max-width: 1200px) {
+  .goTop {
+    right: 7% !important;
+  }
+}
+
+@media screen and (max-width: 1450px) and (min-width:1200px){
+  .goTop {
+    right: 36% !important;
+  }
+}
+
+
+.mobileSearch
+{
+  float: right;
+  margin-top: -5px;
+  border: 0.8px solid #d7d7d7;
+  border-radius: 26px;
+  margin-right: 20px;
+}
+
+.viewAll :hover{
+  color: var(--blueColor);
+}
+@media screen and (min-width:1300px) and (max-width:1400px){
+  .rightmostSpace{
+flex: 0.3;
+  }
+}

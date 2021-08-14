@@ -1,0 +1,164 @@
+<div class="topbarr">
+    <div *ngIf="showSpaarks" class="d-flex align-items-center" topmiddledir>
+        <div class="mainParent">
+            <!-- spaarks icon -->
+            <div class="sparksiconDiv">
+                <span class="logoicon mx-2" routerLink="/home/feed">
+                    Spaarks
+                </span>
+            </div>
+
+
+            <div class="mr-2 iconsTopBar" style="display: flex;flex-direction: row;justify-content: space-around; ">
+
+                <!-- qr symbol -->
+                <div class="mr-2 cursorpointer ">
+                    <span *ngIf="showQR"> <img style="    cursor: pointer;
+      height: 22px;
+      width: 22px;" class="qr-logo" src="../../../assets/qr.svg" (click)="open(content)">
+                    </span>
+                </div>
+
+                <!-- notification -->
+                <div class="mr-2">
+                    <span>
+                        <!-- <img *ngIf="!showAllClear" class="bellImg" src="../../../assets/Bell_1.svg" alt=""
+                            (click)="openNotification()">
+
+                        <img *ngIf="showAllClear" class="bellImg" src="../../../assets/Bell.svg" alt=""
+                            (click)="openNotification()"> -->
+                            <img *ngIf="!showAllClear" class="bellImg" src="../../../assets/Bell_1.svg" alt=""
+                            routerLink="/home/notification">
+
+                        <img *ngIf="showAllClear" class="bellImg" src="../../../assets/Bell.svg" alt=""
+                        routerLink="/home/notification">
+                          
+                    </span>
+                </div>
+
+                <!-- options -->
+                <div class="mr-2 allCenter" *ngIf="showOptionMenu==true">
+                    <span>
+                        <img (click)="optionMenu()" mat-button [matMenuTriggerFor]="menu"
+                            src="../../../assets/new options.svg" class="iconsmall cursorpointer">
+                    </span>
+                </div>
+
+                <mat-menu #menu="matMenu" yPosition="above" class="menuBox">
+                    <button *ngFor="let opt of filteredOptions" mat-menu-item (click)="navigateByOption(opt.name)"><img
+                            class="my" src={{opt.src}}>{{opt.name |featureText}}</button>
+                </mat-menu>
+            </div>
+
+
+            <!-- notification modal start -->
+            <div class="notificationData" *ngIf="bellIcon == true">
+
+                <div class="d-flex justify-content-between align-items-center pl-2 pr-2 pt-2 ">
+                    <span class="notificationHeading">{{"Notifications"|featureText}}</span>
+                    <span *ngIf="showAllClear" (click)="DeleteAllNotification()" class="clearAllText">
+                        {{"Clear All"|featureText}}
+                    </span>
+                </div>
+
+                <ng-container *ngIf="notificationData">
+                    <ul class="list-group-notifs p-2">
+                        
+                        <li *ngFor="let data of notificationData; let i = index" class=" notif my-2 ">
+                         
+                            <app-notif-item class="w-100" [notifData]="data" [notifIndex]="i"
+                            (notificationDelete)="removeNotifcation($event)" (notificationOpen)="openPost(data)"></app-notif-item>
+
+                           
+
+                        </li>
+                    </ul>
+
+                    <ul class="list-group" *ngIf="!showAllClear">
+                        <li class="list-group-item notif">
+                            <span class="notifTxt"> {{"No Notifications." |featureText}} </span>
+                        </li>
+                    </ul>
+                </ng-container>
+
+            </div>
+            <!-- notification modal end -->
+
+
+            <!-- qr modal start -->
+            <ng-template #content let-modal>
+                <div class="qr-div">
+                    <div class="allCenter w-100" style="border-bottom: 1px solid #D7D7D7;">
+                        <p class="qr-text w-100 text-center m-0 p-2">{{"My QR" |featureText}}</p>
+                        <div class="p-2 " style=" display: flex;
+                    justify-content: flex-end;">
+                            <img src="../../../assets/cross.svg" (click)="modal.dismiss('Cross click')">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="profile-div" style="display: flex;flex-direction: column;">
+                            <div class="allCenter">
+                                <img class="prof-pic" style="width: 96px;
+                            height: 96px;
+                        " src="{{userPic}}">
+                            </div>
+                            <div class="allCenter">
+                                <small class="review-name">{{userName}}</small><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qr-code allCenter">
+                        <canvas id="qr_id"></canvas>
+                        <img src="" alt="" id="image" />
+                    </div>
+                    <!-- <div>
+                <p class="how-text">How Spaarks Rewards Works</p>
+              </div> -->
+                    <div>
+                        <p class="user-text p-2">
+                            {{"This QR code can be used for Web Login."|featureText}}
+                            <br>
+
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </ng-template>
+            <!-- qr modal end -->
+
+        </div>
+    </div>
+
+
+    <!-- all tabs -->
+    <div class="tabsBar" *ngIf="showAllTabs">
+
+        <div class="test w-100">
+            <div class=" test tabContainer h-30 px-3" [ngClass]="isSmall?'proftabContainer':'tabContainer'">
+                <div [class.underlineBlue]="account==1" class="tabItem">
+                    <span (click)="clickedTab(1)" (click)="checkTabIndex('All')" class="blueTxt text-muted"
+                        [class.blueColor]="account==1">{{"All" |featureText}}
+
+                    </span>
+                </div>
+                <div class="tabItem" [class.underlineBlue]="account==2">
+                    <span class="text-muted" (click)="clickedTab(2)" (click)="checkTabIndex('Market')"
+                        [class.blueColor]="account==2"> {{"Market" |featureText}}</span>
+                </div>
+                <div class="tabItem" [class.underlineBlue]="account==3">
+                    <span (click)="clickedTab(3)" (click)="checkTabIndex('Events')" class="text-muted"
+                        [class.blueColor]="account==3"> {{"Announce" |featureText}}</span>
+                </div>
+                <div class="tabItem" [class.underlineBlue]="account==4">
+                    <span (click)="clickedTab(4)" (click)="checkTabIndex('Make Friends')" class="text-muted"
+                        [class.blueColor]="account==4"> {{"Make Friends" |featureText}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

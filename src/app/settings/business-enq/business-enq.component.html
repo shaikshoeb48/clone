@@ -1,0 +1,200 @@
+<div class="mainDivAll">
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile></app-topbarmobile>
+    </div>
+    <div appmainfeeddir class="mainfeedAll">
+
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace"></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+        <div class="forSmall h-100">
+            <div class="middlefeed">
+                <div class="w-100">
+                    <div style="margin-top: 2rem;">
+
+                        <div class="contactForm px-3 mb-5" *ngIf="bussinesChatScreen==false">
+                            <div class="w-100">
+                                <h2 class="boldTxtAll pl-0 all-headings">{{"Business enquiries"|featureText}}</h2>
+                                <span
+                                    class="subHead mb-2">{{"For any Promotions, Advertisements, Extended reach, etc."|featureText}}</span>
+                                <!-- <h4 class="boldTxtAll mt-3 p-0">{{"Please Contact us"|featureText}}</h4> -->
+                                <span></span>
+                                <div class="contactBox mb-2">
+                                    <textarea name="textA1" class="p-3" placeholder="{{'Type here'|featureText}}"
+                                        id="textareA1" cols="30" maxlength="1000"  (keyup)="textEntered($event)" [(ngModel)]="content"
+                                        rows="10"></textarea>
+
+                                    <!-- Showing the added images/videos start -->
+
+                                    <div class="main">
+                                        <div class="mainImg" *ngFor="let img of imageList; let idx = index">
+
+                                            <!-- for images -->
+                                            <div class="uploadImg " *ngIf="img.type == 'img'">
+                                                <img [src]="img.data" *ngIf="img != '' && img" class="userImg1" />
+                                                <a (click)="deleteImg(idx)"><img src="../../../assets/delete.svg"
+                                                        *ngIf="imagePreview != '' && img" class="uploadCross"
+                                                        style="cursor: pointer;" />
+                                                </a>
+                                            </div>
+
+                                            <!-- for videos -->
+                                            <div class="uploadImg" *ngIf="img.type == 'vid'">
+                                                <video controls class="userImg1">
+                                                    <source #vid [src]="img.data" type="video/mp4"
+                                                        class="uploadCross" />
+                                                </video>
+                                                <a (click)="deleteImg(idx)"> <img src="../../../assets/delete.svg"
+                                                        class="uploadCross" style="cursor: pointer;" /></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Showing the added images/videos end -->
+
+                                    <span *ngIf="fileAr.length<4" class="camera " (click)="addImages()">
+                                        <img class="imgCamera cursorpointer" src="../../../assets/imageicon.svg" alt="">
+                                        <span class="cursorpointer">
+                                            {{"Add images" |featureText}}
+                                        </span>
+                                    </span>
+                                    <!-- image picker -->
+
+                                    <div>
+                                        <input type="file" id="myFile" multiple #myFile #filePicker
+                                            (change)="onImagePicked($event)" accept="image/*" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                <span class="w-100 text-muted d-block text-right">{{count}} {{"characters remaining" |featureText}}</span>
+
+                                <button class="btn btn-info txtBtn" [disabled]="disableBtn"
+                                    (click)="submitForm()">{{"Submit" |featureText}}</button>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div *ngIf="loading">
+                            <div class="mainChatContainer allCenter">
+                                <img src="../../../assets/loading.gif" class="loadingGif" alt="">
+                            </div>
+                        </div>
+
+                        <!-- <div *ngIf="businessQueries">
+                            <div class="p-3 borderBtm m-2 main1" *ngFor="let business of businessQueries">
+                                <div class="d-flex w-100">
+                                    <div class="reqst w-100" >
+                                        <div>
+                                            <span class="" style="display:block">
+                                                <span class="boldTxtAll p-0">{{business.subject}}</span> </span>
+                                            <div class="d-flex my-2 justify-content-between">
+                                                <span class="text-muted ">{{business.ticketId}}</span>
+                                                <span class="text-muted ">{{business.createdAt|date}}</span>
+                                                <span class="btnClass">{{business.status}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="fontSmall">
+                                            <span> Support Team: </span>
+                                            {{business.subtitle|slice:0:70}}...
+                                        </div>
+                                    </div>
+                                
+                                    
+                                </div>
+                            </div>
+                        </div> -->
+
+
+
+
+                        <!-- <div>
+
+                            <div *ngIf="isAuthed==false" class="w-100 allCenter">
+                                <div *ngIf="!showLogin" class="notLoggedIn p-3 allCenter w-75">
+                                    <div class="w-100 allCenter">
+                                        <img src="../../../assets/profile_outline.svg" class="profileImg" alt="">
+                                    </div>
+                                    <div class="w-100 allCenter flexcolumn">
+                                        <h3 class="text-muted">{{"Login to access this feature!"|featureText}}</h3>
+                                        <button class="loginBtn w-50 btn-warning "
+                                            (click)="clickedLogin()">{{"Login"|featureText}}</button>
+                                    </div>
+                                </div>
+
+                                <div class="w-100 allCenter mt-3" *ngIf="showLogin">
+                                    <app-login></app-login>
+                                </div>
+                            </div>
+
+                        </div> -->
+
+
+                        <!-- <div  *ngIf="bussinesChatScreen===true" class="whiteBox">
+                            <div  style="transform:rotate(-180deg)">
+                                <img src="../../../assets/back.svg" (click)="moveBack()" >
+                            </div>
+                            <div style="display: flex;flex-direction: column; margin-left: 2%;">
+                                <span class="boldTxtAll">{{selectedBusinessQuery.subject}}</span>
+                            <span class="helpTitle"> Sparks Support Team</span>
+                            </div>
+                            
+                        </div>
+
+                        <div *ngIf="showTickets" style="    display: flex;
+                        height: inherit;
+                        flex-direction: column;
+                        justify-content: space-between;height:75%">
+                            <div class="businessChatWindow">
+                             <div *ngFor="let ticket of businessQueries">
+                                    <div *ngFor="let msg of ticket.thread">
+                                        <app-msg-item [pull]="msg.isUser==true?'right':'left'" [msg]="msg" [isChat]="false"></app-msg-item>
+                            
+                                    </div>
+                                </div>
+                            </div>
+                            <app-msg-input *ngIf="isTicketOpen"></app-msg-input>
+                        
+                        </div>  -->
+
+                        <div *ngIf="isAuthed &&bussinesChatScreen==false" class="px-3 mb-5" style="margin-top: 7rem;">
+                            <span class="boldTxtAll p-0 all-headings"
+                                *ngIf="businessQueries &&  businessQueries.length>0">{{"Previous conversations" |featureText}}</span>
+                            <!-- <app-tickets [BussinesEnq]="true"></app-tickets> -->
+                            <div class="mt-2 cursorpointer" *ngFor="let item of businessQueries">
+
+                                <app-business-tickets (clickedquery)="clickedbusinessQuery($event)"
+                                    (openPreviousQuery)="closeOtherWindows()" [businessticket]="item">
+                                </app-business-tickets>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+
+    </div>
+    <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+</div>

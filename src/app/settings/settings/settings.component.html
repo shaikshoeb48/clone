@@ -1,0 +1,156 @@
+<div class="mainDivAll">
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile></app-topbarmobile>
+    </div>
+
+
+    <div appmainfeeddir class="mainfeedAll">
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace" ></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace" ></div>
+
+        <div class="forSmall h-100">
+            <div  *ngIf="isAuthed==true" class="middlefeed showForMob">
+                <div *ngIf="showStep=='settings'" class="">
+                    <span class="boldTxtAll w-100 mb-3 mt-2 all-headings" style="display: block;">{{"Settings"|featureText}}</span>
+                    <div class="profileHead">
+                        <div class="imagecontainer w-100 h-100">
+                            <div class="imageparent w-100 h-100">
+                                <div class="proimageParent">
+                                    <div class="maincenter">
+                                        <img [src]="image" class="proimage" (click)="showBigPic(image)" alt="">
+                                        <!-- <span class="editImgParent"> 
+                                            <img src="../../../assets/edit.svg" class="editImg"
+                                                alt="">
+                                        </span> -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="w-100 detailsparent ">
+                            <p class="allCenter boldTxtAll mx-auto p-0">{{name}}</p>
+                        </div>
+                    </div>
+
+                    <div class="my-3">
+                        <span class="p-3 boldTxtAll all-headings"> {{"Personal Details"|featureText}}</span>
+
+                        <div class="allBox" style="margin-top:5px;">
+                            <!-- Gender -->
+                            <div class="my-2 d-none justify-content-between"
+                                style="border-bottom: 1px solid lightgrey;padding-bottom: 5px;">
+                                <span class="text-muted">{{"Gender" |featureText}}</span>
+                                <span class="fontBold">{{"Male" |featureText}}</span>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class=" my-2 d-flex justify-content-between">
+                                <span class="text-muted" style="margin-left: 5%;">{{"Phone number"|featureText}}</span>
+                                <span class="fontBold">{{phone}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <span class="disp allBox hoverDiv boldTxtAll" (click)="goToLang()"> <img class="imgSize"
+                                src="../../../assets/lang.svg" />{{"Change language"|featureText}}</span>
+                        <span class="disp allBox hoverDiv boldTxtAll" (click)="showBlockedUsers()"><img class="imgSize"
+                                src="../../../assets/blocked.svg" />{{"Blocked users"|featureText}}</span>
+                        <span class="disp allBox hoverDiv boldTxtAll" (click)="logOut()"><img class="imgSize"
+                                src="../../../assets/logout.svg" />{{"Logout"|featureText}}</span>
+                    </div>
+
+                    <div class="my-4" style="text-align: center;">
+                        <span>{{"Version" |featureText}} {{"- 0.3.9"}}</span>
+
+                    </div>
+                </div>
+                <div *ngIf="showStep=='blocked'">
+
+                    <!-- <div class="blockeduserstextmain mb-3" style="transform:rotate(-180deg)"><img src="../../../assets/back.svg" (click)="moveBack()" >Blocked Users</div> -->
+                    <div class="mt-3" style="display: flex; margin-left: 2%;">
+                        <div style="transform:rotate(-180deg)">
+                            <img src="../../../assets/back.svg" (click)="moveBack()">
+                        </div>
+                        <div style=" margin-left: 2%;">
+                            <span class="boldTxtAll">{{"Blocked users"|featureText}}</span>
+
+                        </div>
+                    </div>
+
+                    <div class="blockedContainer w-100 h-100">
+                        <div class="blockedItem m-3" *ngFor="let blocked of blockedUsersList;let ind = index">
+                            <div class="blockedDetailsContainer ">
+                                <div class="mx-2">
+                                    <div class="imageContainerblocked ">
+                                        <img [src]="blocked.profilePic" alt="">
+
+                                    </div>
+                                </div>
+                                <div class="pl-3">
+                                    <div *ngIf="blocked.featureName">
+                                        <span class="pillfeature" *ngIf="blocked.featureName=='greet'">{{"Make Friends" |featureText}}</span>
+                                        <span class="pillfeature"
+                                            *ngIf="blocked.featureName=='showtime'">Announcements</span>
+                                        <span class="pillfeature" *ngIf="blocked.featureName=='market'">{{"Market" |featureText}}</span>
+                                        <span class="pillfeature" *ngIf="blocked.featureName=='chat'">{{"Chat" |featureText}}</span>
+                                    </div>
+                                    <p class="m-0 mainName">{{blocked.name}}</p>
+                                    <p class="m-0 blockedontext">{{"Blocked on"|featureText}}{{blocked.blockedAt|date}}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="m-2">
+                                <span (click)="unBlock(blocked.name,blocked.userId,ind, blocked)"
+                                    class="unblocktext cursorpointer">{{"UNBLOCK" |featureText}}</span>
+                            </div>
+                        </div>
+
+                        <div *ngIf="blockedUsersList.length==0">
+                            <span class="text-muted">{{"You have not blocked anyone yet." |featureText}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isAuthed==false" class="w-100 allCenter h-100" >
+                <div *ngIf="!showLogin" class="notLoggedIn p-3 allCenter w-75">
+                    <div class="w-100 allCenter">
+                        <img class="login-profile" src="../../../assets/profile_outline.svg" alt="">
+                    </div>
+                    <div class="w-100 allCenter flexcolumn">
+                        <h3 class="login-text">{{"Login to access this feature!"|featureText}}</h3>
+                        <button class="login-button" (click)="clickedLogin()">{{"Login"|featureText}}</button>
+                    </div>
+                </div>
+              
+              
+                <div class="w-100 allCenter mt-3" *ngIf="showLogin">
+                    <app-login></app-login>
+                </div>
+              </div>
+        </div>
+
+
+
+
+
+        <div *ngIf="!isMobileVersion"  class="rightSpace insideSpace" ></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+    <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"  ></div>
+
+
+
+    </div>
+
+    <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+
+</div>

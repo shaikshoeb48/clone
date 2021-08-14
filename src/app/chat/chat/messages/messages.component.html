@@ -1,0 +1,66 @@
+<div *ngFor="let m of messages;let i=index">
+
+
+    <ng-container *ngIf="m&&m.type!='delete'&&m.type!='clearchat'&&m.type!='deleteforboth'">
+        <ng-container *ngIf="m.date">
+            <ng-container *ngIf="messages[messages.length-1]!=undefined&&messages[messages.length-1]">
+                <div class="col-12" *ngIf="m.date&&
+                    (
+                        (
+                            (i==0)
+                            ||
+                            (m.date|date: 'dd MMMM yyyy') != (messages[i-1].date|date: 'dd MMMM yyyy')
+                        )||
+                        ((messages[i-1].type=='delete' || messages[i-1].type=='clearchat')&&(m.date|date: 'dd MMMM yyyy') == (messages[i-1].date|date: 'dd MMMM yyyy'))
+                    )
+                    &&messages.length!=0">
+                    <div class="d-flex justify-content-around">
+                        <div class="notice  m-1 " style="text-align: center;padding-left: 7px;padding-right: 7px;">
+                            <small> {{m.date| date: "dd MMMM yyyy"}} </small>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="m&&m.from&&m.type!='delete'&&m.type!='deleteforboth'&&m.type!='clearchat'">
+        <div *ngIf="m.from.includes(username) && !(m.type=='notification' || m.type=='exit'|| m.type=='resume'|| m.type=='block'|| m.type=='unblock')"
+            class="col  bubble " style="padding: 0 7px;">
+            <!-- shift to new component -->
+            <div class="msgIterator">
+                <!-- Showing each message -->
+                <app-msg-item [multiinput]="multiinput" (allpurposeoutput)="allpurposeOutput($event)" [msg]="m"
+                    [pull]="'right'"></app-msg-item>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="m&&m.from&&m.type!='delete'&&m.type!='deleteforboth'&&m.type!='clearchat'">
+        <div *ngIf="!m.from.includes(username) && !(m.type=='notification'|| m.type=='exit'|| m.type=='resume'|| m.type=='block'|| m.type=='unblock')"
+            class="col bubble " style="padding: 0 7px;">
+            <!-- shift to new component -->
+            <div class="msgIterator">
+                <!-- Showing each message -->
+                <app-msg-item [multiinput]="multiinput" (allpurposeoutput)="allpurposeOutput($event)" [msg]="m"
+                    [pull]="'left'"></app-msg-item>
+            </div>
+
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="m!=undefined&&m">
+        <div class="col-12" *ngIf="m.type=='notification'">
+            <div>
+                <div class="notice p-1 m-1 " style="text-align: center;">
+                    <small>
+                        {{m.text}}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+
+
+</div>

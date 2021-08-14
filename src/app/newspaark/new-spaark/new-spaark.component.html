@@ -1,0 +1,105 @@
+<!-- <app-viewroot></app-viewroot> -->
+<div>
+
+    <!-- <app-topbar (selectedindexchange)="checkTabIndex($event)"></app-topbar> -->
+    <div class="mainfeed">
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div class="forSmall">
+            <div class="middlefeed">
+                <div class="p-2 searchExtensionparent" *ngIf="showStepper==false">
+                    <!-- Looking for -->
+                <div class="searchBar mb-3 d-flex ">
+                    <img class="m-2" src="../../../assets/search.svg" alt="search">
+                    <textarea (keypress)="pressedkey($event)" [(ngModel)]="content" class="searchBar " type="text" placeholder="{{'Looking for something' |featureText}}"></textarea>
+
+                    
+                </div>
+                <div *ngIf="listofsearches.length>0" class="searchExtension bg-white">
+                    <div>
+                        <div class="w-100 allCenter justify-content-between px-3 ">
+                            <span></span>
+                            <span (click)="listofsearches=[]" class="text-primary cursorpointer">close</span>
+                        </div>
+                        <ul class="list-group p-0">
+                            <li *ngFor="let fun of listofsearches" class="list-group-item p-2">
+                               <div class="w-100">
+                                <p class="m-0"> {{fun.preview}}</p>
+                                <small><b>{{fun.subCategory}}</b></small>
+                               </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+ 
+                <!-- search pills start -->
+                <div class="w-100 pillsDiv">
+                    <mat-chip-list >
+                        <mat-chip >Watchman</mat-chip>
+                        <mat-chip>Security Gaurd</mat-chip>
+                        <mat-chip>Plumber</mat-chip>
+                        <mat-chip>Plumber</mat-chip>
+                        <mat-chip>Plumber</mat-chip>
+                        <mat-chip>Plumber</mat-chip>
+                        <mat-chip>Plumber</mat-chip>
+                        <mat-chip>Plumber</mat-chip>
+                        <mat-chip>Plumber</mat-chip>
+                        <mat-chip>Plumber</mat-chip>
+                        <mat-chip>Job</mat-chip>
+                    </mat-chip-list>
+                </div>
+                <!-- search pills end -->
+              </div>
+              <div class="tabChange" *ngIf="showState==0">
+                  <div class="newSpaarkHeading">
+    <h4><b>{{"Select any to create Spaark."|featureText}}</b> Post in your local area.</h4>
+    <span class="mb-1"><small>choose a service which suits you best:</small></span>
+                  </div>
+    
+                 <router-outlet  name="firststep" ></router-outlet>
+              </div>
+
+              <div *ngIf="showState==2">
+
+                  <router-outlet  ></router-outlet>
+
+              </div>
+               
+
+                <div class="subCat mt-2 " *ngIf="showSubCat==true">
+                    <div class="" *ngFor="let cat of lisfofSub">
+                        <div class="mt-2 mb-2"><h4>{{cat.categoryName}}</h4>
+                           
+                            <div class="ttest1 row">
+                                <div class="ttest2 mt-2 mb-4 col-lg-6 col-md-6 col-sm-12" *ngFor="let subCat of cat.subCategory;let i = index">
+                                    <app-sub-category [catTxt]="subCat" (click)="startStepper(subCat,i)"></app-sub-category>
+                                </div>
+                              </div>
+
+
+                        </div>
+                      </div>
+                </div>
+
+                <div class="stepper" *ngIf="showStepper==true">
+                    <app-steppercontainer></app-steppercontainer>
+                </div>
+
+                <h2 class="test" *ngIf="showState==100">Create new Spaarks </h2>
+
+                
+                <div class="bottomNavBar" *ngIf="BtmNav==true">
+                    <app-bottom-nav-bar></app-bottom-nav-bar>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<!-- will only work for mobile version -->
+<div class="allSection d-flex allCenter" *ngIf="isMobileVersion">
+
+    <div class="listItem" routerLink="/explore" (click)="goToCategory('explore')" routerLinkActive="active">
+        <span class="optionSpan bgimg4  bgIcons mr-3 " alt=""></span>
+
+        <!-- <img class="optionSpan mx-1" [src]="val=='explore'?IconChange[3].exploreA:IconChange[3].exploreD"
+            alt=""> -->
+        <!-- <a class="leftTxt1 blueTxt" routerLinkActive="leftTxt"> Explore</a> -->
+    </div>
+
+    <div class="listItem" routerLink="/home/feed" (click)="goToCategory('feed')" routerLinkActive="active">
+        <span class="optionSpan bgimg1  bgIcons mr-3 " alt=""></span>
+        <!-- <img class="optionSpan mx-1" [src]="val=='feed'?IconChange[0].homeA:IconChange[0].homeD" alt=""> -->
+        <!-- <a class="leftTxt1 blueTxt" routerLinkActive="leftTxt" #testLink> Home</a> -->
+    </div>
+
+    <div class="listItem" routerLink="/newspaark" (click)="goToCategory('newspaark')" routerLinkActive="active">
+        <span class="optionSpan bgimg3  bgIcons mr-3" alt=""></span>
+        <!-- <img class="optionSpan mx-1" [src]="val=='newspaark'?IconChange[2].plusCirleA:IconChange[2].plusCirlceD"
+            alt=""> -->
+        <!-- <a class="leftTxt1 blueTxt" routerLinkActive="leftTxt"> Spaarks</a> -->
+    </div>
+
+    <div class="listItem" routerLink="/chat" (click)="goToCategory('chat')" routerLinkActive="active">
+        <span class="optionSpan bgimg2 bgIcons mr-3 " alt=""></span>
+        <!-- <img class="optionSpan mx-1" [src]="val=='chat'?IconChange[1].chaticonA:IconChange[1].chaticonD" alt=""> -->
+        <!-- <a class="leftTxt1 blueTxt" routerLinkActive="leftTxt"> Chat</a> -->
+    </div>
+
+    <div class="listItem" routerLink="/profile/{{userId}}">
+        <img class="optionSpan roundPic mx-1" style="border-radius: 45px;" [src]="profilePic" alt="">
+        <!-- <a class="leftTxt1 blueTxt" routerLinkActive="leftTxt" #rla> Profile</a> -->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+<div class="allSection d-flex allCenter ">
+
+    <div class="" (click)="goToCategory('Explore')">
+        <img class="optionSpan mx-2" src="../../../assets/Tab Bar/Search.svg" alt="">
+        <span class="leftTxt blueTxt"> Explore</span>
+    </div>
+
+    <div class="" (click)="goToCategory('Home')">
+        <img class="optionSpan mx-2" src="../../../assets/Tab Bar/Home.svg" alt="">
+        <span class="leftTxt blueTxt"> Home</span>
+    </div>
+
+    <div class="" (click)="goToCategory('Spaarks')">
+        <img class="optionSpan mx-2" src="../../../assets/Tab Bar/plusCirlce.svg" alt="">
+        <span class="leftTxt blueTxt"> Spaark</span>
+    </div>
+
+    <div class="" (click)="goToCategory('Chat')">
+        <img class="optionSpan mx-2" src="../../../assets/Tab Bar/ChatIcon.svg" alt="">
+        <span class="leftTxt blueTxt"> Chat</span>
+    </div>
+
+    <div class="" (click)="goToCategory('Profile')">
+        <img class="optionSpan mx-2" src="../../../assets/Tab Bar/UserProfile.png" alt="">
+        <span class="leftTxt blueTxt"> Profile</span>
+    </div>
+
+
+
+</div> -->

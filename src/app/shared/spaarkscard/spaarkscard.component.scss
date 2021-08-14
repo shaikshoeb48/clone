@@ -1,0 +1,529 @@
+.textColor {
+  color: #323f4b;
+}
+
+.bordertopp {
+  border-top: 1px solid lightgray;
+}
+
+.spaarkscardfooteritem:hover {
+  // background-color: rgb(240, 242, 245);
+  // border-radius: 2px;
+}
+
+.bookmarkicon {
+  height: 19px;
+  width: 15px;
+  border-radius: 0px;
+}
+
+.optionscontainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  img {
+    height: 23px;
+    width: 17px;
+  }
+}
+
+.SellerProfile {
+  font-family: Mulish;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.20000000298023224px;
+  text-align: center;
+}
+
+.coredisabledcontainer {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 11;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.287);
+}
+
+.flextwo {
+  display: flex;
+  align-items: center;
+  flex: 6;
+}
+
+.flexone {
+  flex: 1;
+  width: 100%;
+  display: block;
+  height: 100%;
+  position: relative;
+
+  img {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 12px;
+    cursor: pointer;
+  }
+}
+
+.iconimg {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+}
+
+.bigtextfordisabled {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  font-family: 'Mulish';
+}
+
+.disabledtextsmall {
+  color: #a1a4b2;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 9px !important;
+}
+
+.disabledmainchild {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.disabledwhiteDiv {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  max-width: 736px;
+  width: 100%;
+  // min-height: 120px;
+  // max-height: 120px;
+  height: auto;
+  display: flex;
+  background: white;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  position: absolute;
+
+  // transform: translate(0,100%);
+  // transition: all 450ms cubic-bezier(0.32,1,0.23,1) 100ms;
+}
+
+@media screen and (max-width: 950px) {
+  .disabledwhiteDiv {
+    margin-bottom: 3rem;
+  }
+
+  .viewsellerDiv {
+    margin-right: 0% !important;
+  }
+}
+
+.spaarkscontent {
+  font-size: 19px !important;
+}
+
+.iconsmall {
+  width: 37px;
+  height: 35px;
+}
+.optionsimg {
+  width: 35px !important;
+  height: 35px !important;
+}
+
+.spaarkscard {
+  width: 100%;
+  border-radius: 3px;
+  // border: 1px solid lightgray;
+  background: white;
+  border: 0.8px solid #d7d7d7;
+  z-index: 10;
+  // position: relative;
+}
+
+.spaarkscardheader {
+  width: 100%;
+}
+
+.spaarkscardbodytext {
+  pre {
+    padding: 0px 15px 0px 15px;
+    word-break: break-word;
+  }
+}
+
+.my {
+  margin: 15px 15px;
+}
+
+.spaarksPill {
+  display: grid;
+  // grid-template-columns: auto auto auto;
+  width: 100%;
+  border-bottom: 0.02px solid #dddddd;
+  border-top: 0.02px solid #dddddd;
+  height: auto;
+  min-height: 40px;
+}
+
+.spaarkscardbodymedia {
+  // display: flex;
+  // justify-content: center;
+  // width: 100%;
+}
+
+.spaarkscardheadermain {
+  width: 100%;
+  margin: 0 auto;
+
+  // padding: 0px 15px 0px 15px;
+  // position: relative;
+  // margin-bottom: 50px;
+}
+
+.spaarksDateText {
+  font-size: 14px;
+}
+
+.spaarksfootertexts {
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // width: 100%;
+  // margin: 0 auto;
+  border-top: 0.02px solid #dddddd;
+
+}
+
+.spaarksfootertexts1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 93%;
+  margin: 0 auto;
+  border-bottom: 0px;
+
+  span {
+    text-transform: capitalize;
+  }
+}
+
+.spaarkscardfooter {
+  height: 55px;
+  //padding-top: .5rem !important;
+  display: flex;
+  max-height: 78px;
+  // justify-content: space-between;
+  align-items: center;
+  // margin-bottom: 0.6rem;
+}
+
+.viewmapicon {
+  width: 16px;
+  height: 16px;
+}
+
+.spaarkscardfooteritem {
+  flex: 1;
+  height: inherit;
+}
+
+.spaarkscardfooterblock {
+  display: block;
+
+  img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.spaarkscardfooterblockitem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+
+  p {
+    display: flex;
+    font-size: 13px;
+  }
+}
+
+.spaarkscardprofilepic {
+  width: 70px;
+  object-fit: cover;
+  // height: 70px;
+  border-radius: 48%;
+}
+
+.spaarkscardfooterblockmap {
+  display: block;
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.cursorhand {
+  cursor: pointer;
+}
+
+.iconsmall2 {
+  display: none;
+}
+
+.iconsmall1 {
+  transform: rotate(90deg);
+}
+.showDirection{
+  font-size: 0.8rem;
+  align-content: center;
+}
+
+.distance-text{
+  cursor: default;
+  font-size: 0.8rem;
+}
+// @media screen and (max-width: 768px) {
+//   .iconsmall2 {
+//     display: block;
+//   }
+
+//   .iconsmall1 {
+//     display: none;
+//   }
+
+// }
+@media screen and (max-width: 1500px){
+  .showDirection{
+    font-size: 0.7rem;
+    align-content: center;
+  }
+}
+@media screen and (max-width: 1270px){
+  .distance-text{
+    font-size: 0.75rem;
+    align-content: center;
+  }
+ .share-text{
+   font-size: 0.7rem;
+ }
+}
+
+@media screen and (max-width: 650px) {
+  .spaarkscardfooter {
+    padding-top: 0px !important;
+  }
+
+  .spaarkscardfooter {
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .spaarkscardfooterblockitem {
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      padding: 0.2rem;
+    }
+  }
+
+  .spaarkscardheadermain {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px 0px 0px 0px;
+  }
+
+  .spaarksPill {
+    padding: 0px;
+  }
+}
+
+.starratingtext {
+  font-size: 15px;
+  color: #6fa4e9;
+  font-weight: 700;
+}
+
+.starratingparent {
+  display: flex;
+  align-items: center;
+}
+
+.cookiepolicy {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  bottom: 10px;
+  min-height: 100px;
+  max-height: 140px;
+  z-index: 99999;
+}
+
+.cookiepolicyCore {
+  background: rgb(54, 54, 54);
+  border-radius: 10px;
+
+  * {
+    color: white;
+  }
+}
+
+.showmore {
+  max-height: 89px;
+  overflow: hidden;
+}
+.showmore1{
+  height:auto;
+  overflow: hidden;
+
+}
+
+.distancetext {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  /* line-height: 100%; */
+  text-align: center;
+  letter-spacing: 0.2px;
+  // color: #6FA4E9;
+  color: var(--textColorCard);
+}
+
+// .viewsellerDiv {
+//   margin-right: 16%
+// }
+
+@media screen and (min-width: 950px) {
+  .SellerProfile {
+    // font-size: 8px;
+    line-height: 0px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .SellerProfile {
+    // font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.viewmoreTag {
+  border-bottom: 0.8px solid #d7d7d7;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 300px;
+  font-family: Mulish !important;
+}
+.cursorpointer:hover{
+  color: #6fa4e9!important;
+}
+
+.allView {
+  display: grid;
+  // border-right: 0.5px solid #dddddd;
+  place-items: center;
+  text-align: center;
+  padding: 0 0.6rem;
+}
+
+.star-icons {
+  display: flex;
+  justify-content: space-between;
+  // position: absolute;
+  left: 70px;
+  top: 82px;
+}
+
+.allColls {
+  // padding: 0.6rem;
+}
+
+// .no-gutters {
+//   margin-right: 0 !important;
+//   margin-left: 0 !important;
+
+//   > .col,
+//   > [class*="col-"] {
+//     padding-right: 0 !important;
+//     padding-left: 0 !important;
+//   }
+// }
+
+.cardPill {
+  border: 1px solid #6fa4e9;
+  border-radius: 14px;
+  color: #6fa4e9
+}
+
+.cardPill > span {
+  // font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  // color: var(--textColorCard);
+  color: #6FA4E9;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 10px;
+  padding: 3px;
+}
+
+.bookmarkDiv {
+  width: 35px;
+  height: 35px;
+  // background: rgba(47, 128, 237, 0.07);
+  margin: 0px;
+  padding: 0px;
+  background-color: #ffffff;
+
+  border-radius: 25px;
+}
+
+.bookmarkDiv:hover {
+  width: 35px;
+  height: 35px;
+  // background: rgba(47, 128, 237, 0.07);
+  margin: 0px;
+  padding: 0px;
+
+  border-radius: 25px !important;
+  background: #2f80ed12 !important;
+}
+
+.spaarkscardheadername.cursorpointer:hover {
+  text-decoration-line: underline;
+  color: Black !important;
+  font-weight: 700 !important;
+  text-underline-position: under;
+}
+
+
+.showdirtext{
+  color: #6fa4e9;
+}

@@ -1,0 +1,30 @@
+
+    <div class="w-100">
+        <div class="reportcontainer w-100 pl-2 pr-2 pt-2" *ngIf="showOptions">
+            <div *ngFor="let opt of options">
+                <div class="w-100 optioncontainer d-flex align-items-center p-2">
+                <img class="px-2" [src]="opt.img" alt="">
+                <div class="optiontext" (click)="triggerLogin()">
+                    <p class="m-0">{{opt.name}}</p>
+                    <p class="m-0"><small class="text-muted">{{opt.text}}</small></p>
+                </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="settingscontainer w-100 pl-2 pr-2 pt-2" >
+            <div class="topBarClose pt-2 pr-2">
+                <label (click)="openLink($event)" ><img src="../../../assets/cross.svg" alt="" class="crossSvg"></label>
+            </div>
+            <div *ngFor="let opt of settingsArray">
+                <div  (click)="goToLink(opt.name)" class="w-100  d-flex align-items-center p-3">
+                    <span class="p-2">
+                        <img class="px-2 iconSvg"  [src]="opt.img" alt="">
+                    </span>
+                <div class="optionText w-100" style="flex:9">
+                    <p class="m-0">{{opt.name}}</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div> 

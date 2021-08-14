@@ -1,0 +1,34 @@
+<!-- <div *ngIf="catDesc!=''">
+    <div class="BoxContainer" [style.width]="inputWidth" [style.height]="inputHeight"
+        [ngClass]="{'mx-0':fromMultiCar,'mx-2':!fromMultiCar}">
+        <img class="catImg" [src]='catImg' alt="">
+        <div class="Test d-flex justify-content-center" [style.width]="inputWidth"
+            [ngStyle]="{'height':fromMultiCar?'70px':'110px'}">
+
+            <div class="desc p-2 w-100  allCenter"
+                [ngClass]="{'text-center':fromMultiCar,'text-left':!fromMultiCar,'d-flex flex-column justify-content-start align-items-start':!fromMultiCar}">
+                <p class="bolddText" style="margin: 0px; padding: 0px;">{{inputText |featureText}}</p>
+                <p *ngIf="!fromMultiCar" class="smallTxt allCenter descclineheight m-0"
+                    style="font-size: 11px !important;font-family: Open Sans !important;">
+                    {{catDesc |featureText}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div *ngIf="catDesc!=''" class="wrapper-div cursorpointer" [ngClass]="{'fromCarousel':fromMultiCar}">
+    <div class="BoxContainer d-flex align-items-center flex-column justify-content-center">
+        <img class="catImg" [src]='catImg' alt="">
+        <div class="Test d-flex justify-content-center">
+            <div class="desc p-2 pt-0 w-100  allCenter"
+                [ngClass]="{'text-center':fromMultiCar,'text-left':!fromMultiCar,'d-flex flex-column justify-content-start align-items-start':!fromMultiCar}">
+                <p class="bolddText" style="margin: 0px; padding: 0px;">{{inputText |featureText}}</p>
+                <p *ngIf="!fromMultiCar" class="smallTxt allCenter descclineheight m-0">
+                    {{catDesc |featureText}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

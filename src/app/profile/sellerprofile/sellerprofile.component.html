@@ -1,0 +1,329 @@
+<div class="userprofilecontainer" *ngIf="profiledata">
+    <div class="w-100">
+        <div class="w-100 borderforprofilehead">
+            <div class="profileHead bordertopforprofilehead">
+                <div class="imagecontainer w-100 h-100 allCenter">
+
+                    <!-- options start -->
+                    <div class="optionsBar">
+                        <!-- <img (click)="optionMenu()" mat-button [matMenuTriggerFor]="menu"
+                            src="../../../assets/options.svg" alt="" class="iconsmall cursorpointer"> -->
+                        <mat-menu #menu="matMenu" xPosition="before" class="menuBox">
+                            <button mat-menu-item> <img class="my" src="../../../assets/faqs.svg" />
+                                FAQs</button>
+                            <button mat-menu-item><img class="my" src="../../../assets/help.svg" />
+                                {{"Help"|featureText}}</button>
+                            <button mat-menu-item> <img class="my" src="../../../assets/connect.svg" />
+                                {{"Connect with us"|featureText}}</button>
+                            <button mat-menu-item> <img class="my" src="../../../assets/terms.svg" />
+                                {{"Terms & policies"|featureText}}</button>
+                            <button mat-menu-item> <img class="my" src="../../../assets/settings.svg" />
+                                {{"Settings"|featureText}}</button>
+
+                        </mat-menu>
+                    </div>
+                    <!-- options end -->
+
+                    <!-- Back -->
+                    <span class="back cursorpointer">
+                        <img (click)="goBack()" src="../../../assets/back2white.svg">
+                    </span>
+
+
+                    <div class="imageparent w-100 h-100">
+                        <div class="proimageParent">
+                            <div class="maincenter w-100 ">
+
+                                <img [src]="profiledata.finalData.profilePic" class="proimage"
+                                    style="border:1px solid #d7d7d7"
+                                    (click)="showFullScreen(profiledata.finalData.active[selectedIndex].profilePic)" />
+                                <!-- <span class="editImgParent cursorpointer"*ngIf="showEditOption" > <img (click)="editBio()"
+                                        src="../../../assets/edit.svg" class="editImg" alt="">
+                                </span> -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <img [src]="isbookmarked?'assets/bookmark_golden.svg':'assets/profilebookmarked.svg'" alt=""
+                    (click)="toggleBookmark(paramsId)" class="bookmarkicon cursorpointer">
+
+            </div>
+            <div class="w-100 detailsparent ">
+                <div>
+                    <p class="sellerName allCenter align-center">
+                        {{profiledata.finalData.name  }}</p>
+                    <div class="p-2" *ngIf="profiledata.finalData.active.length==0"></div>
+                    <p class="sellerTag allCenter" *ngIf="profiledata.finalData.active.length!=0">
+                        {{"Seller"|featureText}} <span class="h-100 spancontainershare cursorpointer pl-2"
+                            (click)="clickedShare(profiledata.finalData.active[selectedIndex])"> <img class=""
+                                src="../../../assets/share_lightWhite.svg" alt="">
+                        </span>
+                    </p>
+                    <div class="w-100 allCenter" *ngIf="profiledata.finalData.active.length!=0">
+                        <div class="w-50 allCenter">
+                            <div class="w-100 allCenter">
+                                <div>
+                                    <h4>{{profiledata.finalData.active[selectedIndex].rating==0?'N/A':profiledata.finalData.active[selectedIndex].rating}}
+                                    </h4>
+                                    <p>{{"Rating"|featureText}}</p>
+                                </div>
+                                <div class="mx-2">
+                                    <bar-rating [rate]="profiledata.finalData.active[selectedIndex].rating"
+                                        [readOnly]="true" [max]="5">
+                                    </bar-rating>
+                                </div>
+                                <div>
+                                    <h4>{{profiledata.finalData.active[selectedIndex].count==0?'N/A':profiledata.finalData.active[selectedIndex].count}}
+                                    </h4>
+                                    <p>{{"Reviews" |featureText}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="w-100 mt-3" *ngIf="profiledata.finalData.active.length==0">
+
+            <span
+                class="ml-3 text-muted">{{"Market profile gets created when spaarks are posted in market category." |featureText}}</span>
+            <div class="p-3"></div>
+            <span class="boldTxtAll my-2 all-headings">{{"Services offered" |featureText}}</span><br>
+            <span class="ml-3 text-muted">{{"No services offered yet." |featureText}}</span>
+            <div class="p-3"></div>
+            <span class="boldTxtAll mt-3 all-headings">{{"Spaarks timeline" |featureText}}</span> <br>
+            <span class="text-muted ml-3">{{"No spaarks created." |featureText}}</span>
+        </div>
+
+
+
+        <!-- horizontal scroll for seller profile start -->
+
+        <div class="w-100 mt-3" style="position: relative;" *ngIf="profiledata.finalData.active.length!=0">
+
+
+            <div class="boldTxtAll mt-2 mb-3 all-headings">{{"Services offered" |featureText}}</div>
+            <div class="d-flex align-items-center" style="width: 100%;margin-bottom: 4vh;">
+                <div class="notForMob" (click)="scrollCarousel(0)" style="transform: rotate(180deg);"
+                    [ngClass]="{'invisible':activeCarousel==0,'d-none':profiledata.finalData.active.length<4}"
+                    *ngIf="profiledata.finalData.active.length>2 && !isMobileVersion">
+                    <!-- <img (click)="scrollLeft()" src="../../../assets/back.svg" alt=""> -->
+                </div>
+                <div class="notForMob forMob" (click)="scrollCarousel(0)" style="transform: rotate(180deg);"
+                    [ngClass]="{'d-none':activeCarousel==0 || profiledata.finalData.active.length<1}"
+                    *ngIf="profiledata.finalData.active.length>1 && isMobileVersion">
+                    <!-- <img (click)="scrollLeft()" src="../../../assets/back.svg" alt=""> -->
+                </div>
+
+
+                <div #allSellerCard class="cardScroll">
+
+                    <div *ngFor="let prof of profiledata.finalData.active;let ind = index"
+                        class="col-8 col-md-4 col-lg-4 mb-2 justify-content-center" [ngClass]="{'d-none':(ind<activeCarousel),'d-flex':(ind>=activeCarousel)}"
+                        (click)="clickedSub(ind,prof.subCategory)">
+                        <app-sellercategoryrating (valueChange)="addItem($event)" [profile]="prof"
+                            [profileIndex]="ind.toString()" [clickedIndex]="clickedProfileIndex">
+                        </app-sellercategoryrating>
+                    </div>
+                </div>
+                <div class="notForMob forMob" *ngIf="profiledata.finalData.active.length>1 && isMobileVersion"
+                    (click)="scrollCarousel(1)"
+                    [ngClass]="{'d-none':activeCarousel>=profiledata.finalData.active.length-1 || profiledata.finalData.active.length<1}">
+                    <!-- <img (click)="scrollRight()" src="../../../assets/back.svg" alt=""> -->
+                </div>
+                <div class="notForMob" *ngIf="profiledata.finalData.active.length>2 && !isMobileVersion"
+                    (click)="scrollCarousel(1)"
+                    [ngClass]="{'invisible':activeCarousel>=profiledata.finalData.active.length-3,'d-none':profiledata.finalData.active.length<4}">
+                    <!-- <img (click)="scrollRight()" src="../../../assets/back.svg" alt=""> -->
+                </div>
+            </div>
+
+
+            <!-- <div class="w-100 d-flex" *ngIf="profiledata.finalData.active.length>0">
+                <div class="cursorpointer" style="display: inline-block;"
+                    *ngFor="let prof of  profiledata.finalData.active;let ind = index" (click)="clickedSub(ind)">
+                    <app-sellercategoryrating [profile]="prof"></app-sellercategoryrating>
+                </div>
+
+            </div> -->
+
+
+            <div *ngIf="showqr">
+                <mat-card class="px-3 qr-mat-card justify-content-between d-flex align-items-center">
+                    <div class=" d-flex align-items-center justify-content-between">
+                        <div>
+                            <img class="qr-logo" src="../../../assets/qrcode.svg">
+                        </div>
+                        <div class="ml-0 ml-md-1">
+                            <p class="qr-text-rating m-0">{{"Take"|featureText}} <b>{{"Ratings & Reviews"|featureText}}
+                                </b>{{"for your service here."|featureText}}</p>
+                        </div>
+                    </div>
+                    <div class="mx-1">
+                        <button class="qr-btn" mat-button color="primary"
+                            (click)="open(content)">{{"Show QR"|featureText}}</button>
+                    </div>
+                </mat-card>
+            </div>
+
+            <ng-template #content let-modal>
+                <div class="qr-div">
+                    <div class="allCenter w-100" style="border-bottom: 1px solid #D7D7D7;">
+                        <p class="qr-text w-100 text-center m-0 p-2">QR</p>
+                        <div class=" p-2 " style="display: flex;
+                        
+                        justify-content: flex-end;">
+                            <img src="../../../assets/cross.svg" (click)="modal.dismiss('Cross click')">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="profile-div allCenter" style="display: flex;flex-direction: column;">
+                            <div>
+                                <img style="width: 96px;
+                                height: 96px;border-radius: 30px;
+                            " src="{{profiledata.finalData.active[selectedIndex].profilePic}}">
+                            </div>
+                            <div class="">
+                                <small class="review-name">{{profiledata.finalData.active[selectedIndex].name}}</small>
+                            </div>
+                            <div class="pill-rating">
+                                <p class="pill-name">
+                                    {{profiledata.finalData.active[selectedIndex].subCategory |featureText}}</p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="qr-code allCenter">
+                        <canvas id="qr_id"></canvas><img src="" alt="" id="image" />
+                    </div>
+                    <div>
+                        <small
+                            class="qr-info">{{'User can give you rating by scanning this QR code.'|featureText}}</small>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </ng-template>
+
+
+            <!-- About service Section start-->
+            <div class="mt-3 mb-4" *ngIf="profiledata.finalData.active[selectedIndex].about!=''&&showAboutMeText">
+                <div class="d-flex align-items-center justify-content-between pr-3 mb-3">
+                    <span class="boldTxtAll w-100 all-headings"> {{"About service"|featureText}}</span>
+                    <div class="w-100 aboutMeBtn-div " *ngIf="showAboutMe">
+                        <img style="width: 25px;" class="cursorpointer" src="../../../assets/edit.svg"
+                            (click)="editAboutMe()">
+                    </div>
+                </div>
+                <pre *ngIf="profiledata.finalData.active[selectedIndex].about.length>0 " class="allBox aboutCatbox"
+                    #showmoredata [innerHTML]="aboutServiceText">
+
+
+            </pre>
+                <div class="w-100 bg-white viewAllContainer" class="cursorpointer">
+                    <div class="viewAll allCenter">
+                        <span (click)="showMore()" class="p-1 text-center m-0 mt-2" style="color: #6FA4E9;"
+                            *ngIf="((shomorebollean && postlength>3) || (shomorebollean && profiledata.finalData.active[selectedIndex].about.length > 245)&&(postlength>3) )">{{"Show more"|featureText}}</span>
+                        <span (click)="showLess()" class="p-1 text-center m-0 mt-2" style="color: #6FA4E9;"
+                            *ngIf="!shomorebollean">{{"show less" |featureText}}</span>
+                    </div>
+                    <!-- <p class="p-1 text-center m-0 mt-2"><span style="color: black;" class="font-weight-bold">View All</span></p> -->
+                </div>
+            </div>
+            <!-- About Service Section end-->
+
+
+
+            <!-- About Me -->
+            <div class="w-100 mt-3 profileImages"
+                *ngIf="!profiledata.finalData.active[selectedIndex].about&&showAboutMe">
+                <span class="boldTxtAll all-headings">{{"About service"|featureText}}</span>
+                <div class="w-100  bg-white px-3 commonradius commonborder">
+                    <div class="w-100 bg-white d-flex align-items-center p-3 flexImgParent aboutMeBox">
+                        <textarea class=" p-2 aboutMe-textarea"
+                            placeholder="{{'Write something about you.'|featureText}}" cols="3" rows="4" maxlength="250"
+                            (input)="updateInput($event)" [(ngModel)]="aboutmeContent"></textarea>
+                    </div>
+                    <div class="w-100 aboutMeBtn-div">
+
+                        <button mat-button class="aboutMeBtn p-2" color="primary"
+                            (click)="saveAboutMe()">{{"Save" |featureText}}</button>
+
+                    </div>
+                </div>
+                <span
+                    class="w-100 text-muted d-block text-right">{{count}}{{"characters remaining" |featureText}}</span>
+            </div>
+
+
+            <!-- Images start -->
+            <div class="w-100 mt-3 profileImages" *ngIf="imgList.length>0">
+                <span class="boldTxtAll all-headings">{{"Images posted"|featureText}}</span>
+                <div class="w-100 ">
+                    <div class="w-100 bg-white d-flex justify-content-center p-1 align-items-center flexImgParent ">
+                        <div class="grid-container w-100">
+                            <span class="flexImg" *ngFor="let image of onlyImages| slice:0:initVal;let ind=index"
+                                (click)="viewFullScreen(ind)">
+                                <img class="" [src]="image" alt="">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="w-100 bg-white viewAllContainer cursorpointer" *ngIf="onlyImages.length>4">
+                        <div class="viewAll allCenter hoverText" (click)="viewAll()">
+                            <span class="p-1 text-center m-0 mt-2"
+                                *ngIf="fullView==false && images.length>4">{{"View all" |featureText}}</span>
+                            <span class="p-1 text-center m-0 mt-2"
+                                *ngIf="fullView==true">{{"View less" |featureText}}</span>
+                        </div>
+                        <!-- <p class="p-1 text-center m-0 mt-2"><span style="color: black;" class="font-weight-bold">View All</span></p> -->
+                    </div>
+
+                </div>
+            </div>
+            <!-- Images end -->
+
+            <!-- Ratings and Reviews start -->
+            <div class="my-3"
+                *ngIf="profiledata.finalData.active[selectedIndex].reviews && profiledata.finalData.active[selectedIndex].reviews.length>0">
+                <div class="boldTxtAll mb-2 all-headings">{{"Ratings & Reviews"|featureText}}</div>
+
+                <div class="allBox commonborder p-0"
+                    *ngFor="let rating of profiledata.finalData.active[selectedIndex].reviews">
+                    <app-ratings [rating]="rating"></app-ratings>
+                </div>
+            </div>
+            <!-- Ratings and Reviews end -->
+
+
+
+            <div *ngIf="profiledata.finalData.active[selectedIndex].posts.length>0" class="timeline">
+                <div class="circles_top"></div>
+                <div class="w-100 mt-4 profilebody">
+                    <div *ngIf="profiledata.finalData.active[selectedIndex].posts && profiledata.finalData.active[selectedIndex].posts.length>0"
+                        class="boldTxtAll mb-3 all-headings">
+                        {{"Spaarks timeline" |featureText}}</div>
+                    <div class="w-100">
+                        <div *ngFor="let post of profiledata.finalData.active[selectedIndex].posts.reverse()">
+                            <app-spaarkscard [post]="post"></app-spaarkscard>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

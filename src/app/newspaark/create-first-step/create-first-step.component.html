@@ -1,0 +1,21 @@
+<!-- Displaying quick spaarks (spaarks that the user has posted earlier) -->
+<div  class="PrevCat w-100 py-2" *ngIf="showPreviousCat">
+  <ng-container  *ngFor="let data of prevData |slice :0:3 ; let i = index">
+    <!-- <app-sub-category [isPrevious]="showPreviousCat" [prevData]="data" (click)="quickSpaark(i,data.category,data.subCategory,data.questionNo)" ></app-sub-category> -->
+    <app-sub-category [isPrevious]="showPreviousCat" [prevData]="data" (click)="quickSpaark(data)"></app-sub-category>
+  </ng-container>
+</div>
+
+<div class="w-100 d-flex my-3 justify-content-center align-items-center text-heading">
+  <span class="text-left mr-2 boldTxtAll all-headings">{{"Select any to create Spaark."|featureText}}</span>
+</div>
+
+<div class="catMain">
+  <!-- Iterating over the list of questions -->
+  <div class="mt-2 mb-2 catMain1 cursorpointer" *ngFor="let marketCat of questionsFinal.data; let i = index">
+    <!-- <img src="../../../assets/catsubcatimages/questionsimages/" alt=""> -->
+    <app-category-box [catTxt]="marketCat.catTxt" [catImg]="'assets/catsubcatimages/questionsimages/'+marketCat.catImg"
+      [catDesc]="marketCat.catDesc" (click)="selectedCat(i,marketCat.catTxt)"></app-category-box>
+  </div>
+</div>
+<p class="textmuted versionText">{{"Version" |featureText}} - 0.3.9</p>

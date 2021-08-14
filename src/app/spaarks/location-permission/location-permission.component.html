@@ -1,0 +1,37 @@
+<div class="allContentLocation">
+    <h3 class="w-100 m-0 mt-2 text-center">{{showSearchLocation==false?"Please allow location access, by clicking on below button":"Search your location"}}</h3>
+<div *ngIf="!showSearchLocation" class="locationAccess allCenter">
+
+   <div class="w-100 d-flex align-items-center justify-content-center">
+    <div class="allowLocationAccessBtn allCenter">
+         <div (click)="clickedLocationAccess($event)" class="boldText allCenter cursorpointer">
+            <span> <img src="../../../assets/location_target.svg" class="locationtarget mr-3" alt=""> </span> 
+            <p class="m-0">Allow Location Access</p>
+         </div>
+        </div>
+   </div>
+</div>
+
+<div *ngIf="showSearchLocation">
+    <div class="p-2 searchExtensionparent">
+        <!-- Looking for -->
+    <div class="searchBar mb-3 d-flex ">
+        <img class="m-2" src="../../../assets/search.svg" alt="search">
+        <textarea (click)="changedText($event)" [(ngModel)]="content" class="searchBar " type="text" placeholder="Search your location"></textarea>
+
+        <!-- (keypress)="pressedkey($event)" -->
+    </div>
+    <!-- <div class="searchExtension">
+        <ul class="list-group p-0">
+            <li *ngFor="let fun of listofsearches" class="list-group-item p-2">
+               <div class="w-100">
+                <p class="m-0"> {{fun.preview}}</p>
+                <small><b>{{fun.subCategory}}</b></small>
+               </div>
+            </li>
+        </ul>
+    </div> -->
+
+  </div>
+</div>
+</div>

@@ -1,0 +1,108 @@
+<div id="mainElement">
+    <div class="w-100 thirdstep">
+        <!-- <div class="boldTxtAll text-left">Select your spaarks visibility</div> -->
+        <div class=" itemStyle my-3">
+            <span class="px-3">
+                <img class="imgStyle" src="../../../assets/map.png" alt="">
+            </span>
+            <span class="txtStyle all-headings">{{'Show my spaark on map'|featureText}}</span>
+            <span style="flex: 3;" class="boldTxtAll3">
+                <mat-radio-group (change)="showlocation($event)">
+                    <mat-radio-button value="3" [checked]="showOnMap" style="float: left;">
+                        {{"Yes" |featureText}}
+                    </mat-radio-button>
+                    <mat-radio-button value="4" [checked]="!showOnMap">
+                        {{"No" |featureText}}
+                    </mat-radio-button>
+                </mat-radio-group>
+
+            </span>
+        </div>
+
+        <div class="thirdbody">
+            <!-- Render map where spaark will be posted -->
+            <div class="mapcontainer" #maps id="smallMap">
+                <!--                 
+                <agm-map [zoom]="zoom" [latitude]="lat" [longitude]="lng">
+                    <agm-marker [latitude]="lat" [longitude]="lng">
+                        <agm-info-window>You</agm-info-window>
+                    </agm-marker>
+                 
+
+                    <agm-circle [latitude]="lat" [longitude]="lng" [radius]="radius" [fillColor]="'#448AFF'">
+                    </agm-circle>
+
+
+                </agm-map> -->
+
+                <!-- leaflet maps -->
+                <div id="mapA" style="height: 100%;"> </div>
+
+            </div>
+            <div class="p-2 description">
+                <p class="m-0 descStyle">
+                    {{"Spaark remains at this location, even if you open the app at a new location"|featureText}}
+                </p>
+                <p class="m-0"></p>
+            </div>
+
+            <div class=" itemStyle my-3">
+                <mat-radio-group (change)="DNMLocation($event)">
+                    <div class="subItem" style="border-right: 1px solid #d3d3d3">
+                        <mat-radio-button class="w-100" value="false" [checked]="DynamicLocation=='false'">
+                        </mat-radio-button>
+                        <span class="contentAll colorBlue">{{"Pin spaark at this location"|featureText}}</span>
+                    </div>
+
+                    <div class="subItem">
+                        <mat-radio-button class="w-100" value="true" [checked]="DynamicLocation=='true'">
+                        </mat-radio-button>
+                        <span class="contentAll colorBlue">{{"Move spaark wherever I go" |featureText}}</span>
+                    </div>
+
+                </mat-radio-group>
+            </div>
+
+        </div>
+
+        <div class="changeVisibility d-none">
+            <div class="p-2 bg-white sliderdiv">
+                <p class="d-flex align-items-center justify-content-between p-2">
+                    <span>{{"Distance" |featureText}}</span>
+                    <span class="text-primary">{{slidervalue}}km</span>
+                </p>
+
+                <!-- <div>
+                    <mat-slider [max]="5" min="1" step="1" [value]="slidervalue" [(ngModel)]="slidervalue"
+                        (ngModelChange)="changeRange($event)" [color]="'primary'"></mat-slider>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="w-100 d-flex my-2 justify-content-end">
+            <div class="w-100 allCenter ">
+                <div class="w-100 d-flex align-items-center justify-content-between ">
+                    <span class="cursorpointer mediaimage nextspan p-2 mediaspan" (click)="clickedPrevious()">
+                        <span>
+                            <img src="../../../assets/back_white.svg" class="mediaicon reverseArrow p-1" alt="">
+                            <span class="text-white allBtns">
+                                {{"Previous"|featureText}}
+                            </span>
+                        </span>
+                    </span>
+
+
+                    <span class="cursorpointer mediaimage nextspan p-2 mediaspan" (click)="clickedNext()">
+                        <span>
+                            <span class="text-white allBtns">
+                                {{"Post Spaark"|featureText}}
+                            </span>
+                            <img src="../../../assets/back_white.svg" class="mediaicon p-1" alt="">
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

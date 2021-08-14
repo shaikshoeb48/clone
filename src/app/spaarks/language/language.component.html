@@ -1,0 +1,63 @@
+<div class=" rightSpace rightmostSpace"></div>
+
+
+<div class="leftSpace leftinsideSpace insideSpace"></div>
+
+
+
+<!-- language screen start -->
+<div class="lang">
+  <div class="topBar">
+    <span class="topHeading boldTxtAll">Spaarks</span>
+  </div>
+
+  <div class="langTxt">
+    <div class="boldTxtAll mt-0">
+      <span>{{"Choose your language" |featureText}}</span>
+
+    </div>
+    <div class="row">
+      <div class="cardParent col-10 col-sm-8 col-md-6 col-lg-4"
+        style="display:flex;flex-direction: column;align-items: center;">
+       
+        <div class="row1 cursorpointer" (click)="langSelect('en')">
+          <div class="lang-div">
+            <span class="lang-text">English</span>
+            <span *ngIf="symboldisplay=='en'" class="svg-span"> <img src="../../../assets/tick1.svg" alt=""></span>
+          </div>
+        </div>
+        <div class="row1 cursorpointer" (click)="langSelect('hi')">
+
+          <div class="lang-div">
+
+            <span class="lang-text">{{"हिंदी"}}</span>
+            <span *ngIf="symboldisplay=='hi'" class="svg-span"> <img src="../../../assets/tick1.svg" alt="" /></span>
+          </div>
+
+
+        </div>
+        <div class="row1 cursorpointer" (click)="langSelect('te')">
+
+          <div class="lang-div">
+
+            <span class="lang-text">{{"తెలుగు"}} </span>
+            <span *ngIf="symboldisplay=='te'" class="svg-span"> <img src="../../../assets/tick1.svg" alt="" /></span>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+    <div class="all_btm ">
+
+      <span *ngIf="showNext" class="allBtns btnBck" (click)="onContinue()">{{btnName}}</span>
+
+    </div>
+
+  </div>
+</div>
+<!-- language screen end -->

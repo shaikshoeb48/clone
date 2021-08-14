@@ -1,0 +1,153 @@
+// ::-webkit-scrollbar {
+//   width: 0px;
+// }
+
+// Search bar starts
+.searchExtension {
+  position: absolute;
+  top: 58px;
+  z-index: 4;
+  max-height: 300px;
+  overflow-y: scroll;
+  left: 10px;
+  width: 98%;
+}
+
+.searchExtensionparent {
+  position: relative;
+}
+
+.searchBar {
+  height: 47px;
+  width: inherit;
+  border-radius: 50px;
+  background: white;
+  resize: none;
+  // padding: 15px;
+  line-height: 47px;
+  overflow: hidden;
+  border-color: transparent !important
+}
+
+
+// Search bar ends
+
+mat-chip {
+  cursor: pointer;
+}
+
+.CoverFullScreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.692);
+  z-index: 50;
+  left: 0px;
+  top: 0px;
+}
+
+
+
+
+.paginationDots {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgb(99, 205, 255);
+  margin: 5px;
+}
+
+
+
+
+textarea:focus {
+  outline: none;
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: white;
+  font-weight: normal;
+  color: rgba(0, 0, 0, .87);
+}
+
+.slidestyle {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  background-color: burlywood;
+  border-radius: 10px
+}
+
+// Expansion Panel Styles Start
+
+ngb-accordion ::ng-deep .card-header {
+  padding: 0;
+  border-radius: 11px;
+  background-color: #ffffff00;
+}
+
+ngb-accordion ::ng-deep .card {
+  width: 100%;
+  border-radius: 11px !important;
+  margin-bottom: 17px;
+}
+
+ngb-accordion ::ng-deep .card-body {
+  padding: 1.5rem 1rem;
+}
+
+
+ngb-accordion ::ng-deep .card-header button {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 550;
+  color: #000000f5;
+  text-align: left;
+  border-radius: 11px;
+
+}
+ngb-accordion ::ng-deep .card-header button:hover{
+  background-color:#2f80ed12 !important;
+}
+ngb-accordion ::ng-deep .card-header button:focus {
+  box-shadow: none;
+  border-radius: 11px;
+}
+
+.faqtxt {
+  // color: #0606068f;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 20px;
+  letter-spacing: -0.165px;
+  color: #5B6370;
+  padding-left: 15px;
+}
+
+.btn {
+  margin: 0 auto;
+  display: flex;
+  border-radius: 50px;
+  background-color: #6FA4E9;
+  padding: 10px 21px;
+}
+
+.accordion>.card {
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: rosybrown;
+}
+
+// Expansion Panel Styles End
+
+.boldTxtAll2{
+  font-size: 18px !important;
+  font-weight: 400 !important;
+}

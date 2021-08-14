@@ -1,0 +1,24 @@
+<p>chat-modall works!</p>
+<div *ngIf="showChangeName" (click)="clickedOutside('nickname')" class="modalBody allCenter">
+    <div class="profilecomplete" (click)="clickOnProfile($event)">
+        <div class="loginheaderparent pl-3 pr-3 pt-3 text-center ">
+            <span class="loginheader font-weight-bold pb-3"> Add Nickname</span>
+        </div>
+
+
+        <div class="profilecompleteBody allCenter">
+            <input [value]="newName" (input)="updateName($event)" name="nameofuser" type="text"
+                class="mobilenumberinput px-4 nameinput" placeholder="Enter your name">
+
+        </div>
+        <p class="text-muted text-center">The name that you change here will be the users name from now on, You can
+            change it anytime though</p>
+
+        <div class="w-100 allCenter">
+            <div class="finalsubmitbtncontainer ">
+                <span (click)="nameConfirm(changeNamePayload.jid)"
+                    class="finalsubmitbtn w-25 p-3 text-center cursorpointer">SUBMIT</span>
+            </div>
+        </div>
+    </div>
+</div>

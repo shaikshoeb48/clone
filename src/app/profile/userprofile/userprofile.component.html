@@ -1,0 +1,163 @@
+<div class="userprofilecontainer ">
+    <div *ngIf="isAuthed==true || profileData" class="w-100">
+        <!-- <div class="profileHead" #scroller>
+            <div class="imagecontainer w-100 h-100">
+                <div class="imageparent w-100 h-100">
+                    <div class="proimageParent">
+                        <div class="maincenter">
+                            <img [src]="profilePic" class="proimage" alt="" (click)="showFullScreen(profilePic)">
+                            <span class="editImgParent"> <img (click)="changeProfilePic()"
+                                    src="../../../assets/edit.svg" class="editImg" alt=""> </span>
+                        </div>
+                        <div style="width: 40px; height: 40px;">
+                            <input type="file" style="visibility: hidden;" #uploadRef id="picChoose" accept="image/*"
+                                (change)="onSelectFile($event)" />
+                            <img [src]="url" *ngIf="url" width="30px" height="30px" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="w-100 detailsparent">
+                <p class="m-0 font-weight-bold text-center">{{userName}}</p>
+                <p class="m-0 text-center"> <span [routerLink]="['/home/seller',UserId]"
+                        class="cursorpointer smallText p-1">View Seller Profile</span> </p>
+            </div>
+        </div> -->
+
+        <div class="profilepicDiv ">
+            <div class="d-flex justify-content-between inMob" style="border-bottom: 0.5px solid #D7D7D7;">
+                
+                <span class="py-2 boldTxtAll colorBlue allCenter all-headings"><span *ngIf="!enableImageEdit" class="px-1 pr-2 pb-1"><img src="../../../assets/backblue.svg" class="backimg cursorpointer" (click)="clickedBack()"></span>{{(enableImageEdit?"Timeline":"Profile")|featureText}}</span>
+                <div class="d-flex viewDiv" *ngIf="hasmarketprofile&&posts">
+                    <span  [routerLink]="['/profile/seller',diffUserId || userId]" class="cursorpointer">{{"Market profile"|featureText}}</span>
+                    <img class=" arrowIcon m-1" src="../../../assets/back_white.svg" alt="">
+                </div>
+            </div>
+            <div class="w-100 mt-3 propicStyle"  *ngIf="posts && posts[0]">
+                <img class="proimage" src={{profilePic}} alt="" (click)="showFullScreen(profilePic)">
+                <span class="editImgParent cursorpointer"> <img mat-button [matMenuTriggerFor]="menu" *ngIf="enableImageEdit" (click)="changeProfilePicOption()"  src="../../../assets/edit.svg"
+                        class="editImg" alt=""> </span>
+                <input type="file" style="visibility: hidden;position: fixed;left: -1000px;" #uploadRef id="picChoose"
+                    accept="image/*" (change)="onSelectFile($event)" />
+            </div>
+            <div class="w-100 mt-3 propicStyle" *ngIf="posts&&posts.length==0"  >
+                <img class="proimage" [src]='profilePic' alt="" (click)="showFullScreen(profilePic)">
+                <span class="editImgParent cursorpointer"> <img mat-button [matMenuTriggerFor]="menu" *ngIf="enableImageEdit" (click)="changeProfilePicOption()"    src="../../../assets/edit.svg"
+                        class="editImg" alt=""> </span>
+                <input type="file" style="visibility: hidden;position: fixed;left: -1000px;" #uploadRef id="picChoose"
+                    accept="image/*" (change)="onSelectFile($event)" />
+            </div>
+            <div class="w-100 my-2 text-center" >
+                <span class="boldTxtAll4 m-2 p-0">{{this.userName }}</span>
+            </div>
+            <mat-menu #menu="matMenu"  style="position: fixed !important;" >
+                <button mat-menu-item (click)="deleteProfilePic()" *ngIf="showOptionsChangeProfile"><img
+                        class="my" />{{"Remove photo" |featureText}}</button>
+                <button mat-menu-item (click)="changeProfilePic()"><img
+                        class="my"  />{{"Update photo"|featureText}}</button>
+            </mat-menu>
+
+        </div>
+
+        <div class="w-100 mt-3 profileImages mb-2">
+            <!-- <h4 class="pl-3">Images Posted</h4> -->
+            <span *ngIf="onlyImages.length!=0"class="boldTxtAll  all-headings">{{"Images posted" |featureText}}</span>
+            <div class="w-100 ">
+                <div class="w-100 bg-white d-flex justify-content-center align-items-center p-1 flexImgParent">
+                    <div *ngIf="loader" class=" ">
+                        <img src="../../../assets/loading.gif" class=" customGif" alt="">
+                    </div>
+                    <span class="text-muted" *ngIf="onlyImages.length==0 && !loader2">{{"No images posted yet." |featureText}}</span>
+                    <div class="grid-container w-100">   
+                        <!-- <span class="p-1 text-center m-0"
+                        *ngIf="enableNotfound">{{"No Images Available"|featureText}}</span> -->
+                        <!-- <span class="text-muted" *ngIf="onlyImages.length==0">No images posted yet.</span> -->
+                    <span class="flexImg" *ngFor="let image of onlyImages | slice:0:initVal; let ind=index " >
+                        <img class="" [src]="image" alt="" (click)="fullScreenImage(image,ind)">
+                    </span>
+
+                    </div>
+                    
+
+
+
+
+                    <!-- <span [style.backgroundImage]="'backImgSrc'|imgOnHold" >testing</span> -->
+                    <div class="w-100 bg-white viewAllContainer">
+                        <!-- <p class="p-1 text-center m-0 mt-2"><span class="font-weight-bold">View All</span></p> -->
+                        <div *ngIf="isAuthed==true" class="viewAll allCenter cursorpointer hoverDiv" (click)="viewAll()">
+                            <span class="p-1 text-center m-0 mt-2" *ngIf="fullView==false && images.length>4">{{"View all" |featureText}}</span>
+                            <span class="p-1 text-center m-0 mt-2" *ngIf="fullView==true">{{"View less" |featureText}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="loader2" class="text-center">
+            <img src="../../../assets/loading.gif" class=" customGif" alt="">
+        </div>
+        <div class="timeline mt-3 ml-6 mb-1" *ngIf="noSpaarks">
+            <span class="boldTxtAll all-headings" >{{"Spaarks timeline"|featureText}}</span>
+            <div class="bg-white d-flex justify-content-center align-items-center p-1 flexImgParent">
+                <span class="p-0 text-center m-0">{{"No Spaaks Found" |featureText}}</span>
+            </div>
+        </div>
+
+        <div class="timeline" *ngIf="posts && posts.length>=1">
+            <div class="circles_top"></div>
+            <div class="w-100 mt-4 profilebody">
+                <!-- <h4 class="pl-2 m-0">Spaarks Timeline</h4> -->
+                <span class="boldTxtAll all-headings">{{"Spaarks timeline"|featureText}}</span>
+                <div class="w-100 postscontainer">
+                    <div *ngFor="let post of posts">
+                        <app-spaarkscard [post]="post"  [fromUserProfile]="true"></app-spaarkscard>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="isAuthed==false && !profileData" class="w-100 allCenter">
+        <div *ngIf="!showLogin" class="notLoggedIn p-3 allCenter w-75">
+            <div class="w-100 allCenter">
+                <img class="login-profile" src="../../../assets/profile_outline.svg" alt="">
+            </div>
+            <div class="w-100 allCenter flexcolumn">
+                <h3 class="login-text">{{"Login to access this feature!"|featureText}}</h3>
+                <button class="login-button" (click)="clickedLogin()">{{'Login'|featureText}}</button>
+            </div>
+        </div>
+
+
+        <div class="w-100 allCenter mt-3" *ngIf="showLogin">
+            <app-login></app-login>
+        </div>
+    </div>
+
+
+    <!-- <div *ngIf="showOptionsChangeProfile">
+    
+        <div style="width:450px;height:450px;background:white;display:flex;justify-content: space-around ;">
+            
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item (click)="deleteProfilePic()"><img
+                        class="my" src="../../../assets/report.svg" />{{"Report" |featureText}}</button>
+                <button mat-menu-item (click)="changeProfilePic()"><img
+                        class="my" src="../../../assets/share.svg" />{{"Share"|featureText}}</button>
+            </mat-menu>
+        </div>
+
+    </div> -->
+
+</div>
+
+<div class="CoverFullScreen allCenter" *ngIf="isUploading">
+   
+        <img src="../../../assets/loading.gif" alt="" style="border-radius: 50%; height: 20%;" class="allCenter">
+    
+</div>
+<!-- Modal Code End -->

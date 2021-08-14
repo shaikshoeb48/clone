@@ -1,0 +1,130 @@
+.cookiepolicy {
+  width: 100%;
+  position: fixed;
+  bottom: 10px;
+  min-height: 100px;
+  max-height: 140px;
+  z-index: 99999;
+  height: auto;
+  // background: white;
+  // overflow-y: hidden;
+  //background: #F0F2F5;
+  margin: 20px;
+  //overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.cookiepolicyCore {
+  max-width: 50%;
+  // width: 387px;
+  height: 50px;
+  min-width: 31%;
+  /* left: 13px; */
+  /* top: 796px; */
+  background: #6FA4E9;
+  border-radius: 10px;
+}
+
+.cookiepolicyText {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 135.1%;
+  color: #FEF9F3;
+}
+
+.ok-button {
+  left: 28.81%;
+  /* right: 27.12%; */
+  /* top: 31.58%; */
+  bottom: 28.95%;
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #6FA4E9;
+}
+
+.cookie-button {
+  width: 46px;
+  height: 29px;
+  left: calc(50% - 59px/2 + 144px);
+  top: 810px;
+
+  background: #FFFFFF;
+  border-radius: 5px;
+}
+
+// .cookiepolicy {
+//     //width: 623px;
+//     height: auto;
+//     // background: white;
+//     // overflow-y: hidden;
+//     //background: #F0F2F5;
+//     margin: 20px;
+//     //overflow: hidden;
+//     margin-bottom: 30px;
+//   }
+
+@media screen and (max-width:1921px) and (min-width:1500px) {
+  .cookiepolicy {
+    width: 100%;
+    font-size: 16px;
+    // height: 100vh;
+    // background: white;
+    // overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width: 620px)and (min-width:450px) {
+
+  .cookiepolicy {
+    width: 85vw;
+    font-size: 16px;
+  }
+
+
+
+}
+
+
+@media screen and (max-width: 900px) and (min-width:621px) {
+  .cookiepolicy {
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 900px) and (min-width:621px) {
+  .cookiepolicy {
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
+
+
+@media screen and (max-width: 450px) {
+
+  .cookiepolicy {
+    width: 100%;
+    margin: 5px 5px 5px 5px;
+    font-size: 12px;
+  }
+
+}
+
+
+@media screen and
+
+/*  */
+(min-width:350px) {
+  .cookiepolicy {
+    width: 100%;
+    font-size: 12px !important;
+  }
+}

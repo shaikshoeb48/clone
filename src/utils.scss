@@ -1,0 +1,23 @@
+//Screen resolutions
+$hdMonitor: 2560px; //default design resolution
+$hdLaptop: 1440px;
+$laptop: 1024px;
+$tablet: 768px;
+$mobile: 425px;
+
+//Brand Colors
+$primaryColor : #6fa4e9;
+$textColor : #212529;
+$secondaryTextColor : #6C757D;
+
+//mixins
+@mixin clipText($width:90%) {
+    //to use this mixin in your styles. Add this line to your css class
+    // @include clipText(100%);
+    //default width 90%
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: $width;
+}

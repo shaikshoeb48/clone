@@ -1,0 +1,344 @@
+<div class="container">
+    <div class="w-100 mt-3">
+
+        <!-- SearchBar -->
+        <div class=" searchExtensionparent px-2">
+
+            <!-- <div class="mb-2 d-flex " style="height: 40px;" *ngIf="!showSearch">
+                <span class="boldTxtAll allCenter">Explore Now</span>
+            </div> -->
+            <!-- <div class="mb-2 d-flex " style="height: 40px;" *ngIf="featureName =='greet' || featureName =='showtime'">
+                <span class="boldTxtAll allCenter">Explore Now</span>
+            </div> -->
+            <!-- Looking for -->
+            <div class="searchBar mb-2  w-100" *ngIf="showSearch">
+                <div class="d-flex flex-row align-items-center justify-content-around">
+                    <img class="searchImg" src="../../../assets/search.svg" alt="search">
+                    <input class="w-100" type="text" (input)="inputChanged($event)" [(ngModel)]="content"
+                        style="border-color: transparent !important;" type="text" (click)="openTags()"
+                        [placeholder]="dynamicinp==null?'Looking for something':dynamicinp.keyword" />
+
+                    <div class=" allCenter searchCross pl-2 pr-3">
+                        <img src="../../../assets/cross.svg" *ngIf="content!=''" (click)="closeSearch()"
+                            class="crossImg">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div *ngIf="!content&&showSearch" class="pillsDiv">
+                <div class="allCenter cardPill cursorpointer hoverDiv" (click)="clickJob()"
+                    style="border-color: rgb(47, 128, 237);">
+                    <span>{{"Job" |featureText}}</span>
+                </div>
+                <div class="allCenter cardPill cursorpointer hoverDiv" (click)="clickWork()"
+                    style="margin-left: 6px ;border-color: rgb(47, 128, 237);">
+                    <span>{{"Want work" |featureText}}</span>
+                </div>
+            </div>
+            <!-- <div *ngIf="listofsearches.length>0">
+                <div class="searchDiv">
+                    <span class="textStyle">Searching in Categories</span>
+                   
+                    <div>
+                        <div (click)="selectedClick(fun)" *ngFor="let fun of listofsearches"
+                            class="search-item cursorpointer p-2">
+                            <div class="w-100 h-100 d-flex align-items-center justify-content-between">
+                                <p class="m-0"> {{fun.preview}}
+
+                                    <small><b> in {{fun.subCategoryFinal}}</b> <small
+                                            *ngIf="fun.subCategoryFinal!=fun.category">{{', '+fun.category}}</small></small>
+                                </p>
+                                <span>
+                                    <img src="../../../assets/arrowsearch.svg" class="arrowSearch" alt=""> </span>
+                            </div>
+                        </div>
+
+                      
+                    </div>
+                    <span *ngIf="listofPosts.length>0" class="textStyle">Searching in Spaarks around</span>
+                    <div class="">
+                        <div *ngFor="let fun of listofPosts" class="search-item p-2">
+                            <div (click)="clickedPostSearch(fun)" class="w-100 h-100 align-items-center cursorpointer">
+                                <div class="d-flex">
+                                    <span class="m-0 w-100 d-block" style="flex: 1;">
+                                        <b>{{fun.uservisibility.name|sliceName}}</b></span>
+                                    <span style="flex: 1;text-align: end;">
+                                        {{fun.createdAt |date}}
+                                    </span>
+                                </div>
+                                <span>{{fun.content|contentHilight: content}}</span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+              
+
+
+            </div> -->
+
+            <div class="m-0 d-flex " style="height: 40px;" *ngIf="content" >
+                <span class="boldTxtAll allCenter  all-headings">{{"Search in" |featureText}}</span>
+            </div>
+
+            <div class="w-100 searchCat" *ngIf="content" style="border-bottom: 1px solid #d7d7d7;">
+
+                <mat-tab-group class="searchTabs" [disablePagination]=true  >
+                    <mat-tab [label]="'Categories' |featureText" style="flex: 2;" class="hoverDiv">
+
+                        <div *ngIf="listofsearches.length==0" class="m-2">
+                            {{"No results found" |featureText}}...
+                        </div>
+                        <div (click)="selectedClick(fun)" *ngFor="let fun of listofsearches|slice :0:initCategories"
+                            class="search-item hoverDiv cursorpointer p-2">
+                            <div class="w-100 h-100 d-flex align-items-center justify-content-between">
+                                <p class="m-0"> {{fun.preview |featureText}}
+                                    <small *ngIf="fun.isTag && fun.preview!=fun.subCategoryFinal">
+                                        <b>in {{fun.subCategoryFinal |featureText}}</b>
+                                    </small>
+
+                                    <small *ngIf="!fun.isTag">
+                                        <b *ngIf="fun.preview==fun.subCategoryFinal"> in {{fun.category |featureText}}</b></small>
+
+                                    <small *ngIf="!fun.isTag">
+                                        <b *ngIf="fun.preview!=fun.subCategoryFinal"> in {{fun.subCategoryFinal |featureText}} ,
+                                            {{fun.category |featureText}}</b></small>
+                                </p>
+                                <span>
+                                    <img src="../../../assets/arrowsearch.svg" class="arrowSearch" alt=""> </span>
+                            </div>
+                        </div>
+                        <div class="w-100 bg-white viewAllContainer cursorpointer" *ngIf="listofsearches.length>4">
+                            <div class="viewAll allCenter hoverText" (click)="viewAll('Categories')">
+                                <span class="text-center m-0 mb-2"
+                                    *ngIf="fullCategories==false && listofsearches.length>4">{{"View all" |featureText}}</span>
+                                <span class="text-center m-0 mb-2" *ngIf="fullCategories==true">{{"View less" |featureText}}</span>
+                            </div>
+                            <!-- <p class="p-1 text-center m-0 mt-2"><span style="color: black;" class="font-weight-bold">View All</span></p> -->
+                        </div>
+                    </mat-tab>
+                    <mat-tab [label]="'Spaarks' |featureText" style="flex: 1;">
+                        <div *ngIf="listofPosts.length==0" class="m-2">
+                          {{"No results found" |featureText}}...
+                        </div>
+                        <div *ngFor="let fun of listofPosts|slice :0:initSpaarks" class="search-item hoverDiv p-2">
+                            <div (click)="clickedPostSearch(fun)" class="w-100 h-100 align-items-center cursorpointer">
+                                <div class="d-flex">
+                                    <span class="m-0 w-100 d-block text-muted" style="flex: 1;">
+                                        <b>{{fun.uservisibility.name|sliceName}}</b></span>
+                                    <span style="flex: 1;text-align: end;" class="text-muted">
+                                        {{fun.createdAt |date}}
+                                    </span>
+                                </div>
+                                <span class="">{{fun.content|contentHilight: content}}</span>
+                            </div>
+                        </div>
+                        <div class="w-100 bg-white viewAllContainer cursorpointer" *ngIf="listofPosts.length>4">
+                            <div class="viewAll allCenter hoverText" (click)="viewAll('spaarks')">
+                                <span class="p-1 text-center m-0 mb-2"
+                                    *ngIf="fullSpaarks==false &&listofPosts&& listofPosts.length>4">{{"View all" |featureText}}</span>
+                                <span class="p-1 text-center m-0 mb-2" *ngIf="fullSpaarks==true">{{"View less" |featureText}}</span>
+                            </div>
+                            <!-- <p class="p-1 text-center m-0 mt-2"><span style="color: black;" class="font-weight-bold">View All</span></p> -->
+                        </div>
+                    </mat-tab>
+                    <mat-tab [label]="'Profiles' |featureText" style="flex: 1;">
+                        <div *ngIf="listofSellers">
+                            <div *ngIf="listofSellers.length==0" class="m-2">
+                                {{"No results found" |featureText}}...
+                            </div>
+                        </div>
+
+                        <div *ngFor="let fun of listofSellers|slice :0:initVal"
+                            class="search-item hoverDiv cursorpointer p-2">
+                            <div (click)="clickedProfileSearch(fun)"
+                                class="w-100 h-100 d-flex align-items-center justify-content-start flex-reverse">
+                                <div class="mr-2">
+                                    <img class="sellerPic"
+                                        src="{{(fun.profilePic)?fun.profilePic:fun.userId.profilePic}}">
+                                </div>
+                                <div>
+                                    <span>{{(fun.name)?fun.name:fun.userId.name}}</span><br />
+
+                                    <span *ngIf="fun.subCategory" class="servicesOfferedText">{{fun.subCategory |featureText}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100 bg-white viewAllContainer cursorpointer" *ngIf="listofSellers.length>4">
+                            <div class="viewAll allCenter hoverText" (click)="viewAll()">
+                                <span class="text-center m-0 mb-2"
+                                    *ngIf="fullView==false && listofSellers.length>4">{{"View all" |featureText}}</span>
+                                <span class="text-center m-0 mb-2" *ngIf="fullView==true">{{"View less" |featureText}}</span>
+                            </div>
+                            <!-- <p class="p-1 text-center m-0 mt-2"><span style="color: black;" class="font-weight-bold">View All</span></p> -->
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+    <!-- SearchBar Ends -->
+    <!-- 
+        <div class="d-flex align-items-center mb-2" *ngIf="showGetStarted && isAuthed">
+            <img [src]="profilePic" class="profilee mx-3 " alt="">
+            <p class="boldTxtAll m-0"> {{"Get Started" |featureText}} </p>
+        </div> -->
+    <!-- 
+        <div *ngIf="showGetStarted && isAuthed" class="w-100 d-flex align-items-center" style="position: relative;">
+
+            <div class="notForMob" *ngIf="movedRight>151" (click)="scrollLeft()"
+                style="transform: rotate(180deg);z-index: 1;">
+            </div>
+            <div #allMarketTab class="cardScroll">
+                <div *ngFor="let marketCat of marketTab; let i=index">
+                    <app-category-box [catTxt]="marketCat.catTxt"
+                        [catImg]="'assets/catsubcatimages/questionsimages/'+marketCat.catImg" [inputWidth]="'160px'"
+                        [catDesc]="marketCat.catDesc" [fromMultiCar]="true" [inputHeight]="'200px'"
+                        (click)="selectedCat(i,marketCat.catTxt)">
+                    </app-category-box>
+                </div>
+            </div>
+
+
+            <div class="notForMob" *ngIf="movedRight<760" (click)="scrollRight()" style="right: 0px;">
+            </div>
+        </div> -->
+    <!-- <div *ngIf="!isAuthed" class="notloggedIn">
+        <div *ngFor="let marketCat of marketTab; let i=index">
+            <app-category-box [catTxt]="marketCat.catTxt"
+                [catImg]="'assets/catsubcatimages/questionsimages/'+marketCat.catImg" [inputWidth]="'160px'"
+                [catDesc]="marketCat.catDesc" [fromMultiCar]="true" [inputHeight]="'200px'"
+                (click)="selectedCat(i,marketCat.catTxt)">
+            </app-category-box>
+        </div>
+    </div> -->
+
+</div>
+
+
+
+
+
+<!-- <div *ngIf="!fromRequests&&pendingRequests.length>0" class="mt-3">
+    <span *ngIf="isAuthed==true" class=" boldTxtAll mt-4 w-100">Requests Received</span>
+
+    <div *ngIf="isAuthed==true" class="reqstDiv mb-3 mt-2" id="reqDiv">
+        <div class="RightNavSkeleton" *ngIf="timer=='false'&&isAuthed&&pendingRequests.length>0">
+            <div *ngFor="let request of pendingRequests | slice:0:initVal">
+                <app-requests [requestData]="request"></app-requests>
+            </div>
+        </div>
+        <span class="allCenter mt-2" *ngIf="pendingRequests.length==0">No Request Available</span>
+
+        <div *ngIf="isAuthed==true" class="viewAll " (click)="viewAll()">
+            <span *ngIf="fullView==false && pendingRequests.length>2">View All</span>
+            <span *ngIf="fullView==true">View less</span>
+        </div>
+    </div>
+
+    <span *ngIf="isAuthed==true" class="d-none  boldTxtAll mt-4 w-100">Requests Sent</span>
+
+    <div *ngIf="isAuthed==true" class="d-none reqstDiv mt-2" id="reqDiv" style="margin-bottom: 100px;">
+        <div class="RightNavSkeleton" *ngIf="isAuthed && allSentRequests && allSentRequests.length>0">
+            <div *ngFor="let sent of allSentRequests ">
+                <app-requests [requestData]="sent" [fromSentRequest]="true"
+                    (allSentRequests)="getUpdatedSentReq($event)"></app-requests>
+            </div>
+        </div>
+
+        <span class="allCenter mt-2" *ngIf="allSentRequests.length==0">No Request Sent</span>
+    </div>
+</div> -->
+<!-- <div class="mt-4">
+    <span *ngIf="isAuthed==true&&showRecentChats"
+        class=" boldTxtAll  w-100">{{"Recent chats"|featureText}}</span>
+
+    <div class="bg-white recentchatsdiv" *ngIf="showRecentChats">
+
+        <div class="clickspaarkonanycard allCenter p-3 flexdirectioncolumn" *ngIf="listtoshowChatFinal.length==0">
+            <img src="../../../assets/msg.svg" alt="">
+            <span> {{"To start a chat go to any Spaark and click on Chat."|featureText}} </span>
+        </div>
+
+        <div *ngIf="listtoshowChatFinal.length>0">
+            <div *ngFor="let item of listtoshowChatFinal|slice:0:initValChats" routerLink="/home/chat">
+                <app-chat-person-item [chatlistitem]="item"></app-chat-person-item>
+            </div>
+        </div>
+        <div class="w-100 bg-white viewAllContainer">
+            <div *ngIf="isAuthed==true" class="viewAll allCenter" (click)="viewAllChats()">
+                <span class="p-1 text-center m-0 mt-2"
+                    *ngIf="fullViewChats==false && listtoshowChatFinal.length>10">View
+                    All</span>
+                <span class="p-1 text-center m-0 mt-2" *ngIf="fullViewChats==true">View less</span>
+            </div>
+        </div>
+
+    </div>
+</div> -->
+
+
+<!-- <div class="w-100 spaarksanonymousContainer" *ngIf="timer=='false'&&pendingRequests.length==0&&listtoshowChatFinal.length==0">
+</div> -->
+<div class="mb-2 d-flex " style="height: 40px;" >
+    <span class="boldTxtAll allCenter  all-headings">{{"Explore now" |featureText}}</span>
+</div>
+<div style="position: relative;">
+    <div class="mapContainer" id="mapR" style="z-index: 0;">
+    </div>
+    <div class="d-flex justify-content-center">
+        <span routerLink="/explore" class="cursorpointer explore_style  all-headings">{{"Explore now" |featureText}}</span>
+    </div>
+</div>
+
+<div style="margin-top: 20px;" *ngIf="isAuthed && allSentRequests && allSentRequests.length>0">
+    <span class=" boldTxtAll mt-4 w-100 all-headings">{{"Requests received" |featureText}}</span>
+
+    <div *ngIf="isAuthed==true" class=" reqstDiv mt-2" id="reqDiv" style="margin-bottom: 40px;">
+        <div class="RightNavSkeleton">
+            <div *ngFor="let sent of allSentRequests |slice:0:intiRequest  ">
+                <app-requests [requestData]="sent" [fromSentRequest]="true"
+                    (allSentRequests)="getUpdatedSentReq($event)"></app-requests>
+            </div>
+
+            <span class="allCenter mt-2" *ngIf="allSentRequests.length==0">{{"No request sent" |featureText}}</span>
+            <div class="w-100 bg-white viewAllContainer">
+                <!-- <p class="p-1 text-center m-0 mt-2"><span class="font-weight-bold">View All</span></p> -->
+                <div *ngIf="isAuthed==true" class="viewAll allCenter " (click)="viewAllRequests()">
+                    <span class="text-center m-0 mb-2 cursorpointer"
+                        *ngIf="fullViewRequest==false && allSentRequests.length>3">{{"View all" |featureText}}</span>
+                    <span class="text-center m-0 mb-2 cursorpointer" *ngIf="fullViewRequest==true">{{"View less" |featureText}}</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>
+<div class="w-100 spaarksanonymousContainer" *ngIf="showSparkAnonymus">
+    <div class="spaarksanonymouslycard bg-white p-3">
+        <p class="spaarkcardtextanony text-muted">
+            {{"To start chat go to any spaark in make friends and click on request to chat.For anonymous chat turn off your name visibility while sending request to chat." |featureText}}
+        </p>
+        <p class="spaarkcardtextanony text-muted w-100 text-center">{{"or" |featureText}}</p>
+        <p class="spaarkcardtextanony text-muted">
+            {{"Simply post an anonymous spaark for other users around you to see by clicking here." |featureText}} </p>
+
+        <span class="anonymouschatbutton w-100 allCenter cursorpointer" (click)="onMakeFriends()">
+            <span class="">{{"Spaark anonymously"|featureText}}</span>
+        </span>
+    </div>
+</div>

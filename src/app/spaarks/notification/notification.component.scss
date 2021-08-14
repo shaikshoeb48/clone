@@ -1,0 +1,33 @@
+.notificationHeading {
+  height: 28px;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.3rem;
+  line-height: 25px;
+}
+
+.notifTxt {
+  margin: 0 auto;
+  font-size: 1.1rem;
+  font-weight: 500;
+  // padding-left: 15px;
+  font-family: Source Sans Pro;
+  line-height: 25.14px;
+  letter-spacing: 0.165px;
+}
+
+.notLoggedIn {
+  flex-direction: column;
+}
+
+@media screen and (max-width: 950px) {
+  .bottomNavBar {
+    height: 10%;
+    position: absolute;
+    top: 100%;
+  }
+}
+.customGif{
+  height: 100px;
+}

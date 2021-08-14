@@ -1,0 +1,44 @@
+<div style="height: 100%;">
+    <div class="chatPersonItem ">
+        <div *ngIf="chatlist.length!=0 && isforward.bool==false && !loading">
+            <div (click)="clickedChatListItem(chatperson)"
+                *ngFor="let chatperson of chatlist;let ind=index;trackBy:identifyFor">
+
+                <app-chat-person-item [activejid]="activejid" [chatlistitem]="chatperson"></app-chat-person-item>
+            </div>
+        </div>
+
+        <div *ngIf="isforward.bool==true" class="relativelist">
+            <div *ngFor="let chatperson of isforward.forwardarray;let ind=index">
+
+                <div class="d-flex align-items-center">
+                    <mat-checkbox (change)="changedTick(chatperson,$event)" class="example-margin p-3"
+                        [(ngModel)]="chatperson.isTicked"></mat-checkbox>
+
+                    <app-chat-person-item class="w-100" [chatlistitem]="chatperson.chat"></app-chat-person-item>
+                </div>
+            </div>
+            <div class="w-100 allCenter">
+                <span class="forwardButton allCenter" (click)="clickForward()" *ngIf="forwardNumber!=0">
+                    {{"Forward"|featureText}} </span>
+
+            </div>
+        </div>
+
+        <div *ngIf="chatlist.length==0 && !loading" class="restChat allCenter pt-5" style="flex-direction: column;">
+
+            <div>
+                <img src="../../../../assets/msg.svg">
+            </div>
+            <div style="width: 100%; ">
+                <p class="chat-text-empty">{{"To start a chat go to any spaark and click on chat." |featureText}}
+                </p>
+            </div>
+
+        </div>
+        <div *ngIf="loading" class="allCenter">
+            <img src="../../../assets/loading.gif" class="loadingGif" alt="">
+        </div>
+    </div>
+
+</div>

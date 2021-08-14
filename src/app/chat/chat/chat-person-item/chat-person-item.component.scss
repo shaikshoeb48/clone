@@ -1,0 +1,146 @@
+.chatPersonItemCore{
+    min-height: 90px;
+    background: white;
+    // border-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    
+}
+
+.chatpersoncoreborderbottom{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.restrictname{
+    
+    display: flex;
+    
+    word-break: break-all;
+    width: 65%;
+    overflow-wrap: break-word;
+    flex-wrap: wrap;
+    max-width: 65%;
+    text-overflow: ellipsis;
+}
+// .restrictname{
+//     span{
+//         // font-size: 1.1rem !important; 
+//     }
+// }
+
+.timecontainer{
+    width: 35%;
+    max-width: 35%;
+    font-size: 0.7rem;
+}
+
+.amIAno{
+    height: 23px;
+    position: absolute;
+    // z-index: 2;
+    top: 0px;
+    left: 0%;
+    width: 100%;
+    background: #6FA4E9;
+    border-radius: 8px 8px 0px 0px;
+    font-size: small;
+}
+
+.chatPersonItemCore:hover{
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.imgcontainer{
+    object-fit: cover;
+    img{
+        object-fit: cover;
+        border-radius: 20px;
+        min-width:  70px;
+        min-height: 70px;
+        max-width:  70px;
+        max-height: 70px;
+    }
+}
+
+.textcontainer{
+    span{
+        color: #848484;
+      //  padding-left: 15px !important;
+    }
+    p{
+       // padding-left: 15px !important;
+    }
+}
+
+.blueTextt{
+    color: #6FA4E9 !important;
+}
+
+.textSet{
+    word-break: break-all;
+}
+
+.blueBackground{
+    background: #D3E4FD !important;
+    transition: 0.3s ;
+}
+
+.blueThemeRound{
+    width: 25px;
+height: 25px;
+background: #6FA4E9;
+display: block;
+text-align: center;
+border-radius: 50%;
+span{
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+}
+}
+.all-headings2
+{
+    font-size: 14px !important;
+    font-family: Mulish !important;
+    font-weight: bold !important;
+}
+@media  screen and (min-width:1200px) and (max-width:1700px)
+{
+    .restrictname{
+        width: 100% !important;
+        max-width: 80% !important;
+        .all-headings{
+            font-size: 16px !important;
+        }
+        .all-headings2{
+            font-size: 13px !important;
+
+        }
+    }
+
+    .timecontainer{
+        width: 30% !important;
+        max-width: 30% !important;
+    }
+    
+}
+
+@media screen and(min-width:1150px) and (max-width:1450px)
+{
+    restrictname{
+       
+        .all-headings{
+            font-size: 14px !important;
+        }
+        .all-headings2
+        {
+            font-size: 13px !important;
+
+        }
+    }
+}

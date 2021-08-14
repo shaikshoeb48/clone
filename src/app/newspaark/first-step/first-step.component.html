@@ -1,0 +1,319 @@
+<div class="basefirststep">
+    <div class="w-100" style="overflow: hidden !important;">
+        <div class="">
+            <!-- <span class="boldTxtAll text-left d-block w-100 my-3 pl-2">Add Information</span> -->
+            <div class="w-100">
+                <div class="d-flex">
+
+                    <!-- for market/events -->
+                    <div class="mediaPickerRow w-100 d-flex pl-3" *ngIf="showImageIcon && showOnly">
+                        <div class="mediaspan cursorpointer" (click)="addImages()">
+                            <img src="../../../assets/imageicon.svg" class="mediaicon" alt="">
+                            <span class="addImg">{{"Add images"|featureText}}</span>
+                            <!-- image picker -->
+                        </div>
+
+                        <div class="mediaspan mediavideo pl-2 cursorpointer" (click)="addVideo()">
+                            <img src="../../../assets/add-video.svg" class="mediaicon" alt="">
+                            <span class="addImg"  style="color: #6FA4E9;">{{"Add video"|featureText}}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="file" id="myFile" multiple #myFile #filePicker (change)="onImagePicked($event)"
+                            accept="image/*, video/*" />
+                    </div>
+                    <div>
+                        <input type="file" id="myFile1" #myFile1 #filePicker (change)="onImagePicked($event)"
+                            accept="image/*" />
+                    </div>
+
+
+                    <!-- for greet Only -->
+                    <div *ngIf="showImageIcon && !showOnly && imageArrLength==0" class="mediaPickerRow  w-100">
+                        <div class="mediaspan ml-3 cursorpointer" (click)="addSingleImage()">
+                            <img src="../../../assets/imageicon.svg" class="mediaicon" alt="">
+                            <span class="addImg">{{"Add image" |featureText}}</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+            <div class="w-100 mt-3 allCenter">
+                <div class="personcard  p-2">
+                    <div class="p-2">
+                        <div class="d-flex align-items-center">
+                            <span>
+                                <img src="{{radioProfile==true? propic:'assets/hiddenProfile.svg'}}" class="personimage"
+                                    alt="">
+                            </span>
+                            <div class="w-100 text-left pl-2">
+                                <p class="w-100 m-0 font-weight-bold"> {{radioName==true?name:'Anonymous' |sliceName}}
+                                </p>
+                                <p class="w-100 m-0 text-muted">{{currentDate|date}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="personbody">
+                        <textarea [value]="content" class="contentAll" maxlength="1000" (input)="updateInput($event)"
+                            placeholder="{{'Write something'|featureText}}"></textarea>
+                    </div>
+
+                    <!-- Showing the added images/videos start -->
+
+                    <div class="main">
+                        <div class="mainImg" *ngFor="let img of imageList; let idx = index">
+
+                            <!-- for images -->
+                            <div class="uploadImg " *ngIf="img.type == 'img'">
+                                <img [src]="img.data" *ngIf="img != '' && img" class="userImg1" />
+                                <a (click)="deleteImg(idx)"><img src="../../../assets/delete.svg"
+                                        *ngIf="imagePreview != '' && img" class="uploadCross"
+                                        style="cursor: pointer;" />
+                                </a>
+                            </div>
+
+                            <!-- for videos -->
+                            <div class="uploadImg" *ngIf="img.type == 'vid'">
+                                <video controls class="userImg1">
+                                    <source #vid [src]="img.data" type="video/mp4" class="uploadCross" />
+                                </video>
+                                <a (click)="deleteImg(idx)"> <img src="../../../assets/delete.svg" class="uploadCross"
+                                        style="cursor: pointer;" /></a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Showing the added images/videos end -->
+                </div>
+
+
+
+
+            </div>
+            <span class="w-100 text-muted d-block text-right">{{count}} {{"characters remaining" |featureText}}</span>
+            <!-- for greet Only start -->
+            <div class="mt-3 p-0 ">
+
+                <span class="all-headings w-100 d-block text-left">{{"Connection preferences"|featureText}}</span>
+                <div *ngIf="isMobileVersion; else showContent">
+
+                    <div class=" itemStyle  " *ngIf="nocall">
+                        <div class="d-flex">
+                            <div class="p-2">
+
+                                <img class="imgStyle" [src]="img3" alt="">
+
+                            </div>
+
+                            <div style="width: 34%;" class="text-center my-auto px-1">
+                                <span class="txtStyle all-headings">{{option3|featureText}}</span>
+                            </div>
+
+                            <div class="mx-auto">
+                                <span style="flex: 3;" class="boldTxtAll3 my-auto">
+                                    <!-- toggles for the users to change the controls for both greet and other features -->
+
+                                    <mat-radio-group (change)="changedSelectedVal('opt3',$event)">
+                                        <mat-radio-button value="true" [checked]="nameChoice" style="float: left;">
+                                            {{optionTxt1 |featureText}}
+                                        </mat-radio-button>         
+                                        <mat-radio-button value="false" [checked]="!nameChoice">
+                                            {{optionTxt2 |featureText}}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-muted callText pb-1" *ngIf="option3.includes('call')">
+                                {{"Allows other to make a regular call to you"|featureText}}</p>
+                        </div>
+                    </div>
+                    <div class=" itemStyle my-3 " *ngIf="sparksCall || featureName=='greet'">
+                        <div class="d-flex">
+                            <div class="p-2">
+
+                                <img class="imgStyle" [src]="img1" alt="">
+
+                            </div>
+                            <div style="width: 34%;" class="text-center  my-auto px-1 pt-2">
+                                <span class="txtStyle all-headings">{{option1|featureText}}</span>
+
+                            </div>
+                            <div class="mx-auto">
+                                <span style="flex: 3;" class="boldTxtAll3">
+                                    <!-- toggles for the users to change the controls for both greet and other features -->
+
+                                    <mat-radio-group (change)="changedSelectedVal('opt1',$event)">
+                                        <mat-radio-button value="true" [checked]="nameChoice" style="float: left;">
+                                            {{optionTxt1 |featureText}}
+                                        </mat-radio-button>
+                                        <mat-radio-button value="false" [checked]="!nameChoice">
+                                            {{optionTxt2 |featureText}}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-muted callText pb-1" *ngIf="option1.includes('call')">
+                                {{"Internet call where number is not required"|featureText}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class=" itemStyle my-3 ">
+                        <div class="d-flex">
+                            <div class="p-2">
+                                <img class="imgStyle" [src]="img2" alt="">
+                            </div>
+                            <div style="width: 34%;" class="pb-2 text-center my-auto px-1">
+                                <span class="txtStyle boldTxtAll2">{{option2 |featureText}}</span>
+                            </div>
+                        
+                            <div class="mx-auto">
+                                <span style="flex: 3;" class="boldTxtAll3 my-auto">
+
+                                    <mat-radio-group (change)="changedSelectedVal('opt2',$event)">
+                                        <mat-radio-button value="true" [checked]="profileChoice" style="float: left;">
+                                            {{optionTxt1 |featureText}}
+                                        </mat-radio-button>
+                                        <mat-radio-button value="false" [checked]="!profileChoice">
+                                            {{optionTxt2 |featureText}}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 p-0 ">
+                <ng-template #showContent>
+                    <div class=" itemStyle mt-3" *ngIf="nocall">
+                        <div class="d-flex my-auto">
+                            <div class="p-3">
+                                <img class="imgStyle" [src]="img3" alt="">
+                            </div>
+                            <div style="width: 34%;" class="text-center my-auto">
+                                <span class="txtStyle all-headings">{{option3|featureText}}</span>
+                                <span class="text-muted callText" *ngIf="option3.includes('call')">
+                                    {{"Allows other to make a regular call to you"|featureText}}</span>
+                            </div>
+
+                            <span style="flex: 3;" class="boldTxtAll3 mt-3 p-0">
+                                <!-- toggles for the users to change the controls for both greet and other features -->
+
+                                <mat-radio-group (change)="changedSelectedVal('opt3',$event)">
+                                    <mat-radio-button value="true" [checked]="nameChoice" style="float: left;">
+                                        {{optionTxt1 |featureText}}
+                                    </mat-radio-button>
+                                    <mat-radio-button value="false" [checked]="!nameChoice">
+                                        {{optionTxt2 |featureText}}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class=" itemStyle my-3 " *ngIf="sparksCall || featureName=='greet'">
+                        <div class="d-flex my-auto">
+                            <span class="p-3">
+                                <img class="imgStyle" [src]="img1" alt="">
+                            </span>
+                            <div style="width: 34%;" class="text-center my-auto">
+                                <span class="txtStyle all-headings">{{option1|featureText}}</span>
+                                <span class="text-muted callText" *ngIf="option1.includes('call')">
+                                    {{"Internet call where number is not required"|featureText}}</span>
+                            </div>
+
+                            <span style="flex: 3;" class="boldTxtAll3 mt-3 p-0">
+                                <!-- toggles for the users to change the controls for both greet and other features -->
+
+                                <mat-radio-group (change)="changedSelectedVal('opt1',$event)">
+                                    <mat-radio-button value="true" [checked]="spaarkCallChoice" style="float: left;">
+                                        {{optionTxt1 |featureText}}
+                                    </mat-radio-button>
+                                    <mat-radio-button value="false" [checked]="!spaarkCallChoice">
+                                        {{optionTxt2 |featureText}}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+
+                            </span>
+                        </div>
+                    </div>
+                    <div class=" itemStyle my-3 ">
+                        <div class="d-flex my-auto">
+                            <div class="p-3">
+                                <img class="imgStyle" [src]="img2" alt="">
+                            </div>
+                            <div style="width: 34%;" class="text-center my-auto">
+                                <span class="txtStyle all-headings">{{option2 |featureText}}</span>
+                            </div>
+
+                            <span style="flex: 3;" class="boldTxtAll3 my-auto">
+
+                                <mat-radio-group (change)="changedSelectedVal('opt2',$event)">
+                                    <mat-radio-button value="true" [checked]="profileChoice" style="float: left;">
+                                        {{optionTxt1 |featureText}}
+                                    </mat-radio-button>
+                                    <mat-radio-button value="false" [checked]="!profileChoice">
+                                        {{optionTxt2 |featureText}}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </span>
+                        </div>
+                    </div>
+
+                </ng-template>
+            </div>
+
+
+
+            <!-- for greet Only end -->
+
+
+
+            <div class="w-100 d-flex my-2 justify-content-end">
+                <div class="w-100 allCenter ">
+                    <div class="w-100 d-flex justify-content-between ">
+                        <span class="cursorpointer mediaimage nextspan p-2 mediaspan" (click)="clickedPrevious()">
+                            <span class="d-flex justify-content-center">
+                                <img src="../../../assets/back_white.svg" class="mediaicon p-1 reverseArrow" alt="">
+                                <span class="allBtns">
+                                    {{'Previous'|featureText}}
+                                </span>
+                            </span>
+                        </span>
+
+
+                        <span class="cursorpointer mediaimage nextspan p-2 mediaspan" (click)="clickedNext()">
+                            <span class="d-flex justify-content-center">
+                                <span class="allBtns">
+                                    {{"Next" |featureText}}
+                                </span>
+                                <img src="../../../assets/back_white.svg" class="mediaicon p-1" alt="">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-none">
+                <app-images-container [imageList]="imageList" (onremove)="deleteImg($event)">
+                </app-images-container>
+            </div>
+
+
+        </div>
+    </div>
+</div>

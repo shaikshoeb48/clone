@@ -1,0 +1,208 @@
+<div class="chatSpecificCore" >
+    <div class="chatHeader d-flex align-items-center">
+        <div class="arrowContainer" (click)="goToList()">
+            <img src="../../../../assets/back.svg" class="baack" alt="">
+        </div>
+        <div class="w-100 d-flex align-items-center px-3">
+            <div class="imgContainer">
+                <img *ngIf="chatpersondata.profilePic.includes('hiddenprofile.png')" 
+                    src="../../../../assets/hiddenProfile.svg">
+                <img style="border: 1px solid #d7d7d7;" *ngIf="!chatpersondata.profilePic.includes('hiddenprofile.png')" [src]="chatpersondata.profilePic"
+                    alt="">
+            </div>
+            <div class="nameContainer ml-3 w-100 ">
+                <h4 class="m-0 boldTxtAll all-headings">{{chatpersondata.name }}</h4>
+                <!-- <div class="w-100">
+                    <div class="pillsContainer d-flex justify-content-start align-items-center ">
+                        <app-spaarkspill class="mr-2" [inputWidth]="'auto'" [inputText]="'Events'"
+                            [inputColor]="'chocolate'"></app-spaarkspill>
+                        <app-spaarkspill [inputWidth]="'auto'" [inputText]="'Events'"></app-spaarkspill>
+                    </div>
+                </div> -->
+
+                <!-- options for small screen -->
+
+            </div>
+            <div style="position: relative;width:100%">
+                <img mat-button [matMenuTriggerFor]="menu" class="optionsClass" src="../../../../assets/options.svg"
+                    alt="">
+
+
+            </div>
+            <mat-menu #menu="matMenu" xPosition="before" class="menuBox">
+                <ng-container *ngFor="let opt of allOptions">
+
+                    <button
+                        *ngIf="(opt.name!='Add Nickname')||(opt.name=='Add Nickname'&&chatpersondata.jid.includes('-1'))"
+                        mat-menu-item (click)="navigateByOption(opt.name)"><img class="my"
+                            src={{opt.src}}>{{opt.name |featureText}}</button>
+                           
+                </ng-container>
+                <button
+                *ngIf="chatpersondata.isOtherAnonymous||chatpersondata.name=='Anonymous'"
+                mat-menu-item (click)="navigateByOption('Add Nickname')"><img class="my"
+                    src='../../../assets/settings.svg'>{{'Add Nickname'|featureText}}</button>
+
+            </mat-menu>
+        </div>
+
+    </div>
+
+    <div (scroll)="onScroll($event)" (wheel)="checkScrollDirection($event)" #content id="scroller"
+        class="messagesContainer h-100  pb-5 mb-4 mb-lg-0 pb-lg-0">
+        <!-- Iterates over the list of messages -->
+        <app-messages [multiinput]="multiinput" [account]="account" [active]="active"
+            (multipurposeoutput)="multipurposeMsgs($event)" [messages]="chatpersondata.msg"
+            style="overflow: hidden!important;">
+        </app-messages>
+        <div>
+            <div *ngIf="showArrow" class="downArrow allCenter">
+                <!-- <p>{{newmessageCount||5}}</p> -->
+                <img style="transform:rotate(90deg);" src="../../../../assets/down_darkblue.svg"
+                    (click)="scrollToBottom()">
+
+
+            </div>
+        </div>
+
+        <div class="forwardScreenForMob bg-white" *ngIf="showForwardForMobile">
+
+            <div *ngFor="let chatperson of listToForward;let ind=index">
+
+                <div class="d-flex align-items-center">
+                    <mat-checkbox (change)="changedTick(chatperson,$event)" class="example-margin"
+                        [(ngModel)]="chatperson.isTicked"></mat-checkbox>
+
+                    <app-chat-person-item class="w-100" [chatlistitem]="chatperson"></app-chat-person-item>
+                </div>
+            </div>
+
+            <span class="forwardButton allCenter" (click)="clickForward()" *ngIf="forwardNumber!=0"> <span
+                    *ngIf="forwardNumber!=0">( {{forwardNumber}} )</span> {{"Forward"|featureText}} </span>
+
+
+            <!-- <div class="" *ngFor="let pers of listToForward">{{pers.name}}</div> -->
+        </div>
+
+    </div>
+
+
+    <div class="w-100 msgInputContainer" style="">
+        <!-- <app-msg-input [ischat]="true" (alloutput)="OutputFromInput($event)" ></app-msg-input> -->
+
+        <!--message input start-->
+        <div class="msgbox">
+            <div class="d-none justify-content-around pl-10 pr-10" *ngIf="checkExitChat()">
+                <!-- style="background-color: rgba(253, 253, 2, 0.822);border-radius: 5px;" -->
+                <p class="pb-1 mb-0 w-100"> {{'Chat cannot be replied anymore.' }} </p>
+                <p class="text-center"> <button *ngIf="resumeOpt" class="w-25 btn-sm pr-2 pl-2 btn" style="background-color: #6FA4E9; color: #ffffff;"
+                        (click)="resumeChat()">{{'Resume chat' |featureText }}</button></p>
+            </div>
+
+            <!-- {{isBlocked}} {{blocked}} {{blockedme}} {{exitChat}} {{exitChatMe}}
+            {{active}}
+            {{succecontent}}
+            {{active === succecontent}}- -->
+            <div class="d-flex justify-content-around "
+                *ngIf=" blockedme==true || blocked==true || exitChat==true || exitChatMe==true">
+
+                <div class="d-block w-100">
+                    <div>
+                        <!-- <p class="pb-1 mb-0"> You blocked this contact</p> -->
+                        <!-- <p class="pb-1 mb-0"> You can't reply to this chat</p> -->
+                        <p class="pb-1 mb-0 text-center"> {{'Chat cannot be replied anymore.'|featureText }}</p>
+                    </div>
+                    <p class="text-center"> <button *ngIf="exitChat" class="w-25 btn-sm pr-2 pl-2 btn" style="background-color: #6FA4E9; color: #ffffff;"
+                            (click)="resumeChat()">{{'Resume chat'|featureText }}</button></p>
+                </div>
+                <div *ngIf="isBlocked==true" class="d-none">
+                    <p class="pb-1 mb-0"> {{'You cannot reply to this chat' |featureText}} </p>
+                </div>
+            </div>
+
+            <div
+                *ngIf=" blockedme==false && blocked==false && exitChat==false && exitChatMe==false && showForwardForMobile==false ">
+
+                <!-- uploading bar start -->
+                <div class="row uploadBar d-flex align-items-center justify-content-center" *ngIf="addfile_"
+                    [@inOutAnimation]>
+                    <div class="addfile d-flex">
+                        <div class="dil docToolTip" (click)="addDoc()" #fileee data-toggle="tooltip" data-placement="top"
+                            title="Add Document ">
+                            <input type="file" id="filePicker" multiple (change)="onDocPicked($event)"
+                                accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf" style="display: none;" />
+                            <!-- accept="text/pptx , text/docx , text/doc , text/ppt , application/pdf" -->
+                            <img class="option4 " src="../../../assets/chat/doc.svg" alt="">
+                            <!--    <span class="tooltiptext">Tooltip text</span> -->
+
+                        </div>
+                        
+                        <div class="dil " data-toggle="tooltip" (click)="pick_img()" data-placement="top"
+                            title="Add Images/Video/Audio">
+                            <input type="file" id="imgPicker" #filee multiple
+                                accept="image/* ,  video/mp4, audio/mp3,audio/wav" (change)="onImagePicked($event)"
+                                style="display: none;" />
+                            <img class="option4" src="../../../assets/chat/imgaud.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="w-100 d-flex justify-content-center align-items-center">
+                        <p class="text-muted">{{'Max 10 files can be uploaded'|featureText }}</p>
+                    </div>
+                </div>
+                <!-- uploading bar end -->
+
+                <!-- for emoji -->
+                <div class="row emojibox" *ngIf="selectEmoji" [@inOutAnimation2]>
+                    <app-emojix (Emoji)="getEmoji($event)"></app-emojix>
+                </div>
+
+                <!-- {{blocked}} {{blockedme}} {{exitChat}} {{exitChatMe}} -->
+
+                <!-- mainInput section start -->
+                <div class="row" style="padding: 0; margin: 0;">
+                    <div class=" " style="width: 100% !important;"
+                        *ngIf=" blocked==false && blockedme==false && exitChat==false && exitChatMe==false">
+                        <div *ngIf="!recording" class="p-3 d-flex align-items-center justify-content-between">
+                            <img class="option1" (click)="show_addfile()" src="../../../../assets/Plus.svg" alt="">
+                            <img class="option1" (click)="showEmoji()" src='../../../../assets/emoji.svg' alt=""> &nbsp;
+                            <textarea maxlength="2000" rows="{{rowcount}}" cols="27" type="text" [(ngModel)]="text_message"
+                                name="text_message" (keyup)="submit($event)" class="msgInputtt"
+                                placeholder="{{'Type a message'|featureText}}..." spellcheck="false"
+                                autocomplete="off" rows="3">{{text_message}}</textarea>
+                            &nbsp;&nbsp;
+                            <!--         
+                            <img class="option2" (click)="startRec()" src="../../../../assets/chat/mic.svg" alt=""
+                                > -->
+                            <img class="option1" (click)="send_msg()" src="../../../../assets/send.svg" alt="">
+                        </div>
+
+                        <!-- for recording start -->
+                        <div *ngIf="recording" class="d-flex align-items-end justify-content-around">
+                            <div>
+                                <span *ngIf="time"> {{time}} </span>
+                            </div>
+                            <div>
+                                <img src="../../../../assets/chat/mic.gif" alt="" style="height: 28px;">
+                            </div>
+                            <div class="d-flex flex-row">
+                                <!-- <button class="stopBtn" (click)="endRec()">Stop</button> -->
+                                <img src="../../../../assets/chat/tick.svg" alt="" (click)="endRec(1)" class="mr-2"
+                                    style="height: 28px;">
+                                <img src="../../../../assets/chat/redcross.svg" alt="" (click)="endRec(0)"
+                                    style="height: 28px;">
+                            </div>
+                        </div>
+                        <!-- for recording end -->
+
+                    </div>
+                </div>
+                <!-- mainInput section end -->
+
+            </div>
+
+        </div>
+        <!--message input start-->
+
+    </div>
+
+</div>

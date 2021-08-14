@@ -1,0 +1,370 @@
+.leftbar{
+  min-width: 18%;
+}
+.backArrow {
+  transform: rotate(180deg);
+}
+
+.bottombar {
+  display: none;
+}
+
+.cardsContainerbody {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.location_container {
+  position: absolute;
+  top: 4rem;
+  height: 2rem;
+  // width: 16rem;
+  /* margin: 0 auto; */
+  left: 3rem;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
+  display: flex;
+  // justify-content: space-between;
+  margin: 10px;
+  align-items: center;
+}
+
+.change_loc {
+  color: #6fa4e9 !important;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.rightsidecontainer {
+  // position: absolute;
+  right: 0px;
+  top: 0px;
+
+  // min-width: 22%;
+  // min-width: 36%;
+  width: 22%;
+  height: 100%;
+  // min-height: 99vh;
+  // height: 100vh;
+  // max-width: 30%;
+  // max-width: 40%;
+  // background: wheat;
+}
+
+.detailContainer {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  height: 87%;
+  overflow-y: scroll;
+}
+
+.mapContainercore {
+  display: flex;
+  position: relative;
+  z-index: 0;
+}
+.map-overlay {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  flex-direction: row;
+}
+
+.searchExtension {
+  position: absolute;
+  top: 58px;
+  z-index: 4;
+  max-height: 300px;
+  overflow-y: scroll;
+  left: 10px;
+  width: 98%;
+}
+
+.searchExtensionparent {
+  position: relative;
+}
+
+.searchBar {
+  height: 47px;
+  width: inherit;
+  border-radius: 50px;
+  background: white;
+  resize: none;
+  // padding: 15px;
+  line-height: 47px;
+  overflow: hidden;
+  border-color: transparent !important;
+}
+
+mat-chip {
+  cursor: pointer;
+}
+
+.pillsDiv {
+  display: block;
+}
+
+.Content {
+  position: absolute;
+  width: 41vw;
+  height: 37vh;
+  border-radius: 10px;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f0f2f5;
+}
+
+.rightfeed {
+  position: fixed;
+  right: 0px;
+  width: 275px;
+  height: 100vh;
+  //   background: white;
+}
+
+.paginationDots {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgb(99, 205, 255);
+  margin: 5px;
+}
+
+.mainfeed {
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  padding-top: 3rem;
+  justify-content: flex-end;
+  background: #f0f2f5;
+}
+
+.mainMapContainer {
+  min-height: 100%;
+  // min-width: 80.5%;
+  display: block;
+  // width: 80.5%;
+  flex: 4;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: white;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.slidestyle {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  background-color: burlywood;
+  border-radius: 10px;
+}
+
+.allSection {
+  display: none;
+}
+
+@media screen and (max-width: 1420px) {
+  .rightsidecontainer {
+    min-width: 25%;
+    max-width: 25%;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .cardsContainerbody {
+    bottom: 0px !important;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .cardscontainer {
+    width: 1px !important;
+  }
+
+  .forSmall {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 620px) and (min-width: 450px) {
+  .optionSpan {
+    width: 30px;
+    display: block;
+  }
+
+  .allSection {
+    height: 80px;
+    width: 100vw;
+    justify-content: space-between;
+    // margin: 10px;
+    background-color: #f0f2f5;
+    text-align: center;
+    left: 0px;
+    position: fixed;
+    bottom: 0px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .pillsDiv {
+    display: none;
+  }
+
+  .Content {
+    width: 95vw;
+    height: 50vh;
+  }
+
+  .optionSpan {
+    width: 29px;
+  }
+
+  .leftTxt {
+    font-size: 16px;
+  }
+
+  .allSection {
+    height: 80px;
+    width: 100vw;
+    justify-content: space-between;
+    // margin: 10px;
+    background-color: #f0f2f5;
+    text-align: center;
+    left: 0px;
+    position: fixed;
+    bottom: 0px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (max-width: 1048px) and (max-width: 450px) {
+  .Content {
+    width: 80vw;
+    height: 50vh;
+  }
+}
+
+@media screen and (max-width: 1079px) {
+  .forSmall {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 1100px) and (min-width: 950px) {
+  .mainMapContainer {
+    width: 72% !important;
+    min-width: 72% !important;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .rightsidecontainer {
+    display: none;
+  }
+
+  .bottombar {
+    display: block;
+    position: absolute;
+    z-index: 999;
+    bottom: 0;
+  }
+
+  .mainMapContainer {
+    width: 100%;
+  }
+
+  .cardsContainerbody {
+    width: 100vw;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    position: absolute;
+    display: flex;
+    bottom: 0px;
+    height: 270px;
+    align-items: flex-end;
+  }
+  .location_container {
+    top: 10px;
+
+    width: 12rem;
+    left: 4rem;
+  }
+}
+
+.leaflet-pane leaflet-map-pane {
+  transform: translate3d(-88px, 0px, 0px) !important;
+}
+
+@media screen and(min-width:950px) and (max-width: 1400px) {
+  .mainMapContainer {
+    flex: 3 !important;
+  }
+}
+
+.showDirections {
+  position: absolute;
+  top: 4rem;
+  height: 2rem;
+  // left: 36rem;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
+  display: flex;
+  margin: 10px;
+  align-items: center;
+}
+
+.showText {
+  color: #6fa4e9 !important;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.topLocation {
+  display: flex;
+  justify-content: space-between;
+  justify-content: space-around;
+  width: 60%;
+}
+@media screen and(max-width:950px) {
+  .topLocation {
+    display: flex;
+    justify-content: space-between;
+    justify-content: space-around;
+    width: 100% !important;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .topLocation {
+    width: 90% !important;
+  }
+}
+@media screen and (min-width: 1300px) and (max-width: 1401px) {
+  .rightmostSpace {
+    flex: 0.5!important;
+  }
+  .leftbar{
+    min-width: 20%;
+  }
+}

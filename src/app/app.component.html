@@ -1,0 +1,27 @@
+<router-outlet></router-outlet>
+<!-- aaaaaaa -->
+<app-bookmarks></app-bookmarks>
+<app-spaarksmodal></app-spaarksmodal>
+<div *ngIf="showCookie">
+    <!-- <app-cookiepolicy (clickedok)="clickedCookieOk()"></app-cookiepolicy> -->
+    <div class="cookiepolicy allCenter  mx-auto">
+        <div class=" cookiepolicyCore p-3 allCenter" style="display: flex; ">
+            <div class=" cookiepolicyText text-center allCenter d-inline">
+                {{"By clicking “OK” you are agreeing to accept our" |featureText}}
+                <span routerLink="/settings/terms" class="cursorPointer" style="text-decoration: underline;"> {{"cookie policies." |featureText}}</span>
+            </div>
+
+
+            <div class="allCenter ml-3">
+                <div class="cookie-button allCenter">
+                    <span class="ok-button cursorPointer" (click)="clickedOk()">ok</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> 
+
+<div *ngIf="noNetworkConnection" class="nointernet">
+    <h4 class="text-white">{{"Please check your internet connection" |featureText}}</h4>
+</div>

@@ -1,0 +1,119 @@
+<div class="optionsmain" *ngIf="chatpersondata">
+
+    <div class="optionsHeader w-100">
+        <div class="imageContainer pt-3 text-center">
+            <img *ngIf="chatpersondata.profilePic.includes('hiddenprofile.png')"
+                src="../../../../assets/hiddenProfile.svg">
+
+            <img *ngIf="!chatpersondata.profilePic.includes('hiddenprofile.png')" [src]="chatpersondata.profilePic"
+                style="border: 1px solid #d7d7d7;" class="imgProfile" alt="">
+        </div>
+    </div>
+
+    <div class="optionsBody w-100">
+        <div class="nameAndPills text-center my-2">
+            <h4 class="boldTxtAll all-headings">{{chatpersondata.name }}</h4>
+            <div class="pillsContainer allCenter d-flex flex-row">
+                <div *ngFor="let connect of chatpersondata.connection; let i =index" class="mx-1">
+                    <app-spaarkspill *ngIf="i<3" class="mr-2" [inputWidth]="'auto'" [inputText]="connect"
+                        [inputColor]="connect=='Market'?bgColorMarket:connect=='Friends'?'#FA6E5A':bgColorAnnounce">
+                    </app-spaarkspill>
+                </div>
+
+                <!-- <app-spaarkspill [inputWidth]="'auto'" [inputText]="'Events'"></app-spaarkspill> -->
+            </div>
+        </div>
+
+
+        <div class="optionsMain">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="w-100 headerDiv d-flex optionsPos">
+                            <!-- <div class="optionsImgContainer">
+                                <img src="../../../../assets/options_chat.svg" alt="" style="width: 24px;">
+                            </div> -->
+
+                            <div class="optionsText all-headings w-100">
+                                {{"More options" |featureText}}
+                            </div>
+                            <div class="ml-auto">
+                                <img src="../../../../assets/back.svg" alt="" Style=" transform: rotate(90deg);">
+                            </div>
+                        </div>
+                    </mat-panel-title>
+                    <!-- <mat-panel-description>
+                        Currently I am
+                    </mat-panel-description> -->
+                </mat-expansion-panel-header>
+                <div class="mainOptionsIterator">
+
+                    <div *ngIf="!chatpersondata.blocked" (click)="clikedOption('block')"
+                        class="optionItem d-flex align-items-center p-2">
+                        <div class="logoContainer">
+                            <img src="../../../../assets/block.svg" alt="">
+                        </div>
+
+                        <div class="textContainerOption ml-2">
+                            <div class="optionHeader">{{"Block"|featureText}} {{chatpersondata.name}}</div>
+                            <div>
+                                <span class="text-muted res-text">
+                                    {{"User will not be able to chat or see each others spaarks."|featureText}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div (click)="clikedOption('clear')" class="optionItem d-flex align-items-center p-2">
+                        <div class="logoContainer" style="flex:0 !important;">
+                            <img src="../../../../assets/clear.svg" alt="">
+                        </div>
+
+                        <div class="textContainerOption ml-2">
+                            <div class="optionHeader">{{"Clear chat" |featureText}}</div>
+                            <div>
+                                <span class="text-muted res-text">
+                                    {{"This clears entire chat with the user." |featureText}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!chatpersondata.chatExit" (click)="clikedOption('exit')"
+                        class="optionItem d-flex align-items-center p-2">
+                        <div class="logoContainer">
+                            <img src="../../../../assets/exit.svg" alt="">
+                        </div>
+
+                        <div class="textContainerOption ml-2">
+                            <div class="optionHeader">{{"Exit chat" |featureText}}</div>
+                            <div>
+                                <span class="text-muted res-text">
+                                    {{"This will not allow the other user to chat with you. You can still see each others spaarks." |featureText}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="showNickName"
+                        (click)="clikedOption('alias')" class="optionItem d-flex align-items-center p-2">
+                        <div class="logoContainer">
+                            <img src="../../../../assets/nickname.svg" alt="">
+                        </div>
+
+                        <div class="textContainerOption ml-2">
+                            <div class="optionHeader">{{"Add Nickname" |featureText}}</div>
+                            <div>
+                                <span class="text-muted res-text">
+                                    {{"Adds Fun. Helps you remember anonymous users.Only visible to you." |featureText}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,532 @@
+<div class="mainDivAll ">
+    <div *ngIf="isMobileVersion" class="topbarAll">
+        <app-topbarmobile apptopbardir (selectedindexchange)="checkTabIndex($event)">
+        </app-topbarmobile>
+    </div>
+
+
+    <div class="mainDiv">
+        <div class="mainfeedAll">
+            <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+            <div class="leftbar">
+                <app-leftnav></app-leftnav>
+            </div>
+            <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+
+            <div class="forSmall g h-100" (scroll)="onScroll($event)" id="scroller">
+                <!-- showing pills for market start -->
+
+                <div class="pillsDiv"
+                    *ngIf="pillsArr.length>0&&((currentFeat=='market')||(currentFeat=='user'))&&showPillsArray">
+
+
+                    <div *ngIf="pillsArr.length>4" class="notForMob" style="transform:rotate(180deg);"
+                        (click)="scrollLeftSide()">
+                    </div>
+                    <div *ngIf="pillsArr.length>4" class="forMob1" style="transform:rotate(180deg);"
+                        (click)="scrollLeftSide()">
+                    </div>
+                    <div #allMarketTab class="cardScroll">
+                        <mat-chip-list class="w-100 ">
+                            <mat-chip #chipcolor (click)="colorChange($event)" class="chipWidth"
+                                *ngFor="let item of pillsArr" (click)=clickedPill(item)>{{item |featureText}}
+                            </mat-chip>
+                        </mat-chip-list>
+
+                    </div>
+
+                    <div *ngIf="pillsArr.length>4" class="notForMob" (click)="scrollRightSide()" style="right: 0;">
+                    </div> <div *ngIf="pillsArr.length>4" class="forMob1" (click)="scrollRightSide()" style="right: 0;">
+                    </div>
+                </div>
+                <!-- showing pills for market end -->
+
+
+
+                <div class="middlefeed">
+                    <div>
+                        <!-- <div class=" p-2 mt-1 searchExtensionparent" *ngIf="hideSearchBar">
+
+                           
+                            <div class="searchBar d-flex " *ngIf="hideSearchBar">
+                                <img class="p-2" src="../../../assets/search.svg" alt="search">
+                                <input ytpe="text" (click)="clickedSearch()" [(ngModel)]="content"
+                                    class="searchBar w-100" type="text"
+                                    placeholder="{{'Looking for something' |featureText}}" />
+                            </div>
+                        </div> -->
+
+                        <!-- carousel -->
+                        <!-- <div style=" max-height: 100vh;" class="pt-3 forMob">
+    
+                                <carousel [interval]="0" [noPause]="false" [showIndicators]="false" [(activeSlide)]="activeSlide">
+                                    <slide *ngFor="let image of colors; let idx = index">
+                                      <div class="allCenter" style="width: 100%;height: 250px;"  [style.backgroundColor]=image>
+                                            <app-work-status *ngIf="showWorkStatus" [data]='workStatusData' [isWorkStatus]='showWorkStatus'></app-work-status>
+                                            <app-work-status *ngIf="showRatings" [isRating]='showRatings' [ratingData]="ratingData" ></app-work-status> -->
+                        <!-- <mat-card class="mat-cardcourse">
+                                            <div style="display: flex;flex-direction: row;">
+                                                <div>
+                                                    <img style="width: 48px;
+                                                    height: 48px;
+                                                " src="../../../assets/UserProfile.png">
+                                                </div>
+
+                                            </div>
+                                            <div style="display: flex;justify-content: space-between;">
+                                                <button class="btn1" mat-button color="primary">Ignore</button>
+                                                <button class="btn1" mat-button color="primary">Not Yet</button>
+                                                <button class="completebtn" mat-button color="primary">Completed</button>
+                                            </div>
+                                        </mat-card> -->
+                        <!-- <mat-card class="mat-cardcourse">
+                                            <div style="display: flex;flex-direction: row;">
+                                                <div>
+                                                    <img style="width: 48px;
+                                                    height: 48px;
+                                                " src="../../../assets/UserProfile.png">
+                                                </div>
+                                                <div>
+                                                    <small class="review-name">Sai Kiran</small><br>
+                                                    <div class="pill-rating">
+                                                        <p class="pill-name">Plumber</p>
+                                                    </div>
+                    
+                                                    <small class="rate-text">Please rate this provider</small><br> 
+                                                </div>
+                                            </div>
+                                            <div class="star-icons" >
+                                                <star-rating [starType]="'svg'" checkedcolor="red" uncheckedcolor="black" [rating]="3" staticColor="ok"
+                                                size="large" [showHalfStars]="true" [readOnly]="true">
+                                            </star-rating>
+                                            </div>
+                                        </mat-card>  -->
+                        <!-- </div>
+                                    </slide>
+                                  
+                                  </carousel> -->
+
+
+                        <!-- <carousel [interval]="4500" [noPause]="false" [showIndicators]="false"
+                                    [(activeSlide)]="activeSlide">
+                                    <slide *ngFor="let image of images; let idx = index">
+                                        <img [src]="image" alt="first slide" class="slidestyle my-3">
+                                    </slide>
+                                </carousel> -->
+
+                        <!-- <div class="text-center">
+                                    <div style="margin: 0 auto;" class="w-50 d-flex justify-content-around">
+                                        <span class=" paginationDots"
+                                            [ngStyle]="activeSlide==ind ? {'background-color' : 'rgb(99, 205, 255)', 'padding':'1px'} : {'background-color' : 'white',    'border': '1px solid rgb(99, 205, 255)'}"
+                                            (click)="switchSlide(ind)" *ngFor="let id of images; let ind=index">
+                                        </span>
+                                    </div>
+                                </div> -->
+
+
+
+                        <div class="timeline" *ngIf="onShare">
+
+                            <!-- For share start-->
+                            <div class="mt-3">
+                                <span *ngIf="shareData && shareData.condition && shareData.condition!='Deleted'"
+                                    class="boldTxtAll">Shared post is
+                                    here!</span>
+                                <div class="mb-4">
+                                    <app-spaarkscard (coordinates)="getLocFromCard($event)" [fromShare]="true"
+                                        [post]="shareData">
+                                    </app-spaarkscard>
+                                </div>
+                                <span class="boldTxtAll">Other posts you may share </span>
+                            </div>
+                            <!-- For share end-->
+                        </div>
+
+                        <!-- 
+                            <div class="greetRequest" *ngIf="showModal==true"> 
+                                
+                                <h2>Hello Im Here</h2>
+                            </div> -->
+
+                        <div *ngIf="!isMobileVersion" class="pt-2" style="background-color:white">
+
+                            <!-- create spaarks add start-->
+
+                            <span class="boldTxtAll timeTxt all-headings">{{"Post a Spaark"|featureText}}</span>
+
+                            <div class="d-flex align-items-center" style="display: block;position: relative;">
+                                <div (click)="scrollCarousel(0)" class="notForMob"
+                                    [ngClass]="{'invisible':activeCarousel==0}" style="transform: rotate(180deg);">
+                                </div>
+
+                                <div #allMarketCard class="cardScroll" style="padding: 0px 0px;">
+                                    <div *ngFor="let marketCat of marketTab; let i=index" class="col-6 col-lg-4 p-0 m-0"
+                                        [ngClass]="{'d-none':(i<activeCarousel)}">
+                                        <app-category-box [fromMultiCar]="true" [catDesc]="marketCat.catDesc"
+                                            [catTxt]="marketCat.catTxt"
+                                            [catImg]="'assets/catsubcatimages/questionsimages/'+marketCat.catImg"
+                                            [inputWidth]="'160px'" [inputHeight]="'200px'"
+                                            (click)="selectedCat(i,marketCat.catTxt)">
+                                        </app-category-box>
+                                    </div>
+                                </div>
+
+                                <div class="notForMob" [ngClass]="{'invisible':activeCarousel==marketTab.length-3}"
+                                    style="right:0;" (click)="scrollCarousel(1)">
+                                </div>
+                            </div>
+                            <!-- create spaarks add end-->
+
+                            <app-topbar apptopbardir (selectedindexchange)="checkTabIndex($event)">
+                            </app-topbar>
+
+
+                        </div>
+
+
+
+
+                        <div *ngIf="loading">
+                            <div class="mainChatContainer allCenter">
+                                <img src="../../../assets/loading.gif" class="loadingGif" alt="">
+                            </div>
+                        </div>
+
+                        <div class="timeline mt-4" *ngIf="!loading">
+                            <div class="circles_top"></div>
+                            <span *ngIf="showEngText" class=" pl-2 boldTxtAll timeTxt all-headings"
+                                style="letter-spacing: -0.165px;">Spaarks within <span style="color:#6FA4E9 !important">
+                                    {{radius}}km </span>
+                                <img src="./assets/sort.png" class="mx-2 mb-1" style="cursor: pointer;" (click)=sort()>
+
+                            </span>
+                            <span *ngIf="showtext" class=" pl-2 boldTxtAll timeTxt all-headings"
+                                style="letter-spacing: -0.165px;">
+                                <span>{{"Spaarks" |featureText}}</span> <span style="color:#6FA4E9 !important"> {{radius}}km </span>
+                                <span>{{"within " |featureText}}</span>
+                                <img src="./assets/sort.png" class="mx-2 mb-1" style="cursor: pointer;" (click)=sort()>
+
+                            </span>
+                            <div class="mobileSearch hoverDiv">
+                                <img class="p-2 searchIcon" src="../../../assets/search.svg" (click)="clickedSearch()"
+                                    alt="search">
+                            </div>
+                            <div *ngIf="noSpaarkWithin==true" class="allCenter">
+                                <span *ngIf="showEngText">{{"No Spaarks found with in" |featureText}} <span
+                                        style="color:#6FA4E9 !important">{{radius}}km</span></span>
+                            </div>
+                            <div *ngIf="noSpaarkWithin==true" class="allCenter">
+                                <span *ngIf="showtext"><span style="color:#6FA4E9 !important">{{radius}}km</span>
+                                    {{"No Spaarks found with in" |featureText}} </span>
+                            </div>
+                            <div class="normalPosts">
+                                <div *ngFor="let post of slicedPosts ;trackBy:identify; let i = index">
+
+                                    <app-spaarkscard (outputmulti)="multioutputFromspaarkCard($event)" [post]="post">
+                                    </app-spaarkscard>
+
+                                    <ng-container *ngIf="i==2 && showWorkStatus">
+                                        <div class="my-3">
+                                            <div class="d-flex align-items-center"
+                                                style="display: block;position: relative;">
+
+                                                <div class="notForMob forMob" (click)="scrollCarousel(0,'status')"
+                                                    style="transform: rotate(180deg);"
+                                                    [ngClass]="{'invisible':activeStatusCarousel==0,'d-none': workStatusData.length==0}">
+                                                    <!-- <img (click)="scrollLeft()" src="../../../assets/back.svg" alt=""> -->
+                                                </div>
+
+                                                <div #allStatusCard class="cardScroll">
+                                                    <div *ngFor="let status of workStatusData; let i=index"
+                                                        [ngClass]="{'d-none':(i!=activeStatusCarousel),'d-flex':(i==activeStatusCarousel)}"
+                                                        class="col-12 justify-content-center">
+                                                        <app-work-status *ngIf="showWorkStatus" [data]='status'
+                                                            [isWorkStatus]='showWorkStatus' [currentIndex]="i">
+                                                        </app-work-status>
+                                                    </div>
+                                                </div>
+                                                <div class="notForMob forMob" (click)="scrollCarousel(1,'status')"
+                                                    [ngClass]="{'invisible':activeStatusCarousel==workStatusData.length-1,'d-none': workStatusData.length==0}">
+                                                    <!-- <img (click)="scrollRight()" src="../../../assets/back.svg" alt=""> -->
+                                                </div>
+                                            </div>
+                                            <!-- create spaarks add end-->
+                                        </div>
+
+                                    </ng-container>
+
+                                    <ng-container *ngIf="i==6 && showWorkStatus && workStatusData.length>0">
+                                        <div class="my-3">
+
+
+
+                                            <div class="d-flex align-items-center"
+                                                style="display: block;position: relative;">
+                                                <div class="notForMob forMob" (click)="scrollCarousel(0,'status')"
+                                                    style="transform: rotate(180deg);"
+                                                    [ngClass]="{'invisible':activeStatusCarousel==0, 'd-none': workStatusData.length==0}">
+                                                    <!-- <img (click)="scrollLeft()" src="../../../assets/back.svg" alt=""> -->
+                                                </div>
+
+                                                <div #allReviewCard class="cardScroll">
+                                                    <div *ngFor="let status of workStatusData; let i=index"
+                                                        [ngClass]="{'d-none':(i!=activeStatusCarousel)}"
+                                                        class="col-12 d-flex justify-content-center">
+                                                        <app-work-status *ngIf="showWorkStatus" [data]='status'
+                                                            [isWorkStatus]='showWorkStatus'></app-work-status>
+
+                                                    </div>
+                                                </div>
+                                                <div class="notForMob forMob" (click)="scrollCarousel(1,'status')"
+                                                    [ngClass]="{'invisible':activeStatusCarousel==workStatusData.length-1, 'd-none': workStatusData.length==0}">
+                                                    <!-- <img (click)="scrollRight()" src="../../../assets/back.svg" alt=""> -->
+                                                </div>
+                                            </div>
+                                            <!-- create spaarks add end-->
+                                        </div>
+
+                                    </ng-container>
+
+                                    <ng-container *ngIf="i%10==5 && i>10">
+                                        <div class="mt-3 PT-2" style="background-color:white">
+
+                                            <!-- create spaarks add start-->
+
+                                            <span
+                                                class="boldTxtAll timeTxt  all-headings">{{"Get Started"|featureText}}</span>
+
+                                            <div class="d-flex align-items-center"
+                                                style="display: block;position: relative;">
+
+                                                <div class="notForMob"
+                                                    [ngClass]="{'invisible':activeGetStartedCarousel==0}"
+                                                    style="transform: rotate(180deg);"
+                                                    (click)="scrollCarousel(0,'getStarted')" *ngIf="!isMobileVersion">
+                                                </div>
+                                                <div class="forMob" *ngIf="isMobileVersion"
+                                                    [ngClass]="{'d-none':activeGetStartedCarousel==0}"
+                                                    style="transform: rotate(180deg);"
+                                                    (click)="scrollCarousel(0,'getStarted')"></div>
+
+                                                <!-- <div (click)="scrollLeft('seller')" class="notForMob"
+                                                    [ngClass]="{'d-none':rightClickSectionCount==0}"
+                                                    style="transform: rotate(180deg);">
+                                                </div> -->
+                                                <!-- <div (click)="scrollLeft('seller')" class="forMob d-sm-block d-md-none"
+                                                    [ngClass]="{'d-none':rightClickSectionCount==0}"
+                                                    style="transform: rotate(180deg);">
+                                                </div> -->
+
+                                                <div #allSellerCard class="cardScroll" style="padding: 0px 0px;">
+                                                    <div *ngFor="let marketCat of marketTab; let i=index"
+                                                        class="col-8 col-md-4 col-lg-4 justify-content-center p-0 m-0"
+                                                        [ngClass]="{'d-none':(i<activeGetStartedCarousel),'d-flex':(i>=activeGetStartedCarousel)}">
+                                                        <app-category-box [fromMultiCar]="true"
+                                                            [catDesc]="marketCat.catDesc" [catTxt]="marketCat.catTxt"
+                                                            [catImg]="'assets/catsubcatimages/questionsimages/'+marketCat.catImg"
+                                                            [inputWidth]="'150px'" [inputHeight]="'200px'"
+                                                            (click)="selectedCat(i,marketCat.catTxt)">
+                                                        </app-category-box>
+                                                    </div>
+                                                </div>
+
+                                                <div class="notForMob"
+                                                    [ngClass]="{'invisible':activeGetStartedCarousel==marketTab.length-3}"
+                                                    style="right:0;" (click)="scrollCarousel(1,'getStarted')"
+                                                    *ngIf="!isMobileVersion">
+                                                </div>
+
+                                                <div class="forMob"
+                                                    [ngClass]="{'d-none':activeGetStartedCarousel==marketTab.length-1}"
+                                                    *ngIf="isMobileVersion"
+                                                    style="right:0;" (click)="scrollCarousel(1,'getStarted')">
+                                                </div>
+                                                <!-- <div class="notForMob" [ngClass]="{'d-none':rightClickSectionCount==5}"
+                                                    style="right:0;" (click)="scrollRight('seller',5)">
+                                                </div>
+                                                <div class="forMob d-sm-block d-md-none"
+                                                    [ngClass]="{'d-none':rightClickSectionCount==7}" style="right:0;"
+                                                    (click)="scrollRight('seller',7)">
+                                                </div> -->
+                                            </div>
+                                            <!-- create spaarks add end-->
+                                        </div>
+
+                                    </ng-container>
+
+                                    <ng-container *ngIf="i%10==0 && i>7">
+
+                                        <!-- banners start -->
+                                        <div class="pt-3">
+                                            <carousel [interval]="4500" [noPause]="false" [showIndicators]="false">
+                                                <slide *ngFor="let image of  banners | slice:0:3;let i=index"
+                                                    style="text-align: center;">
+                                                    <img [src]="image" alt="first slide" style="border-radius: 1rem;"
+                                                        class="slidestyle my-3">
+                                                </slide>
+                                            </carousel>
+                                            <!-- <carousel [interval]="4500" [noPause]="false" [showIndicators]="false"
+                                    [(activeSlide)]="activeSlide">
+                                    <slide *ngFor="let image of  banners | slice:0:3;let i=index">
+                                        <img [src]="image"   style="border-radius: 1rem;" alt="first slide" class="h-100" class="slidestyle my-3">
+                                    </slide>
+                                </carousel> -->
+                                            <!-- <carousel [interval]="0">
+                                                <slide *ngFor="let img of banners | slice:0:3;let i=index">
+                                                    <div class="" style="height: 100px;text-align: center;">
+                                                        <img style="border-radius: 1rem;" [src]="img"   >
+                                                    </div>
+                                                </slide>
+                                            </carousel> -->
+                                        </div>
+                                        <!-- banners end -->
+
+                                    </ng-container>
+                                </div>
+                                <!-- 
+                                <span *ngIf="slicedBeyondPosts && slicedBeyondPosts.length==0"
+                                    class="boldTxtAll timeTxt"> -->
+
+                                <!-- <div class="mainChatContainer allCenter">
+                                        <img src="../../../assets/loading.gif" class="loadingGif" alt=""> <!-->
+                                <!-- Spaarks beyond radius start-->
+                                <!-- </div>
+                                </span>  -->
+                                <div class="my-2" *ngIf="noBeyoundSpaarks==true">
+                                    <span class="boldTxtAll timeTxt all-headings" *ngIf="showEngText">Spaarks beyond
+                                        <span style="color:#6FA4E9 !important"> {{radius}}km</span>
+                                    </span>
+                                    <span *ngIf="showtext"  class="boldTxtAll timeTxt all-headings">
+                                        <span>{{"Spaarks" |featureText}}</span>
+                                        <span style="color:#6FA4E9 !important"> {{radius}}km </span>
+                                        <span>{{"beyond" |featureText}}</span>
+                                    </span>
+                                    <div *ngIf="noBeyoundSpaarks==true" class="allCenter">
+                                        <span *ngIf="showEngText">{{"No Spaarks found beyond" |featureText}} <span
+                                                style="color:#6FA4E9 !important">{{radius}}km</span></span>
+                                    </div>
+                                    <div *ngIf="noBeyoundSpaarks==true" class="allCenter">
+                                        <span *ngIf="showtext"><span style="color:#6FA4E9 !important">{{radius}}km</span>
+                                            {{"No Spaarks found beyond" |featureText}} </span>
+                                    </div>
+                                </div>
+                                <div class="mt-4" *ngIf="showBeyondPost">
+
+                                    <span *ngIf="slicedBeyondPosts && slicedBeyondPosts.length>0"
+                                        class="boldTxtAll timeTxt all-headings">
+                                        <span *ngIf="showEngText">Spaarks beyond
+                                            <span style="color:#6FA4E9 !important"> {{radius}}km</span>
+                                        </span>
+                                    </span>
+                                    <span *ngIf="slicedBeyondPosts && slicedBeyondPosts.length>0"
+                                        class="all-headings" style="margin-left: -4px !important;">
+                                        <span *ngIf="showtext">
+                                            <span>{{"Spaarks" |featureText}}</span>
+                                            <span style="color:#6FA4E9 !important"> {{radius}}km </span>
+                                            <span>{{"beyond" |featureText}}</span>
+                                        </span>
+                                    </span>
+
+                                    <!-- Spaarks beyond radius start-->
+                                    <div>
+                                        <div *ngFor="let postBeyond of slicedBeyondPosts;trackBy:identify;">
+                                            <app-spaarkscard [post]="postBeyond"></app-spaarkscard>
+                                        </div>
+                                    </div>
+                                    <!-- Spaarks beyond radius end -->
+
+
+                                    <div class="circles_bottom"></div>
+                                </div>
+                            </div>
+                            <!-- Spaarks below radius end -->
+
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="showTop">
+                        <span class="goTop" (click)="goToTop()" style="border: 1px solid gray;">
+                            <img src="../../../assets/back.svg" alt="">
+                        </span>
+
+                    </div>
+                    <div *ngIf="loading2 == true">
+                        <div class=" allCenter">
+                            <img src="../../../assets/loading.gif" class="loadingGif" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Code Start -->
+
+            <div class="CoverFullScreen" *ngIf="openModal==true">
+                <div class="Content">
+                    <app-location-permission [showSearchLocation]="showSearchLocation"
+                        (parentClicked)="clickedLocation($event)"></app-location-permission>
+                </div>
+            </div>
+            <!-- Modal Code End -->
+            <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+            <div class="rightfeed">
+                <app-rightfeed (showCat)="clickedCat($event)"> </app-rightfeed>
+
+
+                <div class="mt-4">
+                    <span *ngIf="isAuthed==true && showRecentChats"
+                        class=" boldTxtAll  w-100  all-headings">{{"Recent chats"|featureText}}</span>
+
+                    <div class="bg-white recentchatsdiv" *ngIf="showRecentChats">
+
+                        <div class="clickspaarkonanycard allCenter p-3 flexdirectioncolumn"
+                            *ngIf="listtoshowChatFinal.length==0">
+                            <img src="../../../assets/msg.svg" alt="">
+                            <span> {{"To start a chat go to any Spaark and click on Chat."|featureText}} </span>
+                        </div>
+
+                        <div *ngIf="listtoshowChatFinal.length>0">
+                            <div *ngFor="let item of listtoshowChatFinal|slice:0:initValChats"
+                                (click)="clickedChat(item)">
+                                <app-chat-person-item [chatlistitem]="item"></app-chat-person-item>
+                            </div>
+                        </div>
+                        <div class="w-100 bg-white viewAllContainer">
+                            <!-- <p class="p-1 text-center m-0 mt-2"><span class="font-weight-bold">View All</span></p> -->
+                            <div *ngIf="isAuthed==true" class="viewAll allCenter " (click)="viewAllChats()">
+                                <span class="p-1 text-center m-0 mt-2 cursorpointer"
+                                    *ngIf="fullViewChats==false && listtoshowChatFinal.length>4">{{"View all" |featureText}}</span>
+                                <span class="p-1 text-center m-0 mt-2 cursorpointer"
+                                    *ngIf="fullViewChats==true">{{"View less" |featureText}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- <div class="w-100 spaarksanonymousContainer" *ngIf="showSparkAnonymus">
+                    <div class="spaarksanonymouslycard bg-white p-3">
+                   
+                        <p class="spaarkcardtextanony">
+                            To Start chat go to any Spaark in Make Friends and click on Request to Chat.
+                            For anonymous chat turn off your name visibility while sending request to chat.
+                        </p>
+                        <p class="spaarkcardtextanony w-100 text-center">or</p>
+                        <p class="spaarkcardtextanony">Simply post an anonymous Spaark for other users around you to see by clicking
+                            here. </p>
+                
+                        <span class="anonymouschatbutton w-100 allCenter">
+                            <span class="cursorpointer" (click)="onMakeFriends()">{{"Spaark Anonymously"|featureText}}</span>
+                        </span>
+                    </div>
+                </div> -->
+            </div>
+            <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+
+        </div>
+    </div>
+
+    <div class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div>
+    <div class="p-2 commentcontainer " *ngIf="comment">
+        <div class="mr-2">
+            <img [src]="comment.userId.profilePic" class="commentpropic" alt="">
+        </div>
+        <div class="commentmatter p-2">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+                <div class="persondetailsname mb-1" style="flex: 50%;">
+                    <span class="font-weight-bold" style="line-height: 19px;">{{comment.userId.name}}</span>
+                    <span><small class="datetext font-weight-bold">{{finalAgo |featureText}}</small></span>
+                </div>
+                <span *ngIf="postId!=userId">
+                    <img src="../../../assets/options.svg" (click)="openOptions()" mat-button
+                        [matMenuTriggerFor]="menuComment" class="widthOptions cursorpointer" alt="">
+                </span>
+
+                <mat-menu #menuComment="matMenu">
+                    <button (click)="reportComment(comment._id)" mat-menu-item><img class="my"
+                            src="../../../assets/report.svg" />{{"Report"|featureText}}</button>
+                    <button
+                        (click)="blockComment(comment.userId._id,comment.featureName,comment.userId.name,comment.userId.jid_main,comment.userId.jid_anonymous)"
+                        mat-menu-item><img class="my" src="../../../assets/block.svg" />{{"Block" |featureText}}</button>
+                </mat-menu>
+
+                <!-- dropdown options -->
+
+            </div>
+
+
+
+            <pre class="contentLess contentAll m-0" [class.contentMore]="showmoreorless=='less'" #commentcontent [innerHTML]="comment.content|urlify">
+            </pre>
+
+            <span *ngIf="commentcontent.scrollHeight>80" (click)="toggleShow()"
+                class="showtext">{{showmoreorless=='more'?'Show more':'show less' |featureText}}</span>
+
+            <span *ngIf="comment.photos[0]"> <img class="imgSize" src={{comment.photos[0].url}} alt=""
+                    (click)="openFullScreen(comment.photos[0].url)"> </span>
+
+
+            <div class="w-100">
+                <p class="px-2 d-flex m-0 align-items-center commentreplytextcontainer">
+                    <!-- <span class="cursorpointer" (click)="showRepliescontainer()"><small
+                            class="text-secondary font-weight-bold ">Comment </small></span> -->
+                    <!-- <span class="greydot mx-2">.</span> -->
+                    <span class="cursorpointer" (click)="showRepliescontainer()"><small
+                            class="text-secondary font-weight-bold ">{{"Replies" |featureText}}( {{comment.commentsCount}} )</small></span>
+                </p>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="w-100" *ngIf="showReplies">
+
+        <app-repliescontainer [post]='post' [replies]="comment.comments" [comment]="comment"></app-repliescontainer>
+    </div>
+</div>

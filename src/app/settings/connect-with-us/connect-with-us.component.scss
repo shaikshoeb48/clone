@@ -1,0 +1,36 @@
+.item {
+  display: flex;
+  background-color: white;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 0.8px solid #D7D7D7;
+}
+
+.blockItem {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.allCenter {
+  flex-direction: column;
+  flex: 7;
+}
+
+.boldTxtAll2 {
+  width: 100%;
+  font-weight: normal;
+  font-family:Mulish;
+  font-size: 18px;
+}
+
+// .imgSize {
+//   height: 6rem;
+//   width: 6rem;
+// }
+
+.middlefeed a {
+  text-decoration: none;
+  color: black
+}

@@ -1,0 +1,89 @@
+.mainDiv {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  position: absolute;
+  // top: 10%;
+  width: 100%;
+}
+.requestDiv {
+  width: 90%;
+  // margin-left: 45px;
+}
+
+.wrapper {
+  margin-top: 2rem;
+}
+
+.noRequest {
+  background-color: white;
+}
+
+.height80 {
+  height: 80px;
+}
+.customGif {
+  height: 90px;
+}
+.flexImgParent {
+  border: 0.8px solid #d7d7d7;
+  border-radius: 5px;
+  flex-wrap: wrap;
+}
+@media screen and (max-width: 500px) {
+  .forSmallUp {
+    margin-top: 9vh;
+  }
+
+  .marginAll {
+    margin: 0 25px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .forSmall {
+    // margin: 0 20px;
+  }
+}
+
+.notLoggedIn {
+  flex-direction: column;
+}
+
+.requestHeader {
+  padding: 15px;
+  /* border-bottom: 1px solid; */
+  border-bottom: 0.5px solid #d7d7d7;
+}
+
+.postDiv {
+  //  width: 80%;
+  /* background: #FFFFFF; */
+  border: 1px solid #eaeaea;
+}
+
+.requestSpaarkContainer {
+  border-bottom: 1px solid #eaeaea;
+  width: 97%;
+  margin: auto;
+}
+
+.cardDiv {
+  margin-bottom: 16px;
+}
+.viewAll:hover {
+  color: #6fa4e9;
+}
+
+@media screen and (max-width: 950px) {
+  .mainDiv {
+    height: 80% !important;
+    top: 10%;
+  }
+}
+.mainfeedAll{
+  top: 0%;
+  height: 100%;
+}

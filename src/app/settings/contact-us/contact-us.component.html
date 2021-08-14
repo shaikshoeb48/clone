@@ -1,0 +1,177 @@
+<div class="mainDivAll">
+
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile></app-topbarmobile>
+    </div>
+
+    <div appmainfeeddir class="mainfeedAll">
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace"></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+
+        <div class="forSmall h-100">
+
+            <div class="middlefeed">
+                <div style="margin-top: 2rem;border-bottom: 1px solid #d7d7d7;" *ngIf="isAuthed && contactWindow==false && tickets.length>0">
+                    <span class="boldTxtAll all-headings">{{"Previous tickets"|featureText}}</span>
+                    <app-tickets (openPreviousQuery)="closeOtherWindows()" [appticket]=tickets></app-tickets>
+                </div>
+               
+                <!-- for login start -->
+                <!-- <div *ngIf="isAuthed==false" class="w-100 allCenter">
+                    <div *ngIf="!showLogin" class="notLoggedIn p-3 allCenter w-75">
+                        <div class="w-100 allCenter">
+                            <img src="../../../assets/profile_outline.svg" class="profileImg" alt="">
+                        </div>
+                        <div class="w-100 allCenter flexcolumn">
+                            <h3 class="text-muted">{{"Login to access this feature!"|featureText}}</h3>
+                            <button class="loginBtn w-50 btn-warning " (click)="clickedLogin()">{{"Login"|featureText}}</button>
+                        </div>
+                    </div>
+
+                    <div class="w-100 allCenter mt-3" *ngIf="showLogin">
+                        <app-login></app-login>
+                    </div>
+                </div> -->
+                <!-- for login end -->
+
+
+                <div class="faq3 mt-5" *ngIf="contactWindow==false && previousChatScreen==false">
+                    <div class="boldTxtAll mb-2 all-headings">{{"Contact us"|featureText}}</div>
+                    <div>
+
+                        <!-- for all queries except others -->
+                        <div class="mb-2 px-3 mt-2 pt-2" *ngFor="let query of issues ;let i = index">
+                            <div class="row py-2 cursorpointer contactPosition hoverDiv">
+                                <div class="col">
+                                    <div class="d-flex py-2" (click)="openContactWindow(query.que)">
+                                        <span class="boldTxtAll2">{{query.que |featureText}} </span>
+                                        <div class="ml-auto">
+                                            <img src="../../../../assets/back.svg" alt=""
+                                                Style=" transform: rotate(0deg);">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- <span class="faqtxt">{{query.ans}}</span> -->
+
+                            <!-- <small class="smallTxt">still have doubts?</small> -->
+                            <!-- <ng-template class="panelContent" ngbPanelContent>
+                               
+                                <button class="btn btn-info"
+                                    (click)="openContactWindow(query.que)">{{"Yes" |featureText}}</button>
+                            </ng-template> -->
+                        </div>
+
+                        <!-- for others -->
+                        <div class="boldTxtAll2">
+                            <div class="px-3">
+                                <div class="row  py-2 cursorpointer contactPosition">
+                                    <div class="col">
+                                        <div class="d-flex py-2" (click)="openContactWindow('Other')">
+                                            <span class="boldTxtAll2">{{"Other" |featureText}} </span>
+                                            <div class="ml-auto">
+                                                <img src="../../../../assets/back.svg" alt=""
+                                                    Style=" transform: rotate(0deg);">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <ng-template ngbPanelContent>
+                                <button class="btn btn-info"
+                                    (click)="openContactWindow('Other')">{{"Yes" |featureText}}</button>
+                            </ng-template> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- input for start -->
+                <div class="contactForm mt-3" *ngIf="contactWindow==true&&!loading">
+                    <div class="w-100">
+                        <span class="mx-2 cursorpointer" (click)="backbutton()">
+                            <img src="./assets/back1.svg" alt="">
+
+                        </span>
+                        <span class="text-muted titleStyle">{{selectedQuery |featureText}}</span>
+                        <!-- <h4 class="boldTxtAll2 mt-3">Add Query Discription</h4> -->
+                        <div class="contactBox mb-2">
+                            <textarea name="textA1" maxlength="1000"  class="p-3" placeholder="{{'Type here'|featureText}}"
+                                (keyup)="textEntered($event )" id="textareA1" cols="30" [(ngModel)]="content"
+                                rows="10"></textarea>
+                            <span class="camera" *ngIf="this.fileAr.length<4" (click)="addImages()">
+                                <img class="imgCamera cursorpointer" src="../../../assets/imageicon.svg" alt="">
+
+                                <span class="cursorpointer">
+                                    {{"Add images" |featureText}}
+                                </span>
+                            </span>
+
+
+                            <!-- Showing the added images/videos start -->
+
+                            <div class="main">
+                                <div class="mainImg" *ngFor="let img of imageList; let idx = index">
+
+                                    <!-- for images -->
+                                    <div class="uploadImg " *ngIf="img.type == 'img'">
+                                        <img [src]="img.data" *ngIf="img != '' && img" class="userImg1" />
+                                        <a (click)="deleteImg(idx)"><img src="../../../assets/delete.svg"
+                                                *ngIf="imagePreview != '' && img" class="uploadCross"
+                                                style="cursor: pointer;" />
+                                        </a>
+                                    </div>
+
+                                    <!-- for videos -->
+                                    <div class="uploadImg" *ngIf="img.type == 'vid'">
+                                        <video controls class="userImg1">
+                                            <source #vid [src]="img.data" type="video/mp4" class="uploadCross" />
+                                        </video>
+                                        <a (click)="deleteImg(idx)"> <img src="../../../assets/delete.svg"
+                                                class="uploadCross" style="cursor: pointer;" /></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Showing the added images/videos end -->
+                        </div>
+                    </div>
+                <span class="w-100 text-muted d-block text-right">{{count}} {{"characters remaining" |featureText}}</span>
+
+                    <button class="btn btn-info txtBtn" [disabled]="disableBtn" (click)="submitForm()">{{"Submit"|featureText}}</button>
+                </div>
+                <!-- input form end -->
+
+                <div>
+                    <input type="file" id="myFile" multiple #myFile #filePicker (change)="onImagePicked($event)"
+                        accept="image/*, video/*" />
+                </div>
+
+                <div *ngIf="loading">
+                    <div class="mainChatContainer allCenter">
+                        <img src="../../../assets/loading.gif" class="loadingGif" alt="">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+    </div>
+
+    <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+</div>

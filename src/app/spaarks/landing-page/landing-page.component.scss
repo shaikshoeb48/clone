@@ -1,0 +1,99 @@
+.spkSize {
+  height: 11rem;
+  width: 11rem;
+}
+
+.spk {
+  width: 100%;
+  color: #6FA4E9;
+  font-weight: 600;
+  font-size: xxx-large;
+  display: block;
+  // margin-bottom: 10rem;
+}
+
+.all_btm span {
+  display: block;
+}
+
+.sub_main {
+  color: #6FA4E9;
+  font-size: xx-large;
+  font-weight: bold;
+  // font-weight: ;
+}
+
+.colorBlue {
+  font-size: x-large;
+}
+
+.main_spk {
+  margin-top: 7rem;
+}
+
+.btnBck {
+  background-color: #6FA4E9;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 28vw !important;
+  margin: 0 auto !important;
+  cursor: pointer;
+}
+@media screen and (max-width:500px){
+  .btnBck{
+    width: 46vw !important;
+  }
+}
+
+.all_btm {
+  bottom: 5%;
+  position: absolute;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+@media only screen and(max-width:800px) {
+  .main_spk {
+    margin-top: 2rem;
+  }
+
+}
+
+
+@media only screen and(max-width:950px) {
+.allBtns{
+  font-size: 0.75rem !important;
+}
+}
+
+
+
+@media only screen and(max-width:550px) {
+
+  .spk {
+
+    font-size: xx-large;
+
+  }
+
+  .sub_main {
+
+    font-size: x-large;
+
+  }
+
+  .spkSize {
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .colorBlue {
+    font-size: large;
+  }
+
+}
+.btm {
+  position: relative;
+  bottom: 72px;
+}

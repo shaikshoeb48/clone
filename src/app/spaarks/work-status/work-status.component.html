@@ -1,0 +1,45 @@
+<mat-card class="mat-cardcourse" *ngIf="data&&isWorkStatus">
+    <div style="display: flex;flex-direction: row;">
+        <div>
+            <img style="width: 48px;
+            height: 48px;
+        " [src]="data.uid.profilePic">
+        </div>
+        <div class="px-2">
+            <small class="collect-review w-100 mb-2">{{"Collect Review" |featureText}}</small><br>
+            <p class="how-work mt-2 mb-1">{{"Did you complete your work with" |featureText}} {{data.uid.name }} ?</p>
+            <small class="consult mt-0">{{data.subCategory |featureText}}</small><br>
+        </div>
+    </div>
+    <div style="display: flex;justify-content: space-between;">
+        <button class="btn1" mat-button color="primary"
+            (click)="pendingWorkStatus(data._id,data.uid._id,'ignored')">{{"Ignore" |featureText}}</button>
+        <button class="btn1" mat-button color="primary"
+            (click)="pendingWorkStatus(data._id,data.uid._id,'pending')">{{"Not Yet" |featureText}}</button>
+        <button class="completebtn" mat-button color="primary"
+            (click)="pendingWorkStatus(data._id,data.uid._id,'completed')">{{"Completed"|featureText}}</button>
+    </div>
+</mat-card>
+
+<mat-card class="mat-cardcourse" *ngIf="isRating">
+    <div class="cursorpointer" style="display: flex;flex-direction: row;" (click)="openRatingModal()">
+        <div class="mt-2">
+            <img style="width: 48px;
+            height: 48px;
+        " [src]="ratingData[0].uid.profilePic">
+        </div>
+        <div class="ml-2">
+            <small class="review-name">{{ratingData[0].uid.name}}</small><br>
+            <div class="pill-rating">
+                <p class="pill-name">{{ratingData[0].category}}</p>
+            </div>
+
+            <small class="rate-text">{{"Please rate this provider" |featureText}}</small><br>
+        </div>
+    </div>
+    <div class="star-icons">
+        <star-rating [starType]="'svg'" checkedcolor="red" uncheckedcolor="black" [rating]="3" staticColor="ok"
+            size="large" [showHalfStars]="true" [readOnly]="true">
+        </star-rating>
+    </div>
+</mat-card>

@@ -1,0 +1,191 @@
+// ::-webkit-scrollbar {
+//   width: 0px;
+// }
+
+// Search bar starts
+.searchExtension {
+  position: absolute;
+  top: 58px;
+  z-index: 4;
+  max-height: 300px;
+  overflow-y: scroll;
+  left: 10px;
+  width: 98%;
+}
+
+.searchExtensionparent {
+  position: relative;
+}
+
+.searchBar {
+  height: 47px;
+  width: inherit;
+  border-radius: 50px;
+  background: white;
+  resize: none;
+  // padding: 15px;
+  line-height: 47px;
+  overflow: hidden;
+  border-color: transparent !important
+}
+
+
+// Search bar ends
+
+mat-chip {
+  cursor: pointer;
+}
+
+
+
+// search Pills
+.pillsDiv {
+  display: block;
+}
+
+// search Pills
+
+.Content {
+  position: absolute;
+  width: 41vw;
+  height: 37vh;
+  border-radius: 10px;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #F0F2F5;
+}
+
+.paginationDots {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgb(99, 205, 255);
+  margin: 5px;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: white;
+  font-weight: normal;
+  color: rgba(0, 0, 0, .87);
+}
+
+.slidestyle {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  background-color: burlywood;
+  border-radius: 10px
+}
+
+.allSection {
+  display: none;
+}
+
+
+
+@media screen and (max-width: 620px)and (min-width:450px) {
+
+
+  .optionSpan {
+    width: 30px;
+    display: block;
+  }
+
+  .allSection {
+    height: 80px;
+    width: 100vw;
+    justify-content: space-between;
+    // margin: 10px;
+    background-color: #F0F2F5;
+    text-align: center;
+    left: 0px;
+    position: fixed;
+    bottom: 0px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+  }
+
+
+
+}
+
+
+
+@media screen and (max-width: 450px) {
+
+  .pillsDiv {
+    display: none;
+  }
+
+  .Content {
+    width: 95vw;
+    height: 50vh;
+  }
+
+
+
+  .optionSpan {
+    width: 29px;
+  }
+
+  .leftTxt {
+    font-size: 16px;
+  }
+
+  .allSection {
+    height: 80px;
+    width: 100vw;
+    justify-content: space-between;
+    // margin: 10px;
+    background-color: #F0F2F5;
+    text-align: center;
+    left: 0px;
+    position: fixed;
+    bottom: 0px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (max-width: 1048px)and (max-width: 450px) {
+  .Content {
+    width: 80vw;
+    height: 50vh;
+  }
+}
+
+.forSmall {
+  max-width: 100%
+}
+
+
+.leftbar{
+//  flex:0.8 !important;
+}
+.forSmall{
+  flex: 2 !important;
+}
+
+
+.middlefeed{
+  width: 100% !important;
+  height: 100%;
+}
+@media screen and (max-width: 620px) {
+
+  
+
+  .middlefeed {
+    margin: 0px !important;
+    width: 100% !important;
+  }
+}

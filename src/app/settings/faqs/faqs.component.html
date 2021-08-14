@@ -1,0 +1,79 @@
+<div class="mainDivAll">
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile></app-topbarmobile>
+    </div>
+
+    <div appmainfeeddir class="mainfeedAll">
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace"></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+
+        <div class="forSmall h-100">
+            <div class="middlefeed">
+                <div class="w-100">
+
+                    <div class="mt-2">
+                        <h3 class="boldTxtAll all-headings" style="margin-top: 2rem;">FAQs</h3>
+                        <div class="faq3">
+                            <ngb-accordion #acc="ngbAccordion">
+                                <ngb-panel class="mb-2 " *ngFor="let fa of faq ;let i = index">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="d-flex">
+                                            <span class="boldTxtAll2 " style="padding: 0px;">{{fa.que |featureText}}
+                                            </span>
+
+                                            <div class="ml-auto">
+                                                <img src="../../../../assets/back.svg" alt=""
+                                                    Style=" transform: rotate(90deg);">
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template class="panelContent" ngbPanelContent>
+                                        <span class="faqtxt" style="padding: 0px;">{{fa.ans |featureText}}</span>
+                                    </ng-template>
+                                </ngb-panel>
+                                <ngb-panel class="boldTxtAll2">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="d-flex">
+                                        <span class="boldTxtAll2"
+                                            style="padding: 0px;">{{'Couldn\'t find your query ?' |featureText}} </span>
+                                            <div class="ml-auto">
+                                                <img src="../../../../assets/back.svg" alt=""
+                                                    Style=" transform: rotate(90deg);">
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <button class="btn btn-info"
+                                            routerLink="/settings/help">{{"Contact us"|featureText}}</button>
+                                    </ng-template>
+                                </ngb-panel>
+                            </ngb-accordion>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+        <!-- Modal Code Start -->
+
+
+
+        <!-- Modal Code End -->
+    </div>
+
+    <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+</div>

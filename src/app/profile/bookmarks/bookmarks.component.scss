@@ -1,0 +1,206 @@
+.buttonTabs {
+  //@extend margin: 1rem!important;
+  margin-left: 1rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+
+  border: #6fa4e9;
+  border: 1px solid #6fa4e9;
+}
+
+.bookmarksFeed {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  margin-top: 25px;
+  justify-content: space-between;
+}
+.mat-button1 {
+  color: #6fa4e9;
+}
+.mat-button2 {
+  background: #6fa4e9;
+  border-radius: 2px;
+  color: #ffffff;
+}
+
+.profilePic {
+  // position: absolute;
+  width: 82px;
+  height: 82px;
+  //  left: 318px;
+  //  top: 131px;
+  //  background: url(.jpg);
+  border-radius: 30px;
+}
+.profileCard {
+  // position: absolute;
+  width: 80%;
+  height: 97px;
+  /* left: 304px; */
+  /* top: 123px; */
+  background: #ffffff;
+  border-radius: 8px;
+  margin: 10px;
+  border: 0.8px solid #d7d7d7;
+}
+
+.profileCardInside {
+  display: flex;
+  flex-direction: row;
+}
+
+.profileNameDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 25px;
+}
+.profileBookmarkCount {
+  display: flex;
+  //flex-direction: row;
+  width: 100%;
+  justify-content: flex-end !important;
+  margin-right: 25px !important;
+
+  // justify-content: space-evenly;
+}
+
+.profileNameText {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #131313;
+  margin: 5px;
+}
+.servicesOfferedText {
+  width: 190px;
+  /* height: 20px; */
+  /* left: 425px; */
+  /* top: 175px; */
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #6fa4e9;
+}
+
+.bookmarkCount {
+  width: 14px;
+  height: 29px;
+  left: 843px;
+  top: 157px;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 33px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #6fa4e9;
+}
+// .timeline {
+//     width: 80% !important;
+//   }
+@media screen and(min-width:350px) and (max-width: 540px) {
+  // .timeline {
+  //   width: 100% !important;
+  // }
+}
+
+.notLoggedIn {
+  flex-direction: column;
+}
+
+@media screen and(max-width:950px) {
+  .mainfeedAll {
+    height: 90% !important;
+  }
+}
+
+@media screen and(min-width:300px) and (max-width: 440px) {
+  //   .mat-button-toggle-group{
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
+  //   .backimg{
+  //     margin-top: -59px;
+  //   }
+
+  .bookmarksFeed {
+    flex-direction: column;
+  }
+  .buttonTabs {
+    border: none !important;
+    margin-left: 3rem !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .profilePic {
+    // position: absolute;
+    width: 70px;
+    height: 70px;
+    //  left: 318px;
+    //  top: 131px;
+    //  background: url(.jpg);
+    border-radius: 30px;
+  }
+}
+.bookmarkText {
+  display: flex;
+  flex-direction: row;
+}
+
+// @media screen and (max-width: 950px){
+//   .bottomNavBarAll {
+//       // height: 10%;
+//       position: absolute;
+//       top: 100%;
+//       bottom: 0px;
+//   }
+// }
+
+@media screen and (max-width: 950px) {
+  // .timeline{
+  //     width: 100%!important;
+  // }
+  .profileCard {
+    width: 100% !important;
+  }
+}
+
+.noBookmarks {
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
+}
+// .btntoggle:hover {
+//   background-color: #2f80ed12 !important;
+//   color: #6FA4E9 !important;
+// }
+mat-button-toggle ::ng-deep:hover {
+  background-color: #2f80ed12 !important;
+  color: #6fa4e9 !important;
+}
+
+mat-button-toggle.mat-button-toggle-checked ::ng-deep:hover {
+  background-color: #2f80ed12 !important;
+  color: #ffffff !important;
+}
+
+// .mat-button-toggle-label-content:hover{
+//   // background-color: #2f80ed12 !important;
+//    color: #FFFFFF !important;
+// }
+
+// .leftbar{
+//   flex: 0.7;
+// }

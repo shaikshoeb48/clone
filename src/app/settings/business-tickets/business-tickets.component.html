@@ -1,0 +1,128 @@
+<div *ngIf="businessticket" style="margin-bottom: 30px; border: 1px solid #EAEAEA;">
+
+
+    <!-- <div>
+        <span *ngIf="previousChatScreen==false" class="boldTxtAll">Previous Enquieres</span>
+
+    </div>
+
+    <div *ngIf="previousChatScreen==true" class="whiteBox">
+        <span class="boldTxtAll">Previous Enqueries</span>
+    </div>
+     -->
+
+    <!-- <div *ngIf="BussinesEnq==true">
+        <div class="p-3 borderBtm m-2 main1" *ngFor="let ticket of tickets">
+            <div class="d-flex w-100">
+                <div class="reqst w-100" (click)="openTickets()">
+                    <div>
+                        <span class="" style="display:block">
+                            <span class="boldTxtAll p-0">{{ticket.subject}}</span> </span>
+                        <div class="d-flex my-2 justify-content-between">
+                            <span class="text-muted ">{{ticket.ticketId}}</span>
+                            <span class="text-muted ">{{ticket.createdAt|date}}</span>
+                            <span class="btnClass">{{ticket.status}}</span>
+                        </div>
+                    </div>
+                    <div class="fontSmall">
+                        <span> Support Team: </span>
+                        {{"   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, fuga nisi numquam beatae hic pariatur                voluptatum dignissimos autem asperiores placeat ullam illum id molestiae minima eius harum quas non corrupti!"|slice:0:70}}...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- <div>
+        <div class="p-3 borderBtm m-2 main1">
+        <div class="d-flex w-100">
+            <div class="reqst w-100" (click)="openTickets()">
+                <div>
+                    <span class="" style="display:block">
+                        <span class="boldTxtAll p-0"> {{businessticket.subject}} </span> </span>
+                    <div class="d-flex my-2 w-100 justify-content-between">
+                        <span class="text-muted ">{{funn|date}}</span>
+                        <span class="btnClass"> Open</span>
+                    </div>
+                </div>
+                <div class="fontSmall">
+                    <span> Spaark Business Team: </span>
+                    {{businessticket.ticketId}}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div> -->
+
+
+    <!-- <div *ngIf="previousChatScreen==true" class="whiteBox">
+          <div class="d-flex w-100">
+                <div class="reqst w-100" (click)="openTickets(businessticket.ticketId,businessticket)">
+                    <div>
+                        <span class="" style="display:block">
+                            <span class="boldTxtAll p-0">{{businessticket.subject}}</span> </span>
+                             <div class="d-flex my-2 justify-content-between">
+                            <span class="text-muted ">{{businessticket.ticketId}}</span>
+                            <span class="text-muted ">{{businessticket.createdAt|date}}</span>
+                            <span class="btnClass">{{businessticket.status}}</span>
+                        </div>
+                    </div>
+                    <div class="fontSmall">
+                        <span> Support Team: </span>
+                        {{businessticket.subtitle|slice:0:70}}...
+                    </div>
+                </div>
+            </div>
+    </div>
+</div> -->
+
+
+
+    <div>
+
+        <div class="d-flex w-100 main1">
+            <div class="w-100 p-3" (click)="openTickets(businessticket.ticketId,businessticket)">
+                <div *ngIf="businessticket">
+                    <!-- <span class="d-block">
+                        <span class="boldTxtAll2 p-0">{{businessticket.subject}}</span>
+                    </span> -->
+                    <div class="d-flex my-1 justify-content-between">
+                        <!-- <span class="text-muted ">{{businessticket.ticketId}}</span> -->
+                        <div>
+                            <span>
+                                {{(businessticket.thread[businessticket.thread.length-1].isUser)?'Me:':'Team Spaarks:'}}
+                            </span>
+                            {{businessticket.thread[businessticket.thread.length-1].content|slice:0:20}}{{(businessticket.thread[businessticket.thread.length-1].content.length<20)?'':'...'}}
+
+                        </div>
+
+                        <span class="btnClass">{{businessticket.status |featureText}}</span>
+                    </div>
+                </div>
+                <div class="fontSmall" *ngIf="businessticket">
+                    <span
+                        class="text-muted titleStyle">{{businessticket.createdAt|date}}|{{businessticket.createdAt|date:"HH:mm"}}</span>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- <div *ngIf="showTickets" >
+    <div class="businessChatWindow">
+     <div *ngFor="let ticket of tickets">
+            <div *ngFor="let msg of ticket.thread">
+                <app-msg-item [pull]="msg.isUser==true?'right':'left'" [msg]="msg" [isChat]="false"></app-msg-item>
+    
+            </div>
+        </div>
+    </div>
+    <app-msg-input *ngIf="isTicketOpen"></app-msg-input>
+
+</div> -->

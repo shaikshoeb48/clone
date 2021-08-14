@@ -1,0 +1,147 @@
+<div>
+    <div class="w-100 secondstep">
+        <p class="m-0 font-weight-bold">{{"Connection Preferences"|featureText}}</p>
+        <div class="toggleDiv p-2">
+            <div class="toggleDivHead justify-content-between d-flex align-items-center">
+                <div class="toggleDivLeft pl-2 d-flex align-items-center">
+                    <div class="">
+                        <img src="../../../assets/calls.svg" class="leftImg" alt="">
+                    </div>
+                    <div class="pl-2">
+                        <p class="m-0 cardtextt">{{"Spaarks Call"|featureText}}</p>
+                        <p class="m-0 font-weight-bold"><small class="text-primary">Turned On</small></p>
+                        <p class="m-0 text-muted">
+                            <small class="text-muted">Note: spaarks call is VOIP call</small></p>
+                    </div>
+                </div>
+                <div class="toggleDivRight">
+                    <!-- <div class="custom-control custom-switch">
+                        
+                        
+
+                        <div class="toggle-button-cover">
+                            <div class="button-cover">
+                              <div class="button r" id="button-2">
+                                <input type="checkbox" checked class="checkbox">
+                                <div class="knobs"></div>
+                                <div class="layer"></div>
+                              </div>
+                            </div>
+                          </div>
+  
+                      </div> -->
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="toggleDivBody allCenter">
+                <div class="bodymain"></div>
+            </div>
+        </div>
+
+        <!-- duplicate divs -->
+        <div class="toggleDiv p-2 mt-2">
+            <div class="toggleDivHead justify-content-between d-flex align-items-center">
+                <div class="toggleDivLeft pl-2 d-flex align-items-center">
+                    <div class="">
+                        <img src="../../../assets/chats.svg" class="leftImg" alt="">
+                    </div>
+                    <div class="pl-2">
+                        <p class="m-0 cardtextt">{{"Spaarks Chat"|featureText}}</p>
+                        <p class="m-0 font-weight-bold"><small class="text-primary">Turned On</small></p>
+
+                    </div>
+                </div>
+                <div class="toggleDivRight">
+                    <!-- <div class="custom-control custom-switch">
+                        <div class="toggle-button-cover">
+                            <div class="button-cover">
+                                <div class="button r" id="button-2">
+                                    <input type="checkbox" checked class="checkbox">
+                                    <div class="knobs"></div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="toggleDiv p-2 mt-2">
+            <div class="toggleDivHead justify-content-between d-flex align-items-center">
+                <div class="toggleDivLeft pl-2 d-flex align-items-center">
+                    <div class="">
+                        <img src="../../../assets/maps.svg" class="leftImg" alt="">
+                    </div>
+                    <div class="pl-2">
+                        <p class="m-0 cardtextt">{{"Show my spaark on Map"|featureText}}</p>
+                        <p class="m-0 font-weight-bold"><small class="text-primary">Turned On</small></p>
+
+                    </div>
+                </div>
+                <div class="toggleDivRight">
+                    <!-- <div class="custom-control custom-switch">
+                        <div class="toggle-button-cover">
+                            <div class="button-cover">
+                                <div class="button r" id="button-2">
+                                    <input type="checkbox" checked class="checkbox">
+                                    <div class="knobs"></div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="w-100 d-flex mt-2 justify-content-end">
+        <div class="w-100 allCenter ">
+            <div class="w-100 d-flex align-items-center justify-content-between ">
+                <span class="cursorpointer mediaimage nextspan p-2 mediaspan" (click)="clickedPrevious()">
+                    <span>
+                        <span>
+                            <img src="../../../assets/back_white.svg" class="mediaicon reverseArrow" alt="">
+                        </span>
+
+                        <span class="text-white">
+                            {{"Previous"|featureText}}
+                        </span>
+                    </span>
+                </span>
+
+
+                <span class="cursorpointer mediaimage nextspan p-2 mediaspan" (click)="clickedNext()">
+                    <span>
+                        <span class="text-white">
+                            {{"Next"|featureText}}
+                        </span>
+
+                        <span>
+                            <img src="../../../assets/back_white.svg" class="mediaicon" alt="">
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>

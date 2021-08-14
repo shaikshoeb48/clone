@@ -1,0 +1,108 @@
+.optionsmain {
+  height: 100%;
+  width: 100%;
+  background: white;
+  // margin-left: 8%;
+}
+
+.imgProfile {
+  width: 106px;
+  height: 106px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.optionsText {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.headerDiv {
+  // border-top: 0.5px solid #D7D7D7;
+  // border-bottom: 0.5px solid #D7D7D7;
+  min-height: 86px;
+  max-height: 86px;
+}
+
+.optionHeader {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.logoContainer {
+  // flex: 1;
+  text-align: center;
+
+  img {
+    width: 36px;
+  }
+}
+
+.optionItem {
+  height: 104px;
+  border-bottom: 0.5px solid #D7D7D7;
+  cursor: pointer;
+  line-height: 20px;;
+}
+
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  margin-right:20px !important;
+}
+
+.boldTxtAll {
+  font-size: 1.5rem;
+}
+
+
+.optionsPos {
+  justify-content: space-around;
+  align-items: center;
+  flex: auto;
+}
+
+
+
+@media screen and(min-width:1800px) {
+  .logoContainer {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+
+}
+
+@media screen and (max-width:1800px)and (min-width:950px) {
+  .logoContainer {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+}
+@media screen and (max-width:1250px) {
+  .logoContainer {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+}
+
+@media screen and (min-width:1200px) and (max-width:1340px)
+{
+  .optionsText{
+    font-size: 16px;
+  }
+
+}
+
+@media screen and (min-width:1200px) and (max-width:1500px)
+{
+  .res-text{
+    font-size: 12px !important;
+  }
+  .logoContainer {
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+}
+}

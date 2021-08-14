@@ -1,0 +1,120 @@
+<!-- <app-viewroot></app-viewroot> -->
+
+<div class="mainDivAll">
+
+  <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+    <app-topbarmobile></app-topbarmobile>
+</div>
+
+
+  <div appmainfeeddir class="mainfeedAll">
+    <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace" ></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace" ></div>
+    <div class="forSmall h-100" style="background: #F0F2F5;">
+      <div class="middlefeed">
+        <div class="w-100">
+          <!-- <div class="w-100" *ngIf="profile=='normal'">
+                        <app-userprofile (changedprofile)="changeProfile($event)"></app-userprofile>
+                    </div> -->
+          <div class="w-100">
+            <!-- <div class="Skeleton">
+                            <div class="fb-item" *ngIf="timer==true" >
+                              <div class="first-section-wrapper">                           
+                                <div class="gravatar">
+                                  <ngx-skeleton-loader count="1" appearance="square" [theme]="{ width: '80px', height: '80px',left:'45%', margin:' 10px 0px'}">
+                                  </ngx-skeleton-loader>
+                                </div>
+                                <div class="gravatar-title">
+                                  <div>
+                                    <ngx-skeleton-loader count="2" [theme]="{
+                                    width: '200px',
+                                    'border-radius': '0',
+                                    height: '15px',
+                                    'margin-bottom': '10px'
+                                  }"></ngx-skeleton-loader>
+                                  </div>
+                                  <div>
+                                    <ngx-skeleton-loader count="2" [theme]="{ width: '170px', 'border-radius': '0', height: '15px' }">
+                                    </ngx-skeleton-loader>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="second-section-wrapper">
+                                <div class="wrapper">
+                                  <ngx-skeleton-loader count="3" [theme]="{
+                                  width: '80%',
+                                  'border-radius': '0',
+                                  height: '15px',
+                                  'margin-bottom': '10px'
+                                }"></ngx-skeleton-loader>
+                                </div>
+                                <div class="wrapper">
+                                  <ngx-skeleton-loader count="4" [theme]="{
+                                  width: '90%',
+                                  'border-radius': '0',
+                                  height: '15px',
+                                  'margin-bottom': '10px'
+                                }"></ngx-skeleton-loader>
+                                </div>
+                                <div class="wrapper">
+                                  <ngx-skeleton-loader count="4" [theme]="{
+                                  width: '60%',
+                                  'border-radius': '0',
+                                  height: '15px',
+                                  'margin-bottom': '10px'
+                                }"></ngx-skeleton-loader>
+                                </div>
+                              </div>
+                            </div>
+                        </div> -->
+            <app-sellerprofile *ngIf="timer==false&&sellerprofiledata" [profiledata]="sellerprofiledata">
+            </app-sellerprofile>
+          </div>
+        </div>
+
+        <!-- <div class="d-none mb-1  allSection">
+          <div class="">
+            <img class="optionSpan mx-2" src="../../../assets/Tab Bar/UserProfile.png" alt="">
+            <span class="leftTxt"> Profle</span>
+          </div>
+
+          <div class="">
+            <img class="optionSpan mx-2" src="../../../assets/Tab Bar/Home.svg" alt="">
+            <span class="leftTxt"> Home</span>
+          </div>
+
+          <div class="">
+            <img class="optionSpan mx-2" src="../../../assets/Tab Bar/ChatIcon.svg" alt="">
+            <span class="leftTxt"> Chat</span>
+          </div>
+
+          <div class="">
+            <img class="optionSpan mx-2" src="../../../assets/Tab Bar/plusCirlce.svg" alt="">
+            <span class="leftTxt"> Spaarks</span>
+          </div>
+
+          <div class="">
+            <img class="optionSpan mx-2" src="../../../assets/Tab Bar/Search.svg" alt="">
+            <span class="leftTxt"> Explore</span>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+
+    <div *ngIf="!isMobileVersion"  class="rightSpace insideSpace" ></div>
+
+    <div class="rightfeed">
+        <app-rightfeed></app-rightfeed>
+    </div>
+<div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"  ></div>
+  </div>
+
+  <div appbottomnavdir class="bottomNavBarAll">
+    <app-bottom-nav-bar></app-bottom-nav-bar>
+  </div>
+</div>

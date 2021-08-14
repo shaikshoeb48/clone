@@ -1,0 +1,262 @@
+<div class="mainDivAll">
+    <div class="topbarAll">
+        <app-topbar apptopbardir (selectedindexchange)="checkTabIndex($event)">
+        </app-topbar>
+    </div>
+
+    <!-- <app-topbar (selectedindexchange)="checkTabIndex($event)" (featureName)="fName">
+
+</app-topbar> -->
+
+    <div class="mainDiv">
+        <div class="mainfeedAll">
+
+            <div class="leftbar">
+                <app-leftnav></app-leftnav>
+            </div>
+            <div class="forSmall g h-100">
+
+                <div class="pillsDiv" *ngIf="pillsArr.length>0">
+
+                    <div class="notForMob" (click)="scrollLeftSide()" style="transform: rotate(180deg);">
+                        <!-- <img (click)="scrollLeftSide()" src="../../../assets/back.svg" alt=""> -->
+                    </div>
+
+                    <div #allMarketTab class="cardScroll  p-2 m-0">
+                        <!-- <mat-chip-list class="w-100 ">
+                        <mat-chip class="chipWidth" *ngFor="let item of pillsArr" (click)=clickedPill(item)>{{item}}
+                        </mat-chip>
+                    </mat-chip-list> -->
+                        <app-spaarkspill [inputtextcolor]="item._id=='somerandomids'?'white':'black'"
+                            *ngFor="let item of pillsArr" class="chipWidth"
+                            [inputColor]="item._id=='somerandomids'?'#6FA4E9':'white'" [inputText]="item.category">
+                        </app-spaarkspill>
+
+
+                    </div>
+
+                    <div class="notForMob" (click)="scrollRightSide()" style="right: 0;">
+                        <!-- <img (click)="scrollRightSide()" src="../../../assets/back.svg" alt=""> -->
+                    </div>
+                </div>
+
+                <div class="middlefeed">
+
+                    <div>
+                        <!-- Search Bar Start (D-None) -->
+                        <div class=" p-2 mt-1 searchExtensionparent" *ngIf="hideSearchBar">
+
+                            <div class="searchBar mb-3 d-flex ">
+                                <img class="" src="../../../assets/search.svg" alt="search">
+                                <textarea (click)="clickedSearch()" [(ngModel)]="content" class="searchBar w-100"
+                                    type="text" placeholder="{{'Looking for something'|featureText}}"></textarea>
+
+
+                            </div>
+                            <!-- <div *ngIf="listofsearches.length>0" class="searchExtension bg-white">
+                            <div>
+                                <div class="w-100 allCenter justify-content-between px-3 ">
+                                    <span></span>
+                                    <span (click)="listofsearches=[]" class="text-primary cursorpointer">close</span>
+                                </div>
+                                <div class="searchContainer backgroundgrey p-0">
+                                    <div *ngFor="let fun of listofsearches" class="search-item p-2">
+                                       <div class="w-100 h-100 d-flex align-items-center justify-content-between">
+                                        <p class="m-0"> {{fun.preview}} <small><b>{{fun.subCategory}}</b></small> </p>
+                                        <span> <img src="../../../assets/arrowsearch.svg" class="arrowSearch" alt=""> </span>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> -->
+
+
+
+                        </div>
+                        <!-- Search Bar End -->
+
+
+
+                        <div style=" max-height: 100vh;" class="pt-3 forMob">
+
+
+
+
+
+
+
+
+
+                        </div>
+
+                        <!-- 
+                    <div class="greetRequest" *ngIf="showModal==true"> 
+                        
+                        <h2>Hello Im Here</h2>
+                    </div> -->
+
+
+
+                        <div class="bottomNavBar">
+                            <app-bottom-nav-bar></app-bottom-nav-bar>
+                        </div>
+
+                        <div class="w-100">
+
+
+                            <div class="circles_top"></div>
+                            <span *ngIf="posts && posts.length>0" class=" pl-2 boldTxtAll timeTxt" style="letter-spacing: -0.165px;
+                            ">{{"Spaarks within 5Km" |featureText}}</span>
+
+                            <!-- (scrolled)="onScrollDown($event)"
+                        (scrolledUp)="onUp($event)"
+                         [infiniteScrollDistance]="scrollDistance"
+                            [infiniteScrollUpDistance]="scrollUpDistance"
+                            [infiniteScrollThrottle]="throttle" -->
+
+                            <div class="allCenter" *ngIf="showCallDiv">
+                                <mat-card class="contact-div allCenter">
+                                    <div>
+                                        <img class="call-image" src="../../../assets/callblue2.svg">
+                                    </div>
+                                    <div>
+                                        <p class="call-text">Let nearby <b>{{subCategory}}(s)</b> contact me on Spaarks
+                                        </p>
+                                    </div>
+                                    <div class="call-btns">
+                                        <div style="margin-bottom: 8px;">
+                                            <button class="call-btn1" mat-button color="primary"
+                                                (click)="contactRequest('yes','')">YES</button>
+                                        </div>
+                                        <div>
+                                            <button class="call-btn2" mat-button color="primary"
+                                                (click)="contactRequest('no','')">NO</button>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                            </div>
+
+                            <div class="normalPosts">
+
+                                <div *ngFor="let post of posts">
+                                    <app-spaarkscard (outputmulti)="multioutputFromspaarkCard($event)" [post]="post">
+                                    </app-spaarkscard>
+                                </div>
+                                <div *ngIf="!posts">
+                                    <p>{{"No Spaarks Found" |featureText }}</p>
+                                </div>
+                                <!-- <cdk-virtual-scroll-viewport itemSize="500" autosize style="height: 100%">
+                                <div *cdkVirtualFor="let post of posts" class="example-item">
+                                    <app-spaarkscard [post]="post"></app-spaarkscard>
+                                </div>
+                              </cdk-virtual-scroll-viewport> -->
+
+
+                            </div>
+
+
+                            <!-- Spaarks below radius end -->
+                            <!-- <div class="w-100 allCenter my-3">
+                            <app-login></app-login>
+                        </div> -->
+
+
+                            <!-- <div class="w-100 d-flex align-items-center"> -->
+
+                            <!-- horizontal scroll seller profile start -->
+                            <span class="boldTxtAll timeTxt" *ngIf="allSellerPosts && allSellerPosts.length>0">Top Rated
+                                Sellers</span>
+                            <!-- *ngIf="allSellerPosts.length>0" -->
+
+                            <div *ngIf="allSellerPosts && allSellerPosts.length>0" class="d-flex align-items-center"
+                                style="display: block; widows: 100%;margin-bottom: 4vh;">
+                                <div class="notForMob" (click)="scrollLeft('seller')"
+                                    style="transform: rotate(180deg);">
+                                    <!-- <img (click)="scrollLeft('seller')" src="../../../assets/back.svg" alt=""> -->
+                                </div>
+
+                                <div #allSellerCard class="cardScroll">
+
+                                    <div *ngFor="let sellerPost of allSellerPosts">
+                                        <app-sellercard [sellerPost]="sellerPost"></app-sellercard>
+                                    </div>
+                                </div>
+                                <div class="notForMob" (click)="scrollRight('seller')">
+                                    <!-- <img (click)="scrollRight('seller')" src="../../../assets/back.svg" alt=""> -->
+                                </div>
+
+
+                            </div>
+                            <!-- horizontal scroll seller profile end -->
+
+
+
+                            <!-- for create forms scroll start -->
+                            <span class="boldTxtAll timeTxt">{{"Get Started" |featureText}}</span>
+                            <div class="d-flex align-items-center"
+                                style="display: block; widows: 100%; margin-bottom: 4vh;">
+
+                                <div class=" notForMob" (click)="scrollLeft('create')"
+                                    style="transform: rotate(180deg);">
+                                    <!-- <img (click)="scrollLeft('create')" src="../../../assets/back.svg" alt=""> -->
+                                </div>
+                                <div #allMarketCard class="cardScroll">
+                                    <div *ngFor="let marketCat of marketTab; let i=index">
+                                        <app-category-box [catTxt]="marketCat.catTxt"
+                                            [catImg]="'assets/catsubcatimages/questionsimages/'+marketCat.catImg"
+                                            [inputWidth]="'160px'" [inputHeight]="'200px'"
+                                            (click)="selectedCat(i,marketCat.catTxt)">
+                                        </app-category-box>
+                                    </div>
+                                </div>
+                                <div class="notForMob" (click)="scrollRight('create')">
+                                    <!-- <img (click)="scrollRight('create')" src="../../../assets/back.svg" alt=""> -->
+                                </div>
+                            </div>
+                            <!-- for create forms scroll end -->
+
+
+
+
+
+                            <!-- </div> -->
+
+
+                            <span *ngIf="postsBeyond && postsBeyond.length>0"
+                                class="boldTxtAll timeTxt">{{"Spaarks Beyond 5Km" |featureText}}</span>
+
+                            <!-- Spaarks beyond radius start-->
+                            <div class="beyondPosts">
+                                <div *ngFor="let postBeyond of postsBeyond">
+                                    <app-spaarkscard [post]="postBeyond"></app-spaarkscard>
+                                </div>
+                            </div>
+                            <!-- Spaarks beyond radius end -->
+
+
+                            <div class="circles_bottom"></div>
+                            <!-- <span class="boldTxtAll timeTxt">Joined Spaarks On</span> -->
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="rightfeed">
+                <app-rightfeed [dynamicinp]="dynamicinp" (showCat)="clickedCat($event)"> </app-rightfeed>
+            </div>
+        </div>
+    </div>
+    <div class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+
+</div>

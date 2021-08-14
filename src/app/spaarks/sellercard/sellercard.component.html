@@ -1,0 +1,38 @@
+<div class="sellercard mt-2 mr-2" *ngIf="sellerPost">
+    <div class="sellercardmain p-2" *ngIf="sellerPost.user.market.categories[0]">
+        <div class="w-100 allCenter" *ngIf="sellerPost.user.market.categories[0]">
+            <app-spaarkspill style="width: 85%;" [inputText]="sellerPost.user.market.categories[0].subCategory"
+                [inputColor]="'rgba(250, 110, 90, 1)'"></app-spaarkspill>
+        </div>
+
+        <div class="w-100 allCenter py-2">
+            <ng-container *ngIf="sellerPost">
+                <ng-container *ngIf="sellerPost.user">
+                    <ng-container *ngIf="sellerPost.user.profilePic">
+                        <img src={{sellerPost.user.profilePic}} alt="" class="sellerImage rounded-circle">
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+
+        <ng-container *ngIf="sellerPost">
+            <ng-container *ngIf="sellerPost.user">
+
+                <div class="w-100 text-center font-weight-bold">{{sellerPost.user.name    }}</div>
+            </ng-container>
+        </ng-container>
+
+        <div *ngIf="sellerPost.user.market.categories[0].rating!=0"
+            class="w-100 ratingsContainer d-flex align-items-center justify-content-center">
+            <span class="ratingContainer mr-1">{{sellerPost.user.market.categories[0].rating}}/5</span>
+            <bar-rating [rate]="sellerPost.user.market.categories[0].rating" [readOnly]="true" [max]="5"></bar-rating>
+            <!-- <star-rating [starType]="'svg'" [rating]="3" staticColor="ok" size="medium" [showHalfStars]="true"
+            [readOnly]="true"></star-rating>    -->
+        </div>
+
+        <div class="w-100 text-center">
+            <span class="viewProfileText cursorpointer" [routerLink]="['/profile/seller/',sellerPost.user._id]">View
+                Profile</span>
+        </div>
+    </div>
+</div>

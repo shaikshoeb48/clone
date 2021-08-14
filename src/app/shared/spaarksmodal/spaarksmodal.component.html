@@ -1,0 +1,1285 @@
+<div class="modalcontainer">
+
+    <div *ngIf="showLogin">
+        <div class="modalBody allCenter">
+            <div class="loginContainer">
+                <div class="mainlogincontainer">
+                    <app-login></app-login>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showspaarkModal">
+        <div class="modalBody allCenter">
+            <div class="spaarkModal">
+                <div class="w-100 d-flex" *ngIf="DataSource">
+                    <!-- <div style="flex:14;"> 
+                    <div class="spaarksHead" [ngClass]="DataSource == true ? 'spaarksHead' : 'spaarksHead1'">    
+                    -->
+                    <div [ngClass]="DataSource ? 'spaarksHead1' : 'spaarksHead'">
+                        <span class="boldTxtAll mr-2 all-headings">{{DataSource.title |featureText}}</span>
+                        <span class="Spantxt" *ngIf="DataSource.title == 'New Comment'">
+                            {{DataSource.subtitle|sliceName}} {{"commented on Your Spaark." |featureText}}
+                        </span>
+                    </div>
+
+                    <div class="w-100 d-flex justify-content-end align-items-center p-2 " style="flex:1;">
+                        <span class="cross cursorpointer" (click)="closeModal()">
+                            <img src="../../../assets/cross.svg" alt="">
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="w-100" *ngIf="!DataSource">
+                    <div *ngIf="DataSource">
+                        <span class="boldTxtAll all-headings">{{DataSource.title}}</span>
+                        <span class="Spantxt" *ngIf="DataSource.title == 'New Comment'">
+                            {{DataSource.subtitle|sliceName}} {{"commented on Your Spaark." |featureText}}
+                        </span>
+                    </div>
+
+                    <div class="w-100 d-flex justify-content-end align-items-center p-2 ">
+                        <span class="cross cursorpointer" (click)="closeModal()">
+                            <img src="../../../assets/cross.svg" alt="">
+                        </span>
+                    </div>
+
+                </div>
+                <app-spaarkscard [openComments]='showCharacters' [showComments]="showPostComments" [post]="post"></app-spaarkscard>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div *ngIf="showLocationModal" class="modalBody allCenter">
+        <div style="width: 100vw; height: 100vh;" (click)="closeLocModal()" *ngIf='locationmodalfrom == "explore"'>
+
+        </div>
+        <div class="locationContainer" style="z-index: 700; position: absolute; min-width: 300px;">
+
+            <!-- <div *ngIf="((loctionStep=='default') && showGif)" class="gifDiv">
+                <span
+                    class="boldTxtAll">{{"Spaarks connects you to your local area wherever you go"|featureText}}</span>
+                <img class="gifStyle" src="../../../assets/mapgif.gif" alt="">
+                <span class="allBtns" (click)="goToLocationStep()">{{"OKAY"|featureText}}</span>
+            </div> -->
+
+            <div class="defaultStep " *ngIf="(loctionStep=='default' && showLocationAccess)">
+
+                <div class="d-flex">
+                    <span class="text-center p-2 boldTxtAll all-headings" style="flex: 3;">{{"Location Access"|featureText}}</span>
+                    <img (click)="closeLocModal()" *ngIf="showCross" class="p-3" src="../../../assets/cross.svg" alt="">
+                </div>
+
+
+                <div class="defaultlocationstepbody w-100">
+                    <div class="loginbody m-3 w-100 ">
+                        <div class="w-100 allCenter">
+                            <div class="listContainer qrparent p-2 cursorpointer" (click)="takeLocation()">
+                                <span class="listImageParent"> <img src="../../../assets/loc.svg" class="imgList"
+                                        alt=""> </span>
+                                <span class="qrtext">{{"Locate Me"|featureText}}</span>
+                            </div>
+                        </div>
+
+                        <div class="w-100 my-2">
+                            <p class="font-weight-bold m-0 text-center">{{"Or" |featureText}}</p>
+                        </div>
+
+                        <div class="w-100 allCenter">
+                            <div class="listContainer mobileparent p-2 cursorpointer"
+                                (click)="clickedcityLocationPick()">
+                                <span class="listImageParent"> <img src="../../../assets/city.svg" class="imgList"
+                                        alt=""> </span>
+                                <span class="mobiletext">{{"Choose City"|featureText}}</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="textbottomContainer">
+                        <div class="w-100 p-2 text-center">
+                            <!-- <small *ngIf="!showTermsText" class="text-muted">{{"By logging in you agree to our Terms & Policies."|featureText}}
+                            </small> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="locationContainer2" style="z-index: 700; position: absolute; min-width: 300px;">
+
+            <div class="locationCities" *ngIf="loctionStep=='step2'">
+                <div class="">
+                    <div class="selectCityHeader">
+
+                        <h4 class="p-2 text-center m-0 w-100 fontweight7 fontsize2 fontSource">
+                            {{"Select City"|featureText}}</h4>
+                        <span (click)="closeCitySelection()"
+                            style="margin-left: -32px;    margin-left: -32px;padding-top: 0.8rem;">
+                            <img src="assets/cross.svg" alt="" class="croossBtn pb-3">
+                        </span>
+                    </div>
+
+                    <div class="citiesContainer p-3">
+                        <div class="w-100 searchContainer allCenter">
+                            <div class=" p-2 max600 searchExtensionparent">
+
+                                <div class="searchBar mb-1 d-flex p-3 allCenter"
+                                    style="border: 1px solid #D7D7D7;border-color: #D7D7D7 !important;">
+
+                                    <img class="search-img mr-2" src="../../../assets/search.svg" alt="search">
+                                    <input type="text" placeholder="{{'Search Location'|featureText}}"
+                                        [(ngModel)]="searchVal" class="searchBar w-100" type="text"
+                                        [matAutocomplete]="auto" matInput (input)="changedSearch()">
+                                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="sampleFunc($event)">
+
+                                        <mat-option *ngFor="let city of filteredCities">
+                                            {{city.name |featureText}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="maincitiescontainer allCenter flexcolumn">
+                            <p
+                                class="popularCities text-left fontOpen fontweight4 fontsize3 text-muted pl-3 max600 m-0">
+                                {{"Popular Cities"|featureText}}
+                            </p>
+
+                            <div class="max600 citiesIterator text-center" #citiesiterator>
+
+                                <!-- city image -->
+                                <div class="cityImg">
+                                    <div (click)="clickedOnLocation(city,1)" *ngFor="let city of filteredCities"
+                                        class="cityIndividual p-2 cursorpointer">
+                                        <app-market-cat [fontweight]="'bold'" [cattxt]="city.name"
+                                            [catimg]="city.image">
+                                        </app-market-cat>
+                                    </div>
+                                </div>
+
+
+                                <div class="listCitiesIterator text-center" *ngIf="FrontEndList">
+                                    <div (click)="clickedOnLocation(cit,2)" *ngFor="let cit of CitiesList.cities "
+                                        class="cityList allCenter p-2">
+                                        <div class="cityListItem allCenter font-weight-bold cursorpointer">
+                                            {{cit.name |featureText}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="listCitiesIterator text-center"  *ngIf="filteredCitiesList&&filteredCitiesList.results">
+                                    <div *ngIf="!FrontEndList">
+                                        <div (click)="clickedOnLocation(cit,3)"
+                                            *ngFor="let cit of filteredCitiesList.results |slice:0:25"
+                                            class="cityList allCenter p-2">
+                                            <div class="cityListItem allCenter font-weight-bold cursorpointer">
+                                                {{cit.city |featureText}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="locationContainer3" style="z-index: 700; position: absolute; min-width: 300px;">
+
+            <div class="locationPicker " *ngIf="loctionStep=='step3'">
+                <div class="d-flex">
+                    <img style="margin-left: 20px;" (click)="closeSelectLocation()" src="../../../assets/back1.svg">
+                    <h4 class="p-2 text-center w-100">{{cityName|featureText}}</h4>
+                </div>
+
+                <div class="allCenter flexdirectioncolumn">
+                    <div class="mapResider">
+                        <div class="map w-100 h-100">
+                            <!-- <agm-map #agmMap [latitude]="lat" [longitude]="long" [zoom]="initialZoom"
+                                    [usePanning]="true" (centerChange)="centerChanged($event)"
+                                    (mapReady)="mapReady($event)"></agm-map> -->
+
+
+                            <!-- leaflet maps -->
+                            <div id="mapB" style="height: 100%;"> </div>
+
+                            <!-- <div class="map-center-overlay">
+                                    <img src="../../../assets/markericon.png">
+                                </div> -->
+
+                        </div>
+
+                    </div>
+                    <div
+                        class=" textContainerCard align-items-center bg-white w-100 d-flex justify-content-between px-2">
+                        <p class="bigText p-2 m-0">
+                            {{"Please drag the pin to your current location"|featureText}}</p>
+
+                        <button class="blueBtn" (click)="clickedEndLocationPick()">{{"Continue"|featureText}} <span
+                                class="pl-3"> <img src="../../../assets/back_white.svg" alt=""> </span> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div *ngIf="showGreetModal">
+    <div class="modalBody allCenter">
+        <div class="GreetModal">
+
+            <div class="paddingDiv">
+                <div style="display: flex;">
+                    <div class="w-50">
+                        <p class="p-2 boldTxtAll all-headings">{{"Chat request" |featureText}}</p>
+                    </div>
+
+
+                    <div class="w-50 d-flex justify-content-end align-items-center " style="margin: 15px;
+                    margin-top: 1px;">
+                        <span class=" cursorpointer " (click)="closeModal()">
+                            <img class="cross" src="../../../assets/cross.svg" alt="">
+                        </span>
+                    </div>
+                </div>
+
+                <div class="personcard p-2" style="overflow: hidden!important;">
+                    <div class="personheader">
+                        <div class="d-flex align-items-center" *ngIf="sendReqData">
+                            <span *ngIf="sendReqData.uservisibility">
+                                <img *ngIf="showPic=='true'" [src]="mypic" class="personimage" alt="">
+                                <img *ngIf="showPic=='false'" src="../../../assets/hiddenProfile.svg"
+                                    class="personimage" alt="">
+                            </span>
+                            <div *ngIf="sendReqData.uservisibility" class="w-100 text-left pl-2">
+                                <p *ngIf="showName =='true'" class="w-100 m-0 nameStyle">
+                                    {{myname}}</p>
+                                <p *ngIf="showName =='false'" class="w-100 m-0 font-weight-bold">Anonymous</p>
+                                <p class="w-100 m-0 text-muted">{{todayDate|date}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="personbody">
+                        <textarea [value]="content" maxlength="250" (input)="updateInput($event)"
+                            class="blueTxt contentAll" placeholder="{{'Write your message.'|featureText}}"></textarea>
+                    </div>
+                    <div class="text-muted smallest text-left">{{count}}{{'characters remaining' |featureText}}</div>
+
+
+                    <!-- Specially For Greet -->
+                    <div *ngIf="imageList.length<1" class="mediaspan mt-2 mediaimagee cursorpointer text-center"
+                        (click)="addImages()">
+                        <img src="../../../assets/imageicon.svg" class="mediaicon" alt="">
+                        <span class="addImg">{{"Add an image" |featureText}}</span>
+                    </div>
+                    <div>
+                        <input type="file" id="myFile" #myFile #filePicker (change)="onImagePicked($event)"
+                            accept="image/*" />
+                    </div>
+
+                    <div class="main">
+                        <div class="mainImg" *ngFor="let img of imageList; let idx = index">
+
+                            <!-- for images -->
+                            <div class="uploadImg " *ngIf="img.type == 'img'">
+                                <img [src]="img.data" *ngIf="img != '' && img" class="userImg1" />
+                                <a (click)="deleteImg(idx)"><img src="../../../assets/delete.svg"
+                                        *ngIf="imagePreview != '' && img" class="uploadCross"
+                                        style="cursor: pointer;" />
+                                </a>
+                            </div>
+
+                            <!-- for videos -->
+                            <div class="uploadImg" *ngIf="img.type == 'vid'">
+                                <video controls class="userImg1">
+                                    <source #vid [src]="img.data" type="video/mp4" class="uploadCross" />
+                                </video>
+                                <a (click)="deleteImg(idx)"> <img src="../../../assets/delete.svg" class="uploadCross"
+                                        style="cursor: pointer;" /></a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Specially For Greet -->
+
+                </div>
+
+                <h6 class="p-2 boldTxtAll all-headings">{{"Connection permissons" |featureText}}</h6>
+                <div class="itemStyle m-3">
+                    <span *ngIf="sendReqData.uservisibility">
+                        <img src="../../../assets/name.svg" class="personimage" alt="">
+                    </span>
+                    <span class="w-100 m-0 txtStyle boldTxtAll2">{{"Show my name" |featureText}}</span>
+                    <span style="flex: 3;" class="boldTxtAll3">
+                        <mat-radio-group aria-label="Select an option" class="" [(ngModel)]="showName">
+                            <mat-radio-button value="true">{{"Yes" |featureText}}</mat-radio-button>
+                            <mat-radio-button value="false">{{"No" |featureText}}</mat-radio-button>
+                        </mat-radio-group>
+                    </span>
+                </div>
+
+                <div class="itemStyle m-3">
+                    <span *ngIf="sendReqData.uservisibility">
+                        <img [src]="mypic" class="personimage" alt="">
+                    </span>
+                    <span class="w-100 m-0 txtStyle boldTxtAll2">{{"Show profile pic" |featureText}}</span>
+                    <span style="flex: 3;" class="boldTxtAll3">
+                        <mat-radio-group aria-label="Select an option" class="" [(ngModel)]="showPic">
+                            <mat-radio-button value="true">{{"Yes" |featureText}}</mat-radio-button>
+                            <mat-radio-button value="false">{{"No" |featureText}}</mat-radio-button>
+                        </mat-radio-group>
+                    </span>
+                </div>
+
+                <p class="boldtextrequest">
+                    {{"The way of connection you choose now, will always remain same with this user." |featureText}}
+                </p>
+
+                <button class="text-center pl-2 sendBtn" [disabled]="disableBtn"  (click)="submitForm()">{{"Send request" |featureText}}</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showRatingsModal">
+    <div class="modalBody allCenter" (click)="closeModal()">
+        <div class="w-100">
+            <!-- <div class="w-100 d-flex justify-content-end align-items-center p-2 ">
+                <span class="cross cursorpointer" (click)="closeModal()">
+                    <img src="../../../assets/cross.svg" alt="">
+                </span>
+            </div> -->
+        </div>
+        <div class="main-div rating_div" *ngIf="ratingData" (click)="propeve($event)">
+            <mat-card class="matCard">
+                <div class="allCenter mb-4 mt-1 header-text w-100">
+                    <span class="my-2 boldTxtAll all-headings">{{"Rate service provider/seller" |featureText}}</span>
+                </div>
+
+                <div class="text-center">
+                    <img class="img_style" style="border-radius:50%" [src]="ratingData[0].uid.profilePic" alt="">
+                </div>
+
+                <div class="name-role allCenter">
+                    <h2 class="mt-2">{{ratingData[0].uid.name}}</h2>
+                    <app-spaarkspill class="user-role py-2 mb-2 ml-2  d-flex justify-content-center "
+                        [inputText]="ratingData[0].subCategory" [inputColor]="'crimson'">
+                    </app-spaarkspill>
+                </div>
+
+                <div class="stars-div">
+                    <star-rating [starType]="'svg'" (starClickChange)="onClick($event)"
+                        (ratingChange)="onRatingChange($event)" [rating]="ratingValue"
+                        (onRatingChange)="ratingValue = $event.rating" staticColor="ok" size="large" speed="immediately"
+                        [showHalfStars]="true" [hoverEnabled]="true">
+                    </star-rating>
+                </div>
+
+                <div class="px-2">
+                    <!-- <textarea class="p-2" matInput placeholder="Write about your service experience"></textarea> -->
+                    <div style="background-color:#f2f3f7; border-radius: 13px;" class="p-2">
+                        <textarea class=" txtArea" [value]="content" (input)="updateInput($event)"
+                            placeholder="{{'Write about your service experience'|featureText}}"></textarea>
+                    </div>
+
+                </div>
+                <div class="mt-2 mb-2  px-2">
+                    <div>
+                        <button style="width: 100%;" class="py-2 " mat-button color="primary"
+                            (click)="onRatingSubmit(ratingData[0].uid._id,ratingData[0].id,ratingData[0].ratingId )">{{"Submit"|featureText}}</button>
+                    </div>
+
+                    <div>
+                        <button (click)="closeModal()" class="ignorebtn my-2">{{"Later" |featureText}}</button>
+                        <button *ngIf="ratingData[0].count>3" (click)="ignoreFun()"
+                            class="ignorebtn my-2">{{"Ignore" |featureText}}</button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="showsortingmodal" class="modalBody allCenter">
+    <div class="modalBody allCenter">
+        <div class="sortClass">
+            <div class="closing" style="cursor:pointer" (click)="closing()">
+                <h3>x</h3>
+            </div>
+            <div style="display: flex;">
+                <div class="w-50">
+                    <p class="m-0 p-0 boldTxtAll">{{"Sort Spaarks by" |featureText}}</p>
+                </div>
+            </div>
+            <div class="w-100">
+                <mat-slider class="example-margin" id="range" [(ngModel)]="localRange" (input)="onInputChange($event)"
+                    [max]="5" [min]="1" [step]="1">
+                </mat-slider>
+                <div class="d-flex justify-content-between">
+                    <span>1km</span>
+                    <span>2km</span>
+                    <span>3km</span>
+                    <span>4km</span>
+                    <span>5km</span>
+                </div>
+            </div>
+
+
+            <div class="sort_style">
+                <div>
+                    <p class="m-0 p-0 boldTxtAll  all-headings">{{"Distance" |featureText}}</p>
+                    <p class="mx-0 my-1 p-0">{{"Spaarks are sorted by distance from you" |featureText}}
+                    </p>
+                </div>
+                <span>
+                    <!-- <input class="form-check-input" value="distance" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked
+                        (change)="DetectType($event,'distance')"> -->
+                    <mat-radio-button value="distance" [checked]="Type=='Distance'"
+                        (change)="DetectType($event,'distance')" >
+
+                    </mat-radio-button>
+                    <!-- <input (change)="distanceChange($event,'distance')" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
+                </span>
+            </div>
+            <div class="sort_style">
+                <div>
+                    <p class="boldTxtAll m-0 p-0 all-headings">{{"Time" |featureText}}</p>
+                    <p class="p-0 mx-0 my-1">{{"Spaarks are sorted by time of posting." |featureText}}</p>
+                </div>
+                <span>
+                    <!-- <input class="form-check-input" type="radio" (change)="DetectType($event,'time')"
+                        name="flexRadioDefault" id="flexRadioDefault2"> -->
+                    <mat-radio-button [checked]="Type=='Time'" value="time" (change)="DetectType($event,'time')">
+
+                    </mat-radio-button>
+                    <!-- <input (change)="timeChange($event,'time')" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" > -->
+                </span>
+            </div>
+
+
+
+            <div (click)="sortSpaark()" class="btnBck">
+                <span class="allBtns" style="background-color: unset;">{{"Sort" |featureText}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="enlargeImage && data" class="modalBody allCenter imgbg" (keydown.ArrowLeft)="move(-1)"
+    (keydown.ArrowRight)="move(1)" (click)="onCloseImageDiv()">
+
+    <button class="arrowBtn" *ngIf="data.length>1" (click)="move(-1,$event)" (click)="sendEvent($event)"
+        [ngStyle]="{'visibility':(data.index>0)?'visible':'hidden'}">
+        <img class="bbb" style="transform: rotate(180deg);" src="../../assets/chat/Frame.svg" alt="" />
+    </button>
+    <div class="allCenter w-100 h-100">
+        <div *ngIf="onlyImages" class=" w-100 h-100">
+            <div *ngIf="onlyImages">
+                <div>
+                    <div class="w-100 d-flex justify-content-end">
+                        <span class="cross cursorpointer">
+                            <img src="../../../assets/cross.svg" alt="" class="crossimg">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <img class="image" src="{{ data[data.index] }}" alt="" />
+        </div>
+        <div *ngIf="!onlyImages" class=" allCenter w-100 h-100">
+            <div *ngIf="data.index<data.length-1" class="allCenter w-100 h-100">
+                <img class="image" src="{{ data[data.index] }}" alt="" />
+            </div>
+            <div *ngIf="data.index===data.length-1" class="allCenter w-100 h-100">
+
+                <video id="exploreVideo" [src]="data[data.index]" controls class="videoTag" inViewport
+                    [inViewportOptions]="{ threshold: [0] }" #vidd>
+                </video>
+            </div>
+        </div>
+    </div>
+    <button class="arrowBtn" *ngIf="data.length>1" (click)="move(1)" (click)="sendEvent($event)" #btnevent
+        [ngStyle]="{'visibility':(data.length-1>data.index)?'visible':'hidden'}">
+        <img class="bbb" src="../../assets/chat/Frame.svg" alt="" />
+    </button>
+
+
+
+</div>
+
+
+<div *ngIf="enlargeSingleImage" class="modalBody allCenter imgbg" (click)="onCloseSingleImageDiv()">
+    <div>
+        <div class="w-100 d-flex justify-content-end">
+            <span class="cross cursorpointer" (click)="closeModal()">
+                <img src="../../../assets/cross.svg" alt="" class="crossimg">
+            </span>
+        </div>
+    </div>
+    <div class="allCenter w-100 h-100">
+        <img class="singleImage" src="{{ singleImage }}" alt="" />
+
+    </div>
+</div>
+
+<!--  -->
+
+<div *ngIf="showSellersamplemsg" class="modalBody allCenter">
+
+    <div class="mainlogin">
+        <div class="loginheaderparent pl-3 pr-3 pt-3 text-center">
+            <span class="loginheader font-weight-bold pb-3"> {{"Login to Spaarks"|featureText}}</span>
+        </div>
+        <div class="w-100 my-2">
+            <p class="m-0 px-2" style="display:flex ;">
+                <small class="text-muted">Custom message</small>
+            </p>
+        </div>
+
+
+        <div class="message-div">
+            <div class="w-100 my-2">
+                <p class="m-0 px-2" style="display:flex ;">
+                    <small class="text-muted"> Hi there checkout my seller reviews and rating at spaarks
+                        I offer
+                        different services in my neighbourhood
+
+                        Take sometime to checkout my profile at Spaarks
+
+                        https://seller.spaarksweb.com/SPS001
+
+                        <b> For every Seller/Service Provider and every Buyer. Spaarks app.
+                            Download Spaarks app</b>
+                        - https://cutt.ly/Spaarks-app</small>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="loginbody mt-2">
+            <div class="w-100 allCenter">
+                <div class="listContainer qrparent p-2 cursorpointer">
+                    <span class="listImageParent"> <img src="../../../assets/share.svg" class="imgList" alt="">
+                    </span>
+                    <span class="qrtext">Copy Profile Url</span>
+                </div>
+            </div>
+
+            <div class="w-100 text-muted text-center p-2">
+                <span class="logintextbottom ">{{'By logging in you agree to our Terms & Policies.'|featureText}}</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div *ngIf="searchModal" class="modalBody backgroundsearch allCenter">
+    <div class="searchmain">
+        <div class=" p-2  searchExtensionparent">
+
+            <!-- looking for -->
+            <div class="searchBar mb-3 d-flex ">
+                <img class="searchicon" src="../../../assets/search.svg" alt="search">
+                <input (input)="inputChanged()" [(ngModel)]="content" class="searchBar w-100" type="text"
+                    placeholder="{{'Looking for something' |featureText}}">
+                <h4 (click)="clickedClose()" class="searchicon allCenter">X</h4>
+            </div>
+            <div class="pillsDiv" *ngIf="showPills">
+                <div class="allCenter cardPill cursorpointer hoverDiv" (click)="clickJob()"
+                    style="border-color: rgb(47, 128, 237);">
+                    <span>{{"Job" |featureText}}</span>
+                </div>
+                <div class="allCenter cardPill cursorpointer hoverDiv" (click)="clickWork()"
+                    style="margin-left: 6px ;border-color: rgb(47, 128, 237);">
+                    <span>{{"Want work" |featureText}}</span>
+                </div>
+            </div>
+
+            <!-- showing suggestions -->
+            <!-- <div *ngIf="listofsearches.length>0">
+                <div class="searchDiv">
+                    <span class="textStyle">Searching in Categories</span>
+                  
+                    <div>
+                        <div *ngFor="let fun of listofsearches" class="search-item p-2">
+                            <div (click)="selectedClick(fun)"
+                                class="w-100 h-100 d-flex align-items-center justify-content-between">
+                                <p class="m-0"> {{fun.preview}}
+                                    <small><b>{{fun.category}}</b></small> </p>
+                                <span>
+                                    <img src="../../../assets/arrowsearch.svg" class="arrowSearch" alt="">
+                                </span>
+                            </div>
+                        </div>
+
+                  
+                    </div>
+                    <span class="textStyle">Searching in Spaarks around</span>
+                    <div class="">
+                        <div *ngFor="let fun of listofPosts" class="search-item p-2">
+                            <div class="w-100 h-100 align-items-center ">
+                                <div class="d-flex">
+                                    <span class="m-0 w-100 d-block"> {{fun.uservisibility.name}}</span>
+                                    <span>
+                                        {{fun.createdAt |date}}
+
+                                    </span>
+                                </div>
+                                <span>{{fun.content| slice:0:30}}</span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="w-100 searchCat">
+
+                <mat-tab-group class="searchTabs" [disablePagination]=true>
+                    <mat-tab [label]="'Categories' |featureText" style="flex: 1;">
+                        <div *ngIf="listofsearches.length==0" class="m-2">
+                            {{"No results found" |featureText}}...
+                        </div>
+                        <div (click)="selectedClick(fun)" *ngFor="let fun of listofsearches|slice :0:4"
+                            class="search-item hoverDiv cursorpointer p-2">
+                            <div class="w-100 h-100 d-flex align-items-center justify-content-between">
+                                <p class="m-0"> {{fun.preview |featureText}}
+                                    <small *ngIf="fun.isTag && fun.preview!=fun.subCategoryFinal">
+                                        <b>in {{fun.subCategoryFinal |featureText}}</b>
+                                    </small>
+
+                                    <small *ngIf="!fun.isTag">
+                                        <b *ngIf="fun.preview==fun.subCategoryFinal"> in
+                                            {{fun.category |featureText}}</b></small>
+
+                                    <small *ngIf="!fun.isTag">
+                                        <b *ngIf="fun.preview!=fun.subCategoryFinal"> in
+                                            {{fun.subCategoryFinal |featureText}} ,
+                                            {{fun.category |featureText}}</b></small>
+                                </p>
+                                <span>
+                                    <img src="../../../assets/arrowsearch.svg" class="arrowSearch" alt=""> </span>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab [label]="'Spaarks' |featureText" style="flex: 1;">
+                        <div *ngIf="listofPosts.length==0" class="m-2">
+                            {{"No results found" |featureText}}...
+                        </div>
+                        <div *ngFor="let fun of listofPosts|slice :0:4" class="search-item hoverDiv p-2">
+
+                            <div (click)="clickedPostSearch(fun)" class="w-100 h-100 align-items-center cursorpointer">
+                                <div class="d-flex">
+                                    <span class="m-0 w-100 d-block text-muted" style="flex: 1;">
+
+                                        <b>{{fun.uservisibility.name|sliceName}}</b></span>
+                                    <span style="flex: 1;text-align: end;" class="text-muted">
+                                        {{fun.createdAt |date}}
+                                    </span>
+                                </div>
+                                <span class="">{{fun.content|contentHilight: content}}</span>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab [label]="'Profiles' |featureText" style="flex: 1;" style="overflow: auto;">
+                        <div *ngIf="listofSellers.length==0" class="m-2">
+                            {{"No results found" |featureText}}...
+                        </div>
+
+                        <div *ngFor="let fun of listofSellers" class="search-item hoverDiv cursorpointer p-2">
+                            <div (click)="openProfile((fun.profilePic)?fun._id:fun.userId._id)"
+                                class="w-100 h-100 d-flex align-items-center justify-content-start flex-reverse">
+                                <div class="mr-2">
+                                    <img class="sellerPic"
+                                        src="{{(fun.profilePic)?fun.profilePic:fun.userId.profilePic}}">
+                                </div>
+                                <div>
+                                    <span>{{(fun.name)?fun.name:fun.userId.name}}</span><br />
+
+                                    <span *ngIf="fun.subCategory"
+                                        class="servicesOfferedText">{{fun.subCategory |featureText}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="showRequestContainerModal">
+    <div class="modalBody allCenter">
+        <div class="GreetModal">
+            <div class="w-100">
+                <div class="w-100 d-flex justify-content-end align-items-center p-2 ">
+                    <span class="cross cursorpointer" (click)="closeModal()">
+                        <img src="../../../assets/cross.svg" alt="">
+                    </span>
+                </div>
+            </div>
+            <div class="paddingDiv">
+                <h6 class="p-2 boldTxtAll text-muted chatTextTop">{{"Chat request details" |featureText}}</h6>
+                <!-- <div class="personcard p-2">
+                        <div class="personheader">
+                            <div class="d-flex align-items-center">
+                                <span>
+                                    <img *ngIf="showPic=='show'" src="../../../assets/fubuki.webp" class="personimage"
+                                        alt="">
+                                    <img *ngIf="showPic=='hide'" src="../../../assets/profile.svg" class="personimage"
+                                        alt="">
+                                </span>
+                                <div class="w-100 text-left pl-2">
+                                    <p *ngIf="showName =='show'" class="w-100 m-0 font-weight-bold">Fubuki uchiha</p>
+                                    <p *ngIf="showName =='hide'" class="w-100 m-0 font-weight-bold">Annonymus</p>
+                                    <p class="w-100 m-0 text-muted">Mar 24</p>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="personbody">
+                            <textarea [value]="content" (input)="updateInput($event)"
+                                placeholder="Write the details you want to post here. The call that you enable will be spaarks VOIP calland your number will not be revealed."></textarea>
+                        </div>
+                    </div> -->
+                <!-- <app-spaarkscard [post]="requestData"></app-spaarkscard> -->
+                <!-- <app-requests [requestData]="requestData" [showfooter]="false"></app-requests> -->
+                <div class="allCenter" style="flex-direction: column;">
+
+                    <img class="profileImage" src={{requestData.uservisibility.profilePic}} style="margin-top:1rem;">
+                    <span style="margin-top:1rem;">
+                        {{requestData.uservisibility.name}}
+                    </span>
+
+                    <div class="allCenter">
+                        <span class="text-muted"
+                            style="text-align: center;">{{requestData.content |slice:0:20}}...</span>
+                    </div>
+                    <div class="imgDiv" *ngIf="requestData.photo.length>0 && requestData.photo[0]">
+
+                        <img style="width: 350px;height: 265px" src={{requestData.photo[0]}}>
+                    </div>
+                </div>
+                <div class="w-100" *ngIf="!requestIsMine">
+
+                    <button class="text-center pl-2 sendBtn" [disabled]="disbleBtn1"
+                        (click)="confirmRequest()">{{"ACCEPT FRIEND REQUEST" |featureText}}</button>
+                    <button class="text-center pl-2 sendBtn2"
+                        (click)="ignoreRequest()">{{"IGNORE FRIEND REQUEST" |featureText}}</button>
+                </div>
+
+                <div class="w-100" *ngIf="requestIsMine">
+                    <button class="text-center pl-2 sendBtn" [disabled]="disbleBtn2"
+                        (click)="deleteRequest()">{{"DELETE FRIEND REQUEST" |featureText}}</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div *ngIf="showIgnoreRequest">
+    <div class="modalBody allCenter">
+        <div class="GreetModal">
+            <div>
+                <div class="paddingDiv1">
+                    <h6 class="p-2 boldTxtAll text-muted  chatTextTop1">{{"Chat request details" |featureText}}</h6>
+                    <img src="../../../assets/cross.svg" (click)="closeModal2()">
+
+                </div>
+
+
+            </div>
+            <!-- <div class="allCenter">
+                <p class="ignore-info">
+                    {{"You will not be able to see this request once" |featureText}}<br>
+                    {{" you ignore it." |featureText}}<br><br>
+
+                    {{"The other user will not be able to know that" |featureText}}<br>
+                    {{"you have ignored." |featureText}}<br>
+                </p>
+            </div> -->
+            <div class="allCenter" style="flex-direction: column;">
+                <img src={{requestData.uservisibility.profilePic}} style="margin-top:1rem;">
+                <span style="margin-top:1rem;">
+                    {{requestData.uservisibility.name}}
+                </span>
+
+                <div class="allCenter">
+                    <span class="text-muted"
+                        style="text-align: center;">{{"Based upon your response, we will approach the user to give you rating and review." |featureText}}</span>
+                </div>
+                <div class="imgDiv" *ngIf="requestData.photo && requestData.photo[0]">
+                    <img style="width: 350px;height: 265px;" src={{requestData.photo}}>
+                </div>
+            </div>
+
+
+            <div>
+                <button class="text-center pl-2 sendBtn" style="border: none !important;"
+                    (click)="confirmignoreRequest()">{{"DELETE FRIEND REQUEST" |featureText}}</button>
+
+                <!-- <button class="text-center pl-2 sendBtn2"
+                    (click)="confirmfriendRequest()">{{"ACCEPT FRIEND REQUEST" |featureText}}</button> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="showChangeName" (click)="clickedOutside('nickname')" class="modalBody allCenter">
+    <div class="profilecomplete" (click)="clickOnProfile($event)">
+        <div class="loginheaderparent pl-3 pr-3 pt-3 text-center ">
+            <span class="loginheader font-weight-bold pb-3">{{"Add Nickname" |featureText}}</span>
+        </div>
+
+
+        <div class="profilecompleteBody allCenter">
+            <input [value]="newName" (input)="updateName($event)" name="nameofuser" type="text" maxlength="60"
+                class="mobilenumberinput px-4 nameinput" placeholder="{{'Enter your name'|featureText}}">
+        </div>
+
+        <p class="text-muted text-center">
+            {{"The name that you change here will be the users name from now on, You can change it anytime though" |featureText}}
+        </p>
+
+        <div class="w-100 allCenter">
+            <div class="finalsubmitbtncontainer ">
+                <span (click)="nameConfirm(changeNamePayload.jid)"
+                    class="finalsubmitbtn w-25 p-3 text-center cursorpointer">{{"Submit"|featureText}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div *ngIf="showreviews&&reviews.length>0">
+    <div class="modalBody allCenter" (click)="closeReviews()">
+
+        <div class="reviewsCard" (click)="clickOnProfile($event)">
+            <div class="topReviews" style="z-index: 1;">
+                <span class="boldTxtAll2">{{"Reviews"|featureText}}</span>
+
+                <img src="../../../assets/cross.svg" (click)="closeReviews()">
+            </div>
+            <div class="reviewCards">
+                <div *ngFor="let review of reviews">
+                    <app-ratings [rating]="review"></app-ratings>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+<div *ngIf="showConfirmModal">
+    <div class="modalBody allCenter">
+        <div class="confirmMod">
+            <div class="boldTxtAll " style="padding: 25px;">
+                <span> {{modalMsg |featureText}}</span>
+            </div>
+
+            <div class="optionSelect ">
+                <div class="allCenter yesBtn" (click)="clickedYesNO('YES')">
+                    <span class>{{"Yes" |featureText}}</span>
+                </div>
+                <div class="allCenter"
+                    [ngClass]="{'noBtn':(fromWhere!='Block' && fromWhere!='Report'),'yesBtn':(fromWhere=='Block'||fromWhere=='Report')}"
+                    (click)="clickedYesNO('NO')">
+                    <span>{{"No" |featureText}}</span>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="shareModal">
+    <div class="modalBody allCenter" (click)="closeModal()">
+        <div class="socialShareModal allCenter" (click)="prop($event)">
+            <div class="card_three">
+
+                <div class="d-flex">
+
+                    <h1>
+                        {{"Share Spaark" |featureText}}
+                    </h1>
+                    <div class="" (click)="closeModal()" class="cursorpointer">
+                        <img src="../../../assets/cross.svg">
+                    </div>
+
+
+                </div>
+
+
+                <div class="social_icons">
+                    <div class="icon">
+                        <div class="icon_svg facebook_icon" (click)="clickedFacebook()">
+                            <img src="../../../assets/FACEBOOK12.SVG">
+                        </div>
+
+                        <span>Facebook</span>
+                    </div>
+                    <div class="icon">
+                        <div class="icon_svg twitter_icon" (click)="clickedTwitter()">
+                            <img src="../../../assets/twitter12.svg">
+                        </div>
+
+                        <span>Twitter</span>
+                    </div>
+                    <div class="icon">
+                        <div class="icon_svg github_icon" (click)="clickedLinkedIn()">
+
+                            <img src="../../../assets/gmail12.png" style="    height: 25px;">
+
+                        </div>
+
+                        <span>Gmail</span>
+                    </div>
+                </div>
+
+                <div class="link_box">
+                    <h3>{{shareURL|slice:0:28}}</h3>
+                    <div class="copy_btn">
+
+                        <img src="../../../assets/copy12.svg" (click)="clickedCopyBtn()">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="" *ngIf="showBothCall">
+    <div class="modalBody allCenter" (click)="closeCall($event)">
+        <div class="callModal1 callres1" (click)="prop($event)">
+            <div class="callModalTop">
+                <span class="boldTxtAll">{{"Make a call" |featureText}}</span>
+            </div>
+            <div class="callModalMiddle">
+                <div class="callModalMiddle1">
+                    <div class="allCenter">
+                        <img src="../../../assets/Card/blueCall1.svg">
+                        <div class="callModalTextDiv">
+                            <span class="callModalText">{{"Spaarks call" |featureText}}</span>
+                            <span>{{"Only available on mobile app" |featureText}}</span>
+                        </div>
+                    </div>
+
+                    <img src="../../../assets/Card/grayTick.svg">
+                </div>
+                <div class="callModalMiddle1" style="border:none;">
+                    <div class="allCenter">
+                        <img src="../../../assets/Card/greenCall.svg">
+                        <div class="callModalTextDiv">
+                            <span class="callModalText">{{"Normal call" |featureText}}<span class="text-muted" *ngIf="showMobileNumber">{{"("+this.phoneNumber+")"}}</span></span>
+                            <span>{{"Make call from your personal number." |featureText}}</span>
+                        </div>
+                    </div>
+
+                    <img src="../../../assets/Card/blueTick.svg">
+                </div>
+                <div class="callModalBottom allCenter cursorpointer">
+                    <a *ngIf="mat" class="callBtn" href="tel:{{phoneNumber}}">{{"MAKE A CALL" |featureText}}</a>
+                    <span *ngIf="!mat" class="callBtn" (click)="onWeb()">{{"MAKE A CALL" |featureText}} </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="" *ngIf="onlyPhoneCall">
+    <div class="modalBody allCenter" (click)="closeCall($event)">
+        <div class="callModal1 callres" style="height: 360px;" (click)="prop($event)">
+            <div class="callModalTop">
+                <span class="boldTxtAll">{{"Make a call" |featureText}}</span>
+            </div>
+            <div class="callModalMiddle">
+                <div class="callModalMiddle1">
+                    <div class="allCenter">
+                        <img src="../../../assets/Card/grayCall1.svg">
+                        <div class="callModalTextDiv">
+                            <span
+                                class="callModalText">{{"Owner of this spaark disabled spaarks call." |featureText}}</span>
+                            <span>{{"Note : You can also disable spaarks call while posting a spaark" |featureText}}</span>
+                        </div>
+                    </div>
+
+                    <img src="../../../assets/Card/grayTick.svg">
+                </div>
+                <div class="callModalMiddle1" style="border:none;">
+                    <div class="allCenter">
+                        <img src="../../../assets/Card/greenCall.svg">
+                        <div class="callModalTextDiv">
+                            <span class="callModalText">{{"Normal Call" |featureText}}<span class="text-muted" *ngIf="showMobileNumber">{{"("+this.phoneNumber+")"}}</span></span>
+                            <span>{{"Make call from your personal number." |featureText}}</span>
+                        </div>
+                    </div>
+
+                    <img src="../../../assets/Card/blueTick.svg">
+                </div>
+                <div class="callModalBottom allCenter cursorpointer">
+                    <a *ngIf="mat" class="callBtn" href="tel:{{phoneNumber}}">{{"MAKE A CALL" |featureText}}</a>
+                    <span *ngIf="!mat" class="callBtn" (click)="onWeb()">{{"MAKE A CALL" |featureText}} </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="" *ngIf="noBothCall">
+    <div class="modalBody allCenter" (click)="closeCall($event)">
+        <div class="callModal1" style="height: 380px;" (click)="prop($event)">
+            <div class="callModalTop" style="padding: 10px;">
+                <span class="boldTxtAll">{{"Make a call"|featureText}}</span>
+            </div>
+            <div class="callModalMiddle">
+                <div class="callModalMiddle1">
+                    <div class="allCenter">
+                        <img src="../../../assets/Card/grayCall1.svg">
+                        <div class="callModalTextDiv">
+                            <span
+                                class="callModalText">{{"Owner of this Spaark disabled Spaarks call." |featureText}}</span>
+                            <span>{{"Note : You can also disable Spaarks call while posting a Spaark" |featureText}}</span>
+                        </div>
+                    </div>
+
+                    <img src="../../../assets/Card/grayTick.svg">
+                </div>
+                <div class="callModalMiddle1" style="border:none;">
+                    <div class="allCenter">
+                        <img src="../../../assets/Card/grayCall.svg">
+                        <div class="callModalTextDiv">
+                            <span
+                                class="callModalText">{{"Owner of this Spaark disabled Normal call." |featureText}}</span>
+                            <span>{{"Note : You can also disable Spaarks call while posting a Spaark" |featureText}}</span>
+                        </div>
+                    </div>
+
+                    <img src="../../../assets/Card/grayTick.svg">
+                </div>
+                <div class="callModalBottom allCenter">
+                    <span class="callBtn" (click)="closeCall($event)">{{"Close" |featureText}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="" *ngIf="onlySpaarksCall">
+    <div class="modalBody allCenter" (click)="closeCall($event)">
+        <div class="callModal1 callres1" (click)="prop($event)" style="height: 360px;">
+            <div class="callModalTop">
+                <span class="boldTxtAll">{{"Make a Call" |featureText}}</span>
+            </div>
+            <div class="callModalMiddle">
+                <div class="callModalMiddle1">
+                    <div class="allCenter">
+                        <img src="../../../assets/Card/blueCall1.svg">
+                        <div class="callModalTextDiv">
+                            <span class="callModalText">{{"Spaarks Call" |featureText}}</span>
+                            <span>Only available on Mobile App</span>
+                        </div>
+                    </div>
+
+                    <img src="../../../assets/Card/grayTick.svg">
+                </div>
+                <div class="callModalMiddle1" style="border:none;">
+                    <div class="allCenter">
+                        <img src="../../../assets/Card/grayCall.svg">
+                        <div class="callModalTextDiv">
+                            <span
+                                class="callModalText">{{"Owner of this Spaark disabled Normal Call." |featureText}}</span>
+                            <span>{{"Note : You can also disable Spaarks call while posting a Spaark" |featureText}}</span>
+                        </div>
+                    </div>
+
+                    <img src="../../../assets/Card/grayTick.svg">
+                </div>
+                <div class="callModalBottom allCenter">
+                    <span class="callBtn" (click)="closeCall($event)">{{"Close"}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div *ngIf="showAlertModal">
+    <div class="modalBody allCenter">
+        <div class="confirmMod">
+            <div class="boldTxtAll " style="padding: 25px;">
+                <span> {{modalAlert |
+                    featureText}}</span>
+            </div>
+
+            <div class="optionSelect ">
+
+                <div class="allCenter okBtn" (click)="clickedOk()">
+                    <span>{{"OK" |featureText}}</span>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="showNameModal" class="modalBody allCenter">
+    <div class=" profilecomplete">
+        <div class="loginheaderparent pl-3 pr-3 pt-3 text-center ">
+            <span class="loginheader font-weight-bold pb-3"> {{"One last step" |featureText}}..</span>
+        </div>
+
+
+        <div class="profilecompleteBody allCenter">
+            <input maxlength="20" name="nameofuser" (ngModelChange)="nameChanged($event)" (keypress)="key($event)"
+                [(ngModel)]="userName" type="text" class="mobilenumberinput px-4 nameinput"
+                placeholder="{{'Name/Business Name' |featureText}}">
+            <!-- <div class="selectboxcontainer mt-4 w-100 allCenter">
+        <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Select your gender</mat-label>
+            <mat-select (selectionChange)="changedGender($event)"  >
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+              <mat-option value="Other">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+       </div> -->
+        </div>
+        <div class="w-100 allCenter">
+            <div class="finalsubmitbtncontainer ">
+
+                <span (click)="submitAccountDetails()"
+                    class="finalsubmitbtn w-25 p-2 text-center cursorpointer">{{"SUBMIT" |featureText}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="showWorkStatus">
+    <div class="modalBody allCenter">
+        <div class="WorkStatusModal">
+            <div class="w-100">
+                <div class="w-100 d-flex justify-content-end p-2 ">
+                    <h3 class="w-100 allCenter">{{"Collect Review"|featureText}}</h3>
+                    <span class="cross cursorpointer" (click)="closeWorkModal()">
+                        <img src="../../../assets/cross.svg" alt="">
+                    </span>
+                </div>
+            </div>
+            <div class="paddingDivWS">
+                <div class="workPersonCard p-2">
+                    <div class="personheader allCenter">
+                        <div class="d-flex align-items-center">
+                            <span>
+                                <img [src]="WorkData[0].uid.profilePic" class="sellerImage mb-2" alt="">
+                            </span>
+                        </div>
+                    </div>
+                    <h2 class="WSTxt font-weight-bold">
+                        {{"Did you complete your work with"|featureText}}{{WorkData[0].uid.name}} ?</h2>
+                    <span>
+                        <h6>{{WorkData[0].category}}</h6>
+                    </span>
+                    <!-- 
+                    <div class="personbody workStatusText">
+                        <div>
+                            Based upon your submission of status of your work for the seeker , we would be approaching
+                            seeker for the rating of your work .
+                        </div>
+                    </div> -->
+                </div>
+
+
+                <button class="text-center pl-2 sendBtn"
+                    (click)="workStatus(WorkData[0]._id,WorkData[0].uid._id,'completed')">{{"Completed"|featureText}}</button>
+
+                <div class="WSBtnDiv">
+                    <button class="text-center pl-2"
+                        (click)="workStatus(WorkData[0]._id,WorkData[0].uid._id,'pending')">{{"Not Yet" |featureText}}</button>
+                    <button class="text-center pl-2"
+                        (click)="workStatus(WorkData[0]._id,WorkData[0].uid._id,'ignored')">{{"Ignore"|featureText}}</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div>
+        <input type=" file" id="myFile" #myFile #filePicker (change)="onImagePicked($event)" accept="image/*" />
+    </div>
+</div>
+
+
+
+<!-- Confirm Modal -->

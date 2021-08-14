@@ -1,0 +1,73 @@
+<div class="w-100">
+  <div>
+    <div *ngIf="currentStep=='first'">
+      <div class="breadcrumbparent">
+        <div class="ml-2 d-flex titleStyle">
+          <!-- code to show breadcrumbs conditionally -->
+          <span class="py-2 ">{{fullSelection.question |featureText}}</span>
+          <span class="p-1 m-1"
+            *ngIf="(timeline.cat||fullSelection.category)&&fullSelection.question!='Announce Something'&&fullSelection.question!='I Want a Job'&&fullSelection.question!='Others'&&fullSelection.question!='Make Friends'"> > </span>
+          <span class="py-2"
+            *ngIf="(timeline.cat||fullSelection.category)&&fullSelection.question!='Announce Something'&&fullSelection.question!='I Want a Job'&&fullSelection.question!='Others'&&fullSelection.question!='Make Friends'">{{fullSelection.category |featureText}}</span>
+          <span class="p-2"
+            *ngIf="(timeline.subcat||fullSelection.subcategory)&& fullSelection.subcategory!=fullSelection.category"> >
+          </span>
+          <span class="py-2"
+            *ngIf="(timeline.subcat||fullSelection.subcategory)&& fullSelection.subcategory!=fullSelection.category">{{fullSelection.subcategory |featureText}}</span>
+        </div>
+
+      </div>
+      <!-- content entering screen -->
+      <app-first-step style="overflow: hidden!important;" (clickedNext)="nextStep('first')"></app-first-step>
+    </div>
+    <!-- <div *ngIf="secondStep">
+      <div class="breadcrumbparent"> <span>{{fullSelection.question}}</span> > <span>{{fullSelection.category}}</span> >
+        <span>{{fullSelection.subcategory}}</span> </div>
+
+      <app-second-step (clickedNext)="clickedSecond()"></app-second-step>
+    </div> -->
+    <div>
+
+      <div *ngIf="currentStep=='second'&&loading!=true" class="w-100 h-100">
+        <div class="breadcrumbparent">
+          <!-- showing breadcrumb conditionally -->
+          <div class="d-flex ml-2 titleStyle">
+            <span class="py-2">{{fullSelection.question |featureText}}</span>
+            <span class="p-2" *ngIf="timeline.cat&&fullSelection.question!='Announce Something'&&fullSelection.question!='I Want a Job'&&fullSelection.question!='Others'&&fullSelection.question!='Make Friends'"> ></span>
+            <span class="py-2"
+              *ngIf="timeline.cat&&fullSelection.question!='Announce Something'&&fullSelection.question!='I Want a Job'&&fullSelection.question!='Others'&&fullSelection.question!='Make Friends'">{{fullSelection.category |featureText}}</span>
+            <span class="p-2"
+              *ngIf="timeline.subcat && fullSelection.subcategory!=fullSelection.category&&fullSelection.question!='Announce Something'&&fullSelection.question!='Others'&&fullSelection.question!='Make Friends'">></span>
+            <span class="py-2"
+              *ngIf="timeline.subcat && fullSelection.subcategory!=fullSelection.category&&fullSelection.question!='Announce Something'&&fullSelection.question!='Others'&&fullSelection.question!='Make Friends'">{{fullSelection.subcategory |featureText}}</span>
+          </div>
+
+        </div>
+
+        <!-- the page where we show the user map and other toggles  -->
+        <app-third-step (clickedPrev)="previousStep('two')" (clickedNext)="nextStep()"></app-third-step>
+        <!-- <div>
+          <button mat-button >Back</button>
+          <button mat-button>Reset</button>
+        </div>
+
+        <div class="w-100">
+          <button class="w-25" (click)="submitSpaark()">Submit</button>
+        </div> -->
+      </div>
+
+      <div class="w-100 h-100 loadingSuccess" *ngIf="loading==true||showSuccess==true">
+        <div class="w-100 h-100" *ngIf="showSuccess==false">
+          <img src="../../../assets/loading.gif" alt="">
+        </div>
+
+        <div class="w-100 h-100 mt-4" *ngIf="showSuccess==true">
+          <img class="successgif" src="../../../assets/success.gif" alt="">
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

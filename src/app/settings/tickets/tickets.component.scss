@@ -1,0 +1,98 @@
+.disp {
+  display: block;
+  // font-size: 1.1rem;
+  font-weight: 590;
+  cursor: pointer;
+
+}
+
+.allBox {
+  margin-bottom: 10px;
+}
+
+.fontSmall {
+  color: rgba(91, 99, 112, 1);
+  font-size: 1rem;
+  font-weight: 550;
+}
+
+.whiteBox {
+  display: flex;
+  flex-direction: row;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 4px 4px rgba(211, 211, 211, 0.25);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border-radius: 19px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btnClass {
+  color: white;
+  width: 5rem;
+  text-align: center;
+  border-radius: 11px;
+  background-color: #6FA4E9;
+}
+// @media screen and(min-width:350px) and (max-width:700px){
+//   .btnClass{
+//     width: 20vw;
+//   }
+// }
+// @media screen and(min-width:700px) and (max-width:1500px){
+//   .btnClass{
+//     width: 8vw;
+//   }
+// }
+.main1 {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  // border-radius: 10px;
+  font-size: 19px !important;
+
+  border: 1px solid #EAEAEA;
+}
+
+.main1:first-child,
+:last-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px
+}
+
+
+.boldTxtAll {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #131313;
+}
+
+.helpTitle {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #6FA4E9;
+}
+
+.boldTxtAll2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: Source Sans Pro;
+  line-height: 25.14px;
+  letter-spacing: 0.165px;
+}
+
+.titleStyle {
+  font-size: 0.8rem;
+}

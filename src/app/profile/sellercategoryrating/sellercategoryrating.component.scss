@@ -1,0 +1,227 @@
+//Screen resolutions
+$hdMonitor: 2560px; //default design resolution
+$hdLaptop: 1440px;
+$laptop: 1024px;
+$tablet: 768px;
+$mobile: 425px;
+
+.categoryrating {
+  background-color: white;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  .ratingContainer {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.1);
+    padding: 2px;
+    height: fit-content;
+    .ratingtext {
+      font-size: 13px;
+    }
+    .starcontainer {
+      height: fit-content;
+      .starimg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+  .imageContainer {
+    width: 160px;
+    // padding: 5px;
+    // height: 130px;
+    // max-height: 120px;
+    img {
+      width: 100%;
+      // height: 100%;
+      object-fit: contain;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+  }
+  .bodyParent {
+    background-color: white;
+    border-radius: 0px 0px 8px 8px;
+    .categoryratingBody {
+      width: 100%;
+      p {
+        font-weight: 700;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.categoryrating:hover {
+  box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.allbg {
+  background: #f8f9fb;
+  border-radius: 8px;
+
+  p {
+    color: rgba(81, 82, 82, 1);
+    font-size: 12px;
+  }
+}
+// .categoryrating {
+//   position: relative;
+//   width: 160px;
+//   height: 200px;
+//   box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.1);
+//   border-radius: 8px;
+//   background: white;
+//   display: inline-block;
+//   margin-right: 1rem;
+// }
+// .categoryrating:hover{
+//   box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.1);
+//   cursor: pointer;
+// }
+
+// .ratingContainer {
+//   position: absolute;
+//   top: 10px;
+//   left: 10px;
+//   padding: 2px;
+//   box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.1);
+// }
+
+// .imageContainer {
+//   width: 100%;
+//   height: 130px;
+//   object-fit: cover;
+// }
+// .bodyParent{
+//   position: absolute;
+//   bottom: 10px;
+// }
+
+// .categoryratingBody {
+//   width: 100%;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+
+// p {
+//   font-weight: 700;
+//   font-size: 14px;
+// }
+// }
+
+// .ratingtext {
+//   font-size: 13px;
+//   // font-weight: 700;
+// }
+
+// .starcontainer {
+//   img {
+//     width: 14px;
+//     height: 14px;
+//   }
+// }
+
+.imageCat1 {
+  width: 100%;
+  height: 130px;
+
+  object-fit: contain;
+border-top-left-radius: 8px;
+border-top-right-radius: 8px;
+}
+
+// .allbg {
+//   background: #F8F9FB;
+//   border-radius: 8px;
+
+//   p {
+//     color: rgba(81, 82, 82, 1);
+//     font-size: 12px;
+//   }
+// }
+
+@media screen and (max-width: 950px) {
+
+
+  
+  .imageCat1 {
+    width: 100%;
+    height: 107px;
+  }
+
+}
+
+// @media screen and (max-width:1550px) and (min-width:1300px){
+//   .categoryrating{
+//     width: 120px;
+//     height: 140px;
+//   }
+//   .bodyParent{
+//     background-color: white;
+//     bottom: 0px;
+//   }
+// }
+// @media screen and (max-width:1300px) and (min-width:1200px){
+//   .categoryrating{
+//     width: 100px;
+//     height: 140px;
+//   }
+//   .bodyParent{
+//     background-color: white;
+//   }
+// }
+
+.selectProfileClicked {
+  border-style: solid;
+  border-color: #6fa4e9;
+}
+
+.selectProfileunClicked {
+  //border-style: solid;
+  border-color: none;
+}
+
+@media screen and (max-width: $hdLaptop) {
+  .categoryrating {
+    .imageContainer {
+      width: 100px;
+    }
+    .bodyParent {
+      .categoryratingBody {
+        p {
+          font-size: 10px !important;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $laptop) {
+  .categoryrating {
+    .imageContainer {
+      width: 100px;
+    }
+  }
+}
+@media screen and (max-width: $tablet) {
+  .categoryrating {
+    .imageContainer {
+      width: 150px;
+    }
+  }
+}
+@media screen and (max-width: $mobile) {
+  .categoryrating {
+    .imageContainer {
+      width: 120px;
+    }
+  }
+}

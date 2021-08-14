@@ -1,0 +1,48 @@
+.leftChatSpecificContainer {
+    width: 66%;
+    height: 100%;
+    overflow-y: hidden !important;
+  }
+  
+  .rightOptionsContainer {
+    width: 33%;
+    height: 100%;
+  }
+  
+  .overallContainer {
+    // max-height: 100vh;
+    height: 100%;
+  }
+  
+  @media screen and (max-width: 1090px) {
+    .leftChatSpecificContainer {
+      width: 100%;
+    }
+  
+    .rightOptionsContainer {
+      display: none;
+      width: 0%;
+    }
+  }
+  
+  @media screen and (max-width: 700px) {}
+  
+  
+  // @media screen and (min-width: 650px) and (max-width: 920px) {
+  
+  
+  
+  
+  .chat-text-empty {
+    width: 80%;
+    margin-top: 7px;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: -0.165px;
+    color: #ACB2BE;
+  }
+  

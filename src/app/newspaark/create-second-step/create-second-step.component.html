@@ -1,0 +1,251 @@
+<!-- Making step position to two, in this we show the user the list of categories -->
+<div *ngIf="this.stepPosition=='two'" class="MarketTab catMain forSmallDevices m-1 mb-2">
+    <div class="w-100 ">
+        <div class="w-100">
+            <div class="d-flex align-items-center">
+                <img class="previousArrow m-1 p-1 cursorpointer" (click)="clickedPreviousCat()"
+                    src="../../../assets/back1.svg" alt="">
+                <span class="m-0 titleStyle">{{pickedQuestion |featureText}}</span>
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+                <p class=" text-left boldTxtAll all-headings">{{"Choose a service that suits you best"|featureText}}</p>
+            </div>
+
+            <!-- <div class=" p-2 mt-1 searchExtensionparent">
+                <div class="searchBar mb-3 d-flex ">
+                    <img class="m-2" src="../../../assets/search.svg" alt="search">
+                    <input type="text" (keypress)="pressedkey($event)" (click)="clickedSearch()" [(ngModel)]="content"
+                        class="searchBar w-100" type="text" placeholder="Looking for something" />
+                    <h4 *ngIf="listofsearches.length!=0" (click)="listofsearches=[]" class="searchicon allCenter">X</h4>
+                </div>
+            </div> -->
+
+            <div *ngIf="listofsearches.length>0">
+                <div>
+                    <span class="textStyle">Searching in Categories</span>
+                    <!-- showing suggestions for categories start-->
+                    <div class="searchDiv">
+                        <div *ngFor="let fun of listofsearches" class="search-item cursorpointer p-2">
+                            <div (click)="selectedClick(fun)"
+                                class="w-100 h-100 d-flex align-items-center justify-content-between">
+                                <p class="m-0"> {{fun.preview}}
+                                    <small><b>{{fun.subCategory}}</b></small> </p>
+                                <span>
+                                    <img src="../../../assets/arrowsearch.svg" class="arrowSearch" alt=""> </span>
+                            </div>
+                        </div>
+
+                        <!-- showing suggestions for categories end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex w-100 showAll " style="flex-flow: wrap; justify-content:center;">
+        <div (click)="clickedCat(cat)" class="catMain1 mr-2 cursorpointer mt-2 mb-2 "
+            *ngFor="let cat of dynamicDetailsCategory">
+            <app-market-cat [cattxt]="cat.category" [catimg]="'assets/catsubcatimages/categoryimages/'+cat.image">
+            </app-market-cat>
+        </div>
+
+
+        <div class="mb-3 m-1 colorBlue forSmallDevices w-100" >
+            <div class="cursorpointer">{{"Did not find your category?"|featureText}}</div>
+            <div  (click)="skipPresent('fromCat')" class="font-weight-bold cursorpointer">{{"Skip this Step"|featureText}}</div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div *ngIf="this.stepPosition=='three'" class="w-100">
+
+    <div class="d-flex titleStyle align-items-center">
+        <img class="previousArrow p-1 m-2 cursorpointer" (click)="clickedPreviousSubCat()"
+            src="../../../assets/back1.svg">
+        <span class="py-2">{{pickedQuestion |featureText}}</span>
+        <span class="p-2">></span>
+        <span class=" py-2 text-left">{{selectedArr.selectedCategory |featureText}}</span>
+    </div>
+
+    <!-- <div class=" p-2 mt-1 searchExtensionparent">
+        <div class="searchBar mb-3 d-flex ">
+            <img class="p-2" src="../../../assets/search.svg" alt="search">
+            <input type="text" (keypress)="pressedkey($event)" (click)="clickedSearch()" [(ngModel)]="content"
+                class="searchBar w-100" type="text" placeholder="{{'Looking for something'|featureText}}" />
+            <h4 *ngIf="listofsearches.length!=0" (click)="listofsearches=[]" class="searchicon allCenter">X</h4>
+        </div>
+    </div> -->
+
+    <div *ngIf="listofsearches.length>0">
+        <div>
+            <span class="textStyle">Searching in Categories</span>
+            <!-- showing suggestions for categories start-->
+            <div class="searchDiv">
+                <div *ngFor="let fun of listofsearches" class="search-item cursorpointer p-2">
+                    <div (click)="selectedClick(fun)"
+                        class="w-100 h-100 d-flex align-items-center justify-content-between">
+                        <p class="m-0"> {{fun.preview}}
+                            <small><b>{{fun.subCategory}}</b></small> </p>
+                        <span>
+                            <img src="../../../assets/arrowsearch.svg" class="arrowSearch" alt=""> </span>
+                    </div>
+                </div>
+
+                <!-- showing suggestions for categories end-->
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="mt-2 mb-2">
+        <!-- <h4>{{cat.categoryName}}</h4> -->
+
+
+        <div class="ttest1 forSmallDevices row m-0 p-1">
+            <div (click)="startStepper(subCat,i,selectedArr.selectedCategory)"
+                class="ttest2  col-lg-6 mt-2 mb-4 no-gutters" *ngFor="let subCat of listshowArr;let i = index">
+                <app-sub-category [catTxt]="subCat"></app-sub-category>
+            </div>
+
+            <div class="colorBlue w-100 mb-3 m-1 forSmallDevices">
+                <div class="cursorpointer"> {{"Did not find your field?"|featureText}} </div>
+                <div  (click)="skipPresent('fromSubCat')" class="font-weight-bold cursorpointer">{{"Skip this step"|featureText}}</div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<!-- Creating forms starts here(content, images, toggles and submit) -->
+<div class="w-100" *ngIf="stepPosition=='four'">
+    <app-steppercontainer></app-steppercontainer>
+</div>
+
+<!-- This is to ask user the expertise before we sent to create screen -->
+<div class="w-100" *ngIf="stepPosition=='five'">
+    <p class="font-weight-bold m-0">{{"Choose an option" |featureText}}</p>
+
+    <div class="row w-100 m-0 my-2">
+        <div class="borderradius mb-3 p-lg-5 p-md-3 p-sm-2 col-md-5 col-sm-12 optioncard bg-white col-lg-5">
+            <div class="cardheaderr d-flex align-items-center">
+                <input class="cursorpointer" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    <div class=" p-2 ">
+                        <div class="font-weight-bold">{{"I have a skill." |featureText}}</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div
+            class="borderradius  p-lg-5 p-md-3 p-sm-2 col-md-5 col-sm-12 offset-md-1 optioncard bg-white col-lg-5 offset-lg-1">
+            <div class="cardheaderr d-flex align-items-center">
+
+                <input class="cursorpointer" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    <div class=" p-2 ">
+                        <div class="font-weight-bold">{{"I have no specific skill or experience. I am looking for any type of work." |featureText}}</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+<div class="w-100 mt-3 text-left" *ngIf="stepPosition=='postajob'">
+    <div class="boldTxtAll text-center mb-2 all-headings">{{"Choose an option" |featureText}}</div>
+    <div class="">
+        <mat-radio-group aria-label="Select an option" (change)="changedRadio('forExperienced',$event)">
+            <div class="mainDiv">
+                <div class="d-block my-3 forLeft w-100" style="overflow: hidden !important">
+                    <mat-radio-button [checked]="radioValue=='forExperienced'" value="forExperienced" class="w-100">
+                        <div class="radioBody ">
+                            <span class="subHead"> {{"I have a skill." |featureText}}</span>
+                            <!-- <div class="spaarkscardContainer">
+                                <app-spaarkscard [post]="dummyPost" [isDummyPost]="false"></app-spaarkscard>
+                            </div> -->
+                            <!-- <p class="text-muted mt-2">Eg: I worked as a Plumber earlier for 8 months</p> -->
+                        </div>
+                    </mat-radio-button>
+                    <div class="text-center">
+                        <img class="imgSize" src="../../../assets/haveskill.svg" alt="">
+                    </div>
+                </div>
+                <div class="forLeft w-100">
+                    <mat-radio-button value="forNew" class="w-100" [checked]="radioValue=='forNew'">
+                        <div class="radioBody">
+                            <span class="subHead">{{"I am looking for any type of work." |featureText}}</span>
+                            <!-- <div class="spaarkscardContainer">
+                                <app-spaarkscard [post]="dummyPost"></app-spaarkscard>
+                            </div>
+                            <p class="text-muted mt-2">Eg: I am looking for any kind of job</p> -->
+                        </div>
+                    </mat-radio-button>
+                    <div class="text-center">
+                        <img class="imgSize" src="../../../assets/noskill.svg" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </mat-radio-group>
+
+        <!-- next prev buttons -->
+        <div class="w-100 d-flex my-2 justify-content-end">
+            <div class="w-100 allCenter ">
+                <div class="w-100 d-flex justify-content-between ">
+
+
+                    <span class="cursorpointer mediaimage nextspan p-2 mediaspan" (click)="clickedPrevFromPostajob()">
+                        <span class="d-flex justify-content-center">
+                            <img src="../../../assets/back_white.svg" class="mediaicon p-1 reverseArrow" alt="">
+                            <span class="allBtns">
+                                {{"Previous" |featureText}}
+                            </span>
+                        </span>
+                    </span>
+
+                    <span class="cursorpointer mediaimage nextspan p-2 mediaspan" (click)="goToForm()">
+                        <span class="d-flex justify-content-center">
+                            <span class="allBtns">
+                                {{"Next" |featureText}}
+                            </span>
+                            <img src="../../../assets/back_white.svg" class="mediaicon p-1" alt="">
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<div *ngIf="stepPosition=='ShowLoginMsg'" class="w-100 allCenter" style="margin: 25% 25% 25% 0%;">
+    <div *ngIf="!showLogin" class="notLoggedIn p-3 allCenter w-75">
+        <div class="w-100 allCenter">
+            <img class="login-profile" src="../../../assets/profile_outline.svg" alt="">
+        </div>
+        <div class="w-100 allCenter flexcolumn">
+            <h3 class="login-text">{{"Login to access this feature!"|featureText}}</h3>
+            <button class="login-button" (click)="clickedLogin()">{{"Login"|featureText}}</button>
+        </div>
+    </div>
+
+
+    <div class="w-100 allCenter mt-3" *ngIf="showLogin">
+        <app-login></app-login>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div *ngIf="post" class="cardDimen my-2" #target>
+
+    <!-- photo -->
+    <div class="imgContainer" (click)="clickedOnMobileCard()">
+        <img *ngIf="post.photo.length==0" class="w-100 imgSize" [src]="post.uservisibility.profilePic" alt="">
+
+        <carousel [interval]="0" [noPause]="false" [showIndicators]="false" [(activeSlide)]="activeSlide">
+            <slide class="h-100" *ngFor="let image of post.photo; let idx = index">
+                <img [src]="image" alt="first slide" class="slidestyle h-100">
+            </slide>
+        </carousel>
+
+        <div class="text-center" *ngIf="post.photo.length>1">
+            <div style="margin: 0 auto;" class="w-50 d-flex justify-content-around">
+                <span class=" paginationDots"
+                    [ngStyle]="activeSlide==ind ? {'background-color' : '#6FA4E9', 'padding':'1px'} : {'background-color' : 'white',    'border': '1px solid rgb(99, 205, 255)'}"
+                    (click)="switchSlide(ind)" *ngFor="let id of post.photo; let ind=index">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="details">
+        <div class="h-100 p-2" (click)="clickedOnMobileCard()">
+
+            <div class="">
+                <!-- Name -->
+                <div class="d-flex justify-content-between my-1">
+                    <span class="boldTxtAll" style="font-size:1rem"> {{post.uservisibility.name |sliceName}} </span>
+
+
+                    <span class="text-muted" style="font-size: 14px;"><img class="imageIcon"
+                            src="../../../assets/distance.svg"> {{post.distance|distancePipe}}
+                    </span>
+                </div>
+
+                <!-- For market  -->
+                <div class="d-flex divStyle justify-content-between my-1">
+                    <!-- https://google.com/maps/dir/?api=1&destination=lat,long -->
+                    <div>
+                        <span *ngIf="post.isProvider&&post.subCategory">
+                            <app-spaarkspill [inputText]="post.subCategory" [inputColor]="pillColor">
+                            </app-spaarkspill>
+                        </span>
+                    </div>
+
+                    <div>
+                        <span *ngIf="post.isProvider && post.reviews && post.reviews[0]">
+                            <img class="starratingicon" src="../../../assets/star.svg" alt="">
+                            <span class="text-muted">{{post.reviews[0].rating}}</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="contentBox contentAll divStyle my-1">
+                    <span style="word-break: break-all;" [innerHTML]="post.content | urlify">
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Show Direction -->
+            <div class="pt-2" (click)="clickOnDir($event)">
+                <div class="d-flex h-100 divStyle justify-content-between">
+                    <span class="direc colorBlue">
+                        <a [attr.href]="'https://google.com/maps/dir/?api=1&destination=' + post.locationStatic.coordinates[1]+','+post.locationStatic.coordinates[0]"
+                            href="https://google.com/maps/dir/?api=1&destination=${},${}" target="_blank">
+                            <img class="mr-2 imageIcon "
+                                src="../../../assets/directions.svg" />{{"Show directions" |featureText}}
+                        </a>
+                    </span>
+                    <span *ngIf="post.myshares"><span *ngIf="post.myshares.length>0"
+                            class="colorBlue">{{post.myshares[0].shares}} {{"Shares" |featureText}}</span></span>
+                    <span *ngIf="post.myshares"> <span *ngIf="post.myshares.length==0"
+                            class="colorBlue">{{"0 shares" |featureText}}</span></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,425 @@
+.fullWidth {
+  width: 100vw;
+  /* height: 100vh; */
+  /* padding-left:5rem; */
+}
+
+/* canvas {
+  max-height: 100% !important;
+} */
+
+.getSpaarksapp > span {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.getSpaarksapp > span:nth-child(2) {
+  font-weight: 900;
+  font-size: 1.6rem;
+}
+
+#closebanner {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  cursor: pointer;
+  right: 0.61rem;
+  top: 1rem;
+}
+
+.RotateDevice {
+  display: none;
+}
+
+.div1 {
+  display: none;
+}
+
+.div2 {
+  display: none;
+}
+
+.div3 {
+  display: none;
+}
+
+.upperText {
+  display: none;
+  color: #63cdff;
+  font-weight: 500;
+  font-size: 22px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.childCard {
+  display: flex !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.Playstoree {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ClickGif {
+  display: none;
+}
+#mobileViewComp {
+  display: none;
+}
+
+#main {
+  margin: 0px;
+  padding: 0px;
+}
+
+.mojFooter {
+  background-color: #f8f8f8;
+  color: #63cdff;
+  padding-top: 0px;
+  border-top: 1px solid #e7e7e7;
+  margin-bottom: 0px;
+  font-size: 11px;
+  font-weight: 700;
+  display: none;
+}
+
+.bottom-footer {
+  border-top: 1px solid #63cdff;
+  margin-top: 0px;
+  padding-top: 7px;
+  color: #63cdff;
+}
+
+.footer-nav li {
+  display: inline;
+  padding: 0px 40px;
+}
+
+.footer-nav a {
+  color: grey;
+  text-decoration: none;
+}
+
+#smalldev {
+  display: none;
+  text-align: center;
+}
+
+#playstoree {
+  display: none;
+  font-weight: 500;
+  background-color: white;
+
+  padding-top: 60px;
+  border-radius: 12px;
+  padding-bottom: 60px;
+  position: fixed;
+  bottom: -9px;
+  width: 100vw;
+
+  z-index: 99;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.playstoreeChild {
+  /* right: 1%; */
+  background: #ffffff;
+}
+
+.shareBox {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height: 90vh;
+  width: 30vw;
+  z-index: 55;
+  background-color: white;
+  border: white;
+
+  margin: 0 20rem;
+
+  /* box-shadow: 0 0 2px 2px black; */
+  -webkit-box-shadow: 0 0 10px 4px rgb(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 10px 4px rgb(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px 4px rgb(0, 0, 0, 0.3);
+}
+
+/* #imgBg {
+  width: 100%;
+  height: 100%;
+
+} */
+
+/* Mobile Share Login */
+.showItOrNot {
+  display: none !important;
+}
+
+.left1 {
+  flex: 0.6;
+  /* height: 100vh; */
+  position: relative;
+}
+
+.multi-images {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+}
+
+.multi-img {
+  height: 70px;
+  width: 70px;
+  display: inline-block;
+}
+
+.right {
+  flex: 0.4;
+  /* height: 100vh; */
+  padding: 0 2rem;
+}
+
+.user-manual-text {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* .qr{
+  /* padding: 3rem 0; */
+/* height: 100%; */
+/* } */
+*/ .qr-reload {
+  padding: 3rem 0 !important;
+  height: 100% !important;
+}
+
+/* .qr canvas, .qr img{
+  height: 100%;
+  
+} */
+
+.dummy-qr {
+  padding: 1.5rem 0;
+}
+
+.post {
+  background: white;
+  position: relative;
+  padding: 0 !important;
+  width: 30vw;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 1.3rem;
+  height: 1.3rem;
+  z-index: 5000;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+
+/* width */
+/* ::-webkit-scrollbar {
+  width: 5px;
+} */
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+group-png {
+  max-width: 100% !important;
+  height: 5rem !important ;
+}
+
+.mobile-modal {
+  background: white !important;
+  position: fixed;
+  box-shadow: 10px 10px 75px #aaaaaa !important;
+  border: 1px solid #bfbfbf !important;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  z-index: 5000;
+  width: 100%;
+}
+
+.qrmsg {
+  color: #6c7585 !important;
+  text-shadow: 2px 2px #ffffff;
+}
+
+h1 {
+  color: white;
+}
+
+.m-close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.header-ul li {
+  font-size: 1.5rem !important;
+  margin: 1rem;
+}
+
+.header-ul li a {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-ul li:hover .header-ul li a {
+  color: blue;
+}
+
+#two {
+  font-size: 20px;
+}
+
+.main-features {
+  color: black;
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-size: 4rem;
+}
+
+.border-bottom-img {
+  border-bottom: 1px solid white;
+}
+
+.info-card {
+  height: 500px;
+  /* opacity: 0.5; */
+  transition: all 0.5s ease-in-out;
+
+  background-size: cover;
+  object-fit: cover;
+  background-repeat: no-repeat;
+}
+
+@keyframes text {
+  0% {
+    transform: translateY(-30);
+  }
+
+  30% {
+    transform: translateY(20%);
+  }
+
+  90% {
+    transform: translateY(0);
+  }
+}
+
+.info-card:hover .info-card-body {
+  border-bottom: 2px solid white;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+  animation: cardheader 2s 1;
+}
+
+.info-card:hover .ClickGif {
+  display: none;
+  transition: all 0.3s ease-in-out;
+  animation: cardheader 2s 1;
+}
+
+@keyframes cardheader {
+  0% {
+    transform: translateX(-30);
+  }
+
+  30% {
+    transform: translateX(10%);
+  }
+
+  90% {
+    transform: translateX(0);
+  }
+}
+
+.info-card .paragraph {
+  display: none;
+}
+
+.info-card .paragraph p {
+  animation: text 2s 1;
+}
+
+.info-card:hover .paragraph {
+  display: flex;
+  color: white;
+  font-weight: bold;
+}
+
+.cover-all {
+  height: 100%;
+  width: 100%;
+  padding: 0 5rem;
+}
+
+#bgdiv {
+  padding: 25px 30px !important;
+}
+
+/* 
+.ClickGif:hover {
+  background-color: rgba(255, 111, 0, 0.9);
+  display: none !important;
+} */
+
+.ClickGif {
+  position: absolute;
+  top: 78%;
+  right: 41%;
+  text-align-last: center;
+  width: 75px !important;
+  background: transparent;
+  height: 74px !important;
+}
+
+.qrImg {
+  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 10px 10px 0px 0px;
+  height: 6rem;
+  float: left;
+}
+#canvas{
+  height: 100% !important;
+  width: 330px !important;
+}
+@media screen and (min-width:350px) and (max-width:1450px){
+  #canvas{
+    width:270px !important;
+  }
+}

@@ -1,0 +1,298 @@
+<div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+    <app-topbarmobile>
+    </app-topbarmobile>
+</div>
+<div class="mainDivAll">
+
+    <div apptopbardir class="topbarAll">
+        <app-topbar></app-topbar>
+    </div>
+    <div class="mainDiv">
+        <div appmainfeeddir class="mainfeedAll">
+            <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace"></div>
+
+            <div class="leftbar">
+                <app-leftnav></app-leftnav>
+            </div>
+            <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+
+            <div class="forSmall h-100">
+                <div class="middlefeed forSmallUp forSmallDown h-100">
+                    <div *ngIf="isAuthed" class="w-100 mx-2">
+                        <div class="requestHeader">
+                            <img src="../../../assets/backblue.svg" (click)="clickedBackfromSpecific()">
+                            <span class="boldTxtAll all-headings">{{"Friend requests" |featureText}}</span>
+                        </div>
+                        <ng-container *ngIf="screen=='full'">
+                            <div class="requestDiv my-3 mx-auto">
+
+                                <span class="boldTxtAll p-0 all-headings">{{"Received" |featureText}}</span>
+                                <p class="text-muted">
+                                    {{"List of your spaarks for which you received requests." |featureText}}</p>
+                                <div class="postDiv">
+                                    <div *ngFor="let reqq of requestsArrayFiltered|slice:0:intiRequest" class="cardDiv">
+                                        <div *ngIf="!loader" (click)="clickedSpecificPost(reqq,true)"
+                                            class=" requestSpaarkContainer cursorpointer bg-white p-2 px-2 d-flex align-items-center">
+                                            <img [src]="reqq.uservisibility.profilePic" class="picsiZe" alt="">
+                                            <div class="requestbodycontainterspaark w-100 px-2 align-items-center justify-content-between "
+                                                style="position: relative;">
+                                                <div class="requestbodyspaarkheader d-flex align-items-center">
+                                                    <p class="nameStyle m-0"> <b>{{reqq.uservisibility.name}}</b> </p>
+                                                    <span> <small
+                                                            class="text-muted ml-2">{{reqq.createdAt|date}}</small>
+                                                    </span>
+                                                </div>
+                                                <div class="d-inline" style="position: absolute; right:0; top: 0;">
+                                                    <!-- {{reqq.content}} -->
+                                                    <div class="h-100 cursorpointer">
+                                                        <img src="assets/back.svg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="w-100 d-flex align-items-center justify-content-between ">
+                                                    {{reqq.content}}
+                                                    <!-- <div class="h-100">
+                                                <img src="assets/back.svg" alt="">
+                                            </div> -->
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white d-flex justify-content-center align-items-center">
+                                        <div *ngIf="loader">
+                                            <img src="../../../assets/loading.gif" class="customGif" alt="">
+                                        </div>
+
+                                        <div class="text-muted m-3" *ngIf="requestsArrayFiltered.length==0 && !loader">
+                                            {{"No requests received" |featureText}}</div>
+                                    </div>
+                                    <div class="w-100 bg-white viewAllContainer">
+                                        <!-- <p class="p-1 text-center m-0 mt-2"><span class="font-weight-bold">View All</span></p> -->
+                                        <div *ngIf="isAuthed==true" class="viewAll allCenter "
+                                            (click)="viewAllRequests()">
+                                            <span class="p-1 text-center m-0 mt-2 cursorpointer boldTxtAll"
+                                                *ngIf="fullViewRequest==false && requestsArrayFiltered.length>1">{{"View all" |featureText}}</span>
+                                            <span class="p-1 text-center m-0 mt-2 cursorpointer boldTxtAll"
+                                                *ngIf="fullViewRequest==true">{{"View less" |featureText}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <span class="boldTxtAll p-2">Requests Received </span>
+                        <div *ngFor="let request of pendingRequests" (click)="clickedPosts()">
+                            <app-requests [requestData]="request"></app-requests>
+                        </div> -->
+
+                            </div>
+
+                            <div class="requestDiv mt-3 mb-5 pb-5 mx-auto">
+                                <span class="boldTxtAll p-0 all-headings">{{"Sent" |featureText}}</span>
+                                <p class="text-muted">{{"List of spaarks to which you sent requests" |featureText}}</p>
+                                <div>
+                                    <div class="postDiv">
+                                        <div *ngFor="let sentt of sentrequestsFinal|slice:0:intiSent" class="cardDiv">
+                                            <div *ngIf="!loader" (click)="clickedSpecificPost(sentt.post,false,sentt)"
+                                                class=" requestSpaarkContainer cursorpointer bg-white p-2 px-2 d-flex align-items-center">
+                                                <img [src]="sentt.post.uservisibility.profilePic" class="picsiZe"
+                                                    alt="">
+                                                <div class="requestbodycontainterspaark w-100 px-2 align-items-center justify-content-between "
+                                                    style="position: relative;">
+                                                    <div class="requestbodyspaarkheader d-flex align-items-center">
+                                                        <p class="nameStyle m-0">
+                                                            <b>{{sentt.post.uservisibility.name}}</b>
+                                                        </p>
+                                                        <span><small
+                                                                class="text-muted ml-2">{{sentt.post.createdAt|date}}</small></span>
+                                                    </div>
+                                                    <div class=" d-inline" style="position: absolute; right:0; top: 0;">
+                                                        <!-- {{sentt.post.content}} -->
+                                                        <div class="h-100">
+                                                            <img src="assets/back.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        class="w-100 d-flex align-items-center justify-content-between ">
+                                                        {{sentt.post.content}}
+                                                        <!-- <div class="h-100">
+                                                        <img src="assets/back.svg" alt="">
+                                                    </div> -->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white d-flex justify-content-center align-items-center ">
+                                            <div *ngIf="loader">
+                                                <img src="../../../assets/loading.gif" class="customGif" alt="">
+                                            </div>
+                                            <span class="text-muted m-3"
+                                                *ngIf="sentrequestsFinal.length==0 && !loader">{{"No requests sent" |featureText}}</span>
+                                        </div>
+                                        <div class="w-100 bg-white viewAllContainer">
+                                            <!-- <p class="p-1 text-center m-0 mt-2"><span class="font-weight-bold">View All</span></p> -->
+                                            <div *ngIf="isAuthed==true" class="viewAll allCenter "
+                                                (click)="viewAllSentRequests()">
+                                                <span class="p-1 text-center m-0 mt-2 cursorpointer boldTxtAll"
+                                                    *ngIf="fullViewSentRequest==false && sentrequestsFinal.length>1">{{"View all" |featureText}}</span>
+                                                <span class="p-1 text-center m-0 mt-2 cursorpointer boldTxtAll"
+                                                    *ngIf="fullViewSentRequest==true">{{"View less" |featureText}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div *ngFor="let request of allSentRequests ">
+                                <app-requests (allSentRequests)="checkSentRequests($event)" [requestData]="request"
+                                    [fromSentRequest]="true" [fromFriendRequest]="true"></app-requests>
+                            </div> -->
+
+
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="screen=='specific' && currentposts">
+                            <!-- <div class="w-100 height80 allCenter">
+                            <div class="w-100" style="float: right;">
+                                <span>
+                                    <img src="assets/back1.svg" class="cursorpointer"
+                                        (click)="clickedBackfromSpecific()" alt="">
+                                </span>
+                            </div>
+                        </div> -->
+
+                            <app-spaarkscard [isexplore]="true" [post]="currentposts"></app-spaarkscard>
+
+                            <div class="w-100 p-2" *ngIf="isMine">
+                                <span class="boldTxtAll p-0 all-headings">{{"Requests received" |featureText}}</span>
+                                <div class="postDiv">
+                                    <!-- <div *ngFor="let req of currentposts.greetRequest|slice:0:initviewall"> -->
+                                    <div *ngFor="let req of filteredRequests|slice:0:initviewall">
+
+                                        <!-- <app-requests *ngIf="req.status!='Rejected'"
+                                        (allSentRequests)="checkSentRequests($event)" [requestData]="req"
+                                        [fromSentRequest]="isMine" [otherRequests]="true" [fromFriendRequest]="true"></app-requests>
+                                 -->
+                                        <app-requests (allSentRequests)="checkSentRequests($event)" [requestData]="req"
+                                            [fromSentRequest]="isMine" [otherRequests]="true"
+                                            [fromFriendRequest]="true">
+                                        </app-requests>
+
+                                    </div>
+                                    <div class="w-100 bg-white viewAllContainer">
+                                        <!-- <p class="p-1 text-center m-0 mt-2"><span class="font-weight-bold">View All</span></p> -->
+                                        <div *ngIf="isAuthed==true" class="viewAll allCenter " (click)="viewAll()">
+                                            <span class="p-1 text-center m-0 mt-2 cursorpointer boldTxtAll"
+                                                *ngIf="fullView==false && filteredRequests.length>1">{{"View all" |featureText}}</span>
+                                            <span class="p-1 text-center m-0 mt-2 cursorpointer boldTxtAll"
+                                                *ngIf="fullView==true">{{"View less" |featureText}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div *ngIf="!isMine">
+
+                                <span class="boldTxtAll p-0 all-headings">{{"Requests sent" |featureText}}</span>
+                                <div class="postDiv">
+
+                                    <app-requests (allSentRequests)="checkSentRequests($event)"
+                                        [requestData]="listofreqs" [fromSentRequest]="isMine"
+                                        [fromFriendRequest]="true"></app-requests>
+                                    <!-- <div *ngFor="let req of listofreqs|slice:0:initsent">
+                                       
+                                    </div>
+                                   
+                                    <div class="w-100 bg-white viewAllContainer">
+                                     
+                                        <div *ngIf="isAuthed==true" class="viewAll allCenter " (click)="viewAllSent()">
+                                            <span class="p-1 text-center m-0 mt-2 cursorpointer boldTxtAll"
+                                                *ngIf="fullViewsent==false &&listofreqs.length>1">View
+                                                All</span>
+                                            <span class="p-1 text-center m-0 mt-2 cursorpointer boldTxtAll" *ngIf="fullViewsent==true">View less</span>
+                                        </div>
+                                    </div> -->
+
+
+                                </div>
+
+
+                            </div>
+
+                        </ng-container>
+
+                    </div>
+                    <div *ngIf="isAuthed==false" class="w-100 allCenter h-100">
+                        <div *ngIf="!showLogin" class="notLoggedIn p-3 allCenter w-75">
+                            <div class="w-100 allCenter">
+                                <img class="login-profile" src="../../../assets/profile_outline.svg" alt="">
+                            </div>
+                            <div class="w-100 allCenter flexcolumn">
+                                <h3 class="login-text">{{"Login to access this feature!"|featureText}}</h3>
+                                <button class="login-button" (click)="clickedLogin()">{{"Login"|featureText}}</button>
+                            </div>
+                        </div>
+
+
+                        <div class="w-100 allCenter mt-3" *ngIf="showLogin">
+                            <app-login></app-login>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+            <div class="rightfeed">
+                <app-rightfeed [fromRequests]="true"></app-rightfeed>
+                <!-- <div class="mt-4">
+                <span *ngIf="isAuthed==true && showRecentChats"
+                    class=" boldTxtAll  w-100">{{"Recent chats"|featureText}}</span>
+        
+                <div class="bg-white recentchatsdiv" *ngIf="showRecentChats">
+        
+                    <div class="clickspaarkonanycard allCenter p-3 flexdirectioncolumn"
+                        *ngIf="listtoshowChatFinal.length==0">
+                        <img src="../../../assets/msg.svg" alt="">
+                        <span> {{"To start a chat go to any Spaark and click on Chat."|featureText}} </span>
+                    </div>
+        
+                    <div *ngIf="listtoshowChatFinal.length>0">
+                      
+                        <div *ngFor="let item of listtoshowChatFinal|slice:0:initValChats" routerLink="/chat">
+                            <app-chat-person-item [chatlistitem]="item"></app-chat-person-item>
+                        </div>
+                    </div>
+                    <div class="w-100 bg-white viewAllContainer">
+                     
+                        <div *ngIf="isAuthed==true" class="viewAll allCenter " (click)="viewAllChats()">
+                            <span class="p-1 text-center m-0 mt-2 cursorpointer"
+                                *ngIf="fullViewChats==false && listtoshowChatFinal.length>10">View
+                                All</span>
+                            <span class="p-1 text-center m-0 mt-2 cursorpointer" *ngIf="fullViewChats==true">View
+                                less</span>
+                        </div>
+                    </div>
+        
+                </div>
+            </div> -->
+
+            </div>
+            <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+            <div class="my-5"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- bottombar for mobile -->
+    <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div>
+
+</div>

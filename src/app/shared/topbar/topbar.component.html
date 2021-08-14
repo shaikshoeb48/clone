@@ -1,0 +1,39 @@
+<div class="topbarr" [ngStyle]="{'position': isExploreSection ? 'absolute' : 'relative' }">
+  <div *ngIf="showSpaarks" class="d-flex align-items-center" topmiddledir>
+    <div class="mainParent">
+
+
+      <div class="tabsBar" *ngIf="showAllTabs">
+
+        <div class="test w-100">
+          <div class=" test tabContainer h-30 " [ngClass]="isSmall?'proftabContainer':'tabContainer'">
+
+            <div [class.underlineBlue]="account==1" class="tabItem">
+              <span (click)="clickedTab(1)" (click)="checkTabIndex('All')" class="blueTxt text-muted"
+                [class.blueColor]="account==1">{{"All" |featureText}}
+              </span>
+            </div>
+
+            <div class="tabItem" [class.underlineBlue]="account==2">
+              <span class="text-muted" (click)="clickedTab(2)" (click)="noPillSelected()" (click)="checkTabIndex('Market')"
+                [class.blueColor]="account==2"> {{"Market" |featureText}}</span>
+            </div>
+
+            <div class="tabItem" [class.underlineBlue]="account==3">
+              <span (click)="clickedTab(3)" (click)="checkTabIndex('Events')" class="text-muted"
+                [class.blueColor]="account==3"> {{"Announce" |featureText}}</span>
+            </div>
+
+            <div class="tabItem" [class.underlineBlue]="account==4">
+              <span (click)="clickedTab(4)" (click)="checkTabIndex('Make Friends')" class="text-muted"
+                [class.blueColor]="account==4"> {{"Make friends" |featureText}}</span>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

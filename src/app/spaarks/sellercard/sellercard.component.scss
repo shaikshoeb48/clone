@@ -1,0 +1,31 @@
+.sellercardmain {
+  width: 163px;
+  height: 230px;
+  max-height: 300px;
+  background: #FFFFFF;
+  border: 0.8px solid #D7D7D7;
+  border-radius: 5px;
+}
+
+.sellerImage {
+  height: 81px;
+  width: 81px;
+  object-fit: cover;
+
+}
+
+.ratingContainer {
+
+  font-size: 15px;
+  color: #6FA4E9;
+  font-weight: 700;
+}
+
+.sellercard {
+  display: inline-block;
+}
+
+.viewProfileText {
+  font-size: 15px;
+  color: #6FA4E9;
+}

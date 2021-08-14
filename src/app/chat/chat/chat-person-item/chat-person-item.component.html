@@ -1,0 +1,133 @@
+<div *ngIf="user">
+
+    <div class="chatPersonItemCore m-2 p-2" [class.chatpersoncoreborderbottom]="!(user.amIAnonymous)"
+        [class.blueBackground]="activejid==user.jid" style="border: 0.8px solid #d7d7d7;">
+        <div *ngIf="user.amIAnonymous" class="amIAno text-white allCenter">
+            {{"You are anonymous to this user." |featureText}}</div>
+        <div style="position: relative;width:105px" [class.mt-4]="user.amIAnonymous">
+            <div class="imgcontainer allCenter">
+                <img *ngIf="user.profilePic.includes('hiddenprofile.png')" src="../../../../assets/hiddenProfile.svg">
+
+                <img *ngIf="!user.profilePic.includes('hiddenprofile.png')" style="border: 1px solid #d7d7d7;"
+                    [src]="user.profilePic" alt="">
+            </div>
+            <div *ngIf="user.connection&&user.connection[0] && user.connection[0]!='market' "
+                [ngStyle]="user.connection[0]=='Market' ? {'border' : '1px solid rgb(47, 128, 237)'}:(user.connection[0]=='Friends')?{'border' : '1px solid rgb(47, 128, 237)'}:{'border': '1px solid rgb(47, 128, 237)'}"
+                style="position: absolute;border-radius:4px;background-color: #FFFFFF;height: 22px;
+            font-size: 0.8rem; bottom: -8px;width: 100%;border-radius: 20px; text-align: center;color:rgb(47, 128, 237);">
+                <span style="font-size: 14px;">{{user.connection[0] |featureText}}</span>
+                <!-- <span>{{user.connection|json}}</span> -->
+                <span *ngIf="user.connection[0] &&user.connection.length>1">+</span>
+            </div>
+        </div>
+        <div class="chatpersonright w-100">
+            <div class="chatpersonhead d-flex align-items-center w-100 justify-content-between px-2">
+                <div class=" p-0 restrictname">
+                    <span [ngClass]="isChat?'all-headings':'all-headings2'">{{user.name|sliceName}}</span>
+                </div>
+                <span class="text-muted timecontainer mt-3">
+                    <ng-container *ngIf="user.msg">
+                        <ng-container *ngIf="user.msg.length">
+                            <ng-container *ngIf="user.msg.length>0">{{user.msg[user.msg.length-1].date| timeformat}}
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </span>
+            </div>
+
+            <div class="textcontainer px-2 d-flex justify-content-between align-items-center ">
+                <p class="m-0 text-muted  ">
+                    <ng-container
+                        *ngIf="user.msg[user.msg.length-1]&&user.msg[user.msg.length-1]!=undefined&&user.msg.length>0;else otherr">
+                        <span style="padding: 0;margin: 0;color: rgb(0, 0, 0);" *ngIf='user.msg.length>0'>
+                            <span *ngIf="user.msg[user.msg.length-1].type=='text'">
+                                <!-- {{ cutWord(user.msg[user.msg.length-1].text) }} -->
+                                <span *ngIf="user.msg[user.msg.length-1].text">
+                                    <span [class.blueTextt]="user.unread>0"
+                                        *ngIf="user.msg[user.msg.length-1].text.length <= 20">{{user.msg[user.msg.length-1].text}}</span>
+                                    <span class="textSet" [class.blueTextt]="user.unread>0"
+                                        *ngIf="user.msg[user.msg.length-1].text.length > 20">{{user.msg[user.msg.length-1].text | slice:0:20}}...</span>
+                                </span>
+                            </span>
+                            <!-- <span *ngIf="user.msg[user.msg.length-1].type=='delete'||user.msg[user.msg.length-1].type=='deleteforboth'" 
+                                style="padding: 2px 1px;" >
+                               <span>{{'Click to send Message' }}</span>
+                               fineArray = ['image','video','file','audio','text']
+                            </span> -->
+                            <span *ngIf="user.msg[user.msg.length-1].type=='image'" style="padding: 2px 1px;">
+                                <img class="pr-1"
+                                    [src]="user.unread>0?'../../assets/chat/imgaud.svg':'../../assets/chat/imgIcon.png'"
+                                    height="14px" alt=""> <span
+                                    [class.blueTextt]="user.unread>0">{{'Photo' |featureText}}</span>
+                            </span>
+                            <span *ngIf="user.msg[user.msg.length-1].type=='video'" style="padding: 2px 1px;">
+                                <img class="pr-1"
+                                    [src]="user.unread>0?'../../assets/chat/newvid.svg':'../../assets/chat/videoIcon.png'"
+                                    height="14px" alt=""> <span
+                                    [class.blueTextt]="user.unread>0">{{'Video' |featureText}}</span>
+                            </span>
+                            <span *ngIf="user.msg[user.msg.length-1].type=='file'" style="padding: 2px 1px;">
+                                <img class="pr-1"
+                                    [src]="user.unread>0?'../../assets/chat/doc.svg':'../../assets/chat/fileIcon.png'"
+                                    height="14px" alt=""> <span
+                                    [class.blueTextt]="user.unread>0">{{'File' |featureText}}</span>
+                            </span>
+                            <span *ngIf="user.msg[user.msg.length-1].type=='audio'" style="padding: 2px 1px;">
+                                <img class="pr-1"
+                                    [src]="user.unread>0?'../../assets/chat/newaud.svg':'../../assets/chat/audioIcon.png'"
+                                    height="14px" alt=""> <span
+                                    [class.blueTextt]="user.unread>0">{{'Audio' |featureText}}</span>
+                            </span>
+                            <span style="padding: 2px 1px;color: #505050;">
+                                <span
+                                    *ngIf="(user.chatExit==true||user.chatExitMe==true||user.blocked==true||user.blockedMe==true)&& !fineArray.includes(user.msg[user.msg.length-1].type)">
+                                    <!-- You can't reply to this chat -->
+                                    {{'Chat cannot be replied anymore.' |featureText}}
+                                </span>
+
+                                <span
+                                    *ngIf="((user.chatExit==false&&user.chatExitMe==false&&user.blocked==false&&user.blockedMe==false)||(user.msg[user.msg.length-1].type=='delete'||user.msg[user.msg.length-1].type=='deleteforboth'||user.msg[user.msg.length-1].type=='deleteforboths'))&&!fineArray.includes(user.msg[user.msg.length-1].type)">
+                                    {{'Click to send message'  |featureText}}
+                                </span>
+
+                            </span>
+                            <!-- <span  style="padding: 2px 1px;color: #505050;" >
+                              <span  >
+                                {{'Click to send Message'  }}
+                              </span>
+                             
+                          </span> -->
+                            <span style="padding: 2px 1px;color: #505050;display: none;">
+                                <!-- <span  >
+                              
+                                {{'Chat cannot be replied anymore.'  }}
+                            </span> -->
+
+                                <!-- <span *ngIf="user.blocked==false&&user.blockedMe==false" >
+                                {{'Click to send Message'  }}
+                              </span> -->
+
+                            </span>
+                            <!-- <span  style="padding: 2px 1px;color: #505050;" >
+                          <span >
+                            {{'Click to send Message'  }}
+                          </span>
+                         
+                      </span> -->
+                        </span>
+                    </ng-container>
+
+                    <ng-template #otherr>
+                        <span>
+                            {{'Click to send message' |featureText }}
+                        </span>
+                    </ng-template>
+                </p>
+
+                <span *ngIf="user.unread>0" class="blueThemeRound">
+                    <span>{{user.unread}}</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

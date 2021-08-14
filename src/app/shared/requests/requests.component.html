@@ -1,0 +1,79 @@
+<div class="d-flex align-items-center bg-white p-2 borderBtm m-2">
+    <div class="d-flex">
+        <div class="profileImgSize">
+
+            <!-- <img class="picsiZe" src=""> -->
+            <img (error)="request.uservisibility.profilePic='assets/profile.svg'" *ngIf="!fromSentRequest"
+                class="picsiZe" [src]="request.uservisibility.profilePic">
+            <img *ngIf="fromSentRequest" class="picsiZe ddaa" [src]="postPhoto">
+
+        </div>
+
+        <div class="reqst">
+            <div style="display:grid;">
+                <span class="mr-2 all-headings clip-text"><b>{{request.uservisibility.name}}</b></span>
+                <!-- <span *ngIf=" request.uservisibility.name.length<10"
+                    class="mr-2 nameStyle all-headings"><b>{{request.uservisibility.name}}</b></span>
+
+                <span *ngIf=" request.uservisibility.name.length>10"
+                    class="mr-2 all-headings"><b>{{request.uservisibility.name | slice:0:10}}...</b></span> -->
+                <!-- 
+                <span *ngIf="fromSentRequest && postName && postName.length<10"
+                    class="mx-2 nameStyle"><b>{{postName}}</b></span>
+
+                <span *ngIf="fromSentRequest && postName && postName.length>10"
+                    class="mx-2"><b>{{postName| slice:0:10}}...</b></span> -->
+
+                <span class="mx-2" *ngIf="showDate" class="text-muted"
+                    style="font-size: 0.7rem;">{{request.requestedAt|date}}</span>
+            </div>
+
+            <div *ngIf="!showDate" class="text-muted" style="margin: 0 8px 0px 0px; font-size: 0.7rem;">
+                {{request.requestedAt|date}}</div>
+            <div class="fontSmall my-2" style="display:grid;">
+                <span *ngIf="!fromFriendRequest" class="clip-text-content">
+                    {{request.content}}
+                </span>
+                <!-- <span *ngIf="!fromFriendRequest">
+                    {{request.content | slice:0:totalChars}}...
+                </span> -->
+                <ng-container *ngIf="fromFriendRequest">
+                    <span #showmoredata *ngIf="shomorebollean">
+                        {{request.content | slice :0:10}}
+                    </span>
+                    <span style="word-break: break-all;" #showmoredata *ngIf="!shomorebollean">
+                        {{request.content}}
+                    </span>
+                    <a class="showMoretxt" (click)="showMore()"
+                        *ngIf="shomorebollean && request.content && request.content.length > 50">{{'Show more'|featureText}}</a>
+                    <a (click)="showLess()" class="showMoretxt" *ngIf="!shomorebollean">{{'show less'|featureText }}</a>
+
+                </ng-container>
+
+            </div>
+            <div *ngIf="showfooter" class="d-flex align-items-center my-2">
+                <span *ngIf="pillType==undefined && fromSentRequest" class="reqstBtn newpillColorGreen  mx-2"
+                    (click)="confirmRequest()">{{"View" |featureText}}</span>
+                <span *ngIf="pillType==undefined && request.status=='Pending' && !fromSentRequest"
+                    class="reqstBtn bg-danger  mx-2"
+                    (click)="confirmRequest('pending')">{{"Pending" |featureText}}</span>
+
+                <span *ngIf="pillType==undefined && fromSentRequest" class="reqstBtn newpillColorRed "
+                    (click)="confirmRequest()">{{"Ignore" |featureText}}</span>
+
+                <span *ngIf="pillType==undefined && !fromSentRequest" class="reqstBtn newpillColorGreen mx-2"
+                    (click)="confirmRequest('self')">{{"View" |featureText}}</span>
+
+                <!-- <span *ngIf="pillType==undefined && !fromSentRequest" class="reqstBtn bg-danger"
+                    (click)="deleteRequest(request.postId)">{{"Delete"|featureText}} </span> -->
+
+                <span *ngIf="pillType">
+                    <app-spaarkspill [inputText]="'Pending'" [inputColor]="'#dc3545'" [inputWidth]="'auto'">
+                    </app-spaarkspill>
+                </span>
+                <span *ngIf="pillType"><img class="p-2" src="../../../assets/chat/deleteReq.svg" alt="">{{"Delete
+                    Request" |featureText}}</span>
+            </div>
+        </div>
+    </div>
+</div>

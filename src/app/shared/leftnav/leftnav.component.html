@@ -1,0 +1,172 @@
+<div class="leftSideNav pt-4">
+
+  <div routerLink="/home/feed" class=" logoicon">
+    <span><img class="logo_style" src="../../../assets/default.svg" alt=""></span>
+    <span style="color: #6886C5;">Spaarks</span>
+  </div>
+
+  <!-- style="border-bottom: 0.9px solid #D7D7D7;" -->
+  <div>
+    <!-- <ul class="list-group listtgroup">
+
+      <li class="list-group-item hoverDiv " (mouseover)="mouseOver('feed')" (mouseout)="mouseOut('feed')"
+        routerLink="/home/feed">
+        <img class="optionSpan mr-3" [src]="homeD" alt="">
+        <a class="leftTxt1" routerLinkActive="leftTxt" #testLink> {{"Home" |featureText}}</a>
+      </li>
+      <li class="list-group-item" (mouseover)="mouseOver('chat')" (mouseout)="mouseOut('chat')" routerLink="/chat">
+        <img class="optionSpan mr-3" [src]="chaticonD" alt="">
+        <a class="leftTxt1" routerLinkActive="leftTxt"> {{"Chat" |featureText}}</a>
+      </li>
+      <li class="list-group-item" (mouseover)="mouseOver('newspaark')" (mouseout)="mouseOut('newspaark')"
+        routerLink="/newspaark">
+        <img class="optionSpan mr-3" [src]="plusCirlceD" alt="">
+        <a class="leftTxt1" routerLinkActive="leftTxt"> {{"Spaark"|featureText}}</a>
+      </li>
+      
+
+      <li class="list-group-item" (mouseover)="mouseOver('explore')" (mouseout)="mouseOut('explore')"
+        routerLink="/explore">
+        <img class="optionSpan mr-3" [src]="exploreD" alt="">
+        <a class="leftTxt1" routerLinkActive="leftTxt"> {{"Explore"|featureText}}</a>
+      </li>
+
+      <li class="list-group-item" (mouseover)="mouseOver('notification')" (mouseout)="mouseOut('notification')"
+        routerLink="/home/notification">
+        <img class="optionSpan mr-3" [src]="notificaitonD" alt="" style="width: 30px;">
+        <a class="leftTxt1" routerLinkActive="leftTxt"> {{"Notifications"|featureText}}</a>
+      </li>
+
+
+      <li class="list-group-item" (mouseover)="mouseOver('requests')" (mouseout)="mouseOut('requests')"  routerLink="/home/requests">
+        <img class="optionSpan mr-3" [src]="requestD" alt="" style="width: 33px;" >
+        <a class="leftTxt1" routerLinkActive="leftTxt"
+         >{{"Friend Requests" |featureText}}</a>
+      </li>
+      
+        <li class="list-group-item" routerLink="/profile/{{userId}}">
+          <img class="optionSpan roundPic mr-3" [src]="profilePic" alt="" style="width: 38px;">
+          <a class="leftTxt1" routerLinkActive="leftTxt" #rla> {{"Profile" |featureText}}</a>
+        </li>
+     
+    </ul> -->
+    <ul class="list-group listtgroup">
+
+      <li class="list-group-item hoverDiv1 hoverDiv  " routerLink="/home/feed" routerLinkActive="active">
+        <!-- <img class="optionSpan bgimg1  bgIcons mr-3" [src]="" alt=""> -->
+        <span class="optionSpan bgimg1  bgIcons mr-3 " alt=""></span>
+
+        <a class="leftTxt1 " routerLinkActive="leftTxt" #testLink> {{"Home" |featureText}}</a>
+      </li>
+      <li class="list-group-item hoverDiv2 hoverDiv" routerLink="/chat" routerLinkActive="active">
+        <!-- <img  class="optionSpan  bgImg mr-3" src="../../../assets/Tab Bar/ChatIcon.svg" alt=""> -->
+        <span class="optionSpan bgimg2 bgIcons mr-3" alt=""></span>
+
+        <a class="leftTxt1" routerLinkActive="leftTxt"> {{"Chat" |featureText}}</a>
+      </li>
+      <li class="list-group-item hoverDiv3" routerLink="/newspaark" routerLinkActive="active">
+        <!-- <img class="optionSpan  mr-3" [src]="plusCirlceD" alt=""> -->
+        <span class="optionSpan bgimg3  bgIcons mr-3" alt=""></span>
+
+        <a class="leftTxt1" routerLinkActive="leftTxt"> {{"New spaark"|featureText}}</a>
+      </li>
+
+
+      <li class="list-group-item hoverDiv4" routerLink="/explore" routerLinkActive="active">
+        <!-- <img class="optionSpan mr-3" [src]="exploreD" alt=""> -->
+        <span class="optionSpan bgimg4  bgIcons mr-3" alt=""></span>
+
+        <a class="leftTxt1" routerLinkActive="leftTxt"> {{"Explore"|featureText}}</a>
+      </li>
+
+      <li class="list-group-item hoverDiv5" routerLink="/home/notification" routerLinkActive="active">
+        <!-- <img class="optionSpan mr-3" [src]="notificaitonD" alt="" style="width: 30px;"> -->
+        <span class="optionSpan bgimg5  bgIcons mr-3" alt=""></span>
+
+        <a class="leftTxt1" routerLinkActive="leftTxt"> {{"Notifications"|featureText}}</a>
+      </li>
+
+
+      <li class="list-group-item hoverDiv6" routerLink="/home/requests" routerLinkActive="active">
+        <!-- <img class="optionSpan mr-3" [src]="requestD" alt="" style="width: 33px;" > -->
+        <span class="optionSpan bgimg6  bgIcons mr-3" alt=""></span>
+
+
+        <a class="leftTxt1" routerLinkActive="leftTxt">{{"Friend requests" |featureText}}</a>
+      </li>
+
+      <li class="list-group-item" routerLink="/profile/{{userId}}">
+        <img class=" roundPic" [src]="profilePic" alt="" style="width: 45px;height:45px;">
+
+
+        <a class="leftTxt1" routerLinkActive="leftTxt" #rla style="margin-left: 0.85rem;">
+          {{"Profile" |featureText}}</a>
+      </li>
+
+    </ul>
+
+
+    <!-- <p class="textmuted versionText">Version - 2.0.1</p> -->
+
+
+  </div>
+  <hr class="my-1">
+  <div style="border-bottom: 0.5px solid #D7D7D7;">
+    <ul class="listtgroup p-0 m-0">
+      <li class="list-group-item_sub hoverDivbg" routerLink="/profile/bookmarks">
+        <span class="li_span">
+          <img class="" src="../../../assets/settingsBookmark.svg" style="width: 26px; height: 26px;" alt="">
+          <p class="sub_Txts">{{"Bookmarks" |featureText}}</p>
+        </span>
+      </li>
+      <li class="list-group-item_sub hoverDivbg" routerLink="/home/preferences">
+        <span class="li_span">
+          <img src="../../../assets/preference.svg" style="width: 26px; height: 26px;" alt="">
+          <p class="sub_Txts">{{"Update interests" |featureText}}</p>
+        </span>
+      </li>
+      <li class="list-group-item_sub hoverDivbg" routerLink="/settings/faqs">
+        <span class="li_span">
+          <img src="../../../assets/faqs.svg" alt="">
+          <p class="sub_Txts">{{"FAQ" |featureText}}</p>
+        </span>
+      </li>
+      <li class="list-group-item_sub hoverDivbg" routerLink="/settings/rewards">
+        <span class="li_span">
+          <img src="../../../assets/rewards-icon.svg" alt="">
+          <p class="sub_Txts">{{"Rewards and Partnership" |featureText}}</p>
+        </span>
+      </li>
+      <li class="list-group-item_sub hoverDivbg" routerLink="/settings/help">
+        <span class="li_span">
+          <img src="../../../assets/help.svg" alt="">
+          <p class="sub_Txts" style="margin-left: 1.2rem;">{{"Help" |featureText}}</p>
+        </span>
+      </li>
+      <li class="list-group-item_sub hoverDivbg" routerLink="/settings/bussinessEnq">
+        <span class="li_span">
+          <img src="../../../assets/Enq.svg" alt="">
+          <p class="sub_Txts" style="margin-left: 1.4rem;">{{"Business enquires" |featureText}}</p>
+        </span>
+      </li>
+      <li class="list-group-item_sub hoverDivbg" routerLink="/settings/connectwithus">
+        <span class="li_span">
+          <img src="../../../assets/connect.svg" alt="">
+          <p class="sub_Txts" style="margin-left: 1.25rem;">{{"Connect with us" |featureText}}</p>
+        </span>
+      </li>
+      <li class="list-group-item_sub hoverDivbg" routerLink="/settings/terms">
+        <span class="li_span">
+          <img src="../../../assets/terms.svg" alt="">
+          <p class="sub_Txts" style="margin-left: 0.92rem;">{{"Terms and policies" |featureText}}</p>
+        </span>
+      </li>
+      <li class="list-group-item_sub hoverDivbg" routerLink="/settings">
+        <span class="li_span">
+          <img src="../../../assets/settings.svg" alt="">
+          <p class="sub_Txts" style="margin-left: 1.25rem;">{{"Settings" |featureText}}</p>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>

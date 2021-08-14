@@ -1,0 +1,72 @@
+<div class="mainDivAll">
+
+    <!-- <div apptopbardir class="topbarAll">
+        <app-topbar></app-topbar>
+    </div> -->
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile ></app-topbarmobile>
+    </div>
+
+    <div class="mainfeedAll" style="height: 100%;">
+
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace" ></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace" ></div>
+
+        <div class="forSmall h-100">
+
+            <div class="middlefeed h-100">
+
+
+                <div class="h-100 mt-2 chatDiv" style="position: relative;">
+
+                    <!-- Name Header start-->
+                    <div class="whiteBox">
+                        <div style="transform:rotate(-180deg)" class="allCenter cursorpointer">
+                            <img src="../../../assets/back.svg" (click)="moveBack()">
+                        </div>
+                        <div *ngIf="currentTicket"
+                            style="display: flex;flex-direction: column; margin-left: 1rem; align-items:flex-start;justify-content: space-around;">
+                            <span *ngIf="currentTicket" class="boldTxtAll p-0 all-headings">{{currentTicket.subject |featureText}}</span>
+                            <span class="helpTitle"> {{"Team Spaarks"|featureText}}</span>
+                        </div>
+                    </div>
+                    <!-- Name Header end-->
+
+                    <!-- messages start -->
+                    <div class="chat-msg" #content>
+                        <div *ngIf="currentTicket">
+                            <div *ngFor="let msg of currentTicket.thread">
+                                <app-msg-item [pull]="msg.isUser==true?'right':'left'" [msg]="msg" [isChat]="false">
+                                </app-msg-item>
+                            </div>
+                        </div>
+                        <div *ngIf="isMobileVersion" style="height: 150px; width: 10px;"></div>
+                    </div>
+                    <!-- messages end -->
+
+                    <!-- msg input -->
+                    <div class="inputDiv" [ngStyle]="{'position':isMobileVersion?'fixed':'absolute'}">
+                        <app-msg-input [compName]="'tickets'" (alloutput)="outputFromInput($event)"></app-msg-input>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div *ngIf="!isMobileVersion"  class="rightSpace insideSpace" ></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+    <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"  ></div>
+    </div>
+    <!-- <div appbottomnavdir class="bottomNavBarAll">
+        <app-bottom-nav-bar></app-bottom-nav-bar>
+    </div> -->
+</div>

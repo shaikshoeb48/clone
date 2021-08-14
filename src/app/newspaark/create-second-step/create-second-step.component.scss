@@ -1,0 +1,462 @@
+.catMain1 {
+  justify-content: space-between;
+}
+
+.optioncard {
+  min-height: 286px;
+}
+
+.notLoggedIn {
+  flex-direction: column;
+
+}
+
+.previousArrow {
+  width: 20px;
+  height: 20px;
+}
+
+.radioBody {
+
+  max-height: 100vh;
+  // min-height: 100vh;
+  min-width: 360px;
+  max-width: 487px;
+  margin-right: 10px;
+
+  h4 {
+    max-width: 100%;
+
+  }
+}
+
+.catMain {
+  // justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.allSection {
+  display: none !important;
+}
+
+.mat-radio-button {
+  // background: white;
+  border-radius: 37px;
+}
+
+.borderradius {
+  border-radius: 37px;
+}
+
+
+
+
+.ttest2 {
+  max-width: 100%;
+  max-height: 100px;
+}
+
+
+
+// }
+
+.list-group-item {
+  border: none !important;
+}
+
+.subCat {
+  max-height: 600px;
+  overflow: scroll;
+  border-radius: 11px;
+}
+
+
+
+// ::-webkit-scrollbar {
+//   width: 0px;
+// }
+
+.tabChange {
+  width: 100%;
+  height: 100%;
+}
+
+.catMain1 {
+  justify-content: space-between;
+}
+
+.catMain {
+  // justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.test {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.searchBar {
+  height: 47px;
+  width: inherit;
+  border-radius: 50px;
+  background: white;
+  resize: none;
+  // padding: 15px;
+  line-height: 47px;
+  overflow: hidden;
+  border-color: transparent !important
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: white;
+  font-weight: normal;
+  color: rgba(0, 0, 0, .87);
+}
+
+.slidestyle {
+  height: 200px;
+  width: 100%;
+  background-color: burlywood;
+  border-radius: 10px
+}
+
+// Search bar starts
+.searchExtension {
+  position: absolute;
+  top: 58px;
+  z-index: 4;
+  max-height: 300px;
+  overflow-y: scroll;
+  left: 10px;
+  width: 98%;
+}
+
+.searchExtensionparent {
+  position: relative;
+}
+
+// Search bar ends
+
+
+.pillsDiv {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 620px)and (min-width:450px) {
+
+
+  .optionSpan {
+    width: 30px;
+    display: block;
+  }
+
+  .allSection {
+    display: inline-flex !important;
+    height: 80px;
+    width: 100vw;
+    justify-content: space-between;
+    // margin: 10px;
+    background-color: #F0F2F5;
+    text-align: center;
+    left: 0px;
+    position: fixed;
+    bottom: 0px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+  }
+
+
+
+}
+
+@media screen and (max-height:600px) {
+
+  .stepper {
+    overflow: scroll !important;
+    max-height: 400px;
+  }
+}
+
+
+
+
+
+@media screen and (max-width: 449px) {
+
+
+
+  .pillsDiv {
+    display: none;
+  }
+
+  .Content {
+    width: 95vw;
+    height: 50vh;
+  }
+
+
+
+  .optionSpan {
+    width: 29px;
+  }
+
+  .leftTxt {
+    font-size: 16px;
+  }
+
+  .allSection {
+    display: inline-flex !important;
+    height: 80px;
+    width: 100vw;
+    justify-content: space-between;
+    // margin: 10px;
+    background-color: #F0F2F5;
+    text-align: center;
+    left: 0px;
+    position: fixed;
+    bottom: 0px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+  }
+
+
+  .radioBody {
+
+
+    min-width: 100%;
+    max-width: 100%;
+    // margin-right: 10px;
+  }
+
+}
+
+
+
+.searchExtensionparent {
+  position: relative;
+}
+
+.searchBar {
+  height: 47px;
+  width: inherit;
+  border-radius: 50px;
+  background: white;
+  resize: none;
+  // padding: 15px;
+  line-height: 47px;
+  overflow: hidden;
+  border-color: transparent !important
+}
+
+.textStyle {
+  display: block;
+  color: #757575;
+  background-color: #f0f2f5;
+  width: 100%;
+  padding: 10px;
+}
+
+
+.search-item {
+  height: 80px;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: white;
+
+  div {
+    p {
+      font-family: Source Sans Pro;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 25px;
+      letter-spacing: -0.16500000655651093px;
+      text-align: center;
+
+      small {
+        b {
+          font-family: Source Sans Pro;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 25px;
+          letter-spacing: -0.16500000655651093px;
+          text-align: center;
+          color: #6FA4E9;
+        }
+      }
+    }
+  }
+
+}
+
+.searchDiv {
+  height: 80vh;
+  overflow: scroll;
+  position: absolute;
+  z-index: 89;
+  background-color: #f0f2f5;
+  width: 100%;
+  right: 0;
+}
+
+.lowerDiv {
+  margin-top: 300px;
+}
+
+.searchicon {
+  height: 100%;
+  font-size: 24px;
+  width: 75px;
+}
+
+@media screen and (max-width:1200px) {
+  .searchExtensionparent {
+    display: block !important;
+  }
+}
+
+
+@media screen and (max-width: 1048px)and (max-width: 450px) {
+  .Content {
+    width: 80vw;
+    height: 50vh;
+  }
+}
+
+
+@media screen and (max-width:725px) and (min-width:670px) {
+  .forLeft {
+    margin-left: 35px;
+  }
+}
+
+@media screen and (max-width:669px) and (min-width:621px) {
+  .forLeft {
+    margin-left: 65px;
+  }
+}
+
+.titleStyle {
+  color: rgba(161, 164, 178, 1);
+  font-size: 0.8rem;
+}
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+  // max-height: 90vh;
+  // overflow-y: scroll;
+}
+
+.mediaicon {
+  width: 24px;
+  height: 21px;
+}
+
+.subHead {
+  font-family: Source Sans Pro;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 20px;
+}
+
+.imgSize {
+  width: 80%;
+}
+
+.forLeft ::ng-deep .mat-radio-button label {
+  justify-content: start !important;
+}
+
+.mediaspan {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mediaimagee {
+  border-right: 0.5px solid #9e9e9e;
+
+  span {
+    color: #6FA4E9;
+  }
+}
+
+.mediaimage>span {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.nextspan {
+  background: #6FA4E9;
+  border-radius: 100px;
+  width: 19%;
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      img {
+        width: 24px;
+        height: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:1800px) {
+  .nextspan {
+    width: 30%;
+  }
+
+  .mediaicon {
+    width: 20px;
+    height: 18px;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .allBtns {
+    font-size: 0.7rem !important;
+  }
+}

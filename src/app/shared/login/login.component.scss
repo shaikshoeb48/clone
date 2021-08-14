@@ -1,0 +1,302 @@
+.mainlogin {
+  max-width: 411px;
+  max-height: 377px;
+  min-height: 377px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.croossBtn {
+  width: 24px;
+  height: 30px;
+  cursor: pointer;
+}
+.modalBody {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.287);
+  position: fixed;
+  z-index: 1000;
+  top: 0px;
+  left: 0px;
+}
+
+.loginheader {
+  border-bottom: 1px solid #d7d7d7;
+  font-size: 20px;
+  max-width: 95%;
+  min-width: 95%;
+}
+
+.gifContainer {
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.loginheaderparent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logintextbottom {
+  font-size: 15px;
+}
+
+.qrtext {
+  color: #6FA4E9;
+  font-size: 20px;
+}
+
+.mobiletext {
+  color: #fa5805;
+  font-size: 20px;
+}
+
+.listContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid #6FA4E9;
+  min-width: 80%;
+  max-width: 80%;
+  border-radius: 5px;
+}
+
+.mobileparent {
+  border: 1px solid #fa5805 !important;
+}
+
+.mobilenumberscreen {
+  max-width: 411px;
+  border: 0.8px solid #d7d7d7;
+
+  min-height: 290px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.mobileinput {
+  height: 63px;
+  background: #f2f3f7;
+  border-radius: 13px;
+}
+
+.inputParent {
+  max-width: 89%;
+  min-width: 89%;
+}
+
+.mobilenumberinput {
+  height: 63px;
+  background: #f2f3f7;
+  border-radius: 13px;
+  border: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.greyarea {
+  background: #c4c4c4;
+  border-radius: 5px;
+  min-width: 89%;
+  max-width: 89%;
+  min-height: 169px;
+}
+
+.submitBtn {
+  background: #6FA4E9;
+  border-radius: 5px;
+  color: white;
+}
+
+.otpscreen {
+  max-width: 411px;
+  min-width: 411px;
+  min-height: 261px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+@media screen and(max-width:430px){
+  .otpscreen{
+    min-width: 334px;
+    min-height: 261px;
+  }
+}
+
+.listContainer:last-child {
+  font-weight: 600;
+}
+
+.otpheader {
+  text-align: center;
+}
+
+.otpTextContainer {
+  margin: auto;
+  max-width: 80%;
+  text-align: left;
+  font-size: 25px;
+}
+
+.resendText {
+  font-size: 14px;
+  color: rgb(197, 197, 197);
+}
+
+.blueText {
+  color: #6FA4E9 !important;
+}
+
+.footertext {
+  color: #6FA4E9;
+  font-size: 14px;
+}
+
+.wrapper {
+  z-index: 200;
+}
+
+.greyOut {
+  color: grey;
+  font-size: 14px;
+  // cursor: pointer;
+}
+
+.otpTextContainer:last-child {
+  font-size: 22px;
+}
+
+.profilecomplete {
+  min-width: 411px;
+  min-height: 383px;
+  background: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border:1px solid  #d7d7d7;
+}
+@media screen and(max-width:500px){
+  .profilecomplete{
+    min-width: 305px;
+  }
+}
+
+.profilecompleteHead {
+  p {
+    font-size: 25px;
+    font-weight: 600;
+    color: #000000cc;
+  }
+}
+
+.selectboxcontainer {
+  max-width: 86%;
+}
+
+.nameinput {
+  width: 86%;
+}
+
+.profilecompleteBody {
+  flex-direction: column;
+}
+
+.finalsubmitbtn {
+  background: #6FA4E9;
+  border-radius: 100px;
+  color: white;
+  height: 40px;
+  width: 99px;
+}
+
+.finalsubmitbtncontainer {
+  min-width: 80%;
+  text-align: right;
+}
+
+#img-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// QR Code
+
+.qrcodescreen {
+  max-width: 411px;
+
+  min-height: 450px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 0.8px solid #d7d7d7;
+  padding: 2px;
+
+}
+
+.qrcodescreen {
+  max-width: 411px;
+
+  min-height: 450px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 0.8px solid #d7d7d7;
+  padding: 2px;
+}
+
+.qr-text {
+  width: 100%;
+  margin-top: 0.5rem !important;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 151.9%;
+  // color: #a1a4b2;
+}
+
+.qr-code {
+  height: 100%;
+  width: 100%;
+  left: 546px;
+  top: 400px;
+  border-radius: 0px;
+  background: green;
+}
+
+.qr-text-div {
+  text-align: left;
+  display: inline-flex;
+}
+
+// QR Code Ends
+
+
+.otpscreen{
+  border: 0.8px solid #d7d7d7;
+
+}

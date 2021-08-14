@@ -1,0 +1,38 @@
+.fullreplycontainer {
+  width: 92%;
+  display: flex;
+}
+
+.floattoright {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.propic {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 49%;
+}
+
+.bgcolorforreply {
+
+  background: #9597a121;
+  border-radius: 16px;
+}
+
+.replybodycontainer {
+  position: static;
+  display: flex;
+  flex-direction: column;
+}
+
+.widthOptions {
+  width: 23px;
+  height: 19px;
+}
+
+.my {
+  margin: 0 10px;
+}

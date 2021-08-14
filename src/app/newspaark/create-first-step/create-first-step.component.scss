@@ -1,0 +1,82 @@
+.catMain1 {
+  display: inline-block;
+}
+
+
+@media screen and (max-width: 920px) {
+  .catMain {
+    // margin-top: 40px;
+    // max-height: 70vh;
+    // overflow-y: scroll;
+  }
+}
+
+.bigTextPara {
+  font-size: 23px;
+}
+
+.text-heading {
+  flex-direction: column;
+}
+
+.catMain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
+
+
+
+.subCat {
+  width: 100%;
+  transition: 0.3s;
+  height: 100px;
+  background: white;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // border: 0.5px solid #D7D7D7;
+}
+
+.PrevCat {
+  display: inline-flex;
+  overflow-x: scroll;
+  // justify-content: space-around;
+}
+
+.mainContainer:hover {
+  border-radius: 11px;
+  box-shadow: 2px 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.subCatImg {
+  width: 70px;
+  height: 70px;
+
+  border-radius: 11px;
+  object-fit: cover;
+
+  // left: 49px;
+}
+
+.subCatTxt {
+  color: black;
+  font-weight: 600;
+}
+
+
+.versionText{
+  display: none;
+}
+
+@media screen and (max-width:950px){
+  .versionText{
+    display: block;
+    margin: 25px;
+  }
+}

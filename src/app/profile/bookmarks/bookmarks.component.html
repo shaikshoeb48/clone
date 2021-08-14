@@ -1,0 +1,117 @@
+<div class="mainDivAll">
+
+    <div *ngIf="isMobileVersion" apptopbardir class="topbarAll">
+        <app-topbarmobile (selectedindexchange)="checkTabIndex($event)">
+        </app-topbarmobile>
+    </div>
+
+    <div appmainfeeddir class="mainfeedAll">
+        <div *ngIf="!isMobileVersion" class=" rightSpace rightmostSpace"></div>
+
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div *ngIf="!isMobileVersion" class="leftSpace leftinsideSpace insideSpace"></div>
+
+        <div class="forSmall h-100">
+            <div class="middlefeed h-100">
+                <div *ngIf="isAuthed==true" class="w-100">
+                    <div class="timeline">
+                        <div class="bookmarksFeed">
+                            <div class="bookmarkText allCenter">
+                                <img src="../../../assets/back1.svg" class="backimg cursorpointer"
+                                    (click)="clickedBack()">
+                                <span class="boldTxtAll w-100  all-headings"
+                                    style="display: block;">{{"Bookmarks"|featureText}}</span>
+                            </div>
+
+                            <div class="buttonTabs">
+                                <section>
+                                    <mat-button-toggle-group selectedIndex="selectedTab=='spaarks'?1:2"
+                                        [(ngModel)]="selectedTab" aria-label="Font Style">
+                                        <mat-button-toggle value="spaarks">{{"Spaarks" |featureText}}
+                                        </mat-button-toggle>
+                                        <mat-button-toggle value="profiles">{{"Market profile"|featureText}}
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="selectedTab=='spaarks'">
+                        <div class="timeline">
+                            <div *ngFor="let item of bookmarkedPosts">
+                                <app-spaarkscard [post]="item"></app-spaarkscard>
+
+                            </div>
+
+                        </div>
+                        <div class="noBookmarks allCenter" *ngIf="bookmarkedPosts==''">
+                            <img src="../../../assets/bookmark_outline.svg" style="margin-bottom: 25px;">
+                            <span class="text-muted">{{"You don’t have any bookmarks yet" |featureText}}</span>
+                        </div>
+
+                    </div>
+                    <div *ngIf="selectedTab=='profiles'">
+                        <div class="timeline">
+                            <div *ngFor="let item of bookmarkedUsers" class="allCenter">
+                                <div class="profileCard hoverDiv cursorpointer" (click)="takeToProfile(item)">
+                                    <div class="profileCardInside">
+                                        <div style="margin:10px">
+                                            <img class="profilePic" src="{{item.profilePic}}">
+
+                                        </div>
+                                        <div class="profileNameDiv w-100" user>
+                                            <span class="profileNameText">{{item.name |sliceName}}</span>
+                                            <span
+                                                class="servicesOfferedText">{{"Services offered" |featureText}}-{{item.serviceOfferings}}</span>
+                                        </div>
+                                        <div class="profileBookmarkCount allCenter">
+                                            <!-- <span style="margin-right: 25px;"
+                                                class="bookmarkCount">{{item.serviceOfferings}}</span> -->
+
+                                            <span> <img
+                                                    [src]="isbookmarked?'assets/bookmark_outline.svg':'assets/bookmark_golden.svg'"
+                                                    alt="" (click)="toggleBookmark(item._id)"
+                                                    class="bookmarkicon mt-1 cursorpointer"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="allCenter noBookmarks" *ngIf="bookmarkedUsers==''">
+                            <img src="../../../assets/bookmark_outline.svg" style="margin-bottom: 25px;">
+                            <span class="text-muted">{{"You don’t have any bookmarks yet" |featureText}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isAuthed==false" class="w-100 allCenter h-100">
+                    <div *ngIf="!showLogin" class="notLoggedIn p-3 allCenter w-75">
+                        <div class="w-100 allCenter">
+                            <img class="login-profile" src="../../../assets/profile_outline.svg" alt="">
+                        </div>
+                        <div class="w-100 allCenter flexcolumn">
+                            <h3 class="login-text">{{"Login to access this feature!"|featureText}}</h3>
+                            <button class="login-button" (click)="clickedLogin()">{{'Login'|featureText}}</button>
+                        </div>
+                    </div>
+                    <div class="w-100 allCenter mt-3" *ngIf="showLogin">
+                        <app-login></app-login>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace insideSpace"></div>
+
+        <div class="rightfeed">
+            <app-rightfeed></app-rightfeed>
+        </div>
+        <div *ngIf="!isMobileVersion" class="rightSpace rightmostSpace"></div>
+
+        <div appbottomnavdir class="bottomNavBarAll">
+            <app-bottom-nav-bar></app-bottom-nav-bar>
+        </div>
+    </div>

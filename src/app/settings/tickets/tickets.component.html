@@ -1,0 +1,24 @@
+<div style="margin-top: 1rem;max-height: 28rem;overflow-y: scroll;">
+  <div style="border-radius: 10px;" *ngIf="previousChatScreen==false">
+    <div class="p-3 borderBtm main1" *ngFor="let ticket of ticketarr">
+      <div class="d-flex w-100 cursorpointer">
+        <div class="reqst w-100" (click)="openTickets(ticket.ticketId,ticket)">
+          <div>
+            <span class="" style="display:block">
+              
+              <span class="boldTxtAll2 p-0 all-headings">{{ticket.subject |featureText}}</span> </span>
+            <div class="d-flex my-2 justify-content-between">
+              <!-- <span class="text-muted ">{{ticket.ticketId}}</span> -->
+              <span class="text-muted titleStyle">{{ticket.createdAt|date}}|{{ticket.createdAt|date:"HH:mm"}}</span>
+              <span class="btnClass">{{ticket.status |featureText}}</span>
+            </div>
+          </div>
+          <div class="fontSmall" *ngIf="ticket.thread&&ticket.thread.length&&ticket.thread[ticket.thread.length-1].content">
+            <span > {{(ticket.thread[ticket.thread.length-1].isUser)?'Me:':'Team Spaarks:'}} </span>
+           {{ticket.thread[ticket.thread.length-1].content|slice:0:20}}{{(ticket.thread[ticket.thread.length-1].content.length<20)?'':'...'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

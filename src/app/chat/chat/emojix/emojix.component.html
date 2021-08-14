@@ -1,0 +1,5 @@
+<div class="adjust">
+    <div class="emoji" *ngFor="let s of smiley">
+        <p><span (click)="emojiClicked(s)" style="cursor: pointer;"  [innerHTML]="s" ></span></p>
+    </div>
+</div>

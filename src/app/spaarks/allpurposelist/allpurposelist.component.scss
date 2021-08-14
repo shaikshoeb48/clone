@@ -1,0 +1,48 @@
+.optioncontainer{
+    border-bottom: 0.5px solid #C0C0C0;
+}
+
+.reportcontainer{
+    background: white;
+    padding-top: 2rem;
+    border-radius: 37px;
+}
+
+.blockLine{
+    height: 6px;
+    background: #6b6b6b;
+    border-radius: 8px;
+}
+
+.settingscontainer{
+    background: white;
+
+}
+
+.optionText{
+    border-bottom: 0.5px solid #CDCDCD;
+}
+
+.imgParent{
+    
+    flex:2;height: 50px;
+}
+.iconSvg{
+    width: 46px; height: 33px;
+}
+
+.crossSvg{
+    width: 32px;
+    height: 19px;
+}
+
+.topBarClose{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.settingscontainer{
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}

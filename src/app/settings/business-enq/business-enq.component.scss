@@ -1,0 +1,304 @@
+// ::-webkit-scrollbar {
+//   width: 0px;
+// }
+
+// Search bar starts
+.searchExtension {
+  position: absolute;
+  top: 58px;
+  z-index: 4;
+  max-height: 300px;
+  overflow-y: scroll;
+  left: 10px;
+  width: 98%;
+}
+
+.searchExtensionparent {
+  position: relative;
+}
+
+.searchBar {
+  height: 47px;
+  width: inherit;
+  border-radius: 50px;
+  background: white;
+  resize: none;
+  // padding: 15px;
+  line-height: 47px;
+  overflow: hidden;
+  border-color: transparent !important
+}
+
+
+// Search bar ends
+
+
+
+.paginationDots {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgb(99, 205, 255);
+  margin: 5px;
+}
+
+
+
+
+textarea:focus {
+  outline: none;
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: white;
+  font-weight: normal;
+  color: rgba(0, 0, 0, .87);
+}
+
+.slidestyle {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  background-color: burlywood;
+  border-radius: 10px
+}
+
+
+
+// Login
+.notLoggedIn {
+  flex-direction: column;
+
+}
+
+// Expansion Panel Styles Start
+
+ngb-accordion ::ng-deep .card-header {
+  padding: 0;
+  border-radius: 11px;
+  background-color: #ffffff00;
+}
+
+ngb-accordion ::ng-deep .card {
+  width: 100%;
+  border-radius: 11px !important;
+  margin-bottom: 10px;
+}
+
+
+ngb-accordion ::ng-deep .card-header button {
+  width: 100%;
+  padding: 1.125rem 2rem;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 550;
+  color: #000000f5;
+  text-align: left;
+  border-radius: 11px;
+
+}
+
+ngb-accordion ::ng-deep .card-header button:focus {
+  box-shadow: none;
+  border-radius: 11px;
+}
+
+.faqtxt {
+  color: #0606068f;
+}
+
+.btn {
+  margin: 0 auto;
+  display: flex;
+  border-radius: 50px;
+  background-color: #6FA4E9;
+  padding: 10px 21px;
+  margin-top: 3px;
+}
+
+.loginBtn {
+
+  display: inline-block;
+  font-weight: 400;
+  color: #212529 !important;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  color: #212529;
+  background-color: #ffc107 !important;
+  border-color: #ffc107;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.contactBox {
+  background: white;
+  padding: 15px;
+  border: 0.8px solid #D7D7D7;
+  border-radius: 6px;
+}
+
+.camera {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  color: #6FA4E9;
+  padding-top: 0.5rem;
+}
+
+.imgCamera {
+  margin-right: 10px;
+  width: 30px;
+}
+
+#textareA1 {
+  width: 100%;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  height: 154px;
+  border-bottom: 0.8px solid #D7D7D7 !important;
+  border-bottom-style: double;
+  /* outline: none; */
+  box-sizing: border-box;
+  /* border-radius: 5px; */
+  resize: none;
+}
+
+.txtBtn {
+  float: right;
+  margin-right: 30px;
+}
+
+.btnContact {
+  position: absolute;
+  left: 64%;
+  top: 60%;
+  border-radius: 50px;
+  background-color: #2d80ed;
+  padding: 10px 21px;
+
+}
+
+.txtMsg {
+  width: 40vw !important;
+  height: 25vh !important;
+}
+
+
+.smallTxt {
+  display: block;
+  justify-content: center;
+  text-align: center;
+  margin-top: 40px;
+  color: #6FA4E9;
+}
+
+.accordion>.card {
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: rosybrown;
+}
+
+// Expansion Panel Styles End
+.whiteBox {
+  display: flex;
+  flex-direction: row;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 4px 4px rgba(211, 211, 211, 0.25);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border-radius: 19px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.helpTitle {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #6FA4E9;
+}
+
+input[type="file"] {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  display: none;
+}
+
+.userImg1 {
+  height: 28vh;
+  width: 80%;
+  margin-top: 10px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 3% 0;
+}
+
+.uploadImg a {
+  position: absolute;
+  top: 40%;
+  cursor: pointer;
+  right: 0;
+}
+
+.uploadImg {
+  display: flex;
+  justify-content: center;
+}
+
+.uploadCross {
+  height: 20px;
+  width: 20px;
+}
+
+.mainImg {
+  flex: 50%;
+  position: relative;
+}
+
+.subHead {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  // font-weight: 600;
+  font-size: 16px;
+  margin-top: 2rem;
+}
+
+.btnClass {
+  width: max-content;
+  display: block;
+  background: #6FA4E9;
+  color: white;
+  border-radius: 31px;
+  padding: 8px;
+  text-align: center;
+}
+
+.loadingGif {
+  width: 140px;
+  height: 140px;
+  border-radius: 52%;
+}
+
+.mainChatContainer {
+  background: #F0F2F5;
+  height: 100%;
+}

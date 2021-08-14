@@ -1,0 +1,91 @@
+<div>
+
+    <app-topbar></app-topbar>
+    <div class="mainfeed">
+        <div class="leftbar">
+            <app-leftnav></app-leftnav>
+        </div>
+        <div class="forSmall">
+            <div class="middlefeed">
+                <div class="w-100">
+
+                    <div class="middlefeed">
+
+                        <!-- <h2 class="test">ContactUs</h2> -->
+                        <div class="reqBox">
+                            <span class="boldTxtAll">Request Received</span>
+                            <div class="reqReceived">
+                                <!-- <app-requests [name]="'Ajwad'"></app-requests> -->
+
+                                <div class="reqstDiv mt-4" id="reqDiv">
+                                    <div class="RightNavSkeleton" *ngIf="timer=='false'&&isAuthed">
+                                        <div *ngFor="let request of pendingRequests | slice:0:initVal">
+                                            <!-- <app-requests></app-requests> -->
+                                            <app-requests [requestData]="request"></app-requests>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="isAuthed==true" class="viewAll " (click)="viewAll()">
+                                        <span *ngIf="fullView==false">{{"View All" |featureText}}</span>
+                                        <span *ngIf="fullView==true">{{"View less" |featureText}}</span>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                        <!-- Request Sent Box -->
+                        <div class="reqBox mt-4">
+                            <span class="boldTxtAll">{{"Request Sent" |featureText}}</span>
+                            <span class="boldTxtAll">{{isAuthed}}</span>
+                            <span class="boldTxtAll">{{timer}}</span>
+                            <div class="reqReceived">
+
+                                <div class="reqstDiv mt-4" id="reqDiv">
+                                    <div class="RightNavSkeleton" *ngIf="timer=='false'&&isAuthed">
+                                        <div *ngFor="let request of allSentRequests | slice:0:initVal">
+                                            <!-- <app-requests></app-requests> -->
+                                            <app-requests (allSentRequests)="changedRequests($event)"
+                                                [requestData]="request" [fromSentRequest]="true"></app-requests>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="isAuthed==true && allSentRequests.length>0" class="viewAll "
+                                        (click)="viewAll()">
+                                        <span *ngIf="fullView==false">{{"View All" |featureText}}
+                                            {{allSentRequests.length}}</span>
+                                        <span *ngIf="fullView==true">{{"View less" |featureText}}</span>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="bottomNavBar">
+                    <app-bottom-nav-bar></app-bottom-nav-bar>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="rightfeed">
+            <!-- <app-rightfeed></app-rightfeed> -->
+        </div>
+
+        <!-- Modal Code Start -->
+
+
+
+        <!-- Modal Code End -->
+    </div>
+</div>

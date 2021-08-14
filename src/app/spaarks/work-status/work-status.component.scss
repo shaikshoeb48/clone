@@ -1,0 +1,83 @@
+.mat-cardcourse {
+  // width: 387px;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+  border: 0.8px solid #d7d7d7;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.collect-review {
+  // position: absolute;
+  left: 20.6%;
+  right: 51.1%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #a1a4b2;
+}
+
+.how-work {
+  // position: absolute;
+  left: 20.6%;
+  right: 8.53%;
+  top: 29.02%;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  color: #000000;
+}
+
+.consult {
+  // position: absolute;
+  left: 20.6%;
+  right: 22.74%;
+  bottom: 44.44%;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 5px;
+  color: #363636;
+}
+
+.btn1 {
+  border: 1px solid #6fa4e9;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: white;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 1.25px;
+  text-transform: capitalize;
+  color: #6fa4e9;
+}
+
+.completebtn {
+  border: 1px solid #6fa4e9;
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #6fa4e9;
+  background-color: white;
+}
+
+.mat-cardcourse .btn1 .completebtn:hover {
+  background: #6fa4e9;
+  color: white;
+}
